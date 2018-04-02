@@ -1,110 +1,105 @@
 # -*- coding: utf-8 -*-
 """
-What is PyTorch?
-================
+PyTorch가 무엇인가요?
+=====================
 
-It’s a Python based scientific computing package targeted at two sets of
-audiences:
+Python 기반의 과학 연산 패키지로 다음과 같은 두 집단을 대상으로 합니다:
 
--  A replacement for NumPy to use the power of GPUs
--  a deep learning research platform that provides maximum flexibility
-   and speed
+-  NumPy를 대체하고 GPU의 연산력을 이용
+-  최대한의 유연성과 속도를 제공하는 딥러닝 연구 플랫폼
 
-Getting Started
----------------
+시작하기
+--------
 
 Tensors
 ^^^^^^^
 
-Tensors are similar to NumPy’s ndarrays, with the addition being that
-Tensors can also be used on a GPU to accelerate computing.
+Tensor는 NumPy의 ndarray와 유사할뿐만 아니라, GPU를 이용한 연산 가속도 지원합니다.
 """
 
 from __future__ import print_function
 import torch
 
 ###############################################################
-# Construct a 5x3 matrix, uninitialized:
+# 초기화되지 않은 5x3 행렬을 생성합니다:
 
 x = torch.Tensor(5, 3)
 print(x)
 
 ###############################################################
-# Construct a randomly initialized matrix:
+# 무작위로 초기화된 행렬을 생성합니다:
 
 x = torch.rand(5, 3)
 print(x)
 
 ###############################################################
-# Get its size:
+# 행렬의 크기를 구합니다:
 
 print(x.size())
 
 ###############################################################
 # .. note::
-#     ``torch.Size`` is in fact a tuple, so it supports all tuple operations.
+#     ``torch.Size`` 는 튜플(tuple)과 같으며, 모든 튜플 연산에 사용할 수 있습니다.
 #
-# Operations
-# ^^^^^^^^^^
-# There are multiple syntaxes for operations. In the following
-# example, we will take a look at the addition operation.
+# 연산(Operations)
+# ^^^^^^^^^^^^^^^^
+# 연산을 위한 여러가지 문법을 제공합니다. 다음 예제들을 통해 덧셈 연산을 살펴보겠습니다.
 #
-# Addition: syntax 1
+# 덧셈: 문법1
 y = torch.rand(5, 3)
 print(x + y)
 
 ###############################################################
-# Addition: syntax 2
+# 덧셈: 문법2
 
 print(torch.add(x, y))
 
 ###############################################################
-# Addition: providing an output tensor as argument
+# 덧셈: 결과 tensor를 인자로 제공
 result = torch.Tensor(5, 3)
 torch.add(x, y, out=result)
 print(result)
 
 ###############################################################
-# Addition: in-place
+# 덧셈: in-place
 
-# adds x to y
+# y에 x 더하기
 y.add_(x)
 print(y)
 
 ###############################################################
 # .. note::
-#     Any operation that mutates a tensor in-place is post-fixed with an ``_``.
-#     For example: ``x.copy_(y)``, ``x.t_()``, will change ``x``.
+#     In-place로 tensor의 값을 변경하는 연산은 ``_`` 를 접미사로 갖습니다.
+#     예: ``x.copy_(y)``, ``x.t_()`` 는 ``x`` 를 변경합니다.
 #
-# You can use standard NumPy-like indexing with all bells and whistles!
+# NumPy의 인덱싱 표기 방법을 사용할 수도 있습니다!
 
 print(x[:, 1])
 
 ###############################################################
-# Resizing: If you want to resize/reshape tensor, you can use ``torch.view``:
+# 크기 변경: tensor의 크기(size)나 모양(shape)을 변경하고 싶을 때, ``torch.view`` 를 사용합니다.
 x = torch.randn(4, 4)
 y = x.view(16)
-z = x.view(-1, 8)  # the size -1 is inferred from other dimensions
+z = x.view(-1, 8)  # 사이즈가 -1인 경우 다른 차원들을 이용하여 유추합니다.
 print(x.size(), y.size(), z.size())
 
 ###############################################################
-# **Read later:**
+# **더 읽을거리:**
 #
 #
-#   100+ Tensor operations, including transposing, indexing, slicing,
-#   mathematical operations, linear algebra, random numbers, etc.,
-#   are described
-#   `here <http://pytorch.org/docs/torch>`_.
+#   전치(transposing), 인덱싱(indexing), 슬라이싱(slicing), 수학 계산,
+#   선형 대수, 난수(random number) 등과 같은 100가지 이상의 Tensor 연산은
+#   `여기 <http://pytorch.org/docs/torch>`_ 에 설명되어 있습니다.
 #
-# NumPy Bridge
-# ------------
+# NumPy 변환(Bridge)
+# ------------------
 #
-# Converting a Torch Tensor to a NumPy array and vice versa is a breeze.
+# Torch Tensor를 NumPy 배열(array)로 변환하거나, 그 반대로 하는 것은 매우 쉽습니다.
 #
-# The Torch Tensor and NumPy array will share their underlying memory
-# locations, and changing one will change the other.
+# Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나를 변경하면 다른 하나도
+# 변경됩니다.
 #
-# Converting a Torch Tensor to a NumPy Array
+# Torch Tensor를 NumPy 배열로 변환하기
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 a = torch.ones(5)
@@ -118,16 +113,16 @@ b = a.numpy()
 print(b)
 
 ###############################################################
-# See how the numpy array changed in value.
+# numpy 배열의 값이 어떻게 변하는지 확인해보세요.
 
 a.add_(1)
 print(a)
 print(b)
 
 ###############################################################
-# Converting NumPy Array to Torch Tensor
+# NumPy 배열을 Torch Tensor로 변환하기
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# See how changing the np array changed the Torch Tensor automatically
+# np 배열을 변경하면 Torch Tensor의 값도 자동 변경되는 것을 확인해보세요.
 
 import numpy as np
 a = np.ones(5)
@@ -137,15 +132,15 @@ print(a)
 print(b)
 
 ###############################################################
-# All the Tensors on the CPU except a CharTensor support converting to
-# NumPy and back.
+# CharTensor를 제외한 CPU 상의 모든 Tensor는 NumPy로의 변환을 지원하며,
+# (NumPy에서 Tensor로의) 반대 변환도 지원합니다.
 #
 # CUDA Tensors
 # ------------
 #
-# Tensors can be moved onto GPU using the ``.cuda`` method.
+# ``.cuda`` 메소드를 사용하여 Tensor를 GPU 상으로 옮길 수 있습니다.
 
-# let us run this cell only if CUDA is available
+# 이 코드는 CUDA가 사용 가능한 환경에서만 실행합니다.
 if torch.cuda.is_available():
     x = x.cuda()
     y = y.cuda()
