@@ -1,0 +1,441 @@
+
+
+.. _sphx_glr_beginner_blitz_tensor_tutorial.py:
+
+
+PyTorch가 무엇인가요?
+=====================
+
+Python 기반의 과학 연산 패키지로 다음과 같은 두 집단을 대상으로 합니다:
+
+-  NumPy를 대체하고 GPU의 연산력을 이용
+-  최대한의 유연성과 속도를 제공하는 딥러닝 연구 플랫폼
+
+시작하기
+--------
+
+Tensors
+^^^^^^^
+
+Tensor는 NumPy의 ndarray와 유사할뿐만 아니라, GPU를 이용한 연산 가속도 지원합니다.
+
+
+
+.. code-block:: python
+
+
+    from __future__ import print_function
+    import torch
+
+
+
+
+
+
+
+초기화되지 않은 5x3 행렬을 생성합니다:
+
+
+
+.. code-block:: python
+
+
+    x = torch.Tensor(5, 3)
+    print(x)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    0.0000e+00  3.6893e+19  9.4425e-29
+    -2.8629e-42  5.6052e-45  3.6854e-43
+     1.0371e-28  1.4013e-45  0.0000e+00
+     0.0000e+00  4.2039e-45  0.0000e+00
+     0.0000e+00  3.6893e+19  9.4497e-29
+    [torch.FloatTensor of size 5x3]
+
+
+무작위로 초기화된 행렬을 생성합니다:
+
+
+
+.. code-block:: python
+
+
+    x = torch.rand(5, 3)
+    print(x)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    0.3624  0.5814  0.7920
+     0.7242  0.4174  0.8145
+     0.0007  0.3954  0.2223
+     0.6186  0.0345  0.2732
+     0.1468  0.5306  0.4934
+    [torch.FloatTensor of size 5x3]
+
+
+행렬의 크기를 구합니다:
+
+
+
+.. code-block:: python
+
+
+    print(x.size())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    torch.Size([5, 3])
+
+
+.. note::
+    ``torch.Size`` 는 튜플(tuple)과 같으며, 모든 튜플 연산에 사용할 수 있습니다.
+
+연산(Operations)
+^^^^^^^^^^^^^^^^
+연산을 위한 여러가지 문법을 제공합니다. 다음 예제들을 통해 덧셈 연산을 살펴보겠습니다.
+
+덧셈: 문법1
+
+
+
+.. code-block:: python
+
+    y = torch.rand(5, 3)
+    print(x + y)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    1.2467  0.7565  1.1085
+     1.3954  1.2513  1.0575
+     0.6389  0.9755  1.0994
+     1.0817  0.9373  1.1509
+     1.0493  0.5485  1.2738
+    [torch.FloatTensor of size 5x3]
+
+
+덧셈: 문법2
+
+
+
+.. code-block:: python
+
+
+    print(torch.add(x, y))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    1.2467  0.7565  1.1085
+     1.3954  1.2513  1.0575
+     0.6389  0.9755  1.0994
+     1.0817  0.9373  1.1509
+     1.0493  0.5485  1.2738
+    [torch.FloatTensor of size 5x3]
+
+
+덧셈: 결과 tensor를 인자로 제공
+
+
+
+.. code-block:: python
+
+    result = torch.Tensor(5, 3)
+    torch.add(x, y, out=result)
+    print(result)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    1.2467  0.7565  1.1085
+     1.3954  1.2513  1.0575
+     0.6389  0.9755  1.0994
+     1.0817  0.9373  1.1509
+     1.0493  0.5485  1.2738
+    [torch.FloatTensor of size 5x3]
+
+
+덧셈: in-place
+
+
+
+.. code-block:: python
+
+
+    # y에 x 더하기
+    y.add_(x)
+    print(y)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    1.2467  0.7565  1.1085
+     1.3954  1.2513  1.0575
+     0.6389  0.9755  1.0994
+     1.0817  0.9373  1.1509
+     1.0493  0.5485  1.2738
+    [torch.FloatTensor of size 5x3]
+
+
+.. note::
+    In-place로 tensor의 값을 변경하는 연산은 ``_`` 를 접미사로 갖습니다.
+    예: ``x.copy_(y)``, ``x.t_()`` 는 ``x`` 를 변경합니다.
+
+NumPy의 인덱싱 표기 방법을 사용할 수도 있습니다!
+
+
+
+.. code-block:: python
+
+
+    print(x[:, 1])
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    0.5814
+     0.4174
+     0.3954
+     0.0345
+     0.5306
+    [torch.FloatTensor of size 5]
+
+
+크기 변경: tensor의 크기(size)나 모양(shape)을 변경하고 싶을 때, ``torch.view`` 를 사용합니다.
+
+
+
+.. code-block:: python
+
+    x = torch.randn(4, 4)
+    y = x.view(16)
+    z = x.view(-1, 8)  # 사이즈가 -1인 경우 다른 차원들을 이용하여 유추합니다.
+    print(x.size(), y.size(), z.size())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    torch.Size([4, 4]) torch.Size([16]) torch.Size([2, 8])
+
+
+**더 읽을거리:**
+
+
+  전치(transposing), 인덱싱(indexing), 슬라이싱(slicing), 수학 계산,
+  선형 대수, 난수(random number) 등과 같은 100가지 이상의 Tensor 연산은
+  `여기 <http://pytorch.org/docs/torch>`_ 에 설명되어 있습니다.
+
+NumPy 변환(Bridge)
+------------------
+
+Torch Tensor를 NumPy 배열(array)로 변환하거나, 그 반대로 하는 것은 매우 쉽습니다.
+
+Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나를 변경하면 다른 하나도
+변경됩니다.
+
+Torch Tensor를 NumPy 배열로 변환하기
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+.. code-block:: python
+
+
+    a = torch.ones(5)
+    print(a)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    1
+     1
+     1
+     1
+     1
+    [torch.FloatTensor of size 5]
+
+
+
+.. code-block:: python
+
+
+
+    b = a.numpy()
+    print(b)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    [1. 1. 1. 1. 1.]
+
+
+numpy 배열의 값이 어떻게 변하는지 확인해보세요.
+
+
+
+.. code-block:: python
+
+
+    a.add_(1)
+    print(a)
+    print(b)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    2
+     2
+     2
+     2
+     2
+    [torch.FloatTensor of size 5]
+
+    [2. 2. 2. 2. 2.]
+
+
+NumPy 배열을 Torch Tensor로 변환하기
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+np 배열을 변경하면 Torch Tensor의 값도 자동 변경되는 것을 확인해보세요.
+
+
+
+.. code-block:: python
+
+
+    import numpy as np
+    a = np.ones(5)
+    b = torch.from_numpy(a)
+    np.add(a, 1, out=a)
+    print(a)
+    print(b)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out::
+
+    [2. 2. 2. 2. 2.]
+
+     2
+     2
+     2
+     2
+     2
+    [torch.DoubleTensor of size 5]
+
+
+CharTensor를 제외한 CPU 상의 모든 Tensor는 NumPy로의 변환을 지원하며,
+(NumPy에서 Tensor로의) 반대 변환도 지원합니다.
+
+CUDA Tensors
+------------
+
+``.cuda`` 메소드를 사용하여 Tensor를 GPU 상으로 옮길 수 있습니다.
+
+
+
+.. code-block:: python
+
+
+    # 이 코드는 CUDA가 사용 가능한 환경에서만 실행합니다.
+    if torch.cuda.is_available():
+        x = x.cuda()
+        y = y.cuda()
+        x + y
+
+
+
+
+
+
+**Total running time of the script:** ( 0 minutes  0.003 seconds)
+
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: tensor_tutorial.py <tensor_tutorial.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: tensor_tutorial.ipynb <tensor_tutorial.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_
