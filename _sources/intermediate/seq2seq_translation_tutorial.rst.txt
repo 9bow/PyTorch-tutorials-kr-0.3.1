@@ -356,7 +356,7 @@ The full process for preparing the data is:
     Counted words:
     fra 4489
     eng 2925
-    ['je vais demenager le mois prochain .', 'i m going to move next month .']
+    ['vous etes le seul desormais pour moi .', 'you re the only one for me now .']
 
 
 The Seq2Seq Model
@@ -997,21 +997,21 @@ reasonable results.
 
  Out::
 
-    5m 36s (- 78m 31s) (5000 6%) 2.9131
-    11m 20s (- 73m 41s) (10000 13%) 2.3438
-    16m 45s (- 67m 0s) (15000 20%) 2.0124
-    22m 33s (- 62m 2s) (20000 26%) 1.7928
-    28m 27s (- 56m 55s) (25000 33%) 1.5530
-    34m 16s (- 51m 24s) (30000 40%) 1.3953
-    39m 48s (- 45m 30s) (35000 46%) 1.2505
-    45m 17s (- 39m 37s) (40000 53%) 1.1433
-    50m 44s (- 33m 49s) (45000 60%) 1.0084
-    56m 13s (- 28m 6s) (50000 66%) 0.9340
-    61m 44s (- 22m 27s) (55000 73%) 0.8604
-    67m 12s (- 16m 48s) (60000 80%) 0.7718
-    72m 48s (- 11m 12s) (65000 86%) 0.7729
-    78m 19s (- 5m 35s) (70000 93%) 0.6805
-    83m 51s (- 0m 0s) (75000 100%) 0.6127
+    4m 12s (- 58m 52s) (5000 6%) 2.9281
+    8m 40s (- 56m 23s) (10000 13%) 2.3093
+    13m 12s (- 52m 50s) (15000 20%) 2.0172
+    17m 39s (- 48m 32s) (20000 26%) 1.7754
+    22m 5s (- 44m 10s) (25000 33%) 1.5672
+    26m 31s (- 39m 47s) (30000 40%) 1.4500
+    30m 56s (- 35m 21s) (35000 46%) 1.2739
+    35m 19s (- 30m 54s) (40000 53%) 1.1894
+    39m 43s (- 26m 29s) (45000 60%) 1.0382
+    44m 7s (- 22m 3s) (50000 66%) 0.9512
+    48m 37s (- 17m 40s) (55000 73%) 0.8595
+    53m 6s (- 13m 16s) (60000 80%) 0.7897
+    57m 37s (- 8m 51s) (65000 86%) 0.7449
+    62m 4s (- 4m 26s) (70000 93%) 0.6825
+    66m 38s (- 0m 0s) (75000 100%) 0.6186
 
 
 
@@ -1029,45 +1029,45 @@ reasonable results.
 
  Out::
 
-    > il est tres intelligent .
-    = he s very intelligent .
-    < he is very intelligent . <EOS>
+    > je suis excite a l idee du demenagement .
+    = i m excited about the move .
+    < i m busy . . <EOS>
 
-    > il est anglais .
-    = he s english .
-    < he is english . <EOS>
+    > c est toi le plus vieux .
+    = you re the oldest .
+    < you re the oldest . <EOS>
 
-    > je ne suis pas satisfait .
-    = i m not satisfied .
-    < i m not satisfied . <EOS>
+    > elle enfila ses vetements .
+    = she slipped into her clothes .
+    < she slipped her her clothes . <EOS>
 
-    > vous n etes pas mariees si ?
-    = you re not married are you ?
-    < you re not married are you ? <EOS>
+    > vous etes fort serviables .
+    = you re very helpful .
+    < you re very helpful . <EOS>
 
-    > je suis content .
-    = i m glad .
-    < i am happy . <EOS>
+    > tu es pire que tom .
+    = you re worse than tom .
+    < you re worse than tom . <EOS>
 
-    > j ai toujours faim .
-    = i m still hungry .
-    < i m still hungry . <EOS>
+    > je n en suis pas sure .
+    = i m not sure about it .
+    < i m not certain about that . <EOS>
 
-    > elle semble riche .
-    = she seems rich .
-    < she rich rich . <EOS>
+    > je suis prete si vous l etes .
+    = i m ready if you are .
+    < i m not you are . <EOS>
 
-    > tu me tues .
-    = you re killing me .
-    < you re killing me . <EOS>
+    > je suis plus beau que tom .
+    = i m better looking than tom .
+    < i m more than tom . <EOS>
 
-    > tu es fort drole .
-    = you re very funny .
-    < you re very funny . <EOS>
+    > tu n es pas chanteur .
+    = you re no singer .
+    < you re no singer . <EOS>
 
-    > je ne suis plus un enfant .
-    = i m not a kid anymore .
-    < i m not a kid anymore . <EOS>
+    > je peux courir .
+    = i m able to run .
+    < i m able to swim . <EOS>
 
 
 Visualizing Attention
@@ -1179,13 +1179,13 @@ and labels:
  Out::
 
     input = elle a cinq ans de moins que moi .
-    output = she s much years younger than me . <EOS>
+    output = she s five years younger than me . <EOS>
     input = elle est trop petit .
-    output = she s too loud . <EOS>
+    output = she is too short . <EOS>
     input = je ne crains pas de mourir .
-    output = i am not dying to die . <EOS>
+    output = i m not scared to die . <EOS>
     input = c est un jeune directeur plein de talent .
-    output = he is a talented young director . <EOS>
+    output = he s a talented young . <EOS>
 
 
 Exercises
@@ -1212,7 +1212,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 83 minutes  58.598 seconds)
+**Total running time of the script:** ( 66 minutes  43.702 seconds)
 
 
 

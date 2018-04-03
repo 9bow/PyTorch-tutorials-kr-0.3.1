@@ -757,25 +757,25 @@ Finally, run the algorithm
     Building the style transfer model..
     Optimizing..
     run [50]:
-    Style Loss : 0.744124 Content Loss: 0.997378
+    Style Loss : 0.147848 Content Loss: 0.470452
 
     run [100]:
-    Style Loss : 0.267924 Content Loss: 0.865391
+    Style Loss : 0.043477 Content Loss: 0.343297
 
     run [150]:
-    Style Loss : 0.228029 Content Loss: 0.821634
+    Style Loss : 0.035841 Content Loss: 0.315429
 
     run [200]:
-    Style Loss : 0.210760 Content Loss: 0.805951
+    Style Loss : 0.031865 Content Loss: 0.306764
 
     run [250]:
-    Style Loss : 0.204578 Content Loss: 0.795495
+    Style Loss : 0.030837 Content Loss: 0.302101
 
     run [300]:
-    Style Loss : 0.201269 Content Loss: 0.789899
+    Style Loss : 0.030777 Content Loss: 0.299595
 
 
-**Total running time of the script:** ( 3 minutes  17.759 seconds)
+**Total running time of the script:** ( 2 minutes  4.947 seconds)
 
 
 

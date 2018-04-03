@@ -121,7 +121,7 @@ We'll end up with a dictionary of lists of names per language,
 
  Out::
 
-    ['data/names/Arabic.txt', 'data/names/Chinese.txt', 'data/names/Czech.txt', 'data/names/Dutch.txt', 'data/names/English.txt', 'data/names/French.txt', 'data/names/German.txt', 'data/names/Greek.txt', 'data/names/Irish.txt', 'data/names/Italian.txt', 'data/names/Japanese.txt', 'data/names/Korean.txt', 'data/names/Polish.txt', 'data/names/Portuguese.txt', 'data/names/Russian.txt', 'data/names/Scottish.txt', 'data/names/Spanish.txt', 'data/names/Vietnamese.txt']
+    ['data/names/Scottish.txt', 'data/names/Arabic.txt', 'data/names/German.txt', 'data/names/Vietnamese.txt', 'data/names/French.txt', 'data/names/Japanese.txt', 'data/names/Spanish.txt', 'data/names/Chinese.txt', 'data/names/Dutch.txt', 'data/names/Italian.txt', 'data/names/Russian.txt', 'data/names/Irish.txt', 'data/names/Portuguese.txt', 'data/names/Polish.txt', 'data/names/Czech.txt', 'data/names/Korean.txt', 'data/names/Greek.txt', 'data/names/English.txt']
     Slusarski
 
 
@@ -338,10 +338,10 @@ pre-computing batches of Tensors.
     Variable containing:
 
     Columns 0 to 9 
-    -2.9832 -2.7939 -2.8853 -2.7447 -2.9411 -2.9795 -2.9951 -2.9672 -2.8023 -2.8302
+    -2.8562 -2.9004 -2.8571 -2.9912 -2.8843 -2.8532 -2.9307 -2.8862 -2.9726 -3.0210
 
     Columns 10 to 17 
-    -2.9024 -2.8815 -2.8502 -3.0256 -2.8782 -2.9100 -2.8853 -2.8225
+    -2.7836 -2.9352 -2.8331 -2.8566 -2.8723 -2.8698 -2.8849 -2.8673
     [torch.FloatTensor of size 1x18]
 
 
@@ -382,7 +382,7 @@ of the greatest value:
 
  Out::
 
-    ('Dutch', 3)
+    ('Russian', 10)
 
 
 We will also want a quick way to get a training example (a name and its
@@ -419,16 +419,16 @@ language):
 
  Out::
 
-    category = Russian / line = Nurok
-    category = Korean / line = Pae
-    category = Greek / line = Hadjiyianakies
-    category = Portuguese / line = Barros
-    category = English / line = Alexandar
-    category = Polish / line = Kava
-    category = Spanish / line = Urena
-    category = Russian / line = Dmohovsky
-    category = Russian / line = Moguchev
-    category = Vietnamese / line = Ho
+    category = English / line = Lyme
+    category = Japanese / line = Kitagawa
+    category = Dutch / line = Paulis
+    category = Greek / line = Bekyros
+    category = Polish / line = Miazga
+    category = Irish / line = Ruadh
+    category = German / line = Knopp
+    category = Polish / line = Rudaski
+    category = Russian / line = Derzhavets
+    category = French / line = Perrot
 
 
 Training the Network
@@ -558,26 +558,26 @@ average of the loss.
 
  Out::
 
-    5000 5% (0m 5s) 2.7654 Jirku / German ✗ (Czech)
-    10000 10% (0m 10s) 1.4409 Yamaha / Japanese ✓
-    15000 15% (0m 15s) 1.5359 Pereira / Portuguese ✓
-    20000 20% (0m 21s) 1.0509 Schirmer / German ✓
-    25000 25% (0m 26s) 0.1530 Sumitimo / Japanese ✓
-    30000 30% (0m 32s) 2.6238 Vann / Irish ✗ (German)
-    35000 35% (0m 37s) 1.9408 Guerin / French ✓
-    40000 40% (0m 44s) 2.2100 Venn / Chinese ✗ (Dutch)
-    45000 45% (0m 50s) 0.8538 Diep / Vietnamese ✓
-    50000 50% (0m 55s) 0.4076 Xydis / Greek ✓
-    55000 55% (1m 1s) 0.1050 Heraskov / Russian ✓
-    60000 60% (1m 6s) 2.8684 Leon / Korean ✗ (French)
-    65000 65% (1m 11s) 3.3455 Haanrade / French ✗ (Dutch)
-    70000 70% (1m 16s) 0.9733 Gallego / Spanish ✓
-    75000 75% (1m 21s) 0.8494 Roux / French ✓
-    80000 80% (1m 26s) 4.4752 Samz / Arabic ✗ (Czech)
-    85000 85% (1m 32s) 3.2287 Machado / Japanese ✗ (Spanish)
-    90000 90% (1m 37s) 2.1378 Wolf / Scottish ✗ (German)
-    95000 95% (1m 42s) 0.2977 Kassis / Arabic ✓
-    100000 100% (1m 47s) 1.0157 Solo / Spanish ✓
+    5000 5% (0m 4s) 2.7475 O'Byrne / Italian ✗ (Irish)
+    10000 10% (0m 9s) 3.1865 Power / Arabic ✗ (Irish)
+    15000 15% (0m 14s) 1.1053 Huynh / Vietnamese ✓
+    20000 20% (0m 19s) 1.8299 Sargent / French ✓
+    25000 25% (0m 24s) 3.0692 Huff / Vietnamese ✗ (German)
+    30000 30% (0m 29s) 1.9374 Adrol / English ✓
+    35000 35% (0m 34s) 1.1665 Rang / Korean ✗ (Chinese)
+    40000 40% (0m 39s) 0.2483 Malinowski / Polish ✓
+    45000 45% (0m 44s) 0.1913 Poplawski / Polish ✓
+    50000 50% (0m 49s) 2.7045 Sandoval / Polish ✗ (Spanish)
+    55000 55% (0m 54s) 0.0107 Wronski / Polish ✓
+    60000 60% (0m 59s) 0.1052 Kagawa / Japanese ✓
+    65000 65% (1m 3s) 0.4323 Johnstone / Scottish ✓
+    70000 70% (1m 8s) 0.2477 Mackenzie / Scottish ✓
+    75000 75% (1m 13s) 0.2606 Sowka / Polish ✓
+    80000 80% (1m 18s) 0.4041 Hatakeyama / Japanese ✓
+    85000 85% (1m 23s) 1.5481 Franco / Italian ✗ (Spanish)
+    90000 90% (1m 28s) 0.7624 OuYang / Chinese ✓
+    95000 95% (1m 33s) 0.2933 Choi / Korean ✓
+    100000 100% (1m 39s) 1.0092 Salvai / Italian ✓
 
 
 Plotting the Results
@@ -719,19 +719,19 @@ Running on User Input
  Out::
 
     > Dovesky
-    (-0.77) Czech
-    (-1.41) Russian
-    (-1.79) Polish
+    (-0.23) Russian
+    (-2.41) Czech
+    (-3.15) English
 
     > Jackson
-    (-0.40) Scottish
-    (-2.35) English
-    (-2.64) Greek
+    (-0.23) Scottish
+    (-2.61) English
+    (-3.05) Russian
 
     > Satoshi
-    (-0.76) Japanese
-    (-1.35) Arabic
-    (-2.33) Italian
+    (-0.95) Arabic
+    (-0.96) Japanese
+    (-2.60) Portuguese
 
 
 The final versions of the scripts `in the Practical PyTorch
@@ -778,7 +778,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 1 minutes  52.786 seconds)
+**Total running time of the script:** ( 1 minutes  43.309 seconds)
 
 
 

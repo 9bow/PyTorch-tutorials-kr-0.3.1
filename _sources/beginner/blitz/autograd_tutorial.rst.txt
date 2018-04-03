@@ -33,7 +33,7 @@ PyTorch의 모든 신경망의 중심에는 ``autograd`` 패키지가 있습니�
 
    Variable
 
-autograd 구현을 위해 매우 중요한 클래스가 하나 더 있는데요, 바로 ``Function`` 클래스입니다.
+Autograd 구현에서 매우 중요한 클래스가 하나 더 있는데요, 바로 ``Function`` 클래스입니다.
 
 ``Variable`` 과 ``Function`` 은 상호 연결되어 있으며,
 모든 연산 과정을 부호화(encode)하여 순환하지 않은 그래프(acyclic graph)를 생성합니다.
@@ -122,7 +122,7 @@ autograd 구현을 위해 매우 중요한 클래스가 하나 더 있는데요,
 
  Out::
 
-    <AddBackward0 object at 0x113278eb8>
+    <AddBackward0 object at 0x7f54e0c80a58>
 
 
 y에 다른 연산을 수행합니다:
@@ -229,9 +229,9 @@ autograd로 많은 정신나간 일들(crazy things)도 할 수 있습니다!
  Out::
 
     Variable containing:
-     -188.5966
-      788.9949
-    -1196.1964
+    -465.4226
+     785.3433
+    -581.1501
     [torch.FloatTensor of size 3]
 
 
@@ -263,7 +263,7 @@ autograd로 많은 정신나간 일들(crazy things)도 할 수 있습니다!
 ``Variable`` 과 ``Function`` 관련 문서는 http://pytorch.org/docs/autograd 에 있습니다.
 
 
-**Total running time of the script:** ( 0 minutes  0.003 seconds)
+**Total running time of the script:** ( 0 minutes  0.002 seconds)
 
 
 

@@ -166,7 +166,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#in-place-out-of-place">In-place / Out-of-place</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">0-인덱스</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#camel-case">카멜표기법(Camel Case) 없음</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#numpy-bridge">Numpy Bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-bridge">NumPy 변환(Bridge)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#torch-tensor-numpy">Torch Tensor를 NumPy 배열로 변환하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#numpy-torch-tensor">NumPy 배열을 Torch Tensor로 변환하기</a></li>
 </ul>
@@ -175,8 +175,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="autograd_tutorial.html">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autograd_tutorial.html#variable">Variable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autograd_tutorial.html#gradients">Gradients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograd_tutorial.html#variable">변수(Variable)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograd_tutorial.html#gradient">변화도(Gradient)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="nn_tutorial.html">nn package</a><ul>
@@ -528,11 +528,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.2339</span> <span class="o">-</span><span class="mf">1.6170</span>  <span class="mf">2.2287</span>  <span class="mf">0.4832</span>  <span class="mf">0.2123</span> <span class="o">-</span><span class="mf">1.2933</span>  <span class="mf">0.7896</span>
- <span class="mf">0.6160</span>  <span class="mf">0.6089</span>  <span class="mf">0.2830</span>  <span class="mf">1.3585</span> <span class="o">-</span><span class="mf">1.5778</span> <span class="o">-</span><span class="mf">1.0190</span>  <span class="mf">0.3795</span>
- <span class="mf">0.6973</span> <span class="o">-</span><span class="mf">0.0947</span> <span class="o">-</span><span class="mf">0.8896</span>  <span class="mf">1.5020</span>  <span class="mf">1.9894</span> <span class="o">-</span><span class="mf">0.0752</span> <span class="o">-</span><span class="mf">0.1188</span>
-<span class="o">-</span><span class="mf">0.1167</span>  <span class="mf">0.2706</span> <span class="o">-</span><span class="mf">1.1253</span>  <span class="mf">1.9473</span> <span class="o">-</span><span class="mf">0.6513</span> <span class="o">-</span><span class="mf">2.2788</span>  <span class="mf">0.8342</span>
- <span class="mf">0.6299</span> <span class="o">-</span><span class="mf">0.3054</span> <span class="o">-</span><span class="mf">0.5195</span> <span class="o">-</span><span class="mf">0.6067</span> <span class="o">-</span><span class="mf">0.2993</span>  <span class="mf">1.2006</span>  <span class="mf">0.6397</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3099</span>  <span class="mf">0.9471</span> <span class="o">-</span><span class="mf">0.4453</span>  <span class="mf">1.6415</span> <span class="o">-</span><span class="mf">0.3254</span>  <span class="mf">0.4722</span>  <span class="mf">0.0663</span>
+ <span class="mf">0.2270</span> <span class="o">-</span><span class="mf">0.4704</span> <span class="o">-</span><span class="mf">0.5492</span> <span class="o">-</span><span class="mf">0.1736</span> <span class="o">-</span><span class="mf">1.5201</span>  <span class="mf">1.2870</span> <span class="o">-</span><span class="mf">1.3249</span>
+ <span class="mf">0.9986</span> <span class="o">-</span><span class="mf">0.1249</span> <span class="o">-</span><span class="mf">1.4819</span> <span class="o">-</span><span class="mf">0.0452</span> <span class="o">-</span><span class="mf">1.3784</span>  <span class="mf">0.9447</span> <span class="o">-</span><span class="mf">0.6508</span>
+ <span class="mf">0.6660</span>  <span class="mf">1.3750</span> <span class="o">-</span><span class="mf">0.0619</span>  <span class="mf">1.0469</span> <span class="o">-</span><span class="mf">1.2105</span>  <span class="mf">0.6800</span>  <span class="mf">0.0666</span>
+ <span class="mf">0.0619</span> <span class="o">-</span><span class="mf">0.9197</span> <span class="o">-</span><span class="mf">2.1651</span>  <span class="mf">0.9917</span>  <span class="mf">1.3444</span>  <span class="mf">0.9342</span>  <span class="mf">1.1864</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x7</span><span class="p">]</span>
 
 <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
@@ -635,7 +635,7 @@ In-place 연산을 합니다.</p>
 </div>
 </div>
 <div class="section" id="numpy-bridge">
-<h2>Numpy Bridge<a class="headerlink" href="#numpy-bridge" title="Permalink to this headline">¶</a></h2>
+<h2>NumPy 변환(Bridge)<a class="headerlink" href="#numpy-bridge" title="Permalink to this headline">¶</a></h2>
 <p>Torch Tensor를 NumPy 배열(array)로 변환하거나, 그 반대로 하는 것은 매우 쉽습니다.
 Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나를 변경하면 다른 하나도
 변경됩니다.</p>
@@ -717,7 +717,11 @@ Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나�
     <span class="c1"># CPU로 다시 전송을 하면, torch.LongTensor로 되돌아옵니다.</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.003 seconds)</p>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;torch.cuda.LongTensor&#39;&gt;
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/tensor_tutorial1.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tensor_tutorial.py</span></code></a></div>

@@ -151,7 +151,7 @@ torchvision 데이터셋의 출력(output)은 [0, 1] 범위를 갖는 PILImage �
 
  Out::
 
-    plane truck truck  deer
+    horse  bird horse  bird
 
 
 2. 합성곱 신경망(Convolution Neural Network) 정의하기
@@ -265,18 +265,18 @@ SGD를 사용합니다.
 
  Out::
 
-    [1,  2000] loss: 2.216
-    [1,  4000] loss: 1.928
-    [1,  6000] loss: 1.713
-    [1,  8000] loss: 1.582
-    [1, 10000] loss: 1.503
-    [1, 12000] loss: 1.469
-    [2,  2000] loss: 1.403
-    [2,  4000] loss: 1.370
-    [2,  6000] loss: 1.344
-    [2,  8000] loss: 1.320
-    [2, 10000] loss: 1.296
-    [2, 12000] loss: 1.286
+    [1,  2000] loss: 2.192
+    [1,  4000] loss: 1.820
+    [1,  6000] loss: 1.658
+    [1,  8000] loss: 1.564
+    [1, 10000] loss: 1.506
+    [1, 12000] loss: 1.438
+    [2,  2000] loss: 1.380
+    [2,  4000] loss: 1.356
+    [2,  6000] loss: 1.342
+    [2,  8000] loss: 1.315
+    [2, 10000] loss: 1.300
+    [2, 12000] loss: 1.307
     Finished Training
 
 
@@ -353,7 +353,7 @@ SGD를 사용합니다.
 
  Out::
 
-    Predicted:    cat  ship  ship  ship
+    Predicted:    cat plane   car plane
 
 
 결과가 괜찮아보이네요.
@@ -385,7 +385,7 @@ SGD를 사용합니다.
 
  Out::
 
-    Accuracy of the network on the 10000 test images: 51 %
+    Accuracy of the network on the 10000 test images: 54 %
 
 
 (10가지 분류에서 무작위로) 찍었을 때의 정확도인 10% 보다는 나아보입니다.
@@ -423,15 +423,15 @@ SGD를 사용합니다.
 
  Out::
 
-    Accuracy of plane : 47 %
-    Accuracy of   car : 49 %
-    Accuracy of  bird : 50 %
-    Accuracy of   cat : 31 %
-    Accuracy of  deer : 39 %
-    Accuracy of   dog : 33 %
-    Accuracy of  frog : 82 %
-    Accuracy of horse : 48 %
-    Accuracy of  ship : 81 %
+    Accuracy of plane : 78 %
+    Accuracy of   car : 79 %
+    Accuracy of  bird : 42 %
+    Accuracy of   cat : 45 %
+    Accuracy of  deer : 44 %
+    Accuracy of   dog : 30 %
+    Accuracy of  frog : 63 %
+    Accuracy of horse : 64 %
+    Accuracy of  ship : 51 %
     Accuracy of truck : 48 %
 
 
@@ -494,7 +494,7 @@ CPU와 비교했을 때 어마어마한 속도 차이가 나지 않는 것은 �
 .. _Slack에서 다른 사용자와 대화하기: http://pytorch.slack.com/messages/beginner/
 
 
-**Total running time of the script:** ( 4 minutes  58.730 seconds)
+**Total running time of the script:** ( 1 minutes  57.149 seconds)
 
 
 

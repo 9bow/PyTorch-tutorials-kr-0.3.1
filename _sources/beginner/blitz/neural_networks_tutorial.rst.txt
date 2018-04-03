@@ -149,7 +149,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
  Out::
 
     Variable containing:
-     0.0228  0.1018 -0.0706  0.0142  0.0210 -0.1844  0.0809 -0.0139  0.1276 -0.0236
+     0.0275 -0.0560  0.0797 -0.0362  0.0755  0.0969  0.1519 -0.0243  0.0951  0.0132
     [torch.FloatTensor of size 1x10]
 
 
@@ -238,7 +238,7 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
  Out::
 
     Variable containing:
-     38.4200
+     37.9409
     [torch.FloatTensor of size 1]
 
 
@@ -274,9 +274,9 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
 
  Out::
 
-    <MseLossBackward object at 0x1161d6a90>
-    <AddmmBackward object at 0x1161d6198>
-    <ExpandBackward object at 0x1161d6198>
+    <MseLossBackward object at 0x7f54b75b0b00>
+    <AddmmBackward object at 0x7f54b75b06a0>
+    <ExpandBackward object at 0x7f54b75b06a0>
 
 
 역전파(Backprop)
@@ -325,12 +325,12 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
 
     conv1.bias.grad after backward
     Variable containing:
-    -0.0248
-     0.0165
-     0.1118
-     0.0271
-     0.1225
-    -0.0505
+    -0.1017
+    -0.0180
+     0.0465
+    -0.0519
+     0.0324
+    -0.0352
     [torch.FloatTensor of size 6]
 
 
@@ -396,7 +396,7 @@ Gradient Descent)입니다:
       누적되기 때문입니다.
 
 
-**Total running time of the script:** ( 0 minutes  0.007 seconds)
+**Total running time of the script:** ( 0 minutes  0.014 seconds)
 
 
 

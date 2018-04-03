@@ -165,7 +165,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#in-place-out-of-place">In-place / Out-of-place</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#id1">0-인덱스</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#camel-case">카멜표기법(Camel Case) 없음</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#numpy-bridge">Numpy Bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#numpy-bridge">NumPy 변환(Bridge)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#torch-tensor-numpy">Torch Tensor를 NumPy 배열로 변환하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/former_torchies/tensor_tutorial.html#numpy-torch-tensor">NumPy 배열을 Torch Tensor로 변환하기</a></li>
 </ul>
@@ -174,8 +174,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/former_torchies/autograd_tutorial.html">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/autograd_tutorial.html#variable">Variable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/autograd_tutorial.html#gradients">Gradients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/autograd_tutorial.html#variable">변수(Variable)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/autograd_tutorial.html#gradient">변화도(Gradient)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html">nn package</a><ul>
@@ -1064,25 +1064,25 @@ the 0-1 interval.</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Building</span> <span class="n">the</span> <span class="n">style</span> <span class="n">transfer</span> <span class="n">model</span><span class="o">..</span>
 <span class="n">Optimizing</span><span class="o">..</span>
 <span class="n">run</span> <span class="p">[</span><span class="mi">50</span><span class="p">]:</span>
-<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.744124</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.997378</span>
+<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.147848</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.470452</span>
 
 <span class="n">run</span> <span class="p">[</span><span class="mi">100</span><span class="p">]:</span>
-<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.267924</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.865391</span>
+<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.043477</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.343297</span>
 
 <span class="n">run</span> <span class="p">[</span><span class="mi">150</span><span class="p">]:</span>
-<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.228029</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.821634</span>
+<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.035841</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.315429</span>
 
 <span class="n">run</span> <span class="p">[</span><span class="mi">200</span><span class="p">]:</span>
-<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.210760</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.805951</span>
+<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.031865</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.306764</span>
 
 <span class="n">run</span> <span class="p">[</span><span class="mi">250</span><span class="p">]:</span>
-<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.204578</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.795495</span>
+<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.030837</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.302101</span>
 
 <span class="n">run</span> <span class="p">[</span><span class="mi">300</span><span class="p">]:</span>
-<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.201269</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.789899</span>
+<span class="n">Style</span> <span class="n">Loss</span> <span class="p">:</span> <span class="mf">0.030777</span> <span class="n">Content</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.299595</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 3 minutes  17.759 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 2 minutes  4.947 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../_downloads/neural_style_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neural_style_tutorial.py</span></code></a></div>
