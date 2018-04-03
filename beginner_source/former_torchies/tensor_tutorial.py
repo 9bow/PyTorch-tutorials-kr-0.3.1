@@ -80,8 +80,8 @@ x.index_add_(1, torch.LongTensor([4, 0]), z)
 print(x)
 
 ###############################################################
-# Numpy Bridge
-# ------------
+# NumPy 변환(Bridge)
+# ------------------
 #
 # Torch Tensor를 NumPy 배열(array)로 변환하거나, 그 반대로 하는 것은 매우 쉽습니다.
 # Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나를 변경하면 다른 하나도
