@@ -1,4 +1,4 @@
-C 언어로 PyTorch 추기 기능(custom extension) 만들기
+C 언어로 PyTorch 확장 기능(custom extension) 만들기
 ===================================================
 **Author**: `Soumith Chintala <http://soumith.ch>`_
   **번역**: `박정환 <http://github.com/9bow>`_
