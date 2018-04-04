@@ -110,7 +110,7 @@ out.backward(torch.randn(1, 10))
 #     예를 들어, ``nnConv2D`` 는 ``nSamples x nChannels x Height x Width`` 의
 #     4차원 Tensor를 입력으로 합니다.
 #
-#     만약 하나의 샘플이 있다면, ``input.unsqueeze(0)`` 을 사용해서 가짜 차원을
+#     만약 하나의 샘플만 있다면, ``input.unsqueeze(0)`` 을 사용해서 가짜 차원을
 #     추가합니다.
 #
 #
