@@ -18,4 +18,4 @@ PyTorch에서 제공하는 튜토리얼 번역의 결과물을 위한 저장소�
 
 
 ---
-This is a project to translate [PyTorch tutorials](http://pytorch.org/tutorials) into Korean. For the latest version, please visit to the [PyTorch tutorials repo](https://github.com/pytorch/tutorials).
+This is a project to translate [PyTorch tutorials](https://github.com/pytorch/tutorials/tree/7ef2a5abf1b12bb5136aad543445850c2a9828be) into Korean. For the latest version, please visit to the [PyTorch tutorials repo](https://github.com/pytorch/tutorials).
