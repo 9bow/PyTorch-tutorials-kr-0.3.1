@@ -1,4 +1,4 @@
-Writing Distributed Applications with PyTorch
+﻿Writing 분산 어플리케이션들 with PyTorch
 =============================================
 **Author**: `Séb Arnold <http://seba1511.com>`_
 
