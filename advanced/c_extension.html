@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Custom C extensions for pytorch &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>C 언어로 PyTorch 확장 기능(custom extension) 만들기 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -177,10 +177,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/autograd_tutorial.html#gradient">변화도(Gradient)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html">nn package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html#example-1-convnet">Example 1: ConvNet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html#forward-and-backward-function-hooks">Forward and Backward Function Hooks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html#example-2-recurrent-net">Example 2: Recurrent Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html">nn 패키지</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html#convnet">예제1: 합성곱 신경망(ConvNet)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html#hook">순방향/역방향 함수 훅(Hook)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/former_torchies/nn_tutorial.html#recurrent-nets">예제2: 순환 신경망(Recurrent Nets)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/former_torchies/parallelism_tutorial.html">Multi-GPU examples</a><ul>
@@ -211,8 +211,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id1">Tensors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_tensor/two_layer_net_numpy.html">Warm-up: numpy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_tensor/two_layer_net_tensor.html">PyTorch: Tensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id2">Autograd</a><ul>
@@ -441,9 +441,9 @@
 <li class="toctree-l2"><a class="reference internal" href="super_resolution_with_caffe2.html#running-the-model-on-mobile-devices">Running the model on mobile devices</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom C extensions for pytorch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-prepare-your-c-code">Step 1. prepare your C code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-include-it-in-your-python-code">Step 2: Include it in your Python code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C 언어로 PyTorch 확장 기능(custom extension) 만들기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#c">1단계. C 코드 준비하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python">2단계. Python에서 불러오기</a></li>
 </ul>
 </li>
 </ul>
@@ -490,7 +490,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Custom C extensions for pytorch</li>
+      <li>C 언어로 PyTorch 확장 기능(custom extension) 만들기</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -509,17 +509,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="custom-c-extensions-for-pytorch">
-<h1>Custom C extensions for pytorch<a class="headerlink" href="#custom-c-extensions-for-pytorch" title="Permalink to this headline">¶</a></h1>
-<p><strong>Author</strong>: <a class="reference external" href="http://soumith.ch">Soumith Chintala</a></p>
-<div class="section" id="step-1-prepare-your-c-code">
-<h2>Step 1. prepare your C code<a class="headerlink" href="#step-1-prepare-your-c-code" title="Permalink to this headline">¶</a></h2>
-<p>First, you have to write your C functions.</p>
-<p>Below you can find an example implementation of forward and backward
-functions of a module that adds its both inputs.</p>
-<p>In your <code class="docutils literal notranslate"><span class="pre">.c</span></code> files you can include TH using an <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;TH/TH.h&gt;</span></code>
-directive, and THC using <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;THC/THC.h&gt;</span></code>.</p>
-<p>ffi utils will make sure a compiler can find them during the build.</p>
+  <div class="section" id="c-pytorch-custom-extension">
+<h1>C 언어로 PyTorch 확장 기능(custom extension) 만들기<a class="headerlink" href="#c-pytorch-custom-extension" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><strong>Author</strong>: <a class="reference external" href="http://soumith.ch">Soumith Chintala</a></dt>
+<dd><strong>번역</strong>: <a class="reference external" href="http://github.com/9bow">박정환</a></dd>
+</dl>
+<div class="section" id="c">
+<h2>1단계. C 코드 준비하기<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
+<p>먼저, C로 함수를 작성합니다.</p>
+<p>다음은 입력들을 모두 더하는 모듈의 순전파 및 역전파 함수의 예제 모듈 구현입니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.c</span></code> 파일에서 <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;TH/TH.h&gt;</span></code> 지시자(directive)로 TH를 불러온 뒤,
+<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;THC/THC.h&gt;</span></code> 로 THC도 불러옵니다.</p>
+<p>ffi util이 빌드 시에 컴파일러가 이것들을 찾을 수 있도록 할 것입니다.</p>
 <div class="code C highlight-default notranslate"><div class="highlight"><pre><span></span>/* src/my_lib.c */
 #include &lt;TH/TH.h&gt;
 
@@ -541,17 +543,15 @@ int my_lib_add_backward(THFloatTensor *grad_output, THFloatTensor *grad_input)
 }
 </pre></div>
 </div>
-<p>There are no constraints on the code, except that you will have to
-prepare a single header, which will list all functions want to call from
-python.</p>
-<p>It will be used by the ffi utils to generate appropriate wrappers.</p>
+<p>코드를 작성할 때는, Python에서 호출할 모든 함수들을 하나의 헤더 파일로 만들어두는 것 말고는
+별도로 유의해야 할 사항(constraint)은 없습니다.</p>
+<p>이 헤더 파일은 ffi util이 래퍼(wrapper)를 생성할 때 사용합니다.</p>
 <div class="code C highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">src</span><span class="o">/</span><span class="n">my_lib</span><span class="o">.</span><span class="n">h</span> <span class="o">*/</span>
 <span class="nb">int</span> <span class="n">my_lib_add_forward</span><span class="p">(</span><span class="n">THFloatTensor</span> <span class="o">*</span><span class="n">input1</span><span class="p">,</span> <span class="n">THFloatTensor</span> <span class="o">*</span><span class="n">input2</span><span class="p">,</span> <span class="n">THFloatTensor</span> <span class="o">*</span><span class="n">output</span><span class="p">);</span>
 <span class="nb">int</span> <span class="n">my_lib_add_backward</span><span class="p">(</span><span class="n">THFloatTensor</span> <span class="o">*</span><span class="n">grad_output</span><span class="p">,</span> <span class="n">THFloatTensor</span> <span class="o">*</span><span class="n">grad_input</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Now, you’ll need a super short file, that will build your custom
-extension:</p>
+<p>이제 다음과 같은 짧은 파일을 이용하여 빌드해보겠습니다:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># build.py</span>
 <span class="kn">from</span> <span class="nn">torch.utils.ffi</span> <span class="k">import</span> <span class="n">create_extension</span>
 <span class="n">ffi</span> <span class="o">=</span> <span class="n">create_extension</span><span class="p">(</span>
@@ -564,13 +564,13 @@ extension:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="step-2-include-it-in-your-python-code">
-<h2>Step 2: Include it in your Python code<a class="headerlink" href="#step-2-include-it-in-your-python-code" title="Permalink to this headline">¶</a></h2>
-<p>After you run it, pytorch will create an <code class="docutils literal notranslate"><span class="pre">_ext</span></code> directory and put
-<code class="docutils literal notranslate"><span class="pre">my_lib</span></code> inside.</p>
+<div class="section" id="python">
+<h2>2단계. Python에서 불러오기<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>위 코드를 실행하면, PyTorch가 <code class="docutils literal notranslate"><span class="pre">_ext</span></code> 디렉토리 밑에 <code class="docutils literal notranslate"><span class="pre">my_lib</span></code> 디렉토리를
+생성할 것입니다.</p>
 <p>Package name can have an arbitrary number of packages preceding the
-final module name (including none). If the build succeeded you can
-import your extension just like a regular python file.</p>
+final module name (including none). 빌드가 완료되면 일반적인 Python 파일처럼
+불러와서 사용할 수 있습니다.</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># functions/add.py</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Function</span>

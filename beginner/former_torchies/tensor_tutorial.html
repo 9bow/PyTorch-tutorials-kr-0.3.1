@@ -179,10 +179,10 @@
 <li class="toctree-l3"><a class="reference internal" href="autograd_tutorial.html#gradient">변화도(Gradient)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="nn_tutorial.html">nn package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#example-1-convnet">Example 1: ConvNet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#forward-and-backward-function-hooks">Forward and Backward Function Hooks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#example-2-recurrent-net">Example 2: Recurrent Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn_tutorial.html">nn 패키지</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#convnet">예제1: 합성곱 신경망(ConvNet)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#hook">순방향/역방향 함수 훅(Hook)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#recurrent-nets">예제2: 순환 신경망(Recurrent Nets)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="parallelism_tutorial.html">Multi-GPU examples</a><ul>
@@ -213,8 +213,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id1">Tensors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">Warm-up: numpy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
@@ -443,9 +443,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../advanced/super_resolution_with_caffe2.html#running-the-model-on-mobile-devices">Running the model on mobile devices</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/c_extension.html">Custom C extensions for pytorch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#step-1-prepare-your-c-code">Step 1. prepare your C code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#step-2-include-it-in-your-python-code">Step 2: Include it in your Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/c_extension.html">C 언어로 PyTorch 확장 기능(custom extension) 만들기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#c">1단계. C 코드 준비하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#python">2단계. Python에서 불러오기</a></li>
 </ul>
 </li>
 </ul>
@@ -528,11 +528,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3099</span>  <span class="mf">0.9471</span> <span class="o">-</span><span class="mf">0.4453</span>  <span class="mf">1.6415</span> <span class="o">-</span><span class="mf">0.3254</span>  <span class="mf">0.4722</span>  <span class="mf">0.0663</span>
- <span class="mf">0.2270</span> <span class="o">-</span><span class="mf">0.4704</span> <span class="o">-</span><span class="mf">0.5492</span> <span class="o">-</span><span class="mf">0.1736</span> <span class="o">-</span><span class="mf">1.5201</span>  <span class="mf">1.2870</span> <span class="o">-</span><span class="mf">1.3249</span>
- <span class="mf">0.9986</span> <span class="o">-</span><span class="mf">0.1249</span> <span class="o">-</span><span class="mf">1.4819</span> <span class="o">-</span><span class="mf">0.0452</span> <span class="o">-</span><span class="mf">1.3784</span>  <span class="mf">0.9447</span> <span class="o">-</span><span class="mf">0.6508</span>
- <span class="mf">0.6660</span>  <span class="mf">1.3750</span> <span class="o">-</span><span class="mf">0.0619</span>  <span class="mf">1.0469</span> <span class="o">-</span><span class="mf">1.2105</span>  <span class="mf">0.6800</span>  <span class="mf">0.0666</span>
- <span class="mf">0.0619</span> <span class="o">-</span><span class="mf">0.9197</span> <span class="o">-</span><span class="mf">2.1651</span>  <span class="mf">0.9917</span>  <span class="mf">1.3444</span>  <span class="mf">0.9342</span>  <span class="mf">1.1864</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3540</span>  <span class="mf">0.1464</span> <span class="o">-</span><span class="mf">0.9099</span> <span class="o">-</span><span class="mf">2.0299</span>  <span class="mf">0.8120</span> <span class="o">-</span><span class="mf">0.2461</span>  <span class="mf">1.4089</span>
+<span class="o">-</span><span class="mf">0.5266</span> <span class="o">-</span><span class="mf">0.7813</span> <span class="o">-</span><span class="mf">1.7452</span> <span class="o">-</span><span class="mf">0.2019</span> <span class="o">-</span><span class="mf">0.5995</span>  <span class="mf">0.6120</span>  <span class="mf">1.2595</span>
+ <span class="mf">1.3287</span> <span class="o">-</span><span class="mf">0.1103</span>  <span class="mf">0.0234</span>  <span class="mf">0.2293</span> <span class="o">-</span><span class="mf">0.0913</span> <span class="o">-</span><span class="mf">1.2885</span>  <span class="mf">0.3319</span>
+<span class="o">-</span><span class="mf">0.8660</span>  <span class="mf">0.2640</span>  <span class="mf">1.1980</span>  <span class="mf">0.1749</span>  <span class="mf">1.1797</span>  <span class="mf">0.8570</span> <span class="o">-</span><span class="mf">1.9490</span>
+<span class="o">-</span><span class="mf">0.1003</span>  <span class="mf">0.6919</span> <span class="o">-</span><span class="mf">0.3161</span>  <span class="mf">1.2261</span>  <span class="mf">1.2071</span>  <span class="mf">0.6088</span> <span class="o">-</span><span class="mf">0.8678</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x7</span><span class="p">]</span>
 
 <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
@@ -721,7 +721,7 @@ Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나�
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;torch.cuda.LongTensor&#39;&gt;
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.003 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/tensor_tutorial1.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tensor_tutorial.py</span></code></a></div>

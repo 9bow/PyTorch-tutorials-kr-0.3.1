@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nn package &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>nn 패키지 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -179,10 +179,10 @@
 <li class="toctree-l3"><a class="reference internal" href="autograd_tutorial.html#gradient">변화도(Gradient)</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nn package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-1-convnet">Example 1: ConvNet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#forward-and-backward-function-hooks">Forward and Backward Function Hooks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example-2-recurrent-net">Example 2: Recurrent Net</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nn 패키지</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#convnet">예제1: 합성곱 신경망(ConvNet)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hook">순방향/역방향 함수 훅(Hook)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recurrent-nets">예제2: 순환 신경망(Recurrent Nets)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="parallelism_tutorial.html">Multi-GPU examples</a><ul>
@@ -213,8 +213,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id1">Tensors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">Warm-up: numpy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
@@ -443,9 +443,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../advanced/super_resolution_with_caffe2.html#running-the-model-on-mobile-devices">Running the model on mobile devices</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/c_extension.html">Custom C extensions for pytorch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#step-1-prepare-your-c-code">Step 1. prepare your C code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#step-2-include-it-in-your-python-code">Step 2: Include it in your Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/c_extension.html">C 언어로 PyTorch 확장 기능(custom extension) 만들기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#c">1단계. C 코드 준비하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced/c_extension.html#python">2단계. Python에서 불러오기</a></li>
 </ul>
 </li>
 </ul>
@@ -494,7 +494,7 @@
         
           <li><a href="../former_torchies_tutorial.html">Torch 사용자를 위한 PyTorch</a> &raquo;</li>
         
-      <li>nn package</li>
+      <li>nn 패키지</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -513,45 +513,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nn-package">
-<span id="sphx-glr-beginner-former-torchies-nn-tutorial-py"></span><h1>nn package<a class="headerlink" href="#nn-package" title="Permalink to this headline">¶</a></h1>
-<p>We’ve redesigned the nn package, so that it’s fully integrated with
-autograd. Let’s review the changes.</p>
-<p><strong>Replace containers with autograd:</strong></p>
+  <div class="section" id="nn">
+<span id="sphx-glr-beginner-former-torchies-nn-tutorial-py"></span><h1>nn 패키지<a class="headerlink" href="#nn" title="Permalink to this headline">¶</a></h1>
+<p>nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)하였습니다.
+무엇이 변경되었는지 살펴보겠습니다.</p>
+<p><strong>autograd로 컨테이너(container)를 교체:</strong></p>
 <blockquote>
-<div><p>You no longer have to use Containers like <code class="docutils literal notranslate"><span class="pre">ConcatTable</span></code>, or modules like
-<code class="docutils literal notranslate"><span class="pre">CAddTable</span></code>, or use and debug with nngraph. We will seamlessly use
-autograd to define our neural networks. For example,</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">ConcatTable</span></code> 같은 컨테이너나 <code class="docutils literal notranslate"><span class="pre">CAddTable</span></code> 같은 모듈, 또는 nngraph를 사용하거나
+디버깅하기 위한 컨테이너들은 이제 더 이상 사용하지 않습니다. 대신 더 깔끔한 autograd를
+사용해서 신경망을 정의할 것입니다. 예를 들면,</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">nn.CAddTable():forward({input1,</span> <span class="pre">input2})</span></code> simply becomes
-<code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">input1</span> <span class="pre">+</span> <span class="pre">input2</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">nn.MulConstant(0.5):forward(input)</span></code> simply becomes
-<code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">input</span> <span class="pre">*</span> <span class="pre">0.5</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">nn.CAddTable():forward({input1,</span> <span class="pre">input2})</span></code> 대신,
+<code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">input1</span> <span class="pre">+</span> <span class="pre">input2</span></code> 를 사용합니다.</li>
+<li><code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">nn.MulConstant(0.5):forward(input)</span></code> 대신,
+<code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">input</span> <span class="pre">*</span> <span class="pre">0.5</span></code> 를 사용합니다.</li>
 </ul>
 </div></blockquote>
-<p><strong>State is no longer held in the module, but in the network graph:</strong></p>
+<p><strong>상태(state)는 모듈 내에 저장되지 않고, 신경망 그래프 상에 존재합니다:</strong></p>
 <blockquote>
-<div><p>Using recurrent networks should be simpler because of this reason. If
-you want to create a recurrent network, simply use the same Linear layer
-multiple times, without having to think about sharing weights.</p>
-<div class="figure" id="id1">
+<div><p>덕분에 순환신경망을 사용하는 방법이 더 간단해졌습니다. 이제 순환신경망을 만들 때,
+더 이상 가중치(weight) 공유에 대해서는 생각할 필요 없이 동일한 Linear 계층(layer)을
+여러 차례 호출하면 됩니다.</p>
+<div class="figure" id="id4">
 <img alt="torch-nn-vs-pytorch-nn" src="../../_images/torch-nn-vs-pytorch-nn.png" />
 <p class="caption"><span class="caption-text">torch-nn-vs-pytorch-nn</span></p>
 </div>
 </div></blockquote>
-<p><strong>Simplified debugging:</strong></p>
+<p><strong>간소화된 디버깅(debugging):</strong></p>
 <blockquote>
-<div>Debugging is intuitive using Python’s pdb debugger, and <strong>the debugger
-and stack traces stop at exactly where an error occurred.</strong> What you see
-is what you get.</div></blockquote>
-<div class="section" id="example-1-convnet">
-<h2>Example 1: ConvNet<a class="headerlink" href="#example-1-convnet" title="Permalink to this headline">¶</a></h2>
-<p>Let’s see how to create a small ConvNet.</p>
-<p>All of your networks are derived from the base class <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code>:</p>
+<div>디버깅은 Python의 pdb 디버거를 이용하여 직관적이며, <strong>디버거와 스택 추적(stack trace)은
+에러가 발생한 곳에서 정확히 멈춥니다.</strong> 이제 보이는대로 얻을 것입니다. (What you see is what you get.)</div></blockquote>
+<div class="section" id="convnet">
+<h2>예제1: 합성곱 신경망(ConvNet)<a class="headerlink" href="#convnet" title="Permalink to this headline">¶</a></h2>
+<p>이제 어떻게 작은 합성곱 신경망을 만드는지 살펴보겠습니다.</p>
+<p>모든 신경망은 기본(base) 클래스인 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 로부터 파생됩니다:</p>
 <ul class="simple">
-<li>In the constructor, you declare all the layers you want to use.</li>
-<li>In the forward function, you define how your model is going to be
-run, from input to output</li>
+<li>생성자(constructor)에서, 사용할 모든 계층(layer)을 선언합니다.</li>
+<li>순전파(forward) 함수에서, 신경망 모델이 입력에서 출력까지 어떻게 실행되는지를 정의합니다.</li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
@@ -562,9 +560,7 @@ run, from input to output</li>
 <span class="k">class</span> <span class="nc">MNISTConvNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># this is the place where you instantiate all your modules</span>
-        <span class="c1"># you can later access them using the same names you&#39;ve given them in</span>
-        <span class="c1"># here</span>
+        <span class="c1"># 여기에 모든 모듈을 초기화해놓고, 나중에 여기에 선언한 이름으로 접근할 수 있습니다.</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MNISTConvNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -573,23 +569,20 @@ run, from input to output</li>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-    <span class="c1"># it&#39;s the forward function that defines the network structure</span>
-    <span class="c1"># we&#39;re accepting only a single input in here, but if you want,</span>
-    <span class="c1"># feel free to use more</span>
+    <span class="c1"># 순전파 함수에서 신경망의 구조를 정의합니다.</span>
+    <span class="c1"># 여기에서는 단 하나의 입력만 받지만, 필요하면 더 받도록 변경하면 됩니다.</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="nb">input</span><span class="p">)))</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 
-        <span class="c1"># in your model definition you can go full crazy and use arbitrary</span>
-        <span class="c1"># python code to define your model structure</span>
-        <span class="c1"># all these are perfectly legal, and will be handled correctly</span>
-        <span class="c1"># by autograd:</span>
+        <span class="c1"># 모델 구조를 정의할 때는 어떤 Python 코드를 사용해도 괜찮습니다.</span>
+        <span class="c1"># 모든 코드는 autograd에 의해 올바르고 완벽하게 처리될 것입니다.</span>
         <span class="c1"># if x.gt(0) &gt; x.numel() / 2:</span>
         <span class="c1">#      ...</span>
         <span class="c1">#</span>
-        <span class="c1"># you can even do a loop and reuse the same module inside it</span>
-        <span class="c1"># modules no longer hold ephemeral state, so you can use them</span>
-        <span class="c1"># multiple times during your forward pass</span>
+        <span class="c1"># 심지어 동일한 모듈을 재사용하거나 반복(loop)해도 됩니다.</span>
+        <span class="c1"># 모듈은 더 이상 일시적인 상태를 갖고 있지 않으므로,</span>
+        <span class="c1"># 순전파 과정에서 여러번 사용해도 됩니다.</span>
         <span class="c1"># while x.norm(2) &lt; 10:</span>
         <span class="c1">#    x = self.conv1(x)</span>
 
@@ -599,8 +592,8 @@ run, from input to output</li>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
-<p>Let’s use the defined ConvNet now.
-You create an instance of the class first.</p>
+<p>이제 정의한 합성곱 신경망을 사용해봅시다.
+먼저 클래스의 인스턴스(instance)를 생성합니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">MNISTConvNet</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
 </pre></div>
@@ -618,16 +611,14 @@ You create an instance of the class first.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">torch.nn</span></code> only supports mini-batches The entire <code class="docutils literal notranslate"><span class="pre">torch.nn</span></code>
-package only supports inputs that are a mini-batch of samples, and not
-a single sample.</p>
-<p>For example, <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code> will take in a 4D Tensor of
-<code class="docutils literal notranslate"><span class="pre">nSamples</span> <span class="pre">x</span> <span class="pre">nChannels</span> <span class="pre">x</span> <span class="pre">Height</span> <span class="pre">x</span> <span class="pre">Width</span></code>.</p>
-<p class="last">If you have a single sample, just use <code class="docutils literal notranslate"><span class="pre">input.unsqueeze(0)</span></code> to add
-a fake batch dimension.</p>
+<p><code class="docutils literal notranslate"><span class="pre">torch.nn</span></code> 은 미니 배치(mini-batch)만 지원합니다. <code class="docutils literal notranslate"><span class="pre">torch.nn</span></code> 패키지
+전체는 하나의 샘플이 아닌, 샘플들의 미니배치만을 입력으로 받습니다.</p>
+<p>예를 들어, <code class="docutils literal notranslate"><span class="pre">nnConv2D</span></code> 는 <code class="docutils literal notranslate"><span class="pre">nSamples</span> <span class="pre">x</span> <span class="pre">nChannels</span> <span class="pre">x</span> <span class="pre">Height</span> <span class="pre">x</span> <span class="pre">Width</span></code> 의
+4차원 Tensor를 입력으로 합니다.</p>
+<p class="last">만약 하나의 샘플만 있다면, <code class="docutils literal notranslate"><span class="pre">input.unsqueeze(0)</span></code> 을 사용해서 가짜 차원을
+추가합니다.</p>
 </div>
-<p>Create a mini-batch containing a single sample of random data and send the
-sample through the ConvNet.</p>
+<p>무작위 값을 갖는 하나의 미니 배치를 만들어서 합성곱 신경망에 보내보겠습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
 <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
@@ -637,7 +628,7 @@ sample through the ConvNet.</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Define a dummy target label and compute error using a loss function.</p>
+<p>가짜로 정답을 하나 만들고, 손실 함수를 이용하여 오차(error)를 계산해보겠습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">3</span><span class="p">]))</span>
 <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>  <span class="c1"># LogSoftmax + ClassNLL Loss</span>
 <span class="n">err</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
@@ -648,15 +639,15 @@ sample through the ConvNet.</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">2.3216</span>
+ <span class="mf">2.3728</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The output of the ConvNet <code class="docutils literal notranslate"><span class="pre">out</span></code> is a <code class="docutils literal notranslate"><span class="pre">Variable</span></code>. We compute the loss
-using that, and that results in <code class="docutils literal notranslate"><span class="pre">err</span></code> which is also a <code class="docutils literal notranslate"><span class="pre">Variable</span></code>.
-Calling <code class="docutils literal notranslate"><span class="pre">.backward</span></code> on <code class="docutils literal notranslate"><span class="pre">err</span></code> hence will propagate gradients all the
-way through the ConvNet to it’s weights</p>
-<p>Let’s access individual layer weights and gradients:</p>
+<p>합성곱 신경망의 출력 <code class="docutils literal notranslate"><span class="pre">out</span></code> 은 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 이며, 이를 이용하여 오차를
+계산하고 결과를 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 인 <code class="docutils literal notranslate"><span class="pre">err</span></code> 에 저장합니다.
+<code class="docutils literal notranslate"><span class="pre">err</span></code> 에 대해서 <code class="docutils literal notranslate"><span class="pre">.backward</span></code> 를 호출하면 변화도가 전체 합성곱 신경망의
+가중치에 전파됩니다.</p>
+<p>이제 개별 계층의 가중치와 변화도에 접근해보겠습니다:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -669,22 +660,21 @@ way through the ConvNet to it’s weights</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.8121892759332554</span>
-<span class="mf">0.10563687437518061</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.7932473665729496</span>
+<span class="mf">0.11911162225117235</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="forward-and-backward-function-hooks">
-<h2>Forward and Backward Function Hooks<a class="headerlink" href="#forward-and-backward-function-hooks" title="Permalink to this headline">¶</a></h2>
-<p>We’ve inspected the weights and the gradients. But how about inspecting
-/ modifying the output and grad_output of a layer?</p>
-<p>We introduce <strong>hooks</strong> for this purpose.</p>
-<p>You can register a function on a <code class="docutils literal notranslate"><span class="pre">Module</span></code> or a <code class="docutils literal notranslate"><span class="pre">Variable</span></code>.
-The hook can be a forward hook or a backward hook.
-The forward hook will be executed when a forward call is executed.
-The backward hook will be executed in the backward phase.
-Let’s look at an example.</p>
-<p>We register a forward hook on conv2 and print some information</p>
+<div class="section" id="hook">
+<h2>순방향/역방향 함수 훅(Hook)<a class="headerlink" href="#hook" title="Permalink to this headline">¶</a></h2>
+<p>지금까지 가중치와 변화도에 대해서 살펴봤습니다. 그렇다면 계층의 출력이나
+grad_output 을 살펴보거나 수정하려면 어떻게 해야 할까요?</p>
+<p>이런 목적으로 사용할 수 있는 <a href="#id1"><span class="problematic" id="id2">**</span></a>훅(Hook)**를 소개합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Module</span></code> 이나 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 에 함수를 등록할 수 있습니다.
+훅(Hook)은 순방향 훅과 역방향 훅이 있는데, 순방향 훅은 순전파가 일어날 때 /
+역방향 훅은 역전파가 일어날 때 실행됩니다.
+예제를 살펴보겠습니다.</p>
+<p>conv2에 전방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">printnorm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
     <span class="c1"># input is a tuple of packed inputs</span>
     <span class="c1"># output is a Variable. output.data is the Tensor we are interested</span>
@@ -713,10 +703,10 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 16.45246453841446
+output norm: 18.594753844902332
 </pre></div>
 </div>
-<p>We register a backward hook on conv2 and print some information</p>
+<p>conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">printgradnorm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grad_input</span><span class="p">,</span> <span class="n">grad_output</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Inside &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39; backward&#39;</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Inside class:&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
@@ -747,7 +737,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 16.45246453841446
+output norm: 18.594753844902332
 Inside Conv2d backward
 Inside class:Conv2d
 
@@ -758,18 +748,17 @@ grad_output[0]:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 grad_input size: torch.Size([1, 10, 12, 12])
 grad_output size: torch.Size([1, 20, 8, 8])
-grad_input norm: 0.020903208592807976
+grad_input norm: 0.024378475203448876
 </pre></div>
 </div>
-<p>A full and working MNIST example is located here
+<p>동작하는 전체 MNIST 예제는 여기에서 확인할 수 있습니다.
 <a class="reference external" href="https://github.com/pytorch/examples/tree/master/mnist">https://github.com/pytorch/examples/tree/master/mnist</a></p>
 </div>
-<div class="section" id="example-2-recurrent-net">
-<h2>Example 2: Recurrent Net<a class="headerlink" href="#example-2-recurrent-net" title="Permalink to this headline">¶</a></h2>
-<p>Next, let’s look at building recurrent nets with PyTorch.</p>
-<p>Since the state of the network is held in the graph and not in the
-layers, you can simply create an nn.Linear and reuse it over and over
-again for the recurrence.</p>
+<div class="section" id="recurrent-nets">
+<h2>예제2: 순환 신경망(Recurrent Nets)<a class="headerlink" href="#recurrent-nets" title="Permalink to this headline">¶</a></h2>
+<p>다음으로 PyTorch를 이용하여 순환 신경망을 만들어보겠습니다.</p>
+<p>신경망의 상태는 계층이 아닌 그래프에 저장되므로, 할 일은 nn.Linear을
+생성한 후 순환할 때마다 계속 사용하면 됩니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
     <span class="c1"># you can also accept arguments in your model constructor</span>
@@ -792,11 +781,10 @@ again for the recurrence.</p>
 <span class="n">rnn</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>A more complete Language Modeling example using LSTMs and Penn Tree-bank
-is located
-<a class="reference external" href="https://github.com/pytorch/examples/tree/master/word_language_model">here</a></p>
-<p>PyTorch by default has seamless CuDNN integration for ConvNets and
-Recurrent Nets</p>
+<p>LSTM과 Penn Tree-bank를 이용한 좀 더 완벽한 언어 모델링(Language Modeling)에 대한
+예제는 <a class="reference external" href="https://github.com/pytorch/examples/tree/master/word_language_model">여기</a>
+에 있습니다.</p>
+<p>PyTorch는 합성곱 신경망과 순환 신경망에 CuDNN 연동을 기본적으로 지원하고 있습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
 
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
@@ -816,7 +804,7 @@ Recurrent Nets</p>
 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.011 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.010 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/nn_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nn_tutorial.py</span></code></a></div>

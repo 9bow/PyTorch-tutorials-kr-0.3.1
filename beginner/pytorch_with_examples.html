@@ -42,7 +42,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PyTorch Tutorials 0.3.1 documentation" href="../index.html"/>
-        <link rel="next" title="Warm-up: numpy" href="examples_tensor/two_layer_net_numpy.html"/>
+        <link rel="next" title="준비 운동: NumPy" href="examples_tensor/two_layer_net_numpy.html"/>
         <link rel="prev" title="Multi-GPU examples" href="former_torchies/parallelism_tutorial.html"/> 
 
   
@@ -178,10 +178,10 @@
 <li class="toctree-l3"><a class="reference internal" href="former_torchies/autograd_tutorial.html#gradient">변화도(Gradient)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="former_torchies/nn_tutorial.html">nn package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="former_torchies/nn_tutorial.html#example-1-convnet">Example 1: ConvNet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="former_torchies/nn_tutorial.html#forward-and-backward-function-hooks">Forward and Backward Function Hooks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="former_torchies/nn_tutorial.html#example-2-recurrent-net">Example 2: Recurrent Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="former_torchies/nn_tutorial.html">nn 패키지</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="former_torchies/nn_tutorial.html#convnet">예제1: 합성곱 신경망(ConvNet)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="former_torchies/nn_tutorial.html#hook">순방향/역방향 함수 훅(Hook)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="former_torchies/nn_tutorial.html#recurrent-nets">예제2: 순환 신경망(Recurrent Nets)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="former_torchies/parallelism_tutorial.html">Multi-GPU examples</a><ul>
@@ -212,8 +212,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Tensors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="examples_tensor/two_layer_net_numpy.html">Warm-up: numpy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="examples_tensor/two_layer_net_tensor.html">PyTorch: Tensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Autograd</a><ul>
@@ -442,9 +442,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../advanced/super_resolution_with_caffe2.html#running-the-model-on-mobile-devices">Running the model on mobile devices</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced/c_extension.html">Custom C extensions for pytorch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../advanced/c_extension.html#step-1-prepare-your-c-code">Step 1. prepare your C code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../advanced/c_extension.html#step-2-include-it-in-your-python-code">Step 2: Include it in your Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/c_extension.html">C 언어로 PyTorch 확장 기능(custom extension) 만들기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/c_extension.html#c">1단계. C 코드 준비하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/c_extension.html#python">2단계. Python에서 불러오기</a></li>
 </ul>
 </li>
 </ul>
@@ -574,30 +574,30 @@ and backward passes through the network using numpy operations:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 히든 계층의 차원이며; D_out은 출력 차원입니다.</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random input and output data</span>
+<span class="c1"># 무작위의 입력과 출력 데이터를 생성합니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span>
 
-<span class="c1"># Randomly initialize weights</span>
+<span class="c1"># 무작위로 가중치를 초기화합니다.</span>
 <span class="n">w1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
 <span class="n">w2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span>
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: compute predicted y</span>
+    <span class="c1"># 순전파 단계: 예측값 y를 계산합니다.</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
     <span class="n">h_relu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">h_relu</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss</span>
+    <span class="c1"># 손실을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
 
-    <span class="c1"># Backprop to compute gradients of w1 and w2 with respect to loss</span>
+    <span class="c1"># 손실에 따라 w1, w2의 변화도를 계산하고 역전파합니다.</span>
     <span class="n">grad_y_pred</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">grad_w2</span> <span class="o">=</span> <span class="n">h_relu</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad_y_pred</span><span class="p">)</span>
     <span class="n">grad_h_relu</span> <span class="o">=</span> <span class="n">grad_y_pred</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -605,7 +605,7 @@ and backward passes through the network using numpy operations:</p>
     <span class="n">grad_h</span><span class="p">[</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">grad_w1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad_h</span><span class="p">)</span>
 
-    <span class="c1"># Update weights</span>
+    <span class="c1"># 가중치를 갱신합니다.</span>
     <span class="n">w1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w1</span>
     <span class="n">w2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w2</span>
 </pre></div>
@@ -636,32 +636,32 @@ and backward passes through the network:</p>
 
 
 <span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span>
-<span class="c1"># dtype = torch.cuda.FloatTensor # Uncomment this to run on GPU</span>
+<span class="c1"># dtype = torch.cuda.FloatTensor # GPU에서 실행하려면 이 주석을 제거하세요.</span>
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 히든 계층의 차원이며; D_out은 출력 차원입니다.</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random input and output data</span>
+<span class="c1"># 무작위의 입력과 출력 데이터를 생성합니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
 
-<span class="c1"># Randomly initialize weights</span>
+<span class="c1"># 무작위로 가중치를 초기화합니다.</span>
 <span class="n">w1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
 <span class="n">w2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: compute predicted y</span>
+    <span class="c1"># 순전파 단계: 예측값 y를 계산합니다.</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
     <span class="n">h_relu</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">h_relu</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss</span>
+    <span class="c1"># 손실을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
 
-    <span class="c1"># Backprop to compute gradients of w1 and w2 with respect to loss</span>
+    <span class="c1"># 손실에 따라 w1, w2의 변화도를 계산하고 역전파합니다.</span>
     <span class="n">grad_y_pred</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">grad_w2</span> <span class="o">=</span> <span class="n">h_relu</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">grad_y_pred</span><span class="p">)</span>
     <span class="n">grad_h_relu</span> <span class="o">=</span> <span class="n">grad_y_pred</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w2</span><span class="o">.</span><span class="n">t</span><span class="p">())</span>
@@ -669,7 +669,7 @@ and backward passes through the network:</p>
     <span class="n">grad_h</span><span class="p">[</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">grad_w1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">grad_h</span><span class="p">)</span>
 
-    <span class="c1"># Update weights using gradient descent</span>
+    <span class="c1"># 경사하강법(Gradient Descent)를 이용하여 가중치를 갱신합니다.</span>
     <span class="n">w1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w1</span>
     <span class="n">w2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w2</span>
 </pre></div>
@@ -1246,14 +1246,14 @@ reusing the same Module multiple times when defining the forward pass.</p>
 <h3><a class="toc-backref" href="#id26">Tensors</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 </div>
-<p><div class="sphx-glr-thumbcontainer" tooltip="A fully-connected ReLU network with one hidden layer and no biases, trained to predict y from x..."><div class="figure" id="id4">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 히든 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 오차(Euclidean Error)를 이용하여 x로부터 y를 예측하도록 학습하겠습니다."><div class="figure" id="id4">
 <img alt="../_images/sphx_glr_two_layer_net_numpy_thumb.png" src="../_images/sphx_glr_two_layer_net_numpy_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_numpy.html#sphx-glr-beginner-examples-tensor-two-layer-net-numpy-py"><span class="std std-ref">Warm-up: numpy</span></a></span></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_numpy.html#sphx-glr-beginner-examples-tensor-two-layer-net-numpy-py"><span class="std std-ref">준비 운동: NumPy</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="A fully-connected ReLU network with one hidden layer and no biases, trained to predict y from x..."><div class="figure" id="id5">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 히든 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 ..."><div class="figure" id="id5">
 <img alt="../_images/sphx_glr_two_layer_net_tensor_thumb.png" src="../_images/sphx_glr_two_layer_net_tensor_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_tensor.html#sphx-glr-beginner-examples-tensor-two-layer-net-tensor-py"><span class="std std-ref">PyTorch: Tensors</span></a></span></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_tensor.html#sphx-glr-beginner-examples-tensor-two-layer-net-tensor-py"><span class="std std-ref">PyTorch: Tensor</span></a></span></p>
 </div>
 </div></p>
 <div style='clear:both'></div></div>
@@ -1315,7 +1315,7 @@ reusing the same Module multiple times when defining the forward pass.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="examples_tensor/two_layer_net_numpy.html" class="btn btn-neutral float-right" title="Warm-up: numpy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="examples_tensor/two_layer_net_numpy.html" class="btn btn-neutral float-right" title="준비 운동: NumPy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="former_torchies/parallelism_tutorial.html" class="btn btn-neutral" title="Multi-GPU examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -149,7 +149,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
  Out::
 
     Variable containing:
-     0.0275 -0.0560  0.0797 -0.0362  0.0755  0.0969  0.1519 -0.0243  0.0951  0.0132
+     0.0714  0.0088  0.1506 -0.0849  0.0995 -0.1540  0.0385 -0.0968 -0.0457  0.0734
     [torch.FloatTensor of size 1x10]
 
 
@@ -176,7 +176,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
     예를 들어, ``nnConv2D`` 는 ``nSamples x nChannels x Height x Width`` 의
     4차원 Tensor를 입력으로 합니다.
 
-    만약 하나의 샘플이 있다면, ``input.unsqueeze(0)`` 을 사용해서 가짜 차원을
+    만약 하나의 샘플만 있다면, ``input.unsqueeze(0)`` 을 사용해서 가짜 차원을
     추가합니다.
 
 
@@ -238,7 +238,7 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
  Out::
 
     Variable containing:
-     37.9409
+     38.5902
     [torch.FloatTensor of size 1]
 
 
@@ -274,9 +274,9 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
 
  Out::
 
-    <MseLossBackward object at 0x7f54b75b0b00>
-    <AddmmBackward object at 0x7f54b75b06a0>
-    <ExpandBackward object at 0x7f54b75b06a0>
+    <MseLossBackward object at 0x7fae603999e8>
+    <AddmmBackward object at 0x7fae60399dd8>
+    <ExpandBackward object at 0x7fae60399dd8>
 
 
 역전파(Backprop)
@@ -325,12 +325,13 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
 
     conv1.bias.grad after backward
     Variable containing:
-    -0.1017
-    -0.0180
-     0.0465
-    -0.0519
-     0.0324
-    -0.0352
+    1.00000e-02 *
+     -2.7460
+     -2.4382
+     -9.2747
+      4.0117
+      8.9244
+      3.3072
     [torch.FloatTensor of size 6]
 
 
@@ -396,7 +397,7 @@ Gradient Descent)입니다:
       누적되기 때문입니다.
 
 
-**Total running time of the script:** ( 0 minutes  0.014 seconds)
+**Total running time of the script:** ( 0 minutes  0.009 seconds)
 
 
 
