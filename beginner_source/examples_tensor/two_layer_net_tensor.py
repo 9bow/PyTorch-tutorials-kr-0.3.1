@@ -25,7 +25,7 @@ dtype = torch.FloatTensor
 # dtype = torch.cuda.FloatTensor # GPU에서 실행하려면 이 주석을 제거하세요.
 
 # N은 배치 크기이며, D_in은 입력의 차원입니다;
-# H는 히든 계층의 차원이며; D_out은 출력 차원입니다.
+# H는 히든 계층의 차원이며, D_out은 출력 차원입니다:
 N, D_in, H, D_out = 64, 1000, 100, 10
 
 # 무작위의 입력과 출력 데이터를 생성합니다.
