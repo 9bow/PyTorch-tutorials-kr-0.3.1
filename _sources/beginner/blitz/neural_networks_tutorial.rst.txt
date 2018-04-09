@@ -149,7 +149,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
  Out::
 
     Variable containing:
-     0.0714  0.0088  0.1506 -0.0849  0.0995 -0.1540  0.0385 -0.0968 -0.0457  0.0734
+     0.0244  0.0453  0.0208  0.0836  0.0503  0.0951 -0.1112 -0.1198 -0.0199 -0.0512
     [torch.FloatTensor of size 1x10]
 
 
@@ -206,8 +206,8 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 
 손실 함수 (Loss Function)
 -------------------------
-손실 함수는 (output, target)을 한 쌍(pair)의 입력으로 받아, output이 target으로부터
-얼마나 떨어져있는지를 추정하는 값을 계산합니다.
+손실 함수는 (output, target)을 한 쌍(pair)의 입력으로 받아, 출력(output)이
+정답(target)으로부터 얼마나 떨어져있는지를 추정하는 값을 계산합니다.
 
 nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn.html#loss-functions>`_
 이 존재합니다.
@@ -238,7 +238,7 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
  Out::
 
     Variable containing:
-     38.5902
+     38.7240
     [torch.FloatTensor of size 1]
 
 
@@ -274,9 +274,9 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
 
  Out::
 
-    <MseLossBackward object at 0x7fae603999e8>
-    <AddmmBackward object at 0x7fae60399dd8>
-    <ExpandBackward object at 0x7fae60399dd8>
+    <MseLossBackward object at 0x7f698ef94f60>
+    <AddmmBackward object at 0x7f698ef945c0>
+    <ExpandBackward object at 0x7f698ef945c0>
 
 
 역전파(Backprop)
@@ -326,12 +326,12 @@ nn 패키지에는 여러가지의 `손실 함수들 <http://pytorch.org/docs/nn
     conv1.bias.grad after backward
     Variable containing:
     1.00000e-02 *
-     -2.7460
-     -2.4382
-     -9.2747
-      4.0117
-      8.9244
-      3.3072
+     -6.1666
+      6.9928
+      4.4176
+     -1.6226
+     -1.4701
+     -1.4935
     [torch.FloatTensor of size 6]
 
 
@@ -397,7 +397,7 @@ Gradient Descent)입니다:
       누적되기 때문입니다.
 
 
-**Total running time of the script:** ( 0 minutes  0.009 seconds)
+**Total running time of the script:** ( 0 minutes  0.522 seconds)
 
 
 

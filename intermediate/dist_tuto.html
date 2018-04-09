@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Writing Distributed Applications with PyTorch &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>파이토치로 분산 어플리케이션 개발하기 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -384,7 +384,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Writing Distributed Applications with PyTorch</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">파이토치로 분산 어플리케이션 개발하기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#point-to-point-communication">Point-to-Point Communication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#collective-communication">Collective Communication</a></li>
@@ -491,7 +491,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Writing Distributed Applications with PyTorch</li>
+      <li>파이토치로 분산 어플리케이션 개발하기</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -510,31 +510,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="writing-distributed-applications-with-pytorch">
-<h1>Writing Distributed Applications with PyTorch<a class="headerlink" href="#writing-distributed-applications-with-pytorch" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="id1">
+<h1>파이토치로 분산 어플리케이션 개발하기<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p><strong>Author</strong>: <a class="reference external" href="http://seba1511.com">Séb Arnold</a></p>
-<p>In this short tutorial, we will be going over the distributed package of PyTorch. We’ll see how to set up the distributed setting, use the different communication strategies, and go over some the internals of the package.</p>
+<p>이 짧은 튜토리얼에서, 우리는 파이토치의 분산 패키지를 둘러본다. 분산 설정을 어떻게 하지는 살펴보고, 다른 통신 전략들을 사용하며, 몇몇 내부 패키지를 확인할 예정이다.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <!--
 * Processes & machines
 * variables and init_process_group
---><p>The distributed package included in PyTorch (i.e.,
-<code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code>) enables researchers and practitioners to easily
-parallelize their computations across processes and clusters of
-machines. To do so, it leverages the messaging passing semantics
-allowing each process to communicate data to any of the other processes.
-As opposed to the multiprocessing (<code class="docutils literal notranslate"><span class="pre">torch.multiprocessing</span></code>) package,
-processes can use different communication backends and are not
-restricted to being executed on the same machine.</p>
-<p>In order to get started we need the ability to run multiple processes
-simultaneously. If you have access to compute cluster you should check
-with your local sysadmin or use your favorite coordination tool. (e.g.,
+--><p>파이토치에 포함된 분산 패키지 (i.e.,
+<code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code>)는 연구자와 개발자가 여러개의 프로세서와 머신 클러스터에서 계산을 쉽게 병렬화하게 해준다. 그렇게 하기 위해서, messaging passing semantics 가 각 프로세스가 다른 프로세스들과  데이터를 통신하도록 해준다. 다중 처리(<code class="docutils literal notranslate"><span class="pre">torch.multiprocessing</span></code>) 패키지와 달리 프로세스는 다른 통신 백엔드를 사용할 수 있으며
+동일한 기계에서 실행되는 것으로 제한됩니다.</p>
+<p>시작하려면 여러 프로세스를 동시에 실행할 수 있어야합니다. 컴퓨트 클러스터에 액세스 할 경우 local sysadmin 으로 점검하거나 또는 선호하는 coordination tool을 사용하십시오.
+(e.g.,
 <a class="reference external" href="https://linux.die.net/man/1/pdsh">pdsh</a>,
 <a class="reference external" href="http://cea-hpc.github.io/clustershell/">clustershell</a>, or
-<a class="reference external" href="https://slurm.schedmd.com/">others</a>) For the purpose of this
-tutorial, we will use a single machine and fork multiple processes using
-the following template.</p>
+<a class="reference external" href="https://slurm.schedmd.com/">others</a>) 이 튜토리얼에서는 다음 템플릿을 사용하여 단일 기기를 사용하고 여러 프로세스를 포크합니다.</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;run.py:&quot;&quot;&quot;</span>
 <span class="c1">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -566,24 +558,20 @@ the following template.</p>
         <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The above script spawns two processes who will each setup the
-distributed environment, initialize the process group
-(<code class="docutils literal notranslate"><span class="pre">dist.init_process_group</span></code>), and finally execute the given <code class="docutils literal notranslate"><span class="pre">run</span></code>
-function.</p>
-<p>Let’s have a look at the <code class="docutils literal notranslate"><span class="pre">init_processes</span></code> function. It ensures that
-every process will be able to coordinate through a master, using the
-same ip address and port. Note that we used the TCP backend, but we
-could have used
-<a class="reference external" href="https://en.wikipedia.org/wiki/Message_Passing_Interface">MPI</a> or
-<a class="reference external" href="http://github.com/facebookincubator/gloo">Gloo</a> instead. (c.f.
-<a class="reference external" href="#communication-backends">Section 5.1</a>) We will go over the magic
-happening in <code class="docutils literal notranslate"><span class="pre">dist.init_process_group</span></code> at the end of this tutorial,
+<p>위 스크립트는 각각 분산 환경을 설정하는 두개의 프로세스를 생성하고, 프로세스 그룹(<code class="docutils literal notranslate"><span class="pre">dist.init_process_group</span></code>)을 초기화하고, 마지막으로 주어진 <code class="docutils literal notranslate"><span class="pre">run</span></code> 함수를 실행합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">init_processes</span></code> 함수는 동일한 IP 주소와 포트를 사용해서 모든 프로세스가 마스터를 통해서 조직 되게 한다. 우리는 TCP 백헨드를 사용했지만 대신
+<a class="reference external" href="https://en.wikipedia.org/wiki/Message_Passing_Interface">MPI</a> 또는
+<a class="reference external" href="http://github.com/facebookincubator/gloo">Gloo</a> 를 사용할 수 있다. (c.f.
+<a class="reference external" href="#communication-backends">Section 5.1</a>) 이 튜토리얼의 마지막에 있는 <code class="docutils literal notranslate"><span class="pre">dist.init_process_group</span></code> 에서 일어나는 마법은 건너 띈다. 그러나 기본적으로 프로세스가 자신의 위치를 ​​공유함으로써 서로 통신 할 수 있게 한다.</p>
+<blockquote>
+<div>We will go over the magic</div></blockquote>
+<p>happening in <code class="docutils literal notranslate"><span class="pre">dist.init_process_group</span></code> at the end of this tutorial,
 but it essentially allows processes to communicate with each other by
 sharing their locations.</p>
 </div>
 <div class="section" id="point-to-point-communication">
 <h2>Point-to-Point Communication<a class="headerlink" href="#point-to-point-communication" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/send_recv.png"><img alt="Send and Recv" src="../_images/send_recv.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Send and Recv</span></p>
 </div>
@@ -659,34 +647,34 @@ experiments</a>.(c.f.
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure align-center" id="id2">
+<tr class="row-odd"><td><div class="first last figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/scatter.png"><img alt="Scatter" src="../_images/scatter.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Scatter</span></p>
 </div>
 </td>
-<td><div class="first last figure align-center" id="id3">
+<td><div class="first last figure align-center" id="id4">
 <a class="reference internal image-reference" href="../_images/gather.png"><img alt="Gather" src="../_images/gather.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Gather</span></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><div class="first last figure align-center" id="id4">
+<tr class="row-even"><td><div class="first last figure align-center" id="id5">
 <a class="reference internal image-reference" href="../_images/reduce.png"><img alt="Reduce" src="../_images/reduce.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Reduce</span></p>
 </div>
 </td>
-<td><div class="first last figure align-center" id="id5">
+<td><div class="first last figure align-center" id="id6">
 <a class="reference internal image-reference" href="../_images/all_reduce.png"><img alt="All-Reduce" src="../_images/all_reduce.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">All-Reduce</span></p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><div class="first last figure align-center" id="id6">
+<tr class="row-odd"><td><div class="first last figure align-center" id="id7">
 <a class="reference internal image-reference" href="../_images/broadcast.png"><img alt="Broadcast" src="../_images/broadcast.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Broadcast</span></p>
 </div>
 </td>
-<td><div class="first last figure align-center" id="id7">
+<td><div class="first last figure align-center" id="id8">
 <a class="reference internal image-reference" href="../_images/all_gather.png"><img alt="All-Gather" src="../_images/all_gather.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">All-Gather</span></p>
 </div>

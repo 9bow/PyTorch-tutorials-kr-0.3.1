@@ -385,7 +385,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../intermediate/dist_tuto.html">Writing Distributed Applications with PyTorch</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intermediate/dist_tuto.html">파이토치로 분산 어플리케이션 개발하기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../intermediate/dist_tuto.html#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../intermediate/dist_tuto.html#point-to-point-communication">Point-to-Point Communication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../intermediate/dist_tuto.html#collective-communication">Collective Communication</a></li>
@@ -524,7 +524,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
-<span class="c1"># H는 히든 계층의 차원이며; D_out은 출력 차원입니다.</span>
+<span class="c1"># H는 히든 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
 <span class="c1"># 무작위의 입력과 출력 데이터를 생성합니다.</span>
@@ -546,7 +546,7 @@
     <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
 
-    <span class="c1"># 손실에 따라 w1, w2의 변화도를 계산하고 역전파합니다.</span>
+    <span class="c1"># 손실에 따른 w1, w2의 변화도를 계산하고 역전파합니다.</span>
     <span class="n">grad_y_pred</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">grad_w2</span> <span class="o">=</span> <span class="n">h_relu</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grad_y_pred</span><span class="p">)</span>
     <span class="n">grad_h_relu</span> <span class="o">=</span> <span class="n">grad_y_pred</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>

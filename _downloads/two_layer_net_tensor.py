@@ -25,7 +25,7 @@ dtype = torch.FloatTensor
 # dtype = torch.cuda.FloatTensor # GPU에서 실행하려면 이 주석을 제거하세요.
 
 # N은 배치 크기이며, D_in은 입력의 차원입니다;
-# H는 히든 계층의 차원이며; D_out은 출력 차원입니다.
+# H는 히든 계층의 차원이며, D_out은 출력 차원입니다:
 N, D_in, H, D_out = 64, 1000, 100, 10
 
 # 무작위의 입력과 출력 데이터를 생성합니다.
@@ -47,7 +47,7 @@ for t in range(500):
     loss = (y_pred - y).pow(2).sum()
     print(t, loss)
 
-    # 손실에 따라 w1, w2의 변화도를 계산하고 역전파합니다.
+    # 손실에 따른 w1, w2의 변화도를 계산하고 역전파합니다.
     grad_y_pred = 2.0 * (y_pred - y)
     grad_w2 = h_relu.t().mm(grad_y_pred)
     grad_h_relu = grad_y_pred.mm(w2.t())
