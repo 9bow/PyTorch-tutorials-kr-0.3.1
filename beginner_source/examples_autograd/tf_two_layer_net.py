@@ -3,8 +3,9 @@
 TensorFlow: 정적 그래프(Static Graph)
 --------------------------------------
 
-하나의 히든 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드
-거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.
+하나의 히든 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
+유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
+학습하겠습니다.
 
 기본적인 TensorFlow 연산을 이용하여 연산 그래프(Computational Graph)를 구성한
 다음, 그래프를 여러 차례 실행하여 신경망을 학습시켜보겠습니다.
