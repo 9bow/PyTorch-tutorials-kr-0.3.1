@@ -1,8 +1,8 @@
-Writing Distributed Applications with PyTorch
+﻿파이토치로 분산 어플리케이션 개발하기
 =============================================
 **Author**: `Séb Arnold <http://seba1511.com>`_
 
-In this short tutorial, we will be going over the distributed package of PyTorch. We'll see how to set up the distributed setting, use the different communication strategies, and go over some the internals of the package.
+이 짧은 튜토리얼에서, 우리는 파이토치의 분산 패키지를 둘러본다. 분산 설정을 어떻게 하지는 살펴보고, 다른 통신 전략들을 사용하며, 몇몇 내부 패키지를 확인할 예정이다.
 
 Setup
 -----
@@ -14,24 +14,16 @@ Setup
    * variables and init_process_group
    -->
 
-The distributed package included in PyTorch (i.e.,
-``torch.distributed``) enables researchers and practitioners to easily
-parallelize their computations across processes and clusters of
-machines. To do so, it leverages the messaging passing semantics
-allowing each process to communicate data to any of the other processes.
-As opposed to the multiprocessing (``torch.multiprocessing``) package,
-processes can use different communication backends and are not
-restricted to being executed on the same machine.
+파이토치에 포함된 분산 패키지 (i.e.,
+``torch.distributed``)는 연구자와 개발자가 여러개의 프로세서와 머신 클러스터에서 계산을 쉽게 병렬화하게 해준다. 그렇게 하기 위해서, messaging passing semantics 가 각 프로세스가 다른 프로세스들과  데이터를 통신하도록 해준다. 다중 처리(``torch.multiprocessing``) 패키지와 달리 프로세스는 다른 통신 백엔드를 사용할 수 있으며
+동일한 기계에서 실행되는 것으로 제한됩니다. 
 
-In order to get started we need the ability to run multiple processes
-simultaneously. If you have access to compute cluster you should check
-with your local sysadmin or use your favorite coordination tool. (e.g.,
+시작하려면 여러 프로세스를 동시에 실행할 수 있어야합니다. 컴퓨트 클러스터에 액세스 할 경우 local sysadmin 으로 점검하거나 또는 선호하는 coordination tool을 사용하십시오.
+(e.g.,
 `pdsh <https://linux.die.net/man/1/pdsh>`__,
 `clustershell <http://cea-hpc.github.io/clustershell/>`__, or
-`others <https://slurm.schedmd.com/>`__) For the purpose of this
-tutorial, we will use a single machine and fork multiple processes using
-the following template.
-
+`others <https://slurm.schedmd.com/>`__) 이 튜토리얼에서는 다음 템플릿을 사용하여 단일 기기를 사용하고 여러 프로세스를 포크합니다.
+ 
 .. code:: python
 
     """run.py:"""
@@ -64,18 +56,15 @@ the following template.
         for p in processes:
             p.join()
 
-The above script spawns two processes who will each setup the
-distributed environment, initialize the process group
-(``dist.init_process_group``), and finally execute the given ``run``
-function.
+위 스크립트는 각각 분산 환경을 설정하는 두개의 프로세스를 생성하고, 프로세스 그룹(``dist.init_process_group``)을 초기화하고, 마지막으로 주어진 ``run`` 함수를 실행합니다.
+  
+``init_processes`` 함수는 동일한 IP 주소와 포트를 사용해서 모든 프로세스가 마스터를 통해서 조직 되게 한다. 우리는 TCP 백헨드를 사용했지만 대신
+`MPI <https://en.wikipedia.org/wiki/Message_Passing_Interface>`__ 또는
+`Gloo <http://github.com/facebookincubator/gloo>`__ 를 사용할 수 있다. (c.f.
+`Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법은 건너 띈다. 그러나 기본적으로 프로세스가 자신의 위치를 ​​공유함으로써 서로 통신 할 수 있게 한다.
 
-Let's have a look at the ``init_processes`` function. It ensures that
-every process will be able to coordinate through a master, using the
-same ip address and port. Note that we used the TCP backend, but we
-could have used
-`MPI <https://en.wikipedia.org/wiki/Message_Passing_Interface>`__ or
-`Gloo <http://github.com/facebookincubator/gloo>`__ instead. (c.f.
-`Section 5.1 <#communication-backends>`__) We will go over the magic
+
+ We will go over the magic
 happening in ``dist.init_process_group`` at the end of this tutorial,
 but it essentially allows processes to communicate with each other by
 sharing their locations.
