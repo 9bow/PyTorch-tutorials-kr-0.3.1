@@ -43,7 +43,7 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PyTorch Tutorials 0.3.1 documentation" href="../../index.html"/>
         <link rel="up" title="Learning PyTorch with Examples" href="../pytorch_with_examples.html"/>
-        <link rel="next" title="PyTorch: Variables and autograd" href="../examples_autograd/two_layer_net_autograd.html"/>
+        <link rel="next" title="PyTorch: Variable과 autograd" href="../examples_autograd/two_layer_net_autograd.html"/>
         <link rel="prev" title="준비 운동: NumPy" href="two_layer_net_numpy.html"/> 
 
   
@@ -218,9 +218,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variables and autograd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
@@ -550,7 +550,7 @@
     <span class="n">h_relu</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">h_relu</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
 
-    <span class="c1"># 손실을 계산하고 출력합니다.</span>
+    <span class="c1"># 손실(loss)을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
 
@@ -587,7 +587,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../examples_autograd/two_layer_net_autograd.html" class="btn btn-neutral float-right" title="PyTorch: Variables and autograd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../examples_autograd/two_layer_net_autograd.html" class="btn btn-neutral float-right" title="PyTorch: Variable과 autograd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="two_layer_net_numpy.html" class="btn btn-neutral" title="준비 운동: NumPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

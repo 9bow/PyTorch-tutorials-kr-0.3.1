@@ -151,7 +151,7 @@ torchvision 데이터셋의 출력(output)은 [0, 1] 범위를 갖는 PILImage �
 
  Out::
 
-    bird truck   car plane
+    truck   cat  deer  deer
 
 
 2. 합성곱 신경망(Convolution Neural Network) 정의하기
@@ -265,18 +265,18 @@ SGD를 사용합니다.
 
  Out::
 
-    [1,  2000] loss: 2.173
-    [1,  4000] loss: 1.813
-    [1,  6000] loss: 1.640
-    [1,  8000] loss: 1.562
-    [1, 10000] loss: 1.522
-    [1, 12000] loss: 1.481
-    [2,  2000] loss: 1.398
-    [2,  4000] loss: 1.371
-    [2,  6000] loss: 1.351
-    [2,  8000] loss: 1.328
-    [2, 10000] loss: 1.310
-    [2, 12000] loss: 1.313
+    [1,  2000] loss: 2.158
+    [1,  4000] loss: 1.805
+    [1,  6000] loss: 1.637
+    [1,  8000] loss: 1.542
+    [1, 10000] loss: 1.472
+    [1, 12000] loss: 1.424
+    [2,  2000] loss: 1.355
+    [2,  4000] loss: 1.338
+    [2,  6000] loss: 1.302
+    [2,  8000] loss: 1.277
+    [2, 10000] loss: 1.258
+    [2, 12000] loss: 1.254
     Finished Training
 
 
@@ -353,7 +353,7 @@ SGD를 사용합니다.
 
  Out::
 
-    Predicted:    cat  ship   car plane
+    Predicted:    cat  ship  ship plane
 
 
 결과가 괜찮아보이네요.
@@ -385,7 +385,7 @@ SGD를 사용합니다.
 
  Out::
 
-    Accuracy of the network on the 10000 test images: 53 %
+    Accuracy of the network on the 10000 test images: 56 %
 
 
 (10가지 분류에서 무작위로) 찍었을 때의 정확도인 10% 보다는 나아보입니다.
@@ -423,16 +423,16 @@ SGD를 사용합니다.
 
  Out::
 
-    Accuracy of plane : 70 %
-    Accuracy of   car : 70 %
-    Accuracy of  bird : 36 %
-    Accuracy of   cat : 31 %
-    Accuracy of  deer : 19 %
-    Accuracy of   dog : 52 %
-    Accuracy of  frog : 80 %
-    Accuracy of horse : 46 %
-    Accuracy of  ship : 73 %
-    Accuracy of truck : 49 %
+    Accuracy of plane : 64 %
+    Accuracy of   car : 53 %
+    Accuracy of  bird : 30 %
+    Accuracy of   cat : 32 %
+    Accuracy of  deer : 45 %
+    Accuracy of   dog : 50 %
+    Accuracy of  frog : 73 %
+    Accuracy of horse : 72 %
+    Accuracy of  ship : 64 %
+    Accuracy of truck : 79 %
 
 
 자, 이제 다음은 뭘까요?
@@ -494,7 +494,7 @@ CPU와 비교했을 때 어마어마한 속도 차이가 나지 않는 것은 �
 .. _Slack에서 다른 사용자와 대화하기: http://pytorch.slack.com/messages/beginner/
 
 
-**Total running time of the script:** ( 1 minutes  37.034 seconds)
+**Total running time of the script:** ( 2 minutes  29.797 seconds)
 
 
 

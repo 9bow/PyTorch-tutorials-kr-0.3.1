@@ -218,9 +218,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variables and autograd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
@@ -528,11 +528,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3540</span>  <span class="mf">0.1464</span> <span class="o">-</span><span class="mf">0.9099</span> <span class="o">-</span><span class="mf">2.0299</span>  <span class="mf">0.8120</span> <span class="o">-</span><span class="mf">0.2461</span>  <span class="mf">1.4089</span>
-<span class="o">-</span><span class="mf">0.5266</span> <span class="o">-</span><span class="mf">0.7813</span> <span class="o">-</span><span class="mf">1.7452</span> <span class="o">-</span><span class="mf">0.2019</span> <span class="o">-</span><span class="mf">0.5995</span>  <span class="mf">0.6120</span>  <span class="mf">1.2595</span>
- <span class="mf">1.3287</span> <span class="o">-</span><span class="mf">0.1103</span>  <span class="mf">0.0234</span>  <span class="mf">0.2293</span> <span class="o">-</span><span class="mf">0.0913</span> <span class="o">-</span><span class="mf">1.2885</span>  <span class="mf">0.3319</span>
-<span class="o">-</span><span class="mf">0.8660</span>  <span class="mf">0.2640</span>  <span class="mf">1.1980</span>  <span class="mf">0.1749</span>  <span class="mf">1.1797</span>  <span class="mf">0.8570</span> <span class="o">-</span><span class="mf">1.9490</span>
-<span class="o">-</span><span class="mf">0.1003</span>  <span class="mf">0.6919</span> <span class="o">-</span><span class="mf">0.3161</span>  <span class="mf">1.2261</span>  <span class="mf">1.2071</span>  <span class="mf">0.6088</span> <span class="o">-</span><span class="mf">0.8678</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.2581</span>  <span class="mf">0.3472</span>  <span class="mf">0.5251</span> <span class="o">-</span><span class="mf">0.1697</span> <span class="o">-</span><span class="mf">0.3166</span> <span class="o">-</span><span class="mf">0.3457</span> <span class="o">-</span><span class="mf">1.1887</span>
+ <span class="mf">0.2184</span>  <span class="mf">0.5828</span> <span class="o">-</span><span class="mf">1.2092</span>  <span class="mf">0.9293</span> <span class="o">-</span><span class="mf">1.3456</span>  <span class="mf">0.0411</span> <span class="o">-</span><span class="mf">1.1211</span>
+ <span class="mf">1.6795</span> <span class="o">-</span><span class="mf">0.1173</span> <span class="o">-</span><span class="mf">1.0623</span> <span class="o">-</span><span class="mf">1.4807</span>  <span class="mf">1.2360</span> <span class="o">-</span><span class="mf">1.9894</span> <span class="o">-</span><span class="mf">0.4336</span>
+ <span class="mf">2.0410</span> <span class="o">-</span><span class="mf">0.4766</span>  <span class="mf">0.1267</span>  <span class="mf">0.3914</span>  <span class="mf">0.1731</span>  <span class="mf">0.7115</span>  <span class="mf">1.0395</span>
+ <span class="mf">0.8384</span> <span class="o">-</span><span class="mf">0.2543</span> <span class="o">-</span><span class="mf">1.5071</span> <span class="o">-</span><span class="mf">0.8584</span> <span class="o">-</span><span class="mf">0.1727</span>  <span class="mf">2.2040</span> <span class="o">-</span><span class="mf">2.0848</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x7</span><span class="p">]</span>
 
 <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
@@ -721,7 +721,7 @@ Torch Tensor와 NumPy 배열은 저장 공간을 공유하기 때문에, 하나�
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;torch.cuda.LongTensor&#39;&gt;
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.003 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/tensor_tutorial1.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tensor_tutorial.py</span></code></a></div>

@@ -184,7 +184,7 @@ nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)
  Out::
 
     Variable containing:
-     2.3728
+     2.1249
     [torch.FloatTensor of size 1]
 
 
@@ -227,8 +227,8 @@ nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)
 
  Out::
 
-    1.7932473665729496
-    0.11911162225117235
+    1.844450575094938
+    0.510965790499978
 
 
 순방향/역방향 함수 훅(Hook)
@@ -286,7 +286,7 @@ conv2에 전방향 훅을 등록하고 몇 가지 정보를 출력해보겠습�
 
     input size: torch.Size([1, 10, 12, 12])
     output size: torch.Size([1, 20, 8, 8])
-    output norm: 18.594753844902332
+    output norm: 12.944642729754776
 
 
 conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.
@@ -333,7 +333,7 @@ conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습�
 
     input size: torch.Size([1, 10, 12, 12])
     output size: torch.Size([1, 20, 8, 8])
-    output norm: 18.594753844902332
+    output norm: 12.944642729754776
     Inside Conv2d backward
     Inside class:Conv2d
 
@@ -344,7 +344,7 @@ conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습�
 
     grad_input size: torch.Size([1, 10, 12, 12])
     grad_output size: torch.Size([1, 20, 8, 8])
-    grad_input norm: 0.024378475203448876
+    grad_input norm: 0.10366016081855128
 
 
 동작하는 전체 MNIST 예제는 여기에서 확인할 수 있습니다.
@@ -425,7 +425,7 @@ PyTorch는 합성곱 신경망과 순환 신경망에 CuDNN 연동을 기본적�
 
 
 
-**Total running time of the script:** ( 0 minutes  0.010 seconds)
+**Total running time of the script:** ( 0 minutes  0.007 seconds)
 
 
 

@@ -50,7 +50,7 @@ NumPy 배열과 PyTorch Tensor의 가장 큰 차이점은 PyTorch Tensor는 CPU�
         h_relu = h.clamp(min=0)
         y_pred = h_relu.mm(w2)
 
-        # 손실을 계산하고 출력합니다.
+        # 손실(loss)을 계산하고 출력합니다.
         loss = (y_pred - y).pow(2).sum()
         print(t, loss)
 

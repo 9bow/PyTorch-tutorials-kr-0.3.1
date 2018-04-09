@@ -356,7 +356,7 @@ The full process for preparing the data is:
     Counted words:
     fra 4489
     eng 2925
-    ['je suis cultive .', 'i m cultured .']
+    ['il fait partie de mes amis .', 'he is included among my friends .']
 
 
 The Seq2Seq Model
@@ -997,21 +997,21 @@ reasonable results.
 
  Out::
 
-    4m 27s (- 62m 19s) (5000 6%) 2.8866
-    8m 52s (- 57m 39s) (10000 13%) 2.3381
-    13m 10s (- 52m 41s) (15000 20%) 2.0036
-    17m 30s (- 48m 8s) (20000 26%) 1.7759
-    21m 50s (- 43m 41s) (25000 33%) 1.5874
-    24m 24s (- 36m 37s) (30000 40%) 1.3867
-    28m 53s (- 33m 1s) (35000 46%) 1.2862
-    33m 20s (- 29m 10s) (40000 53%) 1.1446
-    37m 40s (- 25m 7s) (45000 60%) 1.0289
-    41m 56s (- 20m 58s) (50000 66%) 0.9407
-    46m 17s (- 16m 50s) (55000 73%) 0.8668
-    50m 42s (- 12m 40s) (60000 80%) 0.7895
-    55m 8s (- 8m 28s) (65000 86%) 0.7341
-    59m 34s (- 4m 15s) (70000 93%) 0.6596
-    63m 54s (- 0m 0s) (75000 100%) 0.6456
+    4m 22s (- 61m 20s) (5000 6%) 2.8856
+    8m 48s (- 57m 17s) (10000 13%) 2.3046
+    13m 19s (- 53m 18s) (15000 20%) 2.0119
+    17m 38s (- 48m 30s) (20000 26%) 1.7542
+    22m 1s (- 44m 2s) (25000 33%) 1.5419
+    26m 23s (- 39m 35s) (30000 40%) 1.3941
+    30m 54s (- 35m 19s) (35000 46%) 1.2462
+    35m 25s (- 30m 59s) (40000 53%) 1.1701
+    40m 1s (- 26m 41s) (45000 60%) 1.0422
+    44m 33s (- 22m 16s) (50000 66%) 0.9209
+    49m 9s (- 17m 52s) (55000 73%) 0.8438
+    53m 35s (- 13m 23s) (60000 80%) 0.7785
+    58m 10s (- 8m 56s) (65000 86%) 0.7425
+    62m 39s (- 4m 28s) (70000 93%) 0.6816
+    67m 5s (- 0m 0s) (75000 100%) 0.6213
 
 
 
@@ -1029,45 +1029,45 @@ reasonable results.
 
  Out::
 
-    > je n ai pas honte de te dire .
-    = i m not ashamed to tell you .
-    < i m not ashamed to tell you . <EOS>
+    > elle est enceinte .
+    = she s pregnant .
+    < she s pregnant . <EOS>
 
-    > tu es bavarde .
-    = you re talkative .
-    < you re annoying . <EOS>
+    > je suis contente que vous soyez en avance .
+    = i m glad you re early .
+    < i m glad you see you . <EOS>
 
-    > quel imbecile tu es !
-    = you re such an idiot !
-    < you re such an idiot ! <EOS>
+    > nous en sommes pour ainsi dire certaines .
+    = we re quite certain of that .
+    < we re quite certain of that . <EOS>
 
-    > il est malade .
-    = he is ill .
-    < he s ill . <EOS>
+    > elle etala une belle nappe sur une table .
+    = she spread a beautiful cloth on a table .
+    < she is a a on a a . . <EOS>
 
-    > nous ne sommes pas habilles .
-    = we re not dressed .
-    < we re not related . <EOS>
+    > je suis clouee .
+    = i m grounded .
+    < i m powerful . <EOS>
 
-    > elle se plaint toujours de son travail .
-    = she is always complaining of her job .
-    < she is always complaining her her job . <EOS>
+    > elle est belle comme blanche neige .
+    = she is as beautiful as snow white .
+    < she is as beautiful as beautiful . <EOS>
 
-    > je ne vais nulle part avec ma voiture .
-    = i m not driving anywhere .
-    < i m not going anywhere . <EOS>
+    > je rigole !
+    = i m joking .
+    < i m kidding ! <EOS>
 
-    > il part pour new york la semaine prochaine .
-    = he is leaving for new york next week .
-    < he is going to have a next week . <EOS>
+    > je suis a court de munitions .
+    = i m out of ammo .
+    < i m running out of ammo . <EOS>
 
-    > nous sommes detendus .
-    = we re relaxed .
-    < we re different . <EOS>
+    > c est un mathematicien de genie .
+    = he is a mathematical genius .
+    < he is a genius . <EOS>
 
-    > c est mon vieil ami .
-    = he is my old friend .
-    < he s my old friend . <EOS>
+    > il est suspecte de vol .
+    = he is suspected of robbery .
+    < he is suspected of robbery . <EOS>
 
 
 Visualizing Attention
@@ -1181,11 +1181,11 @@ and labels:
     input = elle a cinq ans de moins que moi .
     output = she s five years younger than me . <EOS>
     input = elle est trop petit .
-    output = she s too short . <EOS>
+    output = she s too loud . <EOS>
     input = je ne crains pas de mourir .
-    output = i m afraid of dying . <EOS>
+    output = i m not scared to die . <EOS>
     input = c est un jeune directeur plein de talent .
-    output = he s a talented young . . <EOS>
+    output = he s a lovely young . <EOS>
 
 
 Exercises
@@ -1212,7 +1212,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 63 minutes  59.887 seconds)
+**Total running time of the script:** ( 67 minutes  13.744 seconds)
 
 
 

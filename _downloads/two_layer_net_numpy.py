@@ -33,7 +33,7 @@ for t in range(500):
     h_relu = np.maximum(h, 0)
     y_pred = h_relu.dot(w2)
 
-    # 손실을 계산하고 출력합니다.
+    # 손실(loss)을 계산하고 출력합니다.
     loss = np.square(y_pred - y).sum()
     print(t, loss)
 

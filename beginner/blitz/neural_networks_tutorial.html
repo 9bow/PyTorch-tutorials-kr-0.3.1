@@ -218,9 +218,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variables and autograd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
@@ -616,7 +616,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">0.0244</span>  <span class="mf">0.0453</span>  <span class="mf">0.0208</span>  <span class="mf">0.0836</span>  <span class="mf">0.0503</span>  <span class="mf">0.0951</span> <span class="o">-</span><span class="mf">0.1112</span> <span class="o">-</span><span class="mf">0.1198</span> <span class="o">-</span><span class="mf">0.0199</span> <span class="o">-</span><span class="mf">0.0512</span>
+<span class="o">-</span><span class="mf">0.0796</span> <span class="o">-</span><span class="mf">0.1497</span> <span class="o">-</span><span class="mf">0.0391</span> <span class="o">-</span><span class="mf">0.0042</span>  <span class="mf">0.0340</span> <span class="o">-</span><span class="mf">0.0295</span> <span class="o">-</span><span class="mf">0.0382</span>  <span class="mf">0.0271</span> <span class="o">-</span><span class="mf">0.0981</span>  <span class="mf">0.0140</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="n">x10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -686,7 +686,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">38.7240</span>
+ <span class="mf">38.7671</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -707,9 +707,9 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f698ef94f60</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f698ef945c0</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">ExpandBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f698ef945c0</span><span class="o">&gt;</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fa4bcf212e8</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fa4bcf217b8</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ExpandBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fa4bcf217b8</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -744,13 +744,12 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 
 <span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span> <span class="n">after</span> <span class="n">backward</span>
 <span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
-<span class="mf">1.00000e-02</span> <span class="o">*</span>
- <span class="o">-</span><span class="mf">6.1666</span>
-  <span class="mf">6.9928</span>
-  <span class="mf">4.4176</span>
- <span class="o">-</span><span class="mf">1.6226</span>
- <span class="o">-</span><span class="mf">1.4701</span>
- <span class="o">-</span><span class="mf">1.4935</span>
+ <span class="mf">0.1323</span>
+<span class="o">-</span><span class="mf">0.0496</span>
+ <span class="mf">0.1347</span>
+ <span class="mf">0.2252</span>
+<span class="o">-</span><span class="mf">0.0287</span>
+<span class="o">-</span><span class="mf">0.1389</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -801,7 +800,7 @@ Gradient Descent)입니다:</p>
 것에 유의하세요. 이는 <a class="reference internal" href="#backprop">역전파(Backprop)</a> 섹션에서 설명한 것처럼 변화도가
 누적되기 때문입니다.</p>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.522 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.012 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/neural_networks_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neural_networks_tutorial.py</span></code></a></div>

@@ -43,7 +43,7 @@ for t in range(500):
     h_relu = h.clamp(min=0)
     y_pred = h_relu.mm(w2)
 
-    # 손실을 계산하고 출력합니다.
+    # 손실(loss)을 계산하고 출력합니다.
     loss = (y_pred - y).pow(2).sum()
     print(t, loss)
 
