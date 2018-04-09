@@ -37,7 +37,7 @@ for t in range(500):
     loss = np.square(y_pred - y).sum()
     print(t, loss)
 
-    # 손실에 따라 w1, w2의 변화도를 계산하고 역전파합니다.
+    # 손실에 따른 w1, w2의 변화도를 계산하고 역전파합니다.
     grad_y_pred = 2.0 * (y_pred - y)
     grad_w2 = h_relu.T.dot(grad_y_pred)
     grad_h_relu = grad_y_pred.dot(w2.T)
