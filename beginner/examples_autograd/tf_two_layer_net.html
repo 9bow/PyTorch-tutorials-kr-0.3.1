@@ -42,7 +42,7 @@
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PyTorch Tutorials 0.3.1 documentation" href="../../index.html"/>
-        <link rel="up" title="Learning PyTorch with Examples" href="../pytorch_with_examples.html"/>
+        <link rel="up" title="예제로 배우는 PyTorch" href="../pytorch_with_examples.html"/>
         <link rel="next" title="PyTorch: nn" href="../examples_nn/two_layer_net_nn.html"/>
         <link rel="prev" title="PyTorch: 새 autograd 함수 정의하기" href="two_layer_net_custom_function.html"/> 
 
@@ -192,14 +192,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="../pytorch_with_examples.html">Learning PyTorch with Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#warm-up-numpy">Warm-up: numpy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensors">PyTorch: Tensors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pytorch_with_examples.html">예제로 배우는 PyTorch</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensor">Tensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#numpy">준비 운동: NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensor">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-and-autograd">PyTorch: Variables and autograd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
@@ -212,18 +212,18 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="../pytorch_with_examples.html#examples">Examples</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id1">Tensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../pytorch_with_examples.html#id3">Autograd</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
@@ -492,7 +492,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../pytorch_with_examples.html">Learning PyTorch with Examples</a> &raquo;</li>
+          <li><a href="../pytorch_with_examples.html">예제로 배우는 PyTorch</a> &raquo;</li>
         
       <li>TensorFlow: 정적 그래프(Static Graph)</li>
     
@@ -515,7 +515,7 @@
             
   <div class="section" id="tensorflow-static-graph">
 <span id="sphx-glr-beginner-examples-autograd-tf-two-layer-net-py"></span><h1>TensorFlow: 정적 그래프(Static Graph)<a class="headerlink" href="#tensorflow-static-graph" title="Permalink to this headline">¶</a></h1>
-<p>하나의 히든 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
+<p>하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.</p>
 <p>기본적인 TensorFlow 연산을 이용하여 연산 그래프(Computational Graph)를 구성한
@@ -530,7 +530,7 @@
 <span class="c1"># 먼저 연산 그래프를 구성하겠습니다:</span>
 
 <span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
-<span class="c1"># H는 히든 계층의 차원이며, D_out은 출력 차원입니다:</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
 <span class="c1"># 입력과 정답(target) 데이터를 위한 Placeholder를 생성합니다; 이는 우리가 그래프를</span>

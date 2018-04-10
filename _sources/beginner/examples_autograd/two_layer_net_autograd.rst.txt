@@ -6,7 +6,7 @@
 PyTorch: Variable과 autograd
 -----------------------------
 
-하나의 히든 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
+하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.
 
@@ -33,7 +33,7 @@ PyTorch Variable은 PyTorch Tensor와 동일한 API를 제공합니다: Tensor�
     # dtype = torch.cuda.FloatTensor # GPU에서 실행하려면 이 주석을 제거하세요.
 
     # N은 배치 크기이며, D_in은 입력의 차원입니다;
-    # H는 히든 계층의 차원이며, D_out은 출력 차원입니다:
+    # H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:
     N, D_in, H, D_out = 64, 1000, 100, 10
 
     # 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로

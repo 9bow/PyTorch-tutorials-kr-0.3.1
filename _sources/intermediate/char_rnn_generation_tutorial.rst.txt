@@ -421,26 +421,26 @@ in ``all_losses`` for plotting later.
 
  Out::
 
-    0m 12s (5000 5%) 2.9210
-    0m 24s (10000 10%) 2.6011
-    0m 36s (15000 15%) 2.7788
-    0m 49s (20000 20%) 2.4818
-    1m 1s (25000 25%) 2.7820
-    1m 13s (30000 30%) 3.4460
-    1m 25s (35000 35%) 2.4293
-    1m 37s (40000 40%) 2.9657
-    1m 50s (45000 45%) 2.2905
-    2m 2s (50000 50%) 3.6625
-    2m 14s (55000 55%) 2.4936
-    2m 26s (60000 60%) 3.0510
-    2m 38s (65000 65%) 2.0080
-    2m 51s (70000 70%) 2.2238
-    3m 3s (75000 75%) 2.6593
-    3m 15s (80000 80%) 2.0107
-    3m 27s (85000 85%) 1.8614
-    3m 39s (90000 90%) 2.4842
-    3m 51s (95000 95%) 1.9330
-    4m 4s (100000 100%) 1.7785
+    0m 11s (5000 5%) 2.8869
+    0m 24s (10000 10%) 3.0186
+    0m 36s (15000 15%) 3.3203
+    0m 48s (20000 20%) 2.4169
+    1m 0s (25000 25%) 2.9821
+    1m 12s (30000 30%) 3.4375
+    1m 24s (35000 35%) 2.0220
+    1m 36s (40000 40%) 1.4653
+    1m 48s (45000 45%) 2.7860
+    2m 0s (50000 50%) 2.1195
+    2m 12s (55000 55%) 2.4084
+    2m 24s (60000 60%) 2.7741
+    2m 36s (65000 65%) 2.5831
+    2m 48s (70000 70%) 2.0845
+    3m 0s (75000 75%) 3.1761
+    3m 13s (80000 80%) 2.3397
+    3m 24s (85000 85%) 1.9338
+    3m 37s (90000 90%) 2.6873
+    3m 49s (95000 95%) 1.8851
+    4m 1s (100000 100%) 2.9342
 
 
 Plotting the Losses
@@ -545,18 +545,18 @@ feed that in as the next letter, and repeat until the EOS token.
 
  Out::
 
-    Rovakivev
-    Uakovaki
-    Shavavev
-    Geller
+    Rovakov
+    Uantovov
+    Shavava
+    Gerter
     Eren
-    Romer
-    Sarera
-    Parez
-    Allan
-    Chin
+    Ronger
+    Sollanaz
+    Pera
+    Arana
+    Cha
     Han
-    Ian
+    Iun
 
 
 Exercises
@@ -577,7 +577,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 4 minutes  4.156 seconds)
+**Total running time of the script:** ( 4 minutes  1.217 seconds)
 
 
 

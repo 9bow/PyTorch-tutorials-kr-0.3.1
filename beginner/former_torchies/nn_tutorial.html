@@ -192,14 +192,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pytorch_with_examples.html">Learning PyTorch with Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#warm-up-numpy">Warm-up: numpy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensors">PyTorch: Tensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pytorch_with_examples.html">예제로 배우는 PyTorch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensor">Tensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#numpy">준비 운동: NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensor">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-and-autograd">PyTorch: Variables and autograd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
@@ -212,18 +212,18 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#examples">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id1">Tensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3">Autograd</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
@@ -534,7 +534,7 @@
 <div><p>덕분에 순환신경망을 사용하는 방법이 더 간단해졌습니다. 이제 순환신경망을 만들 때,
 더 이상 가중치(weight) 공유에 대해서는 생각할 필요 없이 동일한 Linear 계층(layer)을
 여러 차례 호출하면 됩니다.</p>
-<div class="figure" id="id4">
+<div class="figure" id="id2">
 <img alt="torch-nn-vs-pytorch-nn" src="../../_images/torch-nn-vs-pytorch-nn.png" />
 <p class="caption"><span class="caption-text">torch-nn-vs-pytorch-nn</span></p>
 </div>
@@ -639,7 +639,7 @@
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">2.1249</span>
+ <span class="mf">2.3065</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -660,8 +660,8 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.844450575094938</span>
-<span class="mf">0.510965790499978</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.8461436425884594</span>
+<span class="mf">0.08925263750811721</span>
 </pre></div>
 </div>
 </div>
@@ -669,7 +669,7 @@
 <h2>순방향/역방향 함수 훅(Hook)<a class="headerlink" href="#hook" title="Permalink to this headline">¶</a></h2>
 <p>지금까지 가중치와 변화도에 대해서 살펴봤습니다. 그렇다면 계층의 출력이나
 grad_output 을 살펴보거나 수정하려면 어떻게 해야 할까요?</p>
-<p>이런 목적으로 사용할 수 있는 <a href="#id1"><span class="problematic" id="id2">**</span></a>훅(Hook)**를 소개합니다.</p>
+<p>이런 목적으로 사용할 수 있는 <strong>훅(Hook)</strong> 을 소개합니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Module</span></code> 이나 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 에 함수를 등록할 수 있습니다.
 훅(Hook)은 순방향 훅과 역방향 훅이 있는데, 순방향 훅은 순전파가 일어날 때 /
 역방향 훅은 역전파가 일어날 때 실행됩니다.
@@ -703,7 +703,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 12.944642729754776
+output norm: 17.847698875374046
 </pre></div>
 </div>
 <p>conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.</p>
@@ -737,7 +737,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 12.944642729754776
+output norm: 17.847698875374046
 Inside Conv2d backward
 Inside class:Conv2d
 
@@ -748,7 +748,7 @@ grad_output[0]:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 grad_input size: torch.Size([1, 10, 12, 12])
 grad_output size: torch.Size([1, 20, 8, 8])
-grad_input norm: 0.10366016081855128
+grad_input norm: 0.018805641870820382
 </pre></div>
 </div>
 <p>동작하는 전체 MNIST 예제는 여기에서 확인할 수 있습니다.
@@ -804,7 +804,7 @@ grad_input norm: 0.10366016081855128
 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.007 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.006 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/nn_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nn_tutorial.py</span></code></a></div>

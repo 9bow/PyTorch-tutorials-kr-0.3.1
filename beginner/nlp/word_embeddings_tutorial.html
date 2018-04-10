@@ -192,14 +192,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pytorch_with_examples.html">Learning PyTorch with Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#warm-up-numpy">Warm-up: numpy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensors">PyTorch: Tensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pytorch_with_examples.html">예제로 배우는 PyTorch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensor">Tensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#numpy">준비 운동: NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensor">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-and-autograd">PyTorch: Variables and autograd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
@@ -212,18 +212,18 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#examples">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id1">Tensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3">Autograd</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
@@ -757,34 +757,34 @@ examples and update the parameters with backpropagation.</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[([</span><span class="s1">&#39;When&#39;</span><span class="p">,</span> <span class="s1">&#39;forty&#39;</span><span class="p">],</span> <span class="s1">&#39;winters&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;forty&#39;</span><span class="p">,</span> <span class="s1">&#39;winters&#39;</span><span class="p">],</span> <span class="s1">&#39;shall&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;winters&#39;</span><span class="p">,</span> <span class="s1">&#39;shall&#39;</span><span class="p">],</span> <span class="s1">&#39;besiege&#39;</span><span class="p">)]</span>
 <span class="p">[</span>
- <span class="mf">520.5739</span>
+ <span class="mf">519.5540</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">517.9875</span>
+ <span class="mf">516.9050</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">515.4208</span>
+ <span class="mf">514.2765</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">512.8716</span>
+ <span class="mf">511.6658</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">510.3381</span>
+ <span class="mf">509.0717</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">507.8194</span>
+ <span class="mf">506.4931</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">505.3148</span>
+ <span class="mf">503.9282</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">502.8250</span>
+ <span class="mf">501.3784</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">500.3476</span>
+ <span class="mf">498.8416</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">497.8834</span>
+ <span class="mf">496.3144</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">]</span>
 </pre></div>
@@ -862,7 +862,7 @@ reshape.</li>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[([</span><span class="s1">&#39;We&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">],</span> <span class="s1">&#39;about&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">],</span> <span class="s1">&#39;to&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">],</span> <span class="s1">&#39;study&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">],</span> <span class="s1">&#39;the&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;idea&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.392 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.466 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/word_embeddings_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">word_embeddings_tutorial.py</span></code></a></div>

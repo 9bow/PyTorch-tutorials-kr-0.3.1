@@ -192,14 +192,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pytorch_with_examples.html">Learning PyTorch with Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#warm-up-numpy">Warm-up: numpy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensors">PyTorch: Tensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pytorch_with_examples.html">예제로 배우는 PyTorch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#tensor">Tensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#numpy">준비 운동: NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-tensor">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-and-autograd">PyTorch: Variables and autograd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
@@ -212,18 +212,18 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#examples">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id1">Tensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensors">Tensors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id2">Autograd</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3">Autograd</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
@@ -535,11 +535,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0001</span>  <span class="mf">0.0000</span>  <span class="mf">0.0000</span>
- <span class="mf">0.0000</span>  <span class="mf">0.0000</span>  <span class="mf">0.0000</span>
- <span class="mf">0.0000</span>  <span class="mf">0.0000</span>  <span class="mf">0.0000</span>
-<span class="o">-</span><span class="mf">1.8750</span>  <span class="mf">0.0000</span>  <span class="mf">0.0000</span>
- <span class="mf">0.0000</span>  <span class="mf">0.0000</span>  <span class="mf">0.0000</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">3.1803e-09</span>  <span class="mf">4.5773e-41</span>  <span class="mf">2.8310e+13</span>
+ <span class="mf">0.0000e+00</span>  <span class="mf">4.4842e-44</span>  <span class="mf">0.0000e+00</span>
+ <span class="mf">6.7262e-44</span>  <span class="mf">0.0000e+00</span>  <span class="mf">3.3231e-37</span>
+ <span class="mf">0.0000e+00</span> <span class="o">-</span><span class="mf">3.1803e-09</span>  <span class="mf">4.5773e-41</span>
+ <span class="mf">0.0000e+00</span>  <span class="mf">0.0000e+00</span>  <span class="mf">0.0000e+00</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -549,11 +549,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.8144</span>  <span class="mf">0.4330</span>  <span class="mf">0.6532</span>
- <span class="mf">0.0562</span>  <span class="mf">0.1116</span>  <span class="mf">0.3880</span>
- <span class="mf">0.9485</span>  <span class="mf">0.1862</span>  <span class="mf">0.5564</span>
- <span class="mf">0.6922</span>  <span class="mf">0.1184</span>  <span class="mf">0.4526</span>
- <span class="mf">0.4517</span>  <span class="mf">0.7425</span>  <span class="mf">0.6861</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3458</span>  <span class="mf">0.7457</span>  <span class="mf">0.0811</span>
+ <span class="mf">0.6983</span>  <span class="mf">0.1210</span>  <span class="mf">0.9418</span>
+ <span class="mf">0.7172</span>  <span class="mf">0.3725</span>  <span class="mf">0.4180</span>
+ <span class="mf">0.6608</span>  <span class="mf">0.7188</span>  <span class="mf">0.2231</span>
+ <span class="mf">0.8328</span>  <span class="mf">0.0663</span>  <span class="mf">0.7115</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -579,11 +579,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.1870</span>  <span class="mf">0.7031</span>  <span class="mf">1.4435</span>
- <span class="mf">0.3329</span>  <span class="mf">0.3885</span>  <span class="mf">0.9348</span>
- <span class="mf">1.4179</span>  <span class="mf">1.1222</span>  <span class="mf">1.0811</span>
- <span class="mf">1.0762</span>  <span class="mf">0.5560</span>  <span class="mf">1.1996</span>
- <span class="mf">1.1311</span>  <span class="mf">0.8184</span>  <span class="mf">0.8348</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.6681</span>  <span class="mf">1.4788</span>  <span class="mf">0.8111</span>
+ <span class="mf">1.3053</span>  <span class="mf">0.5584</span>  <span class="mf">1.4076</span>
+ <span class="mf">1.0323</span>  <span class="mf">0.9989</span>  <span class="mf">1.0488</span>
+ <span class="mf">1.0773</span>  <span class="mf">1.3067</span>  <span class="mf">0.4702</span>
+ <span class="mf">1.5001</span>  <span class="mf">0.0785</span>  <span class="mf">1.4454</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -592,11 +592,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.1870</span>  <span class="mf">0.7031</span>  <span class="mf">1.4435</span>
- <span class="mf">0.3329</span>  <span class="mf">0.3885</span>  <span class="mf">0.9348</span>
- <span class="mf">1.4179</span>  <span class="mf">1.1222</span>  <span class="mf">1.0811</span>
- <span class="mf">1.0762</span>  <span class="mf">0.5560</span>  <span class="mf">1.1996</span>
- <span class="mf">1.1311</span>  <span class="mf">0.8184</span>  <span class="mf">0.8348</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.6681</span>  <span class="mf">1.4788</span>  <span class="mf">0.8111</span>
+ <span class="mf">1.3053</span>  <span class="mf">0.5584</span>  <span class="mf">1.4076</span>
+ <span class="mf">1.0323</span>  <span class="mf">0.9989</span>  <span class="mf">1.0488</span>
+ <span class="mf">1.0773</span>  <span class="mf">1.3067</span>  <span class="mf">0.4702</span>
+ <span class="mf">1.5001</span>  <span class="mf">0.0785</span>  <span class="mf">1.4454</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -607,11 +607,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.1870</span>  <span class="mf">0.7031</span>  <span class="mf">1.4435</span>
- <span class="mf">0.3329</span>  <span class="mf">0.3885</span>  <span class="mf">0.9348</span>
- <span class="mf">1.4179</span>  <span class="mf">1.1222</span>  <span class="mf">1.0811</span>
- <span class="mf">1.0762</span>  <span class="mf">0.5560</span>  <span class="mf">1.1996</span>
- <span class="mf">1.1311</span>  <span class="mf">0.8184</span>  <span class="mf">0.8348</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.6681</span>  <span class="mf">1.4788</span>  <span class="mf">0.8111</span>
+ <span class="mf">1.3053</span>  <span class="mf">0.5584</span>  <span class="mf">1.4076</span>
+ <span class="mf">1.0323</span>  <span class="mf">0.9989</span>  <span class="mf">1.0488</span>
+ <span class="mf">1.0773</span>  <span class="mf">1.3067</span>  <span class="mf">0.4702</span>
+ <span class="mf">1.5001</span>  <span class="mf">0.0785</span>  <span class="mf">1.4454</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -622,11 +622,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.1870</span>  <span class="mf">0.7031</span>  <span class="mf">1.4435</span>
- <span class="mf">0.3329</span>  <span class="mf">0.3885</span>  <span class="mf">0.9348</span>
- <span class="mf">1.4179</span>  <span class="mf">1.1222</span>  <span class="mf">1.0811</span>
- <span class="mf">1.0762</span>  <span class="mf">0.5560</span>  <span class="mf">1.1996</span>
- <span class="mf">1.1311</span>  <span class="mf">0.8184</span>  <span class="mf">0.8348</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.6681</span>  <span class="mf">1.4788</span>  <span class="mf">0.8111</span>
+ <span class="mf">1.3053</span>  <span class="mf">0.5584</span>  <span class="mf">1.4076</span>
+ <span class="mf">1.0323</span>  <span class="mf">0.9989</span>  <span class="mf">1.0488</span>
+ <span class="mf">1.0773</span>  <span class="mf">1.3067</span>  <span class="mf">0.4702</span>
+ <span class="mf">1.5001</span>  <span class="mf">0.0785</span>  <span class="mf">1.4454</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -640,11 +640,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.4330</span>
- <span class="mf">0.1116</span>
- <span class="mf">0.1862</span>
- <span class="mf">0.1184</span>
- <span class="mf">0.7425</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.7457</span>
+ <span class="mf">0.1210</span>
+ <span class="mf">0.3725</span>
+ <span class="mf">0.7188</span>
+ <span class="mf">0.0663</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -748,7 +748,7 @@
     <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.003 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/tensor_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tensor_tutorial.py</span></code></a></div>

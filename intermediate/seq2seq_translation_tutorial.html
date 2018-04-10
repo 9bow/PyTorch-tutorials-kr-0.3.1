@@ -191,14 +191,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../beginner/pytorch_with_examples.html">Learning PyTorch with Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#tensors">Tensors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#warm-up-numpy">Warm-up: numpy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-tensors">PyTorch: Tensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../beginner/pytorch_with_examples.html">예제로 배우는 PyTorch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#tensor">Tensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#numpy">준비 운동: NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-tensor">PyTorch: Tensor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#autograd">Autograd</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-variables-and-autograd">PyTorch: Variables and autograd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
@@ -211,18 +211,18 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#examples">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id1">Tensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#tensors">Tensors</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_tensor/two_layer_net_numpy.html">준비 운동: NumPy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_tensor/two_layer_net_tensor.html">PyTorch: Tensor</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id2">Autograd</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id3">Autograd</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_autograd/two_layer_net_autograd.html">PyTorch: Variable과 autograd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_autograd/two_layer_net_custom_function.html">PyTorch: 새 autograd 함수 정의하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id3"><cite>nn</cite> module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
@@ -552,7 +552,7 @@ understand Tensors:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://pytorch.org/">http://pytorch.org/</a> For installation instructions</li>
 <li><a class="reference internal" href="../beginner/deep_learning_60min_blitz.html"><span class="doc">PyTorch로 딥러닝하기: 60분만에 끝장내기</span></a> to get started with PyTorch in general</li>
-<li><a class="reference internal" href="../beginner/pytorch_with_examples.html"><span class="doc">Learning PyTorch with Examples</span></a> for a wide and deep overview</li>
+<li><a class="reference internal" href="../beginner/pytorch_with_examples.html"><span class="doc">예제로 배우는 PyTorch</span></a> for a wide and deep overview</li>
 <li><a class="reference internal" href="../beginner/former_torchies_tutorial.html"><span class="doc">Torch 사용자를 위한 PyTorch</span></a> if you are former Lua Torch user</li>
 </ul>
 <p>It would also be useful to know about Sequence to Sequence networks and
@@ -769,7 +769,7 @@ earlier).</p>
 <span class="n">Counted</span> <span class="n">words</span><span class="p">:</span>
 <span class="n">fra</span> <span class="mi">4489</span>
 <span class="n">eng</span> <span class="mi">2925</span>
-<span class="p">[</span><span class="s1">&#39;il fait partie de mes amis .&#39;</span><span class="p">,</span> <span class="s1">&#39;he is included among my friends .&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;c est vous la doyenne .&#39;</span><span class="p">,</span> <span class="s1">&#39;you re the oldest .&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1242,66 +1242,66 @@ encoder and decoder are initialized and run <code class="docutils literal notran
 </li>
 </ul>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span><span class="n">m</span> <span class="mi">22</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">61</span><span class="n">m</span> <span class="mi">20</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">5000</span> <span class="mi">6</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.8856</span>
-<span class="mi">8</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">57</span><span class="n">m</span> <span class="mi">17</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">10000</span> <span class="mi">13</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.3046</span>
-<span class="mi">13</span><span class="n">m</span> <span class="mi">19</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">53</span><span class="n">m</span> <span class="mi">18</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">15000</span> <span class="mi">20</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.0119</span>
-<span class="mi">17</span><span class="n">m</span> <span class="mi">38</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">48</span><span class="n">m</span> <span class="mi">30</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">20000</span> <span class="mi">26</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.7542</span>
-<span class="mi">22</span><span class="n">m</span> <span class="mi">1</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">44</span><span class="n">m</span> <span class="mi">2</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">25000</span> <span class="mi">33</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.5419</span>
-<span class="mi">26</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">39</span><span class="n">m</span> <span class="mi">35</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">30000</span> <span class="mi">40</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.3941</span>
-<span class="mi">30</span><span class="n">m</span> <span class="mi">54</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">35</span><span class="n">m</span> <span class="mi">19</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">35000</span> <span class="mi">46</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.2462</span>
-<span class="mi">35</span><span class="n">m</span> <span class="mi">25</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">30</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">40000</span> <span class="mi">53</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.1701</span>
-<span class="mi">40</span><span class="n">m</span> <span class="mi">1</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">26</span><span class="n">m</span> <span class="mi">41</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">45000</span> <span class="mi">60</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.0422</span>
-<span class="mi">44</span><span class="n">m</span> <span class="mi">33</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">22</span><span class="n">m</span> <span class="mi">16</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">50000</span> <span class="mi">66</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.9209</span>
-<span class="mi">49</span><span class="n">m</span> <span class="mi">9</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">17</span><span class="n">m</span> <span class="mi">52</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">55000</span> <span class="mi">73</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.8438</span>
-<span class="mi">53</span><span class="n">m</span> <span class="mi">35</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">13</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">60000</span> <span class="mi">80</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.7785</span>
-<span class="mi">58</span><span class="n">m</span> <span class="mi">10</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">8</span><span class="n">m</span> <span class="mi">56</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">65000</span> <span class="mi">86</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.7425</span>
-<span class="mi">62</span><span class="n">m</span> <span class="mi">39</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">4</span><span class="n">m</span> <span class="mi">28</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">70000</span> <span class="mi">93</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.6816</span>
-<span class="mi">67</span><span class="n">m</span> <span class="mi">5</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">0</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">75000</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.6213</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span><span class="n">m</span> <span class="mi">33</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">63</span><span class="n">m</span> <span class="mi">50</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">5000</span> <span class="mi">6</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.9250</span>
+<span class="mi">9</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">58</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">10000</span> <span class="mi">13</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.3242</span>
+<span class="mi">13</span><span class="n">m</span> <span class="mi">26</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">53</span><span class="n">m</span> <span class="mi">45</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">15000</span> <span class="mi">20</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.0230</span>
+<span class="mi">17</span><span class="n">m</span> <span class="mi">55</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">49</span><span class="n">m</span> <span class="mi">18</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">20000</span> <span class="mi">26</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.7977</span>
+<span class="mi">22</span><span class="n">m</span> <span class="mi">3</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">44</span><span class="n">m</span> <span class="mi">6</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">25000</span> <span class="mi">33</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.6300</span>
+<span class="mi">25</span><span class="n">m</span> <span class="mi">26</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">38</span><span class="n">m</span> <span class="mi">10</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">30000</span> <span class="mi">40</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.4128</span>
+<span class="mi">30</span><span class="n">m</span> <span class="mi">2</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">34</span><span class="n">m</span> <span class="mi">19</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">35000</span> <span class="mi">46</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.2905</span>
+<span class="mi">34</span><span class="n">m</span> <span class="mi">31</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">30</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">40000</span> <span class="mi">53</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.1669</span>
+<span class="mi">39</span><span class="n">m</span> <span class="mi">7</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">26</span><span class="n">m</span> <span class="mi">4</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">45000</span> <span class="mi">60</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.0915</span>
+<span class="mi">43</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">21</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">50000</span> <span class="mi">66</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.9639</span>
+<span class="mi">48</span><span class="n">m</span> <span class="mi">1</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">17</span><span class="n">m</span> <span class="mi">27</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">55000</span> <span class="mi">73</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.8806</span>
+<span class="mi">52</span><span class="n">m</span> <span class="mi">28</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">13</span><span class="n">m</span> <span class="mi">7</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">60000</span> <span class="mi">80</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.7929</span>
+<span class="mi">56</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">8</span><span class="n">m</span> <span class="mi">46</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">65000</span> <span class="mi">86</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.7471</span>
+<span class="mi">61</span><span class="n">m</span> <span class="mi">31</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">4</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">70000</span> <span class="mi">93</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.6805</span>
+<span class="mi">66</span><span class="n">m</span> <span class="mi">6</span><span class="n">s</span> <span class="p">(</span><span class="o">-</span> <span class="mi">0</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="mi">75000</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span> <span class="mf">0.6310</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluateRandomly</span><span class="p">(</span><span class="n">encoder1</span><span class="p">,</span> <span class="n">attn_decoder1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; elle est enceinte .
-= she s pregnant .
-&lt; she s pregnant . &lt;EOS&gt;
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">vous</span> <span class="n">etes</span> <span class="n">fort</span> <span class="n">craintifs</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">you</span> <span class="n">re</span> <span class="n">very</span> <span class="n">timid</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">you</span> <span class="n">re</span> <span class="n">very</span> <span class="n">timid</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; je suis contente que vous soyez en avance .
-= i m glad you re early .
-&lt; i m glad you see you . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">il</span> <span class="n">est</span> <span class="n">content</span> <span class="n">de</span> <span class="n">sa</span> <span class="n">vie</span> <span class="n">simple</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">he</span> <span class="ow">is</span> <span class="n">content</span> <span class="k">with</span> <span class="n">the</span> <span class="n">simple</span> <span class="n">life</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">he</span> <span class="ow">is</span> <span class="n">content</span> <span class="k">with</span> <span class="n">the</span> <span class="n">his</span> <span class="n">life</span> <span class="n">life</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; nous en sommes pour ainsi dire certaines .
-= we re quite certain of that .
-&lt; we re quite certain of that . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">il</span> <span class="n">est</span> <span class="n">impatient</span> <span class="n">de</span> <span class="n">te</span> <span class="n">voir</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">he</span> <span class="ow">is</span> <span class="n">impatient</span> <span class="n">to</span> <span class="n">see</span> <span class="n">you</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">he</span> <span class="ow">is</span> <span class="n">looking</span> <span class="n">to</span> <span class="n">see</span> <span class="n">you</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; elle etala une belle nappe sur une table .
-= she spread a beautiful cloth on a table .
-&lt; she is a a on a a . . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">tu</span> <span class="n">es</span> <span class="n">agitee</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">you</span> <span class="n">re</span> <span class="n">restless</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">you</span> <span class="n">re</span> <span class="n">conscientious</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; je suis clouee .
-= i m grounded .
-&lt; i m powerful . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">ils</span> <span class="n">sont</span> <span class="n">tous</span> <span class="n">contre</span> <span class="n">moi</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">they</span> <span class="n">re</span> <span class="nb">all</span> <span class="n">against</span> <span class="n">me</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">they</span> <span class="n">re</span> <span class="nb">all</span> <span class="n">against</span> <span class="n">me</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; elle est belle comme blanche neige .
-= she is as beautiful as snow white .
-&lt; she is as beautiful as beautiful . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">vous</span> <span class="n">etes</span> <span class="n">tres</span> <span class="n">elegantes</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">you</span> <span class="n">re</span> <span class="n">very</span> <span class="n">stylish</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">you</span> <span class="n">re</span> <span class="n">very</span> <span class="n">stylish</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; je rigole !
-= i m joking .
-&lt; i m kidding ! &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">je</span> <span class="n">suis</span> <span class="n">sournois</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">i</span> <span class="n">m</span> <span class="n">sneaky</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">i</span> <span class="n">m</span> <span class="n">sneaky</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; je suis a court de munitions .
-= i m out of ammo .
-&lt; i m running out of ammo . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">vous</span> <span class="n">me</span> <span class="n">mettez</span> <span class="n">les</span> <span class="n">mots</span> <span class="n">dans</span> <span class="n">la</span> <span class="n">bouche</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">you</span> <span class="n">re</span> <span class="n">putting</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">my</span> <span class="n">mouth</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">you</span> <span class="n">re</span> <span class="n">putting</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">my</span> <span class="o">.</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; c est un mathematicien de genie .
-= he is a mathematical genius .
-&lt; he is a genius . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">nous</span> <span class="n">sommes</span> <span class="n">les</span> <span class="n">meilleurs</span> <span class="n">amis</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">we</span> <span class="n">re</span> <span class="n">best</span> <span class="n">friends</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">we</span> <span class="n">re</span> <span class="n">best</span> <span class="n">friends</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 
-&gt; il est suspecte de vol .
-= he is suspected of robbery .
-&lt; he is suspected of robbery . &lt;EOS&gt;
+<span class="o">&gt;</span> <span class="n">vous</span> <span class="n">n</span> <span class="n">etes</span> <span class="n">pas</span> <span class="n">gentil</span> <span class="o">.</span>
+<span class="o">=</span> <span class="n">you</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">kind</span> <span class="o">.</span>
+<span class="o">&lt;</span> <span class="n">you</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">kind</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="section" id="visualizing-attention">
@@ -1369,13 +1369,13 @@ and labels:</p>
 </ul>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="n">elle</span> <span class="n">a</span> <span class="n">cinq</span> <span class="n">ans</span> <span class="n">de</span> <span class="n">moins</span> <span class="n">que</span> <span class="n">moi</span> <span class="o">.</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">she</span> <span class="n">s</span> <span class="n">five</span> <span class="n">years</span> <span class="n">younger</span> <span class="n">than</span> <span class="n">me</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">she</span> <span class="n">s</span> <span class="n">five</span> <span class="n">years</span> <span class="n">older</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="n">elle</span> <span class="n">est</span> <span class="n">trop</span> <span class="n">petit</span> <span class="o">.</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">she</span> <span class="n">s</span> <span class="n">too</span> <span class="n">loud</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">she</span> <span class="ow">is</span> <span class="n">too</span> <span class="n">young</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="n">je</span> <span class="n">ne</span> <span class="n">crains</span> <span class="n">pas</span> <span class="n">de</span> <span class="n">mourir</span> <span class="o">.</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">i</span> <span class="n">m</span> <span class="ow">not</span> <span class="n">scared</span> <span class="n">to</span> <span class="n">die</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="n">c</span> <span class="n">est</span> <span class="n">un</span> <span class="n">jeune</span> <span class="n">directeur</span> <span class="n">plein</span> <span class="n">de</span> <span class="n">talent</span> <span class="o">.</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">he</span> <span class="n">s</span> <span class="n">a</span> <span class="n">lovely</span> <span class="n">young</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">he</span> <span class="n">s</span> <span class="n">a</span> <span class="n">very</span> <span class="n">bit</span> <span class="o">.</span> <span class="o">.</span> <span class="o">&lt;</span><span class="n">EOS</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -1403,7 +1403,7 @@ this:<ul>
 </ul>
 </li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 67 minutes  13.744 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 66 minutes  11.640 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../_downloads/seq2seq_translation_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">seq2seq_translation_tutorial.py</span></code></a></div>

@@ -184,7 +184,7 @@ nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)
  Out::
 
     Variable containing:
-     2.1249
+     2.3065
     [torch.FloatTensor of size 1]
 
 
@@ -227,8 +227,8 @@ nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)
 
  Out::
 
-    1.844450575094938
-    0.510965790499978
+    1.8461436425884594
+    0.08925263750811721
 
 
 순방향/역방향 함수 훅(Hook)
@@ -237,7 +237,7 @@ nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)
 지금까지 가중치와 변화도에 대해서 살펴봤습니다. 그렇다면 계층의 출력이나
 grad_output 을 살펴보거나 수정하려면 어떻게 해야 할까요?
 
-이런 목적으로 사용할 수 있는 **훅(Hook)**를 소개합니다.
+이런 목적으로 사용할 수 있는 **훅(Hook)** 을 소개합니다.
 
 ``Module`` 이나 ``Variable`` 에 함수를 등록할 수 있습니다.
 훅(Hook)은 순방향 훅과 역방향 훅이 있는데, 순방향 훅은 순전파가 일어날 때 /
@@ -286,7 +286,7 @@ conv2에 전방향 훅을 등록하고 몇 가지 정보를 출력해보겠습�
 
     input size: torch.Size([1, 10, 12, 12])
     output size: torch.Size([1, 20, 8, 8])
-    output norm: 12.944642729754776
+    output norm: 17.847698875374046
 
 
 conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.
@@ -333,7 +333,7 @@ conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습�
 
     input size: torch.Size([1, 10, 12, 12])
     output size: torch.Size([1, 20, 8, 8])
-    output norm: 12.944642729754776
+    output norm: 17.847698875374046
     Inside Conv2d backward
     Inside class:Conv2d
 
@@ -344,7 +344,7 @@ conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습�
 
     grad_input size: torch.Size([1, 10, 12, 12])
     grad_output size: torch.Size([1, 20, 8, 8])
-    grad_input norm: 0.10366016081855128
+    grad_input norm: 0.018805641870820382
 
 
 동작하는 전체 MNIST 예제는 여기에서 확인할 수 있습니다.
@@ -425,7 +425,7 @@ PyTorch는 합성곱 신경망과 순환 신경망에 CuDNN 연동을 기본적�
 
 
 
-**Total running time of the script:** ( 0 minutes  0.007 seconds)
+**Total running time of the script:** ( 0 minutes  0.006 seconds)
 
 
 
