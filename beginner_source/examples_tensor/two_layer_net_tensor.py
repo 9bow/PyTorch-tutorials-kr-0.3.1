@@ -3,7 +3,7 @@
 PyTorch: Tensor
 ----------------
 
-하나의 히든 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드
+하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드
 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.
 
 PyTorch tensor를 이용하여 수동으로 순전파, 손실(loss), 그리고 역전파 연산을 하는
@@ -25,7 +25,7 @@ dtype = torch.FloatTensor
 # dtype = torch.cuda.FloatTensor # GPU에서 실행하려면 이 주석을 제거하세요.
 
 # N은 배치 크기이며, D_in은 입력의 차원입니다;
-# H는 히든 계층의 차원이며, D_out은 출력 차원입니다:
+# H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:
 N, D_in, H, D_out = 64, 1000, 100, 10
 
 # 무작위의 입력과 출력 데이터를 생성합니다.

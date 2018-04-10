@@ -3,7 +3,7 @@
 TensorFlow: 정적 그래프(Static Graph)
 --------------------------------------
 
-하나의 히든 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
+하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.
 
@@ -22,7 +22,7 @@ import numpy as np
 # 먼저 연산 그래프를 구성하겠습니다:
 
 # N은 배치 크기이며, D_in은 입력의 차원입니다;
-# H는 히든 계층의 차원이며, D_out은 출력 차원입니다:
+# H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:
 N, D_in, H, D_out = 64, 1000, 100, 10
 
 # 입력과 정답(target) 데이터를 위한 Placeholder를 생성합니다; 이는 우리가 그래프를
