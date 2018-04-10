@@ -92,7 +92,7 @@ PyTorch Variable은 PyTorch Tensor와 동일한 API를 제공합니다: Tensor�
 (거의) 모든 연산은 Variable에서도 할 수 있습니다; 차이점은 연산 그래프를 정의할 때
 Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것입니다.
 
-여기에서는 PyTOrch Variable과 autograd를 이용하여 2-계층 신경망을 구현합니다; 이제
+여기에서는 PyTorch Variable과 autograd를 이용하여 2-계층 신경망을 구현합니다; 이제
 더 이상 신경망의 역전파 단계를 직접 구현할 필요가 없습니다:
 
 .. includenodoc:: /beginner/examples_autograd/two_layer_net_autograd.py
