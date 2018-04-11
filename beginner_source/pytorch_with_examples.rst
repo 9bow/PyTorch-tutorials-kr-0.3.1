@@ -97,25 +97,21 @@ Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것�
 
 .. includenodoc:: /beginner/examples_autograd/two_layer_net_autograd.py
 
-PyTorch: Defining new autograd functions
-----------------------------------------
+PyTorch: 새 autograd 함수 정의하기
+-----------------------------------
 
-Under the hood, each primitive autograd operator is really two functions
-that operate on Tensors. The **forward** function computes output
-Tensors from input Tensors. The **backward** function receives the
-gradient of the output Tensors with respect to some scalar value, and
-computes the gradient of the input Tensors with respect to that same
-scalar value.
+Under the hood, autograd의 기본(primitive) 연산자는 실제로 Tensor를 조작하는 2개의
+함수입니다. **forward** 함수는 입력 Tensor로부터 출력 Tensor를 계산합니다.
+**backward** 함수는 출력 Tensor의 변화도를 받고 입력 Tensor의 변화도를 계산합니다.
 
-In PyTorch we can easily define our own autograd operator by defining a
-subclass of ``torch.autograd.Function`` and implementing the ``forward``
-and ``backward`` functions. We can then use our new autograd operator by
-constructing an instance and calling it like a function, passing
-Variables containing input data.
+PyTorch에서 ``torch.autograd.Function`` 의 하위 클래스(subclass)를 정의하고
+``forward`` 와 ``backward`` 함수를 구현함으로써 쉽게 사용자 정의 autograd 연산자를
+정의할 수 있습니다. 그 후, 인스턴스(instance)를 생성하고 함수처럼 호출하여
+입력 데이터를 포함하는 Variable을 전달하는 식으로 새로운 autograd 연산자를 쉽게
+사용할 수 있습니다.
 
-In this example we define our own custom autograd function for
-performing the ReLU nonlinearity, and use it to implement our two-layer
-network:
+이 예제에서는 ReLU 비선형성(nonlinearity)을 수행하기 위한 사용자 정의 autograd
+함수를 정의하고, 2-계층 신경망에 이를 적용해보도록 하겠습니다:
 
 .. includenodoc:: /beginner/examples_autograd/two_layer_net_custom_function.py
 
