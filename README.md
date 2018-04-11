@@ -1,8 +1,8 @@
 ## PyTorch 한국어 튜토리얼
 
-PyTorch에서 제공하는 튜토리얼 번역의 결과물을 위한 저장소입니다.
+PyTorch에서 제공하는 튜토리얼의 한국어 번역을 위한 저장소입니다.
 
-번역의 결과물은 [http://9bow.github.io/PyTorch-tutorials-kr](http://9bow.github.io/PyTorch-tutorials-kr)에서 확인하실 수 있습니다. (문서가 번역될 때마다 *불규칙적으로* 빌드합니다.)
+번역의 결과물은 [http://9bow.github.io/PyTorch-tutorials-kr](http://9bow.github.io/PyTorch-tutorials-kr)에서 확인하실 수 있습니다. (번역을 진행하며 *불규칙적으로* 빌드합니다.)
 
 
 ## 원문
@@ -14,7 +14,7 @@ PyTorch에서 제공하는 튜토리얼 번역의 결과물을 위한 저장소�
 
 ## 참여
 
-오타나 오역을 발견하시면 이슈를 남겨주세요. Pull Request도 환영합니다. :)
+오타나 오역을 발견하시면 [이슈](https://github.com/9bow/PyTorch-tutorials-kr/issues)를 남겨주세요. [Pull Request](https://github.com/9bow/PyTorch-tutorials-kr/pulls)도 환영합니다. :)
 
 
 ---
