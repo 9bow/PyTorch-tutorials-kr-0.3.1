@@ -115,40 +115,35 @@ PyTorch에서 ``torch.autograd.Function`` 의 하위 클래스(subclass)를 정�
 
 .. includenodoc:: /beginner/examples_autograd/two_layer_net_custom_function.py
 
-TensorFlow: Static Graphs
--------------------------
+TensorFlow: 정적 그래프(Static Graph)
+-------------------------------------
 
-PyTorch autograd looks a lot like TensorFlow: in both frameworks we
-define a computational graph, and use automatic differentiation to
-compute gradients. The biggest difference between the two is that
-TensorFlow's computational graphs are **static** and PyTorch uses
-**dynamic** computational graphs.
+PyTorch autograd는 Tensorflow와 많이 닮아보입니다: 두 프레임워크 모두 연산 그래프를
+정의하며, 자동 미분을 사용하여 변화도를 계산합니다. 두 프레임워크의 가장 큰 차이점은
+Tensorflow의 연산 그래프는 **정적** 이며, PyTorch는 **동적** 연산 그래프를 사용한다는
+것입니다.
 
-In TensorFlow, we define the computational graph once and then execute
-the same graph over and over again, possibly feeding different input
-data to the graph. In PyTorch, each forward pass defines a new
-computational graph.
+Tensorflow에서는 연산 그래프를 한 번 정의한 후 동일한 그래프를 계속해서 실행하며
+가능한 다른 입력 데이터를 전달합니다. PyTorch에서는 각각의 순전파 단계에서 새로운
+연산 그래프를 정의합니다.
 
-Static graphs are nice because you can optimize the graph up front; for
-example a framework might decide to fuse some graph operations for
-efficiency, or to come up with a strategy for distributing the graph
-across many GPUs or many machines. If you are reusing the same graph
-over and over, then this potentially costly up-front optimization can be
-amortized as the same graph is rerun over and over.
+정적 그래프는 먼저(Up-front) 그래프를 최적화할 수 있기 때문에 좋습니다; 예를 들어
+프레임워크가 효율을 위해 일부 그래프 연산을 합치거나, 여러 GPU나 시스템(machine)에
+그래프를 배포하는 전략을 제시할 수 있습니다. 만약 동일한 그래프를 계속 재사용하면,
+같은 그래프가 반복되면서 비싼(Costly) 최적화 비용을 잠재적으로 상환할 수 있습니다.
 
-One aspect where static and dynamic graphs differ is control flow. For
-some models we may wish to perform different computation for each data
-point; for example a recurrent network might be unrolled for different
-numbers of time steps for each data point; this unrolling can be
-implemented as a loop. With a static graph the loop construct needs to
-be a part of the graph; for this reason TensorFlow provides operators
-such as ``tf.scan`` for embedding loops into the graph. With dynamic
-graphs the situation is simpler: since we build graphs on-the-fly for
-each example, we can use normal imperative flow control to perform
-computation that differs for each input.
+정적 그래프와 동적 그래프는 제어 흐름(Control flow) 측면에서도 다릅니다. 어떤
+모델에서 각 데이터 지점(Point)마다 다른 연산 연산을 수행하고 싶을 수 있습니다;
+예를 들어 순환 신경망에서 각각의 데이터 지점마다 서로 다른 횟수만큼 펼칠(Unroll)
+수 있습니다; 이러한 펼침은 반복문(Loop)으로 구현할 수 있습니다. 정적 그래프에서
+반복문은 그래프의 일부가 돼야 합니다; 이러한 이유에서 Tensorflow는 그래프 내에
+반복문을 포함하기 위해 ``tf.scan`` 과 같은 연산자를 제공합니다. 동적 그래프에서는
+이러한 상황이 더 단순(Simple)해집니다: 각 예제에 대한 그래프를 즉석(on-the-fly)에서
+작성하기 때문에, 일반적인 명령형(Imperative) 제어 흐름을 사용하여 각각의 입력에 따라
+다른 계산을 수행할 수 있습니다.
 
-To contrast with the PyTorch autograd example above, here we use
-TensorFlow to fit a simple two-layer net:
+위의 PyTorch autograd 예제와는 대조적으로, TensorFlow를 사용하여 간단한 2-계층
+신경망을 구성하겠습니다:
 
 .. includenodoc:: /beginner/examples_autograd/tf_two_layer_net.py
 
