@@ -17,8 +17,8 @@ PyTorch의 핵심에는 2가지 주요한 특징이 있습니다:
 무작위의 데이터를 맞추도록 학습할 것입니다.
 
 .. Note::
-    각각의 에제들은 :ref:`이 페이지의 마지막 부분 <examples-download>` 에서 살펴볼 수
-    있습니다.
+    각각의 에제들은 :ref:`이 페이지의 마지막 부분 <examples-download>` 에서
+    살펴볼 수 있습니다.
 
 .. contents:: 목차
 	:local:
