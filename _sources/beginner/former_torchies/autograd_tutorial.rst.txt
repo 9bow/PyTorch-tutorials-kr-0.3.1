@@ -17,7 +17,7 @@ Autograd는 자동 미분을 수행하는 torch의 핵심 패키지로, 자동 �
 
 Autograd에서 우리는 ``Variable`` 클래스를 만나볼 수 있는데요, 이는
 ``Tensor`` 를 매우 얇게 감싸고(wrapper) 있습니다.
-``.data`` 속성을 이용하여 tensor 자체(raw tensor)에 접근할 수 있으며,
+``.data`` 속성을 사용하여 tensor 자체(raw tensor)에 접근할 수 있으며,
 역전파 연산이 끝나고 나면, 이 변수에 대한 변화도(gradient)는 ``.grad`` 에
 누적됩니다.
 
@@ -153,7 +153,7 @@ y 는 연산의 결과로 생성된 것이므로, grad_fn 을 갖습니다.
 
  Out::
 
-    <AddBackward0 object at 0x7f99375231d0>
+    <AddBackward0 object at 0x7fec05b01eb8>
 
 
 y에 다른 연산을 수행합니다:
@@ -284,8 +284,8 @@ y에 다른 연산을 수행합니다:
  Out::
 
     Variable containing:
-     1.3503  0.3640
-     2.5629  0.5831
+     0.8882  0.5360
+     0.3771  0.6104
     [torch.FloatTensor of size 2x2]
 
 

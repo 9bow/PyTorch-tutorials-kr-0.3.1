@@ -338,10 +338,10 @@ pre-computing batches of Tensors.
     Variable containing:
 
     Columns 0 to 9 
-    -2.9662 -2.9274 -2.8548 -3.0127 -2.8632 -2.9453 -2.9500 -2.8601 -2.8656 -2.8556
+    -2.9333 -2.9482 -2.9273 -2.8535 -2.8760 -2.8415 -2.8280 -2.9103 -2.9199 -2.9807
 
     Columns 10 to 17 
-    -2.8850 -2.7479 -2.7710 -2.9083 -2.9235 -2.8473 -2.9859 -2.8972
+    -2.8742 -2.9076 -2.7866 -2.8577 -2.9327 -2.8531 -2.8122 -3.0143
     [torch.FloatTensor of size 1x18]
 
 
@@ -382,7 +382,7 @@ of the greatest value:
 
  Out::
 
-    ('Irish', 11)
+    ('Portuguese', 12)
 
 
 We will also want a quick way to get a training example (a name and its
@@ -419,16 +419,16 @@ language):
 
  Out::
 
-    category = Czech / line = Koma
-    category = Korean / line = Lee
-    category = Greek / line = Paitakes
-    category = French / line = Martel
-    category = Italian / line = Belloni
-    category = French / line = Bureau
-    category = Korean / line = Ron
-    category = Polish / line = Jordan
-    category = French / line = Renaud
-    category = Korean / line = Yun
+    category = Portuguese / line = Nunes
+    category = Korean / line = Ryoo
+    category = Arabic / line = Cham
+    category = Irish / line = O'Hanlon
+    category = Russian / line = Los
+    category = French / line = Firmin
+    category = Arabic / line = Bishara
+    category = Irish / line = Delaney
+    category = Portuguese / line = Matos
+    category = Polish / line = Jaskolski
 
 
 Training the Network
@@ -558,26 +558,26 @@ average of the loss.
 
  Out::
 
-    5000 5% (0m 4s) 3.2066 Sokal / Arabic ✗ (Polish)
-    10000 10% (0m 9s) 3.3202 Buck / Korean ✗ (English)
-    15000 15% (0m 14s) 1.3920 To / Korean ✗ (Vietnamese)
-    20000 20% (0m 19s) 2.0262 Voclain / Irish ✗ (French)
-    25000 25% (0m 24s) 1.1690 Huo / Korean ✗ (Chinese)
-    30000 30% (0m 29s) 0.7895 Slazak / Polish ✓
-    35000 35% (0m 33s) 1.1799 Bolcar / Czech ✓
-    40000 40% (0m 38s) 2.4969 Ganem / Korean ✗ (Arabic)
-    45000 45% (0m 43s) 0.2952 Slusarski / Polish ✓
-    50000 50% (0m 48s) 0.8450 Lao / Chinese ✓
-    55000 55% (0m 52s) 0.6798 Jang / Korean ✓
-    60000 60% (0m 57s) 0.1429 Khouri / Arabic ✓
-    65000 65% (1m 2s) 0.3804 Wei / Chinese ✓
-    70000 70% (1m 7s) 0.7489 Hanek / Czech ✓
-    75000 75% (1m 12s) 1.3657 Picha / Portuguese ✗ (Czech)
-    80000 80% (1m 17s) 0.4485 Pezos / Greek ✓
-    85000 85% (1m 21s) 1.6400 Masi / Japanese ✗ (Italian)
-    90000 90% (1m 26s) 3.1699 Tellis / Greek ✗ (English)
-    95000 95% (1m 31s) 4.8308 Steinborn / Irish ✗ (Czech)
-    100000 100% (1m 36s) 3.4069 Baarle / French ✗ (Dutch)
+    5000 5% (0m 4s) 2.3756 Hajjar / Arabic ✓
+    10000 10% (0m 9s) 1.3923 Adamczyk / Polish ✓
+    15000 15% (0m 14s) 1.2488 Malouf / Arabic ✓
+    20000 20% (0m 18s) 0.2475 Filipowski / Polish ✓
+    25000 25% (0m 23s) 0.9778 Kreskas / Greek ✓
+    30000 30% (0m 27s) 1.3982 Chu / Vietnamese ✗ (Korean)
+    35000 35% (0m 32s) 1.7179 Fabian / Irish ✗ (French)
+    40000 40% (0m 37s) 2.5985 Cennetig / French ✗ (Irish)
+    45000 45% (0m 42s) 1.9993 Kazmier / Czech ✓
+    50000 50% (0m 47s) 1.0941 Sam / Korean ✗ (Chinese)
+    55000 55% (0m 52s) 0.1685 Trieu / Vietnamese ✓
+    60000 60% (0m 57s) 0.6659 Shimazaki / Japanese ✓
+    65000 65% (1m 2s) 1.4012 Wong / Korean ✗ (Chinese)
+    70000 70% (1m 7s) 0.0749 Angelopoulos / Greek ✓
+    75000 75% (1m 12s) 0.7909 Beauchene / French ✓
+    80000 80% (1m 16s) 0.0068 Gianakopulos / Greek ✓
+    85000 85% (1m 21s) 1.4523 Che / Korean ✗ (Chinese)
+    90000 90% (1m 26s) 2.0888 Hout / Arabic ✗ (Dutch)
+    95000 95% (1m 31s) 1.9701 Hoang / Chinese ✗ (Vietnamese)
+    100000 100% (1m 36s) 1.0391 Chaim / Chinese ✓
 
 
 Plotting the Results
@@ -719,19 +719,19 @@ Running on User Input
  Out::
 
     > Dovesky
-    (-1.06) Czech
-    (-1.10) Russian
-    (-1.62) English
+    (-0.67) Czech
+    (-1.15) Russian
+    (-2.32) Polish
 
     > Jackson
-    (-0.12) Scottish
-    (-2.62) English
-    (-4.51) Greek
+    (-0.77) Scottish
+    (-1.85) English
+    (-2.07) Dutch
 
     > Satoshi
-    (-0.34) Arabic
-    (-2.10) Japanese
-    (-3.43) Scottish
+    (-0.40) Polish
+    (-2.14) Italian
+    (-2.75) Arabic
 
 
 The final versions of the scripts `in the Practical PyTorch
@@ -778,7 +778,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 1 minutes  40.981 seconds)
+**Total running time of the script:** ( 1 minutes  41.048 seconds)
 
 
 

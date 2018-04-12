@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -515,64 +515,64 @@
             
   <div class="section" id="pytorch-nn">
 <span id="sphx-glr-beginner-examples-nn-two-layer-net-nn-py"></span><h1>PyTorch: nn<a class="headerlink" href="#pytorch-nn" title="Permalink to this headline">¶</a></h1>
-<p>A fully-connected ReLU network with one hidden layer, trained to predict y from x
-by minimizing squared Euclidean distance.</p>
-<p>This implementation uses the nn package from PyTorch to build the network.
-PyTorch autograd makes it easy to define computational graphs and take gradients,
-but raw autograd can be a bit too low-level for defining complex neural networks;
-this is where the nn package can help. The nn package defines a set of Modules,
-which you can think of as a neural network layer that has produces output from
-input and may have some trainable weights.</p>
+<p>하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드
+거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.</p>
+<p>이번에는 PyTorch의 nn 패키지를 사용하여 신경망을 구현하겠습니다.
+PyTorch autograd는 연산 그래프를 정의하고 변화도를 계산하는 것을 손쉽게 만들어주지만,
+autograd 그 자체만으로는 복잡한 신경망을 정의하기에는 너무 낮은 수준(Low-level)일 수
+있습니다; 이것이 nn 패키지가 필요한 이유입니다. nn 패키지는 모듈의 집합(Set)을
+정의하는데, 이는 입력으로부터 출력을 생성하고 학습 가능한 가중치를 갖는
+신경망이라고 생각할 수 있습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables.</span>
+<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
+<span class="c1"># 감쌉니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-<span class="c1"># Use the nn package to define our model as a sequence of layers. nn.Sequential</span>
-<span class="c1"># is a Module which contains other Modules, and applies them in sequence to</span>
-<span class="c1"># produce its output. Each Linear Module computes output from input using a</span>
-<span class="c1"># linear function, and holds internal Variables for its weight and bias.</span>
+<span class="c1"># nn 패키지를 사용하여 모델을 순차적인 계층(Sequence of layers)으로 정의합니다.</span>
+<span class="c1"># nn.Sequential은 다른 모듈들을 포함하는 모듈로, 그 모듈들을 순차적으로 적용하여</span>
+<span class="c1"># 출력을 생성합니다. 각각의 선형(Linear) 모듈은 선형 함수를 사용하여 입력으로부터</span>
+<span class="c1"># 출력을 계산하고, 가중치와 편향(Bias)을 저장하기 위해 내부적인 Variable을 갖습니다.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span>
 <span class="p">)</span>
 
-<span class="c1"># The nn package also contains definitions of popular loss functions; in this</span>
-<span class="c1"># case we will use Mean Squared Error (MSE) as our loss function.</span>
+<span class="c1"># 또한, nn 패키지에는 널리 사용하는 손실 함수들에 대한 정의도 포함하고 있습니다;</span>
+<span class="c1"># 여기에서는 평균 제곱 오차(MSE; Mean Squared Error)를 손실 함수로 사용하겠습니다.</span>
 <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: compute predicted y by passing x to the model. Module objects</span>
-    <span class="c1"># override the __call__ operator so you can call them like functions. When</span>
-    <span class="c1"># doing so you pass a Variable of input data to the Module and it produces</span>
-    <span class="c1"># a Variable of output data.</span>
+    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다. 모듈 객체는</span>
+    <span class="c1"># __call__ 연산자를 덮어써서(Override) 함수처럼 호출할 수 있게 합니다.</span>
+    <span class="c1"># 그렇게 함으로써 입력 데이터의 Variable을 모듈에 전달하고 출력 데이터의</span>
+    <span class="c1"># Variable을 생성합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss. We pass Variables containing the predicted and true</span>
-    <span class="c1"># values of y, and the loss function returns a Variable containing the</span>
-    <span class="c1"># loss.</span>
+    <span class="c1"># 손실을 계산하고 출력합니다. 예측한 y값과 정답 y를 갖는 Variable들을 전달하고,</span>
+    <span class="c1"># 손실 함수는 손실(loss)을 갖는 Variable을 반환합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Zero the gradients before running the backward pass.</span>
+    <span class="c1"># 역전파 단계를 실행하기 전에 변화도를 0으로 만듭니다.</span>
     <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
-    <span class="c1"># Backward pass: compute gradient of the loss with respect to all the learnable</span>
-    <span class="c1"># parameters of the model. Internally, the parameters of each Module are stored</span>
-    <span class="c1"># in Variables with requires_grad=True, so this call will compute gradients for</span>
-    <span class="c1"># all learnable parameters in the model.</span>
+    <span class="c1"># 역전파 단계: 모델의 학습 가능한 모든 매개변수에 대해서 손실의 변화도를</span>
+    <span class="c1"># 계산합니다. 내부적으로 각 모듈의 매개변수는 requires_grad=True 일 때</span>
+    <span class="c1"># Variable 내에 저장되므로, 이 호출은 모든 모델의 모든 학습 가능한 매개변수의</span>
+    <span class="c1"># 변화도를 계산하게 됩니다.</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># Update the weights using gradient descent. Each parameter is a Variable, so</span>
-    <span class="c1"># we can access its data and gradients like we did before.</span>
+    <span class="c1"># 경사하강법(Gradient Descent)를 사용하여 가중치를 갱신합니다. 각 매개변수는</span>
+    <span class="c1"># Variable이므로 이전에 했던 것과 같이 데이터와 변화도에 접근할 수 있습니다.</span>
     <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
         <span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
 </pre></div>

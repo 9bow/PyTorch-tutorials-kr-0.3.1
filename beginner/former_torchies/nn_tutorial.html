@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -541,7 +541,7 @@
 </div></blockquote>
 <p><strong>간소화된 디버깅(debugging):</strong></p>
 <blockquote>
-<div>디버깅은 Python의 pdb 디버거를 이용하여 직관적이며, <strong>디버거와 스택 추적(stack trace)은
+<div>디버깅은 Python의 pdb 디버거를 사용하여 직관적이며, <strong>디버거와 스택 추적(stack trace)은
 에러가 발생한 곳에서 정확히 멈춥니다.</strong> 이제 보이는대로 얻을 것입니다. (What you see is what you get.)</div></blockquote>
 <div class="section" id="convnet">
 <h2>예제1: 합성곱 신경망(ConvNet)<a class="headerlink" href="#convnet" title="Permalink to this headline">¶</a></h2>
@@ -628,7 +628,7 @@
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>가짜로 정답을 하나 만들고, 손실 함수를 이용하여 오차(error)를 계산해보겠습니다.</p>
+<p>가짜로 정답을 하나 만들고, 손실 함수를 사용하여 오차(error)를 계산해보겠습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">3</span><span class="p">]))</span>
 <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>  <span class="c1"># LogSoftmax + ClassNLL Loss</span>
 <span class="n">err</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
@@ -639,11 +639,11 @@
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">2.3065</span>
+ <span class="mf">2.2252</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>합성곱 신경망의 출력 <code class="docutils literal notranslate"><span class="pre">out</span></code> 은 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 이며, 이를 이용하여 오차를
+<p>합성곱 신경망의 출력 <code class="docutils literal notranslate"><span class="pre">out</span></code> 은 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 이며, 이를 사용하여 오차를
 계산하고 결과를 <code class="docutils literal notranslate"><span class="pre">Variable</span></code> 인 <code class="docutils literal notranslate"><span class="pre">err</span></code> 에 저장합니다.
 <code class="docutils literal notranslate"><span class="pre">err</span></code> 에 대해서 <code class="docutils literal notranslate"><span class="pre">.backward</span></code> 를 호출하면 변화도가 전체 합성곱 신경망의
 가중치에 전파됩니다.</p>
@@ -660,8 +660,8 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.8461436425884594</span>
-<span class="mf">0.08925263750811721</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.8608400655711936</span>
+<span class="mf">0.4442822919402201</span>
 </pre></div>
 </div>
 </div>
@@ -703,7 +703,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 17.847698875374046
+output norm: 14.660759980382405
 </pre></div>
 </div>
 <p>conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.</p>
@@ -737,7 +737,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 17.847698875374046
+output norm: 14.660759980382405
 Inside Conv2d backward
 Inside class:Conv2d
 
@@ -748,7 +748,7 @@ grad_output[0]:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 grad_input size: torch.Size([1, 10, 12, 12])
 grad_output size: torch.Size([1, 20, 8, 8])
-grad_input norm: 0.018805641870820382
+grad_input norm: 0.08897862165326491
 </pre></div>
 </div>
 <p>동작하는 전체 MNIST 예제는 여기에서 확인할 수 있습니다.
@@ -756,7 +756,7 @@ grad_input norm: 0.018805641870820382
 </div>
 <div class="section" id="recurrent-nets">
 <h2>예제2: 순환 신경망(Recurrent Nets)<a class="headerlink" href="#recurrent-nets" title="Permalink to this headline">¶</a></h2>
-<p>다음으로 PyTorch를 이용하여 순환 신경망을 만들어보겠습니다.</p>
+<p>다음으로 PyTorch를 사용하여 순환 신경망을 만들어보겠습니다.</p>
 <p>신경망의 상태는 계층이 아닌 그래프에 저장되므로, 할 일은 nn.Linear을
 생성한 후 순환할 때마다 계속 사용하면 됩니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
@@ -781,7 +781,7 @@ grad_input norm: 0.018805641870820382
 <span class="n">rnn</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>LSTM과 Penn Tree-bank를 이용한 좀 더 완벽한 언어 모델링(Language Modeling)에 대한
+<p>LSTM과 Penn Tree-bank를 사용한 좀 더 완벽한 언어 모델링(Language Modeling)에 대한
 예제는 <a class="reference external" href="https://github.com/pytorch/examples/tree/master/word_language_model">여기</a>
 에 있습니다.</p>
 <p>PyTorch는 합성곱 신경망과 순환 신경망에 CuDNN 연동을 기본적으로 지원하고 있습니다.</p>
@@ -804,7 +804,7 @@ grad_input norm: 0.018805641870820382
 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.006 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.005 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/nn_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nn_tutorial.py</span></code></a></div>

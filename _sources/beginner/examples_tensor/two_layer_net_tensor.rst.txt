@@ -9,7 +9,7 @@ PyTorch: Tensor
 하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드
 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.
 
-PyTorch tensor를 이용하여 수동으로 순전파, 손실(loss), 그리고 역전파 연산을 하는
+PyTorch tensor를 사용하여 수동으로 순전파, 손실(loss), 그리고 역전파 연산을 하는
 것을 구현해보겠습니다.
 
 PyTorch Tensor는 기본적으로 NumPy 배열과 동일합니다; 딥러닝이나 연산 그래프
@@ -62,7 +62,7 @@ NumPy 배열과 PyTorch Tensor의 가장 큰 차이점은 PyTorch Tensor는 CPU�
         grad_h[h < 0] = 0
         grad_w1 = x.t().mm(grad_h)
 
-        # 경사하강법(Gradient Descent)를 이용하여 가중치를 갱신합니다.
+        # 경사하강법(Gradient Descent)를 사용하여 가중치를 갱신합니다.
         w1 -= learning_rate * grad_w1
         w2 -= learning_rate * grad_w2
 
