@@ -25,7 +25,7 @@ PyTorch의 모든 신경망의 중심에는 ``autograd`` 패키지가 있습니�
 계산이 완료된 후 ``.backward()`` 를 호출하여 모든 변화도(gradient)을 자동으로
 계산할 수 있습니다.
 
-``.data`` 속성을 사용하여 tensor 자체(raw tensor)에 접근할 수 있으며,
+``.data`` 속성을 이용하여 tensor 자체(raw tensor)에 접근할 수 있으며,
 이 변수와 관련된 변화도는 ``.grad`` 에 누적됩니다.
 
 .. figure:: /_static/img/Variable.png
@@ -122,7 +122,7 @@ Autograd 구현에서 매우 중요한 클래스가 하나 더 있는데요, 바
 
  Out::
 
-    <AddBackward0 object at 0x7fec064f0ba8>
+    <AddBackward0 object at 0x7f99375f9ef0>
 
 
 y에 다른 연산을 수행합니다:
@@ -229,9 +229,9 @@ autograd로 많은 정신나간 일들(crazy things)도 할 수 있습니다!
  Out::
 
     Variable containing:
-      318.7293
-     1207.3401
-     1144.6099
+     201.0858
+     841.2388
+     608.4709
     [torch.FloatTensor of size 3]
 
 
@@ -252,9 +252,9 @@ autograd로 많은 정신나간 일들(crazy things)도 할 수 있습니다!
  Out::
 
     Variable containing:
-      204.8000
-     2048.0000
-        0.2048
+      51.2000
+     512.0000
+       0.0512
     [torch.FloatTensor of size 3]
 
 
@@ -263,7 +263,7 @@ autograd로 많은 정신나간 일들(crazy things)도 할 수 있습니다!
 ``Variable`` 과 ``Function`` 관련 문서는 http://pytorch.org/docs/autograd 에 있습니다.
 
 
-**Total running time of the script:** ( 0 minutes  0.513 seconds)
+**Total running time of the script:** ( 0 minutes  0.002 seconds)
 
 
 

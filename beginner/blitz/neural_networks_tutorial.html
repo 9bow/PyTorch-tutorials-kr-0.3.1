@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -515,9 +515,9 @@
             
   <div class="section" id="neural-networks">
 <span id="sphx-glr-beginner-blitz-neural-networks-tutorial-py"></span><h1>신경망(Neural Networks)<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h1>
-<p>신경망은 <code class="docutils literal notranslate"><span class="pre">torch.nn</span></code> 패키지를 사용하여 생성할 수 있습니다.</p>
+<p>신경망은 <code class="docutils literal notranslate"><span class="pre">torch.nn</span></code> 패키지를 이용하여 생성할 수 있습니다.</p>
 <p>지금까지 <code class="docutils literal notranslate"><span class="pre">autograd</span></code> 를 살펴봤는데요, <code class="docutils literal notranslate"><span class="pre">nn</span></code> 은 모델을 정의하고 미분하는데
-<code class="docutils literal notranslate"><span class="pre">autograd</span></code> 를 사용합니다.
+<code class="docutils literal notranslate"><span class="pre">autograd</span></code> 를 이용합니다.
 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 은 계층(layer)과 <code class="docutils literal notranslate"><span class="pre">output</span></code> 을 반환하는 <code class="docutils literal notranslate"><span class="pre">forward(input)</span></code>
 메서드를 포함하고 있습니다.</p>
 <p>숫자 이미지를 분류하는 신경망을 예제로 살펴보겠습니다:</p>
@@ -534,7 +534,7 @@
 <li>입력을 신경망에서 처리합니다.</li>
 <li>손실(loss; 출력이 정답으로부터 얼마나 떨어져있는지)을 계산합니다.</li>
 <li>변화도(gradient)를 신경망의 매개변수들에 역으로 전파합니다.</li>
-<li>신경망의 가중치를 갱신합니다. 일반적으로 다음과 같은 간단한 규칙을 사용합니다:
+<li>신경망의 가중치를 갱신합니다. 일반적으로 다음과 같은 간단한 규칙을 이용합니다:
 <code class="docutils literal notranslate"><span class="pre">가중치(wiehgt)</span> <span class="pre">=</span> <span class="pre">가중치(weight)</span> <span class="pre">-</span> <span class="pre">학습율(learning</span> <span class="pre">rate)</span> <span class="pre">*</span> <span class="pre">변화도(gradient)</span></code></li>
 </ul>
 <div class="section" id="id1">
@@ -593,8 +593,8 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">forward</span></code> 함수만 정의하게 되면, (변화도를 계산하는) <code class="docutils literal notranslate"><span class="pre">backward</span></code> 함수는
-<code class="docutils literal notranslate"><span class="pre">autograd</span></code> 를 사용하여 자동으로 정의됩니다.
-<code class="docutils literal notranslate"><span class="pre">forward</span></code> 함수에서는 어떠한 Tensor 연산을 사용해도 됩니다.</p>
+<code class="docutils literal notranslate"><span class="pre">autograd</span></code> 를 이용하여 자동으로 정의됩니다.
+<code class="docutils literal notranslate"><span class="pre">forward</span></code> 함수에서는 어떠한 Tensor 연산을 이용해도 됩니다.</p>
 <p>모델의 학습 가능한 매개변수들은 <code class="docutils literal notranslate"><span class="pre">net.parameters()</span></code> 에 의해 반환됩니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
@@ -608,7 +608,7 @@
 </div>
 <p>forward의 입력은 <code class="docutils literal notranslate"><span class="pre">autograd.Variable</span></code> 이고, 출력 또한 마찬가지입니다.
 Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST 데이터셋을
-사용하기 위해서는, 데이터셋의 이미지를 32x32로 크기를 변경해야 합니다.</p>
+이용하기 위해서는, 데이터셋의 이미지를 32x32로 크기를 변경해야 합니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
 <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
@@ -616,7 +616,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">0.0338</span>  <span class="mf">0.0900</span>  <span class="mf">0.0252</span>  <span class="mf">0.0796</span> <span class="o">-</span><span class="mf">0.0281</span> <span class="o">-</span><span class="mf">0.0754</span> <span class="o">-</span><span class="mf">0.0562</span>  <span class="mf">0.0396</span>  <span class="mf">0.1081</span> <span class="o">-</span><span class="mf">0.0498</span>
+<span class="o">-</span><span class="mf">0.0617</span>  <span class="mf">0.0021</span>  <span class="mf">0.1039</span> <span class="o">-</span><span class="mf">0.0736</span>  <span class="mf">0.0119</span>  <span class="mf">0.1275</span>  <span class="mf">0.1013</span> <span class="o">-</span><span class="mf">0.0237</span>  <span class="mf">0.0973</span> <span class="o">-</span><span class="mf">0.0655</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="n">x10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -686,11 +686,11 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">38.4215</span>
+ <span class="mf">38.2012</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>이제 <code class="docutils literal notranslate"><span class="pre">.grad_fn</span></code> 속성을 사용하여 <code class="docutils literal notranslate"><span class="pre">loss</span></code> 를 역방향에서 따라가다보면,
+<p>이제 <code class="docutils literal notranslate"><span class="pre">.grad_fn</span></code> 속성을 이용하여 <code class="docutils literal notranslate"><span class="pre">loss</span></code> 를 역방향에서 따라가다보면,
 이러한 모습의 연산 그래프를 볼 수 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">conv2d</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">maxpool2d</span> <span class="o">-&gt;</span> <span class="n">conv2d</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">maxpool2d</span>
       <span class="o">-&gt;</span> <span class="n">view</span> <span class="o">-&gt;</span> <span class="n">linear</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">linear</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">linear</span>
@@ -707,9 +707,9 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fec06441e80</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fec06441ef0</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">ExpandBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fec06441ef0</span><span class="o">&gt;</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f99375de2b0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f99375de898</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ExpandBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f99375de898</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -744,12 +744,12 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 
 <span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span> <span class="n">after</span> <span class="n">backward</span>
 <span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">0.0135</span>
- <span class="mf">0.0523</span>
-<span class="o">-</span><span class="mf">0.0336</span>
- <span class="mf">0.0339</span>
-<span class="o">-</span><span class="mf">0.1043</span>
-<span class="o">-</span><span class="mf">0.0406</span>
+<span class="o">-</span><span class="mf">0.0474</span>
+<span class="o">-</span><span class="mf">0.1249</span>
+ <span class="mf">0.0441</span>
+<span class="o">-</span><span class="mf">0.0822</span>
+ <span class="mf">0.0150</span>
+<span class="o">-</span><span class="mf">0.1090</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -800,7 +800,7 @@ Gradient Descent)입니다:</p>
 것에 유의하세요. 이는 <a class="reference internal" href="#backprop">역전파(Backprop)</a> 섹션에서 설명한 것처럼 변화도가
 누적되기 때문입니다.</p>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.021 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.009 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/neural_networks_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neural_networks_tutorial.py</span></code></a></div>

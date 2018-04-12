@@ -7,7 +7,7 @@ PyTorch: Variable과 autograd
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.
 
-PyTorch Variable 연산을 사용하여 순전파를 계산하고, PyTorch autograd를 사용하여
+PyTorch Variable 연산을 이용하여 순전파를 계산하고, PyTorch autograd를 이용하여
 변화도(Gradient)를 계산하는 것을 구현하겠습니다.
 
 PyTorch Variable은 PyTorch Tensor의 래퍼(Wrapper)이며, 연산 그래프(Computational
@@ -43,12 +43,12 @@ w2 = Variable(torch.randn(H, D_out).type(dtype), requires_grad=True)
 
 learning_rate = 1e-6
 for t in range(500):
-    # 순전파 단계: Variable 연산을 사용하여 y 값을 예측합니다. 이는 Tensor를 사용한
+    # 순전파 단계: Variable 연산을 이용하여 y 값을 예측합니다. 이는 Tensor를 이용한
     # 순전파 단계와 완전히 동일하지만, 역전파 단계를 별도로 구현하지 않기 위해 중간
     # 값들(Intermediate Value)에 대한 참조(Reference)를 갖고 있을 필요가 없습니다.
     y_pred = x.mm(w1).clamp(min=0).mm(w2)
 
-    # Variable 연산을 사용하여 손실을 계산하고 출력합니다.
+    # Variable 연산을 이용하여 손실을 계산하고 출력합니다.
     # loss는 (1,) 모양을 갖는 Variable이며, loss.data는 (1,) 모양의 Tensor입니다;
     # loss.data[0]은 손실(loss)의 스칼라 값입니다.
     loss = (y_pred - y).pow(2).sum()
@@ -59,7 +59,7 @@ for t in range(500):
     # w1과 w2 각각에 대한 손실의 변화도를 갖는 Variable이 됩니다.
     loss.backward()
 
-    # 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다; w1.data와
+    # 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다; w1.data와
     # w2.data는 Tensor이며, w1.grad와 w2.grad는 Variable이고, w1.grad.data와
     # w2.grad.data는 Tensor입니다.
     w1.data -= learning_rate * w1.grad.data

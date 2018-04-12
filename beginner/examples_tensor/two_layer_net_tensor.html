@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -517,7 +517,7 @@
 <span id="sphx-glr-beginner-examples-tensor-two-layer-net-tensor-py"></span><h1>PyTorch: Tensor<a class="headerlink" href="#pytorch-tensor" title="Permalink to this headline">¶</a></h1>
 <p>하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드
 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.</p>
-<p>PyTorch tensor를 사용하여 수동으로 순전파, 손실(loss), 그리고 역전파 연산을 하는
+<p>PyTorch tensor를 이용하여 수동으로 순전파, 손실(loss), 그리고 역전파 연산을 하는
 것을 구현해보겠습니다.</p>
 <p>PyTorch Tensor는 기본적으로 NumPy 배열과 동일합니다; 딥러닝이나 연산 그래프
 (Computational Graph), 변화도(Gradient)는 알지 못하며 임의의 숫자 계산에 사용하는
@@ -562,7 +562,7 @@
     <span class="n">grad_h</span><span class="p">[</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">grad_w1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">grad_h</span><span class="p">)</span>
 
-    <span class="c1"># 경사하강법(Gradient Descent)를 사용하여 가중치를 갱신합니다.</span>
+    <span class="c1"># 경사하강법(Gradient Descent)를 이용하여 가중치를 갱신합니다.</span>
     <span class="n">w1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w1</span>
     <span class="n">w2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w2</span>
 </pre></div>

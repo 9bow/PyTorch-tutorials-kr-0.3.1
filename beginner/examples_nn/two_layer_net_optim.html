@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -515,26 +515,25 @@
             
   <div class="section" id="pytorch-optim">
 <span id="sphx-glr-beginner-examples-nn-two-layer-net-optim-py"></span><h1>PyTorch: optim<a class="headerlink" href="#pytorch-optim" title="Permalink to this headline">¶</a></h1>
-<p>하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드
-거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.</p>
-<p>PyTorch의 nn 패키지를 사용하여 신경망을 구현하겠습니다.</p>
-<p>그동안 해왔던 것처럼 직접 모델의 가중치를 갱신하는 대신, optim 패키지를 사용하여
-가중치를 갱신할 Optimizer를 정의합니다. optim 패키지는 일반적으로 딥러닝에 사용하는
-SGD+momentum, RMSProp, Adam 등과 같은 다양한 최적화(Optimization) 알고리즘을
-정의합니다.</p>
+<p>A fully-connected ReLU network with one hidden layer, trained to predict y from x
+by minimizing squared Euclidean distance.</p>
+<p>This implementation uses the nn package from PyTorch to build the network.</p>
+<p>Rather than manually updating the weights of the model as we have been doing,
+we use the optim package to define an Optimizer that will update the weights
+for us. The optim package defines many optimization algorithms that are commonly
+used for deep learning, including SGD+momentum, RMSProp, Adam, etc.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
 
-<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
-<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
+<span class="c1"># N is batch size; D_in is input dimension;</span>
+<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
-<span class="c1"># 감쌉니다.</span>
+<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-<span class="c1"># nn 패키지를 사용하여 모델과 손실 함수를 정의합니다.</span>
+<span class="c1"># Use the nn package to define our model and loss function.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
@@ -542,30 +541,33 @@ SGD+momentum, RMSProp, Adam 등과 같은 다양한 최적화(Optimization) 알�
 <span class="p">)</span>
 <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-<span class="c1"># optim 패키지를 사용하여 모델의 가중치를 갱신할 Optimizer를 정의합니다.</span>
-<span class="c1"># 여기서는 Adam을 사용하겠습니다; optim 패키지는 다른 다양한 최적화 알고리즘을</span>
-<span class="c1"># 포함하고 있습니다. Adam 생성자의 첫번째 인자는 갱신해야 하는 Variable을</span>
-<span class="c1"># Optimizer에 알려줍니다.</span>
+<span class="c1"># Use the optim package to define an Optimizer that will update the weights of</span>
+<span class="c1"># the model for us. Here we will use Adam; the optim package contains many other</span>
+<span class="c1"># optimization algoriths. The first argument to the Adam constructor tells the</span>
+<span class="c1"># optimizer which Variables it should update.</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다.</span>
+    <span class="c1"># Forward pass: compute predicted y by passing x to the model.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># 손실을 계산하고 출력합니다.</span>
+    <span class="c1"># Compute and print loss.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># 역전파 단계 전에, Optimizer 객체를 사용하여 (모델의 학습 가능한 가중치인)</span>
-    <span class="c1"># 갱신할 Variable들에 대한 모든 변화도를 0으로 만듭니다. 이는 기본적으로,</span>
-    <span class="c1"># .backward()를 호출할 때마다 변화도가 버퍼(Buffer)에 (덮어쓰지 않고) 누적되기</span>
-    <span class="c1"># 때문입니다. 더 자세한 내용은 torch.autograd.backward에 대한 문서를 참조하세요.</span>
+    <span class="c1"># Before the backward pass, use the optimizer object to zero all of the</span>
+    <span class="c1"># gradients for the variables it will update (which are the learnable</span>
+    <span class="c1"># weights of the model). This is because by default, gradients are</span>
+    <span class="c1"># accumulated in buffers( i.e, not overwritten) whenever .backward()</span>
+    <span class="c1"># is called. Checkout docs of torch.autograd.backward for more details.</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
-    <span class="c1"># 역전파 단계: 모델의 매개변수에 대한 손실의 변화도를 계산합니다.</span>
+    <span class="c1"># Backward pass: compute gradient of the loss with respect to model</span>
+    <span class="c1"># parameters</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># Optimizer의 step 함수를 호출하면 매개변수가 갱신됩니다.</span>
+    <span class="c1"># Calling the step function on an Optimizer makes an update to its</span>
+    <span class="c1"># parameters</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </pre></div>
 </div>

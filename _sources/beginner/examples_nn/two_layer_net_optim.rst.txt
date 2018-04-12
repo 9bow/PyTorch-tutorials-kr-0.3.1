@@ -6,15 +6,15 @@
 PyTorch: optim
 --------------
 
-하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드
-거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.
+A fully-connected ReLU network with one hidden layer, trained to predict y from x
+by minimizing squared Euclidean distance.
 
-PyTorch의 nn 패키지를 사용하여 신경망을 구현하겠습니다.
+This implementation uses the nn package from PyTorch to build the network.
 
-그동안 해왔던 것처럼 직접 모델의 가중치를 갱신하는 대신, optim 패키지를 사용하여
-가중치를 갱신할 Optimizer를 정의합니다. optim 패키지는 일반적으로 딥러닝에 사용하는
-SGD+momentum, RMSProp, Adam 등과 같은 다양한 최적화(Optimization) 알고리즘을
-정의합니다.
+Rather than manually updating the weights of the model as we have been doing,
+we use the optim package to define an Optimizer that will update the weights
+for us. The optim package defines many optimization algorithms that are commonly
+used for deep learning, including SGD+momentum, RMSProp, Adam, etc.
 
 
 
@@ -23,16 +23,15 @@ SGD+momentum, RMSProp, Adam 등과 같은 다양한 최적화(Optimization) 알�
     import torch
     from torch.autograd import Variable
 
-    # N은 배치 크기이며, D_in은 입력의 차원입니다;
-    # H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:
+    # N is batch size; D_in is input dimension;
+    # H is hidden dimension; D_out is output dimension.
     N, D_in, H, D_out = 64, 1000, 100, 10
 
-    # 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로
-    # 감쌉니다.
+    # Create random Tensors to hold inputs and outputs, and wrap them in Variables.
     x = Variable(torch.randn(N, D_in))
     y = Variable(torch.randn(N, D_out), requires_grad=False)
 
-    # nn 패키지를 사용하여 모델과 손실 함수를 정의합니다.
+    # Use the nn package to define our model and loss function.
     model = torch.nn.Sequential(
         torch.nn.Linear(D_in, H),
         torch.nn.ReLU(),
@@ -40,30 +39,33 @@ SGD+momentum, RMSProp, Adam 등과 같은 다양한 최적화(Optimization) 알�
     )
     loss_fn = torch.nn.MSELoss(size_average=False)
 
-    # optim 패키지를 사용하여 모델의 가중치를 갱신할 Optimizer를 정의합니다.
-    # 여기서는 Adam을 사용하겠습니다; optim 패키지는 다른 다양한 최적화 알고리즘을
-    # 포함하고 있습니다. Adam 생성자의 첫번째 인자는 갱신해야 하는 Variable을
-    # Optimizer에 알려줍니다.
+    # Use the optim package to define an Optimizer that will update the weights of
+    # the model for us. Here we will use Adam; the optim package contains many other
+    # optimization algoriths. The first argument to the Adam constructor tells the
+    # optimizer which Variables it should update.
     learning_rate = 1e-4
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     for t in range(500):
-        # 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다.
+        # Forward pass: compute predicted y by passing x to the model.
         y_pred = model(x)
 
-        # 손실을 계산하고 출력합니다.
+        # Compute and print loss.
         loss = loss_fn(y_pred, y)
         print(t, loss.data[0])
 
-        # 역전파 단계 전에, Optimizer 객체를 사용하여 (모델의 학습 가능한 가중치인)
-        # 갱신할 Variable들에 대한 모든 변화도를 0으로 만듭니다. 이는 기본적으로,
-        # .backward()를 호출할 때마다 변화도가 버퍼(Buffer)에 (덮어쓰지 않고) 누적되기
-        # 때문입니다. 더 자세한 내용은 torch.autograd.backward에 대한 문서를 참조하세요.
+        # Before the backward pass, use the optimizer object to zero all of the
+        # gradients for the variables it will update (which are the learnable
+        # weights of the model). This is because by default, gradients are
+        # accumulated in buffers( i.e, not overwritten) whenever .backward()
+        # is called. Checkout docs of torch.autograd.backward for more details.
         optimizer.zero_grad()
 
-        # 역전파 단계: 모델의 매개변수에 대한 손실의 변화도를 계산합니다.
+        # Backward pass: compute gradient of the loss with respect to model
+        # parameters
         loss.backward()
 
-        # Optimizer의 step 함수를 호출하면 매개변수가 갱신됩니다.
+        # Calling the step function on an Optimizer makes an update to its
+        # parameters
         optimizer.step()
 
 **Total running time of the script:** ( 0 minutes  0.000 seconds)

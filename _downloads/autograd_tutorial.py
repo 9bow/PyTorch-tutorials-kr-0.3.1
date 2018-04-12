@@ -22,7 +22,7 @@ PyTorch의 모든 신경망의 중심에는 ``autograd`` 패키지가 있습니�
 계산이 완료된 후 ``.backward()`` 를 호출하여 모든 변화도(gradient)을 자동으로
 계산할 수 있습니다.
 
-``.data`` 속성을 사용하여 tensor 자체(raw tensor)에 접근할 수 있으며,
+``.data`` 속성을 이용하여 tensor 자체(raw tensor)에 접근할 수 있으며,
 이 변수와 관련된 변화도는 ``.grad`` 에 누적됩니다.
 
 .. figure:: /_static/img/Variable.png

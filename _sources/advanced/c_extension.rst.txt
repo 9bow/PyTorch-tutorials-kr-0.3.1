@@ -50,7 +50,7 @@ ffi util이 빌드 시에 컴파일러가 이것들을 찾을 수 있도록 할 
     int my_lib_add_forward(THFloatTensor *input1, THFloatTensor *input2, THFloatTensor *output);
     int my_lib_add_backward(THFloatTensor *grad_output, THFloatTensor *grad_input);
 
-이제 다음과 같은 짧은 파일을 사용하여 빌드해보겠습니다:
+이제 다음과 같은 짧은 파일을 이용하여 빌드해보겠습니다:
 
 .. code:: python
 

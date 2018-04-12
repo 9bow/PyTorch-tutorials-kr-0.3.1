@@ -5,7 +5,7 @@ PyTorch가 무엇인가요?
 
 Python 기반의 과학 연산 패키지로 다음과 같은 두 집단을 대상으로 합니다:
 
--  NumPy를 대체하고 GPU의 연산력을 사용
+-  NumPy를 대체하고 GPU의 연산력을 이용
 -  최대한의 유연성과 속도를 제공하는 딥러닝 연구 플랫폼
 
 시작하기
@@ -14,7 +14,7 @@ Python 기반의 과학 연산 패키지로 다음과 같은 두 집단을 대�
 Tensors
 ^^^^^^^
 
-Tensor는 NumPy의 ndarray와 유사할뿐만 아니라, GPU를 사용한 연산 가속도 지원합니다.
+Tensor는 NumPy의 ndarray와 유사할뿐만 아니라, GPU를 이용한 연산 가속도 지원합니다.
 """
 
 from __future__ import print_function
@@ -80,7 +80,7 @@ print(x[:, 1])
 # 크기 변경: tensor의 크기(size)나 모양(shape)을 변경하고 싶을 때, ``torch.view`` 를 사용합니다.
 x = torch.randn(4, 4)
 y = x.view(16)
-z = x.view(-1, 8)  # 사이즈가 -1인 경우 다른 차원들을 사용하여 유추합니다.
+z = x.view(-1, 8)  # 사이즈가 -1인 경우 다른 차원들을 이용하여 유추합니다.
 print(x.size(), y.size(), z.size())
 
 ###############################################################

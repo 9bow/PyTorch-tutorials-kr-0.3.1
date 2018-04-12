@@ -7,7 +7,7 @@ TensorFlow: 정적 그래프(Static Graph)
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.
 
-기본적인 TensorFlow 연산을 사용하여 연산 그래프(Computational Graph)를 구성한
+기본적인 TensorFlow 연산을 이용하여 연산 그래프(Computational Graph)를 구성한
 다음, 그래프를 여러 차례 실행하여 신경망을 학습시켜보겠습니다.
 
 Tensorflow와 PyTorch의 주요한 차이점 중 하나는, PyTorch는 동적 연산 그래프를
@@ -35,20 +35,20 @@ y = tf.placeholder(tf.float32, shape=(None, D_out))
 w1 = tf.Variable(tf.random_normal((D_in, H)))
 w2 = tf.Variable(tf.random_normal((H, D_out)))
 
-# 순전파 단계: Tensorflow의 Tensor 연산을 사용하여 y 값을 예측합니다.
+# 순전파 단계: Tensorflow의 Tensor 연산을 이용하여 y 값을 예측합니다.
 # 이 코드가 어떠한 수치 연산을 실제로 수행하지는 않는다는 것을 유의하세요;
 # 이 단계에서는 나중에 실행할 연산 그래프를 구성하기만 합니다.
 h = tf.matmul(x, w1)
 h_relu = tf.maximum(h, tf.zeros(1))
 y_pred = tf.matmul(h_relu, w2)
 
-# Tensorflow의 Tensor 연산을 사용하여 손실(loss)을 계산합니다.
+# Tensorflow의 Tensor 연산을 이용하여 손실(loss)을 계산합니다.
 loss = tf.reduce_sum((y - y_pred) ** 2.0)
 
 # 손실에 따른 w1, w2의 변화도(Gradient)를 계산합니다.
 grad_w1, grad_w2 = tf.gradients(loss, [w1, w2])
 
-# 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다. 실제로 가중치를
+# 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다. 실제로 가중치를
 # 갱신하기 위해서는 그래프가 실행될 때 new_w1과 new_w2 계산(evaluate)해야 합니다.
 # Tensorflow에서 가중치의 값을 갱신하는 작업은 연산 그래프의 일부임을 유의하십시오;
 # PyTorch에서는 이 작업이 연산 그래프의 밖에서 일어납니다.
