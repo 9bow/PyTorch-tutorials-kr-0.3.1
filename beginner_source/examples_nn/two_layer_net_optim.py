@@ -6,9 +6,9 @@ PyTorch: optim
 하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드
 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.
 
-PyTorch의 nn 패키지를 이용하여 신경망을 구현하겠습니다.
+PyTorch의 nn 패키지를 사용하여 신경망을 구현하겠습니다.
 
-그동안 해왔던 것처럼 직접 모델의 가중치를 갱신하는 대신, optim 패키지를 이용하여
+그동안 해왔던 것처럼 직접 모델의 가중치를 갱신하는 대신, optim 패키지를 사용하여
 가중치를 갱신할 Optimizer를 정의합니다. optim 패키지는 일반적으로 딥러닝에 사용하는
 SGD+momentum, RMSProp, Adam 등과 같은 다양한 최적화(Optimization) 알고리즘을
 정의합니다.

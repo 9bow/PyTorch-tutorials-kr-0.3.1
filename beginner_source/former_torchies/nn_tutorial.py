@@ -30,7 +30,7 @@ nn 패키지는 autograd를 완벽하게 통합하기 위해 재설계(redesign)
 
 **간소화된 디버깅(debugging):**
 
-    디버깅은 Python의 pdb 디버거를 이용하여 직관적이며, **디버거와 스택 추적(stack trace)은
+    디버깅은 Python의 pdb 디버거를 사용하여 직관적이며, **디버거와 스택 추적(stack trace)은
     에러가 발생한 곳에서 정확히 멈춥니다.** 이제 보이는대로 얻을 것입니다. (What you see is what you get.)
 
 
@@ -112,7 +112,7 @@ out = net(input)
 print(out.size())
 
 ########################################################################
-# 가짜로 정답을 하나 만들고, 손실 함수를 이용하여 오차(error)를 계산해보겠습니다.
+# 가짜로 정답을 하나 만들고, 손실 함수를 사용하여 오차(error)를 계산해보겠습니다.
 
 target = Variable(torch.LongTensor([3]))
 loss_fn = nn.CrossEntropyLoss()  # LogSoftmax + ClassNLL Loss
@@ -122,7 +122,7 @@ err.backward()
 print(err)
 
 ########################################################################
-# 합성곱 신경망의 출력 ``out`` 은 ``Variable`` 이며, 이를 이용하여 오차를
+# 합성곱 신경망의 출력 ``out`` 은 ``Variable`` 이며, 이를 사용하여 오차를
 # 계산하고 결과를 ``Variable`` 인 ``err`` 에 저장합니다.
 # ``err`` 에 대해서 ``.backward`` 를 호출하면 변화도가 전체 합성곱 신경망의
 # 가중치에 전파됩니다.
@@ -202,7 +202,7 @@ err.backward()
 # 예제2: 순환 신경망(Recurrent Nets)
 # -----------------------------------
 #
-# 다음으로 PyTorch를 이용하여 순환 신경망을 만들어보겠습니다.
+# 다음으로 PyTorch를 사용하여 순환 신경망을 만들어보겠습니다.
 #
 # 신경망의 상태는 계층이 아닌 그래프에 저장되므로, 할 일은 nn.Linear을
 # 생성한 후 순환할 때마다 계속 사용하면 됩니다.
@@ -231,7 +231,7 @@ rnn = RNN(50, 20, 10)
 
 ########################################################################
 #
-# LSTM과 Penn Tree-bank를 이용한 좀 더 완벽한 언어 모델링(Language Modeling)에 대한
+# LSTM과 Penn Tree-bank를 사용한 좀 더 완벽한 언어 모델링(Language Modeling)에 대한
 # 예제는 `여기 <https://github.com/pytorch/examples/tree/master/word\_language\_model>`_
 # 에 있습니다.
 #

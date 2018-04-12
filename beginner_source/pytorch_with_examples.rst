@@ -13,7 +13,7 @@ PyTorch의 핵심에는 2가지 주요한 특징이 있습니다:
 
 완전히 연결된 ReLU 신경망을 예제로 사용할 것입니다. 이 신경망은 하나의 은닉
 계층(Hidden Layer)을 갖고 있으며, 신경망의 출력과 정답 사이의 유클리드 거리
-(Euclidean Distance)를 최소화하는 식으로 경사하강법(Gradient Descent)을 이용하여
+(Euclidean Distance)를 최소화하는 식으로 경사하강법(Gradient Descent)을 사용하여
 무작위의 데이터를 맞추도록 학습할 것입니다.
 
 .. Note::
@@ -29,12 +29,12 @@ Tensor
 준비 운동: NumPy
 -----------------
 
-PyTorch를 소개하기 전에, 먼저 NumPy를 이용하여 신경망을 구성해보겠습니다.
+PyTorch를 소개하기 전에, 먼저 NumPy를 사용하여 신경망을 구성해보겠습니다.
 
 NumPy는 N차원 배열 객체(Object)를 제공하며, 이러한 배열을 조작하기 위한 다양한
 함수(function)들을 제공합니다. NumPy는 과학적 분야의 연산을 위한 포괄적인 프레임워크
 (Framework)입니다; 이는 연산 그래프(Computational Graph)나 딥러닝, 변화도(Gradient)에
-대해서는 알지 못합니다. 하지만 NumPy 연산을 이용하여 순전파 단계와 역전파 단계를
+대해서는 알지 못합니다. 하지만 NumPy 연산을 사용하여 순전파 단계와 역전파 단계를
 직접 구현함으로써, 2-계층을 갖는 신경망이 무작위의 데이터를 맞추도록 할 수
 있습니다:
 
@@ -44,7 +44,7 @@ NumPy는 N차원 배열 객체(Object)를 제공하며, 이러한 배열을 조�
 PyTorch: Tensor
 ----------------
 
-NumPy는 훌륭한 프레임워크지만, GPU를 이용하여 수치 연산을 가속화할 수는 없습니다.
+NumPy는 훌륭한 프레임워크지만, GPU를 사용하여 수치 연산을 가속화할 수는 없습니다.
 현대의 심층 신경망에서 GPU는 종종 `50배 또는 그 이상 <https://github.com/jcjohnson/cnn-benchmarks>`__
 의 속도 향상을 제공하기 때문에, 안타깝게도 NumPy는 현대의 딥러닝에는 충분치 않습니다.
 
@@ -58,7 +58,7 @@ PyTorch Tensor는 딥러닝이나 연산 그래프, 변화도는 알지 못하�
 있습니다. GPU에서 PyTorch Tensor를 실행하기 위해서는 단지 새로운 자료형으로
 변환(Cast)해주기만 하면 됩니다.
 
-여기에서는 PyTorch Tensor를 이용하여 2-계층의 신경망이 무작위 데이터를 맞추도록
+여기에서는 PyTorch Tensor를 사용하여 2-계층의 신경망이 무작위 데이터를 맞추도록
 할 것입니다. 위의 NumPy 예제에서와 같이 신경망의 순전파 단계와 역전파 단계는 직접
 구현하겠습니다.
 
@@ -76,7 +76,7 @@ PyTorch: Variables과 autograd
 대규모의 복잡한 신경망에서는 매우 아슬아슬한 일일 것입니다.
 
 다행히도, `자동 미분 <https://en.wikipedia.org/wiki/Automatic_differentiation>`__ 을
-이용하여 신경망에서 역전파 단계의 연산을 자동화할 수 있습니다. PyTorch의 **autograd**
+사용하여 신경망에서 역전파 단계의 연산을 자동화할 수 있습니다. PyTorch의 **autograd**
 패키지는 이 기능을 정확히 제공합니다.
 Autograd를 사용할 때, 신경망의 순전파 단계는 **연산 그래프** 를 정의합니다;
 그래프의 노드(Node)는 Tensor이며, 엣지(Edge)는 입력 Tensor로부터 출력 Tensor를
@@ -92,7 +92,7 @@ PyTorch Variable은 PyTorch Tensor와 동일한 API를 제공합니다: Tensor�
 (거의) 모든 연산은 Variable에서도 할 수 있습니다; 차이점은 연산 그래프를 정의할 때
 Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것입니다.
 
-여기에서는 PyTorch Variable과 autograd를 이용하여 2-계층 신경망을 구현합니다; 이제
+여기에서는 PyTorch Variable과 autograd를 사용하여 2-계층 신경망을 구현합니다; 이제
 더 이상 신경망의 역전파 단계를 직접 구현할 필요가 없습니다:
 
 .. includenodoc:: /beginner/examples_autograd/two_layer_net_autograd.py

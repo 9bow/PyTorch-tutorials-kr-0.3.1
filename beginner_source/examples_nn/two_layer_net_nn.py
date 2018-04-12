@@ -6,7 +6,7 @@ PyTorch: nn
 하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드
 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.
 
-이번에는 PyTorch의 nn 패키지를 이용하여 신경망을 구현하겠습니다.
+이번에는 PyTorch의 nn 패키지를 사용하여 신경망을 구현하겠습니다.
 PyTorch autograd는 연산 그래프를 정의하고 변화도를 계산하는 것을 손쉽게 만들어주지만,
 autograd 그 자체만으로는 복잡한 신경망을 정의하기에는 너무 낮은 수준(Low-level)일 수
 있습니다; 이것이 nn 패키지가 필요한 이유입니다. nn 패키지는 모듈의 집합(Set)을
@@ -25,7 +25,7 @@ N, D_in, H, D_out = 64, 1000, 100, 10
 x = Variable(torch.randn(N, D_in))
 y = Variable(torch.randn(N, D_out), requires_grad=False)
 
-# nn 패키지를 이용하여 모델을 순차적인 계층(Sequence of layers)으로 정의합니다.
+# nn 패키지를 사용하여 모델을 순차적인 계층(Sequence of layers)으로 정의합니다.
 # nn.Sequential은 다른 모듈들을 포함하는 모듈로, 그 모듈들을 순차적으로 적용하여
 # 출력을 생성합니다. 각각의 선형(Linear) 모듈은 선형 함수를 사용하여 입력으로부터
 # 출력을 계산하고, 가중치와 편향(Bias)을 저장하기 위해 내부적인 Variable을 갖습니다.
