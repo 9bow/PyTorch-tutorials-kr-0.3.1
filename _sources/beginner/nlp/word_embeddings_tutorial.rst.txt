@@ -313,34 +313,34 @@ examples and update the parameters with backpropagation.
 
     [(['When', 'forty'], 'winters'), (['forty', 'winters'], 'shall'), (['winters', 'shall'], 'besiege')]
     [
-     519.5540
+     526.0309
     [torch.FloatTensor of size 1]
     , 
-     516.9050
+     523.4335
     [torch.FloatTensor of size 1]
     , 
-     514.2765
+     520.8572
     [torch.FloatTensor of size 1]
     , 
-     511.6658
+     518.3004
     [torch.FloatTensor of size 1]
     , 
-     509.0717
+     515.7622
     [torch.FloatTensor of size 1]
     , 
-     506.4931
+     513.2407
     [torch.FloatTensor of size 1]
     , 
-     503.9282
+     510.7351
     [torch.FloatTensor of size 1]
     , 
-     501.3784
+     508.2432
     [torch.FloatTensor of size 1]
     , 
-     498.8416
+     505.7668
     [torch.FloatTensor of size 1]
     , 
-     496.3144
+     503.3040
     [torch.FloatTensor of size 1]
     ]
 
@@ -432,7 +432,7 @@ tips:
     [(['We', 'are', 'to', 'study'], 'about'), (['are', 'about', 'study', 'the'], 'to'), (['about', 'to', 'the', 'idea'], 'study'), (['to', 'study', 'idea', 'of'], 'the'), (['study', 'the', 'of', 'a'], 'idea')]
 
 
-**Total running time of the script:** ( 0 minutes  0.466 seconds)
+**Total running time of the script:** ( 0 minutes  0.374 seconds)
 
 
 

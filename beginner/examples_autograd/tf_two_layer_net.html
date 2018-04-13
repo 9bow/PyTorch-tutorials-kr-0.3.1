@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -518,7 +518,7 @@
 <p>하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.</p>
-<p>기본적인 TensorFlow 연산을 이용하여 연산 그래프(Computational Graph)를 구성한
+<p>기본적인 TensorFlow 연산을 사용하여 연산 그래프(Computational Graph)를 구성한
 다음, 그래프를 여러 차례 실행하여 신경망을 학습시켜보겠습니다.</p>
 <p>Tensorflow와 PyTorch의 주요한 차이점 중 하나는, PyTorch는 동적 연산 그래프를
 사용하는데 반해 Tensorflow는 정적 연산 그래프를 사용한다는 것입니다.</p>
@@ -543,20 +543,20 @@
 <span class="n">w1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">((</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)))</span>
 <span class="n">w2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">((</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)))</span>
 
-<span class="c1"># 순전파 단계: Tensorflow의 Tensor 연산을 이용하여 y 값을 예측합니다.</span>
+<span class="c1"># 순전파 단계: Tensorflow의 Tensor 연산을 사용하여 y 값을 예측합니다.</span>
 <span class="c1"># 이 코드가 어떠한 수치 연산을 실제로 수행하지는 않는다는 것을 유의하세요;</span>
 <span class="c1"># 이 단계에서는 나중에 실행할 연산 그래프를 구성하기만 합니다.</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w1</span><span class="p">)</span>
 <span class="n">h_relu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_relu</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span>
 
-<span class="c1"># Tensorflow의 Tensor 연산을 이용하여 손실(loss)을 계산합니다.</span>
+<span class="c1"># Tensorflow의 Tensor 연산을 사용하여 손실(loss)을 계산합니다.</span>
 <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span>
 
 <span class="c1"># 손실에 따른 w1, w2의 변화도(Gradient)를 계산합니다.</span>
 <span class="n">grad_w1</span><span class="p">,</span> <span class="n">grad_w2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gradients</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">])</span>
 
-<span class="c1"># 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다. 실제로 가중치를</span>
+<span class="c1"># 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다. 실제로 가중치를</span>
 <span class="c1"># 갱신하기 위해서는 그래프가 실행될 때 new_w1과 new_w2 계산(evaluate)해야 합니다.</span>
 <span class="c1"># Tensorflow에서 가중치의 값을 갱신하는 작업은 연산 그래프의 일부임을 유의하십시오;</span>
 <span class="c1"># PyTorch에서는 이 작업이 연산 그래프의 밖에서 일어납니다.</span>

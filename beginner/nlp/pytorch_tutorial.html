@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -787,7 +787,7 @@ action.</p>
  <span class="mi">9</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="o">&lt;</span><span class="n">AddBackward1</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f9937639b00</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">AddBackward1</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f40b5e36c50</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>So Variables know what created them. z knows that it wasn’t read in from
@@ -806,7 +806,7 @@ x and y.</p>
  <span class="mi">21</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 
-<span class="o">&lt;</span><span class="n">SumBackward0</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f99378baeb8</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">SumBackward0</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f40b5e4aba8</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>So now, what is the derivative of this sum with respect to the first
@@ -871,7 +871,7 @@ successful programmer in deep learning.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">AddBackward1</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f993785e208</span><span class="o">&gt;</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">AddBackward1</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f40b5e36780</span><span class="o">&gt;</span>
 <span class="kc">None</span>
 </pre></div>
 </div>

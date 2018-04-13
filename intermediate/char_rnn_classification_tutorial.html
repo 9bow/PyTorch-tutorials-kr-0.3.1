@@ -199,8 +199,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../beginner/pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -225,8 +225,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../beginner/pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../beginner/examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -751,10 +751,10 @@ pre-computing batches of Tensors.</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
 
 <span class="n">Columns</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">9</span>
-<span class="o">-</span><span class="mf">2.9662</span> <span class="o">-</span><span class="mf">2.9274</span> <span class="o">-</span><span class="mf">2.8548</span> <span class="o">-</span><span class="mf">3.0127</span> <span class="o">-</span><span class="mf">2.8632</span> <span class="o">-</span><span class="mf">2.9453</span> <span class="o">-</span><span class="mf">2.9500</span> <span class="o">-</span><span class="mf">2.8601</span> <span class="o">-</span><span class="mf">2.8656</span> <span class="o">-</span><span class="mf">2.8556</span>
+<span class="o">-</span><span class="mf">2.8838</span> <span class="o">-</span><span class="mf">2.8780</span> <span class="o">-</span><span class="mf">2.9146</span> <span class="o">-</span><span class="mf">3.0210</span> <span class="o">-</span><span class="mf">2.8650</span> <span class="o">-</span><span class="mf">2.8578</span> <span class="o">-</span><span class="mf">2.8756</span> <span class="o">-</span><span class="mf">2.9224</span> <span class="o">-</span><span class="mf">2.9870</span> <span class="o">-</span><span class="mf">2.8715</span>
 
 <span class="n">Columns</span> <span class="mi">10</span> <span class="n">to</span> <span class="mi">17</span>
-<span class="o">-</span><span class="mf">2.8850</span> <span class="o">-</span><span class="mf">2.7479</span> <span class="o">-</span><span class="mf">2.7710</span> <span class="o">-</span><span class="mf">2.9083</span> <span class="o">-</span><span class="mf">2.9235</span> <span class="o">-</span><span class="mf">2.8473</span> <span class="o">-</span><span class="mf">2.9859</span> <span class="o">-</span><span class="mf">2.8972</span>
+<span class="o">-</span><span class="mf">2.8246</span> <span class="o">-</span><span class="mf">2.8109</span> <span class="o">-</span><span class="mf">3.0068</span> <span class="o">-</span><span class="mf">2.8803</span> <span class="o">-</span><span class="mf">2.8229</span> <span class="o">-</span><span class="mf">2.8469</span> <span class="o">-</span><span class="mf">2.9177</span> <span class="o">-</span><span class="mf">2.8704</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="n">x18</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -801,16 +801,16 @@ language):</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">category</span> <span class="o">=</span> <span class="n">Czech</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Koma</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">Korean</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Lee</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">Greek</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Paitakes</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">French</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Martel</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">Italian</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Belloni</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">French</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Bureau</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">Korean</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Ron</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">Polish</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Jordan</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">French</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Renaud</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">Korean</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Yun</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">category</span> <span class="o">=</span> <span class="n">Polish</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Fabian</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Italian</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Nicosia</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Polish</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Chlebek</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Spanish</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Melendez</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Spanish</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Picasso</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Vietnamese</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Ha</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Dutch</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Tholberg</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Greek</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Horiatis</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Vietnamese</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Nghiem</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">Arabic</span> <span class="o">/</span> <span class="n">line</span> <span class="o">=</span> <span class="n">Shadid</span>
 </pre></div>
 </div>
 </div>
@@ -900,26 +900,26 @@ average of the loss.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span>5000 5% (0m 4s) 3.2066 Sokal / Arabic ✗ (Polish)
-10000 10% (0m 9s) 3.3202 Buck / Korean ✗ (English)
-15000 15% (0m 14s) 1.3920 To / Korean ✗ (Vietnamese)
-20000 20% (0m 19s) 2.0262 Voclain / Irish ✗ (French)
-25000 25% (0m 24s) 1.1690 Huo / Korean ✗ (Chinese)
-30000 30% (0m 29s) 0.7895 Slazak / Polish ✓
-35000 35% (0m 33s) 1.1799 Bolcar / Czech ✓
-40000 40% (0m 38s) 2.4969 Ganem / Korean ✗ (Arabic)
-45000 45% (0m 43s) 0.2952 Slusarski / Polish ✓
-50000 50% (0m 48s) 0.8450 Lao / Chinese ✓
-55000 55% (0m 52s) 0.6798 Jang / Korean ✓
-60000 60% (0m 57s) 0.1429 Khouri / Arabic ✓
-65000 65% (1m 2s) 0.3804 Wei / Chinese ✓
-70000 70% (1m 7s) 0.7489 Hanek / Czech ✓
-75000 75% (1m 12s) 1.3657 Picha / Portuguese ✗ (Czech)
-80000 80% (1m 17s) 0.4485 Pezos / Greek ✓
-85000 85% (1m 21s) 1.6400 Masi / Japanese ✗ (Italian)
-90000 90% (1m 26s) 3.1699 Tellis / Greek ✗ (English)
-95000 95% (1m 31s) 4.8308 Steinborn / Irish ✗ (Czech)
-100000 100% (1m 36s) 3.4069 Baarle / French ✗ (Dutch)
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span>5000 5% (0m 4s) 2.4312 Luc / Vietnamese ✓
+10000 10% (0m 9s) 2.7729 Rocha / Japanese ✗ (Portuguese)
+15000 15% (0m 14s) 1.5629 Kuang / Vietnamese ✗ (Chinese)
+20000 20% (0m 19s) 1.5559 Hwang / Vietnamese ✗ (Korean)
+25000 25% (0m 24s) 2.2099 Andrysiak / Czech ✗ (Polish)
+30000 30% (0m 28s) 2.4646 Walker / Dutch ✗ (Scottish)
+35000 35% (0m 33s) 0.4481 Totolos / Greek ✓
+40000 40% (0m 38s) 0.0227 Vyazmikin / Russian ✓
+45000 45% (0m 43s) 2.4252 Rich / Irish ✗ (English)
+50000 50% (0m 48s) 0.6469 Guarneri / Italian ✓
+55000 55% (0m 53s) 0.2030 O&#39;Reilly / Irish ✓
+60000 60% (0m 58s) 0.3629 Scarsi / Italian ✓
+65000 65% (1m 2s) 1.2855 Tapia / Czech ✗ (Spanish)
+70000 70% (1m 7s) 1.9371 Legrand / English ✗ (French)
+75000 75% (1m 12s) 0.5712 Mikhailyuk / Russian ✓
+80000 80% (1m 17s) 3.3959 Klineberg / German ✗ (Czech)
+85000 85% (1m 22s) 0.1229 O&#39;Hannigain / Irish ✓
+90000 90% (1m 27s) 0.3860 Shammas / Arabic ✓
+95000 95% (1m 32s) 0.1097 Vu / Vietnamese ✓
+100000 100% (1m 37s) 1.1813 Umehara / Japanese ✓
 </pre></div>
 </div>
 </div>
@@ -1015,19 +1015,19 @@ English (perhaps because of overlap with other languages).</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">Dovesky</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">1.06</span><span class="p">)</span> <span class="n">Czech</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">1.10</span><span class="p">)</span> <span class="n">Russian</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">1.62</span><span class="p">)</span> <span class="n">English</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">0.59</span><span class="p">)</span> <span class="n">Russian</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">1.22</span><span class="p">)</span> <span class="n">Czech</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">3.01</span><span class="p">)</span> <span class="n">English</span>
 
 <span class="o">&gt;</span> <span class="n">Jackson</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">0.12</span><span class="p">)</span> <span class="n">Scottish</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">2.62</span><span class="p">)</span> <span class="n">English</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">4.51</span><span class="p">)</span> <span class="n">Greek</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">0.32</span><span class="p">)</span> <span class="n">Scottish</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">2.21</span><span class="p">)</span> <span class="n">English</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">3.28</span><span class="p">)</span> <span class="n">Dutch</span>
 
 <span class="o">&gt;</span> <span class="n">Satoshi</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">0.34</span><span class="p">)</span> <span class="n">Arabic</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">2.10</span><span class="p">)</span> <span class="n">Japanese</span>
-<span class="p">(</span><span class="o">-</span><span class="mf">3.43</span><span class="p">)</span> <span class="n">Scottish</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">0.83</span><span class="p">)</span> <span class="n">Arabic</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">1.80</span><span class="p">)</span> <span class="n">Japanese</span>
+<span class="p">(</span><span class="o">-</span><span class="mf">1.87</span><span class="p">)</span> <span class="n">Polish</span>
 </pre></div>
 </div>
 <p>The final versions of the scripts <a class="reference external" href="https://github.com/spro/practical-pytorch/tree/master/char-rnn-classification">in the Practical PyTorch
@@ -1069,7 +1069,7 @@ output of predictions.</p>
 </ul>
 </li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  40.981 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 1 minutes  41.553 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../_downloads/char_rnn_classification_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">char_rnn_classification_tutorial.py</span></code></a></div>

@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -757,34 +757,34 @@ examples and update the parameters with backpropagation.</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[([</span><span class="s1">&#39;When&#39;</span><span class="p">,</span> <span class="s1">&#39;forty&#39;</span><span class="p">],</span> <span class="s1">&#39;winters&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;forty&#39;</span><span class="p">,</span> <span class="s1">&#39;winters&#39;</span><span class="p">],</span> <span class="s1">&#39;shall&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;winters&#39;</span><span class="p">,</span> <span class="s1">&#39;shall&#39;</span><span class="p">],</span> <span class="s1">&#39;besiege&#39;</span><span class="p">)]</span>
 <span class="p">[</span>
- <span class="mf">519.5540</span>
+ <span class="mf">526.0309</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">516.9050</span>
+ <span class="mf">523.4335</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">514.2765</span>
+ <span class="mf">520.8572</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">511.6658</span>
+ <span class="mf">518.3004</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">509.0717</span>
+ <span class="mf">515.7622</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">506.4931</span>
+ <span class="mf">513.2407</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">503.9282</span>
+ <span class="mf">510.7351</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">501.3784</span>
+ <span class="mf">508.2432</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">498.8416</span>
+ <span class="mf">505.7668</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">,</span>
- <span class="mf">496.3144</span>
+ <span class="mf">503.3040</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">]</span>
 </pre></div>
@@ -862,7 +862,7 @@ reshape.</li>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[([</span><span class="s1">&#39;We&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">],</span> <span class="s1">&#39;about&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">],</span> <span class="s1">&#39;to&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">],</span> <span class="s1">&#39;study&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">],</span> <span class="s1">&#39;the&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;idea&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.466 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.374 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/word_embeddings_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">word_embeddings_tutorial.py</span></code></a></div>

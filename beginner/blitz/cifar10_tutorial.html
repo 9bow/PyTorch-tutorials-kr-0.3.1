@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -521,7 +521,7 @@
 <div class="section" id="id1">
 <h2>데이터는 어떻게 하나요?<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>일반적으로 이미지나 텍스트, 오디오나 비디오 데이터를 다룰텐데요, 이러한 데이터는
-표준 Python 패키지를 이용하여 불러온 후 NumPy 배열로 변환하면 됩니다.
+표준 Python 패키지를 사용하여 불러온 후 NumPy 배열로 변환하면 됩니다.
 그리고 그 배열을 <code class="docutils literal notranslate"><span class="pre">torch.*Tensor</span></code> 로 변환하면 됩니다.</p>
 <ul class="simple">
 <li>이미지는 Pillow나 OpenCV 같은 패키지가 유용합니다.</li>
@@ -535,7 +535,7 @@
 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code> 데이터 변환기가 포함되어 있습니다.</p>
 <p>이러한 기능은 엄청나게 편리하며, 매번 유사한 코드(boilerplate code)를 반복해서
 작성하는 것을 피할 수 있습니다.</p>
-<p>이 튜토리얼에서는 CIFAR10 데이터셋을 이용할 텐데요, 여기에는 다음과 같은 분류들이
+<p>이 튜토리얼에서는 CIFAR10 데이터셋을 사용할 텐데요, 여기에는 다음과 같은 분류들이
 있습니다: ‘비행기(airplane)’, ‘자동차(automobile)’, ‘새(bird)’, ‘고양이(cat)’,
 ‘사슴(deer)’, ‘개(dog)’, ‘개구리(frog)’, ‘말(horse)’, ‘배(ship)’, ‘트럭(truck)’.
 그리고 CIFAR10에 포함된 이미지의 크기는 3x32x32인데요, 이는 32x32 픽셀 크기의 이미지가
@@ -549,16 +549,16 @@
 <h2>이미지 분류기 학습하기<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>다음의 단계로 진행해보겠습니다:</p>
 <ol class="arabic simple">
-<li>CIFAR10의 학습용 / 시험(test)용 데이터셋을 <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 을 이용하여
+<li>CIFAR10의 학습용 / 시험(test)용 데이터셋을 <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 을 사용하여
 불러오고, 정규화(nomarlizing)합니다.</li>
 <li>합성곱 신경망(Convolution Neural Network)을 정의합니다.</li>
 <li>손실 함수를 정의합니다.</li>
-<li>학습용 데이터를 이용하여 신경망을 학습합니다.</li>
-<li>시험용 데이터를 이용하여 신경망을 검사합니다.</li>
+<li>학습용 데이터를 사용하여 신경망을 학습합니다.</li>
+<li>시험용 데이터를 사용하여 신경망을 검사합니다.</li>
 </ol>
 <div class="section" id="cifar10">
 <h3>1. CIFAR10를 불러오고 정규화하기<a class="headerlink" href="#cifar10" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 을 이용하면 매우 쉽게 CIFAR10 데이터를 불러올 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 을 사용하면 매우 쉽게 CIFAR10 데이터를 불러올 수 있습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torchvision</span>
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="kn">as</span> <span class="nn">transforms</span>
@@ -614,7 +614,7 @@
 </div>
 <img alt="../../_images/sphx_glr_cifar10_tutorial_001.png" class="align-center" src="../../_images/sphx_glr_cifar10_tutorial_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span>  <span class="n">bird</span>  <span class="n">ship</span>  <span class="n">bird</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span>   <span class="n">cat</span>  <span class="n">ship</span>   <span class="n">car</span>
 </pre></div>
 </div>
 </div>
@@ -696,18 +696,18 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.174</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.871</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.668</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.560</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.489</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.441</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.363</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.348</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.336</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.300</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.288</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.270</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.190</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.839</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.675</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.593</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.526</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.493</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.432</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.387</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.346</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.320</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.330</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.269</span>
 <span class="n">Finished</span> <span class="n">Training</span>
 </pre></div>
 </div>
@@ -746,7 +746,7 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Predicted</span><span class="p">:</span>    <span class="n">cat</span>   <span class="n">car</span>  <span class="n">ship</span> <span class="n">plane</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Predicted</span><span class="p">:</span>    <span class="n">cat</span>  <span class="n">ship</span>  <span class="n">ship</span>  <span class="n">ship</span>
 </pre></div>
 </div>
 <p>결과가 괜찮아보이네요.</p>
@@ -790,16 +790,16 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span> <span class="n">of</span> <span class="n">plane</span> <span class="p">:</span> <span class="mi">64</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">car</span> <span class="p">:</span> <span class="mi">75</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">bird</span> <span class="p">:</span> <span class="mi">26</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">cat</span> <span class="p">:</span> <span class="mi">29</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">deer</span> <span class="p">:</span> <span class="mi">53</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">dog</span> <span class="p">:</span> <span class="mi">38</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">frog</span> <span class="p">:</span> <span class="mi">67</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">horse</span> <span class="p">:</span> <span class="mi">64</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">ship</span> <span class="p">:</span> <span class="mi">64</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">truck</span> <span class="p">:</span> <span class="mi">68</span> <span class="o">%</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span> <span class="n">of</span> <span class="n">plane</span> <span class="p">:</span> <span class="mi">55</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">car</span> <span class="p">:</span> <span class="mi">56</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">bird</span> <span class="p">:</span> <span class="mi">36</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">cat</span> <span class="p">:</span> <span class="mi">45</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">deer</span> <span class="p">:</span> <span class="mi">56</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">dog</span> <span class="p">:</span> <span class="mi">33</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">frog</span> <span class="p">:</span> <span class="mi">58</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">horse</span> <span class="p">:</span> <span class="mi">67</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">ship</span> <span class="p">:</span> <span class="mi">78</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">truck</span> <span class="p">:</span> <span class="mi">67</span> <span class="o">%</span>
 </pre></div>
 </div>
 <p>자, 이제 다음은 뭘까요?</p>
@@ -846,7 +846,7 @@ tensor로 변환하게 됩니다:</p>
 <li><a class="reference external" href="https://discuss.pytorch.org/">포럼에서 PyTorch에 대해 얘기하기</a></li>
 <li><a class="reference external" href="http://pytorch.slack.com/messages/beginner/">Slack에서 다른 사용자와 대화하기</a></li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 1 minutes  59.600 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 2 minutes  30.940 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/cifar10_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">cifar10_tutorial.py</span></code></a></div>

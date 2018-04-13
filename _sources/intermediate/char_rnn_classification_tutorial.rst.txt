@@ -338,10 +338,10 @@ pre-computing batches of Tensors.
     Variable containing:
 
     Columns 0 to 9 
-    -2.9662 -2.9274 -2.8548 -3.0127 -2.8632 -2.9453 -2.9500 -2.8601 -2.8656 -2.8556
+    -2.8838 -2.8780 -2.9146 -3.0210 -2.8650 -2.8578 -2.8756 -2.9224 -2.9870 -2.8715
 
     Columns 10 to 17 
-    -2.8850 -2.7479 -2.7710 -2.9083 -2.9235 -2.8473 -2.9859 -2.8972
+    -2.8246 -2.8109 -3.0068 -2.8803 -2.8229 -2.8469 -2.9177 -2.8704
     [torch.FloatTensor of size 1x18]
 
 
@@ -419,16 +419,16 @@ language):
 
  Out::
 
-    category = Czech / line = Koma
-    category = Korean / line = Lee
-    category = Greek / line = Paitakes
-    category = French / line = Martel
-    category = Italian / line = Belloni
-    category = French / line = Bureau
-    category = Korean / line = Ron
-    category = Polish / line = Jordan
-    category = French / line = Renaud
-    category = Korean / line = Yun
+    category = Polish / line = Fabian
+    category = Italian / line = Nicosia
+    category = Polish / line = Chlebek
+    category = Spanish / line = Melendez
+    category = Spanish / line = Picasso
+    category = Vietnamese / line = Ha
+    category = Dutch / line = Tholberg
+    category = Greek / line = Horiatis
+    category = Vietnamese / line = Nghiem
+    category = Arabic / line = Shadid
 
 
 Training the Network
@@ -558,26 +558,26 @@ average of the loss.
 
  Out::
 
-    5000 5% (0m 4s) 3.2066 Sokal / Arabic ✗ (Polish)
-    10000 10% (0m 9s) 3.3202 Buck / Korean ✗ (English)
-    15000 15% (0m 14s) 1.3920 To / Korean ✗ (Vietnamese)
-    20000 20% (0m 19s) 2.0262 Voclain / Irish ✗ (French)
-    25000 25% (0m 24s) 1.1690 Huo / Korean ✗ (Chinese)
-    30000 30% (0m 29s) 0.7895 Slazak / Polish ✓
-    35000 35% (0m 33s) 1.1799 Bolcar / Czech ✓
-    40000 40% (0m 38s) 2.4969 Ganem / Korean ✗ (Arabic)
-    45000 45% (0m 43s) 0.2952 Slusarski / Polish ✓
-    50000 50% (0m 48s) 0.8450 Lao / Chinese ✓
-    55000 55% (0m 52s) 0.6798 Jang / Korean ✓
-    60000 60% (0m 57s) 0.1429 Khouri / Arabic ✓
-    65000 65% (1m 2s) 0.3804 Wei / Chinese ✓
-    70000 70% (1m 7s) 0.7489 Hanek / Czech ✓
-    75000 75% (1m 12s) 1.3657 Picha / Portuguese ✗ (Czech)
-    80000 80% (1m 17s) 0.4485 Pezos / Greek ✓
-    85000 85% (1m 21s) 1.6400 Masi / Japanese ✗ (Italian)
-    90000 90% (1m 26s) 3.1699 Tellis / Greek ✗ (English)
-    95000 95% (1m 31s) 4.8308 Steinborn / Irish ✗ (Czech)
-    100000 100% (1m 36s) 3.4069 Baarle / French ✗ (Dutch)
+    5000 5% (0m 4s) 2.4312 Luc / Vietnamese ✓
+    10000 10% (0m 9s) 2.7729 Rocha / Japanese ✗ (Portuguese)
+    15000 15% (0m 14s) 1.5629 Kuang / Vietnamese ✗ (Chinese)
+    20000 20% (0m 19s) 1.5559 Hwang / Vietnamese ✗ (Korean)
+    25000 25% (0m 24s) 2.2099 Andrysiak / Czech ✗ (Polish)
+    30000 30% (0m 28s) 2.4646 Walker / Dutch ✗ (Scottish)
+    35000 35% (0m 33s) 0.4481 Totolos / Greek ✓
+    40000 40% (0m 38s) 0.0227 Vyazmikin / Russian ✓
+    45000 45% (0m 43s) 2.4252 Rich / Irish ✗ (English)
+    50000 50% (0m 48s) 0.6469 Guarneri / Italian ✓
+    55000 55% (0m 53s) 0.2030 O'Reilly / Irish ✓
+    60000 60% (0m 58s) 0.3629 Scarsi / Italian ✓
+    65000 65% (1m 2s) 1.2855 Tapia / Czech ✗ (Spanish)
+    70000 70% (1m 7s) 1.9371 Legrand / English ✗ (French)
+    75000 75% (1m 12s) 0.5712 Mikhailyuk / Russian ✓
+    80000 80% (1m 17s) 3.3959 Klineberg / German ✗ (Czech)
+    85000 85% (1m 22s) 0.1229 O'Hannigain / Irish ✓
+    90000 90% (1m 27s) 0.3860 Shammas / Arabic ✓
+    95000 95% (1m 32s) 0.1097 Vu / Vietnamese ✓
+    100000 100% (1m 37s) 1.1813 Umehara / Japanese ✓
 
 
 Plotting the Results
@@ -719,19 +719,19 @@ Running on User Input
  Out::
 
     > Dovesky
-    (-1.06) Czech
-    (-1.10) Russian
-    (-1.62) English
+    (-0.59) Russian
+    (-1.22) Czech
+    (-3.01) English
 
     > Jackson
-    (-0.12) Scottish
-    (-2.62) English
-    (-4.51) Greek
+    (-0.32) Scottish
+    (-2.21) English
+    (-3.28) Dutch
 
     > Satoshi
-    (-0.34) Arabic
-    (-2.10) Japanese
-    (-3.43) Scottish
+    (-0.83) Arabic
+    (-1.80) Japanese
+    (-1.87) Polish
 
 
 The final versions of the scripts `in the Practical PyTorch
@@ -778,7 +778,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 1 minutes  40.981 seconds)
+**Total running time of the script:** ( 1 minutes  41.553 seconds)
 
 
 

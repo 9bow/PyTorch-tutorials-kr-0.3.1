@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyTorch: Custom nn Modules &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>PyTorch: 사용자 정의 nn 모듈 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -43,7 +43,7 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PyTorch Tutorials 0.3.1 documentation" href="../../index.html"/>
         <link rel="up" title="예제로 배우는 PyTorch" href="../pytorch_with_examples.html"/>
-        <link rel="next" title="PyTorch: Control Flow + Weight Sharing" href="dynamic_net.html"/>
+        <link rel="next" title="PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)" href="dynamic_net.html"/>
         <link rel="prev" title="PyTorch: optim" href="two_layer_net_optim.html"/> 
 
   
@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -494,7 +494,7 @@
         
           <li><a href="../pytorch_with_examples.html">예제로 배우는 PyTorch</a> &raquo;</li>
         
-      <li>PyTorch: Custom nn Modules</li>
+      <li>PyTorch: 사용자 정의 nn 모듈</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -513,13 +513,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pytorch-custom-nn-modules">
-<span id="sphx-glr-beginner-examples-nn-two-layer-net-module-py"></span><h1>PyTorch: Custom nn Modules<a class="headerlink" href="#pytorch-custom-nn-modules" title="Permalink to this headline">¶</a></h1>
-<p>A fully-connected ReLU network with one hidden layer, trained to predict y from x
-by minimizing squared Euclidean distance.</p>
-<p>This implementation defines the model as a custom Module subclass. Whenever you
-want a model more complex than a simple sequence of existing Modules you will
-need to define your model this way.</p>
+  <div class="section" id="pytorch-nn">
+<span id="sphx-glr-beginner-examples-nn-two-layer-net-module-py"></span><h1>PyTorch: 사용자 정의 nn 모듈<a class="headerlink" href="#pytorch-nn" title="Permalink to this headline">¶</a></h1>
+<p>하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드
+거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 학습하겠습니다.</p>
+<p>이번에는 사용자 정의 모듈의 서브클래스로 모델을 정의합니다. 기존 모듈의 간단한
+순차적인 구성보다 더 복잡한 모델을 원한다면, 이 방법으로 모델을 정의하면 됩니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
 
@@ -527,8 +526,8 @@ need to define your model this way.</p>
 <span class="k">class</span> <span class="nc">TwoLayerNet</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        In the constructor we instantiate two nn.Linear modules and assign them as</span>
-<span class="sd">        member variables.</span>
+<span class="sd">        생성자에서 2개의 nn.Linear 모듈을 생성(Instantiate)하고, 멤버 변수로</span>
+<span class="sd">        지정합니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TwoLayerNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
@@ -536,40 +535,40 @@ need to define your model this way.</p>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        In the forward function we accept a Variable of input data and we must return</span>
-<span class="sd">        a Variable of output data. We can use Modules defined in the constructor as</span>
-<span class="sd">        well as arbitrary operators on Variables.</span>
+<span class="sd">        순전파 함수에서는 입력 데이터의 Variable을 받아서 출력 데이터의 Variable을</span>
+<span class="sd">        반환해야 합니다. Variable 상의 임의의 연산자뿐만 아니라 생성자에서 정의한</span>
+<span class="sd">        모듈을 사용할 수 있습니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">h_relu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">h_relu</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">y_pred</span>
 
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables</span>
+<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
+<span class="c1"># 감쌉니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-<span class="c1"># Construct our model by instantiating the class defined above</span>
+<span class="c1"># 앞에서 정의한 클래스를 생성(Instantiating)해서 모델을 구성합니다.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">TwoLayerNet</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span>
 
-<span class="c1"># Construct our loss function and an Optimizer. The call to model.parameters()</span>
-<span class="c1"># in the SGD constructor will contain the learnable parameters of the two</span>
-<span class="c1"># nn.Linear modules which are members of the model.</span>
+<span class="c1"># 손실함수와 Optimizer를 만듭니다. SGD 생성자에서 model.parameters()를 호출하면</span>
+<span class="c1"># 모델의 멤버인 2개의 nnLinear 모듈의 학습 가능한 매개변수들이 포함됩니다.</span>
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: Compute predicted y by passing x to the model</span>
+    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss</span>
+    <span class="c1"># 손실을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Zero gradients, perform a backward pass, and update the weights.</span>
+    <span class="c1"># 변화도를 0으로 만들고, 역전파 단계를 수행하고, 가중치를 갱신합니다.</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
@@ -595,7 +594,7 @@ need to define your model this way.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dynamic_net.html" class="btn btn-neutral float-right" title="PyTorch: Control Flow + Weight Sharing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dynamic_net.html" class="btn btn-neutral float-right" title="PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="two_layer_net_optim.html" class="btn btn-neutral" title="PyTorch: optim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -528,11 +528,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.0529</span> <span class="o">-</span><span class="mf">1.1793</span> <span class="o">-</span><span class="mf">1.3359</span> <span class="o">-</span><span class="mf">1.3357</span>  <span class="mf">2.4092</span>  <span class="mf">0.4326</span> <span class="o">-</span><span class="mf">1.5217</span>
-<span class="o">-</span><span class="mf">1.4621</span> <span class="o">-</span><span class="mf">1.0142</span> <span class="o">-</span><span class="mf">0.1921</span> <span class="o">-</span><span class="mf">0.8890</span> <span class="o">-</span><span class="mf">1.8151</span> <span class="o">-</span><span class="mf">0.4011</span>  <span class="mf">0.5599</span>
-<span class="o">-</span><span class="mf">0.8179</span> <span class="o">-</span><span class="mf">0.5111</span> <span class="o">-</span><span class="mf">1.2939</span>  <span class="mf">2.2279</span> <span class="o">-</span><span class="mf">0.2276</span>  <span class="mf">0.6448</span> <span class="o">-</span><span class="mf">0.7218</span>
- <span class="mf">0.3217</span>  <span class="mf">0.6442</span>  <span class="mf">0.0869</span> <span class="o">-</span><span class="mf">0.5074</span> <span class="o">-</span><span class="mf">1.9998</span> <span class="o">-</span><span class="mf">1.3720</span>  <span class="mf">0.5498</span>
-<span class="o">-</span><span class="mf">2.0653</span> <span class="o">-</span><span class="mf">1.3697</span> <span class="o">-</span><span class="mf">0.9683</span> <span class="o">-</span><span class="mf">0.0889</span> <span class="o">-</span><span class="mf">0.6319</span> <span class="o">-</span><span class="mf">1.1401</span> <span class="o">-</span><span class="mf">0.5814</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.4217</span> <span class="o">-</span><span class="mf">0.1885</span>  <span class="mf">1.8851</span>  <span class="mf">1.5659</span>  <span class="mf">1.1707</span> <span class="o">-</span><span class="mf">0.1222</span>  <span class="mf">0.3359</span>
+<span class="o">-</span><span class="mf">0.6753</span> <span class="o">-</span><span class="mf">0.6957</span>  <span class="mf">0.9063</span> <span class="o">-</span><span class="mf">1.2042</span>  <span class="mf">0.3273</span> <span class="o">-</span><span class="mf">0.1462</span>  <span class="mf">0.0698</span>
+<span class="o">-</span><span class="mf">0.2106</span> <span class="o">-</span><span class="mf">0.9539</span> <span class="o">-</span><span class="mf">0.3645</span> <span class="o">-</span><span class="mf">0.4417</span> <span class="o">-</span><span class="mf">0.3254</span> <span class="o">-</span><span class="mf">0.0911</span> <span class="o">-</span><span class="mf">0.0264</span>
+<span class="o">-</span><span class="mf">0.0639</span> <span class="o">-</span><span class="mf">0.4409</span>  <span class="mf">1.1992</span>  <span class="mf">0.6039</span> <span class="o">-</span><span class="mf">1.3394</span>  <span class="mf">0.8690</span> <span class="o">-</span><span class="mf">0.6705</span>
+<span class="o">-</span><span class="mf">0.3020</span>  <span class="mf">0.0602</span>  <span class="mf">0.8537</span>  <span class="mf">0.4979</span> <span class="o">-</span><span class="mf">0.8422</span>  <span class="mf">0.3873</span>  <span class="mf">1.5556</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x7</span><span class="p">]</span>
 
 <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>

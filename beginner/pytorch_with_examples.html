@@ -199,8 +199,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nn-module"><cite>nn</cite> module</a><ul>
@@ -225,8 +225,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -525,12 +525,12 @@
 </ul>
 <p>완전히 연결된 ReLU 신경망을 예제로 사용할 것입니다. 이 신경망은 하나의 은닉
 계층(Hidden Layer)을 갖고 있으며, 신경망의 출력과 정답 사이의 유클리드 거리
-(Euclidean Distance)를 최소화하는 식으로 경사하강법(Gradient Descent)을 이용하여
+(Euclidean Distance)를 최소화하는 식으로 경사하강법(Gradient Descent)을 사용하여
 무작위의 데이터를 맞추도록 학습할 것입니다.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">각각의 에제들은 <a class="reference internal" href="#examples-download"><span class="std std-ref">이 페이지의 끝</span></a> 에서 살펴볼 수
-있습니다.</p>
+<p class="last">각각의 에제들은 <a class="reference internal" href="#examples-download"><span class="std std-ref">이 페이지의 마지막 부분</span></a> 에서
+살펴볼 수 있습니다.</p>
 </div>
 <div class="contents local topic" id="id2">
 <p class="topic-title first">목차</p>
@@ -542,8 +542,8 @@
 </li>
 <li><a class="reference internal" href="#autograd" id="id17">Autograd</a><ul>
 <li><a class="reference internal" href="#pytorch-variables-autograd" id="id18">PyTorch: Variables과 autograd</a></li>
-<li><a class="reference internal" href="#pytorch-defining-new-autograd-functions" id="id19">PyTorch: Defining new autograd functions</a></li>
-<li><a class="reference internal" href="#tensorflow-static-graphs" id="id20">TensorFlow: Static Graphs</a></li>
+<li><a class="reference internal" href="#pytorch-autograd" id="id19">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li><a class="reference internal" href="#tensorflow-static-graph" id="id20">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#nn-module" id="id21"><cite>nn</cite> module</a><ul>
@@ -565,11 +565,11 @@
 <h2><a class="toc-backref" href="#id14">Tensor</a><a class="headerlink" href="#tensor" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="numpy">
 <h3><a class="toc-backref" href="#id15">준비 운동: NumPy</a><a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h3>
-<p>PyTorch를 소개하기 전에, 먼저 NumPy를 이용하여 신경망을 구성해보겠습니다.</p>
+<p>PyTorch를 소개하기 전에, 먼저 NumPy를 사용하여 신경망을 구성해보겠습니다.</p>
 <p>NumPy는 N차원 배열 객체(Object)를 제공하며, 이러한 배열을 조작하기 위한 다양한
 함수(function)들을 제공합니다. NumPy는 과학적 분야의 연산을 위한 포괄적인 프레임워크
 (Framework)입니다; 이는 연산 그래프(Computational Graph)나 딥러닝, 변화도(Gradient)에
-대해서는 알지 못합니다. 하지만 NumPy 연산을 이용하여 순전파 단계와 역전파 단계를
+대해서는 알지 못합니다. 하지만 NumPy 연산을 사용하여 순전파 단계와 역전파 단계를
 직접 구현함으로써, 2-계층을 갖는 신경망이 무작위의 데이터를 맞추도록 할 수
 있습니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -614,7 +614,7 @@
 </div>
 <div class="section" id="pytorch-tensor">
 <h3><a class="toc-backref" href="#id16">PyTorch: Tensor</a><a class="headerlink" href="#pytorch-tensor" title="Permalink to this headline">¶</a></h3>
-<p>NumPy는 훌륭한 프레임워크지만, GPU를 이용하여 수치 연산을 가속화할 수는 없습니다.
+<p>NumPy는 훌륭한 프레임워크지만, GPU를 사용하여 수치 연산을 가속화할 수는 없습니다.
 현대의 심층 신경망에서 GPU는 종종 <a class="reference external" href="https://github.com/jcjohnson/cnn-benchmarks">50배 또는 그 이상</a>
 의 속도 향상을 제공하기 때문에, 안타깝게도 NumPy는 현대의 딥러닝에는 충분치 않습니다.</p>
 <p>이번에는 PyTorch의 기본적인 개념인 <strong>Tensor</strong> 에 대해서 소개하겠습니다.
@@ -625,7 +625,7 @@ PyTorch Tensor는 딥러닝이나 연산 그래프, 변화도는 알지 못하�
 <p>그러나 NumPy와는 달리, PyTorch Tensor는 GPU를 활용하여 수치 연산을 가속화할 수
 있습니다. GPU에서 PyTorch Tensor를 실행하기 위해서는 단지 새로운 자료형으로
 변환(Cast)해주기만 하면 됩니다.</p>
-<p>여기에서는 PyTorch Tensor를 이용하여 2-계층의 신경망이 무작위 데이터를 맞추도록
+<p>여기에서는 PyTorch Tensor를 사용하여 2-계층의 신경망이 무작위 데이터를 맞추도록
 할 것입니다. 위의 NumPy 예제에서와 같이 신경망의 순전파 단계와 역전파 단계는 직접
 구현하겠습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -667,7 +667,7 @@ PyTorch Tensor는 딥러닝이나 연산 그래프, 변화도는 알지 못하�
     <span class="n">grad_h</span><span class="p">[</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">grad_w1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">grad_h</span><span class="p">)</span>
 
-    <span class="c1"># 경사하강법(Gradient Descent)를 이용하여 가중치를 갱신합니다.</span>
+    <span class="c1"># 경사하강법(Gradient Descent)를 사용하여 가중치를 갱신합니다.</span>
     <span class="n">w1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w1</span>
     <span class="n">w2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_w2</span>
 </pre></div>
@@ -682,7 +682,7 @@ PyTorch Tensor는 딥러닝이나 연산 그래프, 변화도는 알지 못하�
 작은 2-계층 신경망에서 역전파 단계를 직접 구현하는 것은 큰 일이 아니지만,
 대규모의 복잡한 신경망에서는 매우 아슬아슬한 일일 것입니다.</p>
 <p>다행히도, <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">자동 미분</a> 을
-이용하여 신경망에서 역전파 단계의 연산을 자동화할 수 있습니다. PyTorch의 <strong>autograd</strong>
+사용하여 신경망에서 역전파 단계의 연산을 자동화할 수 있습니다. PyTorch의 <strong>autograd</strong>
 패키지는 이 기능을 정확히 제공합니다.
 Autograd를 사용할 때, 신경망의 순전파 단계는 <strong>연산 그래프</strong> 를 정의합니다;
 그래프의 노드(Node)는 Tensor이며, 엣지(Edge)는 입력 Tensor로부터 출력 Tensor를
@@ -695,7 +695,7 @@ Autograd를 사용할 때, 신경망의 순전파 단계는 <strong>연산 그�
 <p>PyTorch Variable은 PyTorch Tensor와 동일한 API를 제공합니다: Tensor에서 할 수 있는
 (거의) 모든 연산은 Variable에서도 할 수 있습니다; 차이점은 연산 그래프를 정의할 때
 Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것입니다.</p>
-<p>여기에서는 PyTOrch Variable과 autograd를 이용하여 2-계층 신경망을 구현합니다; 이제
+<p>여기에서는 PyTorch Variable과 autograd를 사용하여 2-계층 신경망을 구현합니다; 이제
 더 이상 신경망의 역전파 단계를 직접 구현할 필요가 없습니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">torch</span>
@@ -722,12 +722,12 @@ Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것�
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># 순전파 단계: Variable 연산을 이용하여 y 값을 예측합니다. 이는 Tensor를 이용한</span>
+    <span class="c1"># 순전파 단계: Variable 연산을 사용하여 y 값을 예측합니다. 이는 Tensor를 사용한</span>
     <span class="c1"># 순전파 단계와 완전히 동일하지만, 역전파 단계를 별도로 구현하지 않기 위해 중간</span>
     <span class="c1"># 값들(Intermediate Value)에 대한 참조(Reference)를 갖고 있을 필요가 없습니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
 
-    <span class="c1"># Variable 연산을 이용하여 손실을 계산하고 출력합니다.</span>
+    <span class="c1"># Variable 연산을 사용하여 손실을 계산하고 출력합니다.</span>
     <span class="c1"># loss는 (1,) 모양을 갖는 Variable이며, loss.data는 (1,) 모양의 Tensor입니다;</span>
     <span class="c1"># loss.data[0]은 손실(loss)의 스칼라 값입니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -738,7 +738,7 @@ Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것�
     <span class="c1"># w1과 w2 각각에 대한 손실의 변화도를 갖는 Variable이 됩니다.</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다; w1.data와</span>
+    <span class="c1"># 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다; w1.data와</span>
     <span class="c1"># w2.data는 Tensor이며, w1.grad와 w2.grad는 Variable이고, w1.grad.data와</span>
     <span class="c1"># w2.grad.data는 Tensor입니다.</span>
     <span class="n">w1</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">w1</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
@@ -750,22 +750,18 @@ Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것�
 </pre></div>
 </div>
 </div>
-<div class="section" id="pytorch-defining-new-autograd-functions">
-<h3><a class="toc-backref" href="#id19">PyTorch: Defining new autograd functions</a><a class="headerlink" href="#pytorch-defining-new-autograd-functions" title="Permalink to this headline">¶</a></h3>
-<p>Under the hood, each primitive autograd operator is really two functions
-that operate on Tensors. The <strong>forward</strong> function computes output
-Tensors from input Tensors. The <strong>backward</strong> function receives the
-gradient of the output Tensors with respect to some scalar value, and
-computes the gradient of the input Tensors with respect to that same
-scalar value.</p>
-<p>In PyTorch we can easily define our own autograd operator by defining a
-subclass of <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> and implementing the <code class="docutils literal notranslate"><span class="pre">forward</span></code>
-and <code class="docutils literal notranslate"><span class="pre">backward</span></code> functions. We can then use our new autograd operator by
-constructing an instance and calling it like a function, passing
-Variables containing input data.</p>
-<p>In this example we define our own custom autograd function for
-performing the ReLU nonlinearity, and use it to implement our two-layer
-network:</p>
+<div class="section" id="pytorch-autograd">
+<h3><a class="toc-backref" href="#id19">PyTorch: 새 autograd 함수 정의하기</a><a class="headerlink" href="#pytorch-autograd" title="Permalink to this headline">¶</a></h3>
+<p>Under the hood, autograd의 기본(primitive) 연산자는 실제로 Tensor를 조작하는 2개의
+함수입니다. <strong>forward</strong> 함수는 입력 Tensor로부터 출력 Tensor를 계산합니다.
+<strong>backward</strong> 함수는 출력 Tensor의 변화도를 받고 입력 Tensor의 변화도를 계산합니다.</p>
+<p>PyTorch에서 <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> 의 하위 클래스(subclass)를 정의하고
+<code class="docutils literal notranslate"><span class="pre">forward</span></code> 와 <code class="docutils literal notranslate"><span class="pre">backward</span></code> 함수를 구현함으로써 쉽게 사용자 정의 autograd 연산자를
+정의할 수 있습니다. 그 후, 인스턴스(instance)를 생성하고 함수처럼 호출하여
+입력 데이터를 포함하는 Variable을 전달하는 식으로 새로운 autograd 연산자를 쉽게
+사용할 수 있습니다.</p>
+<p>이 예제에서는 ReLU 비선형성(nonlinearity)을 수행하기 위한 사용자 정의 autograd
+함수를 정의하고, 2-계층 신경망에 이를 적용해보도록 하겠습니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
@@ -782,7 +778,7 @@ network:</p>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        순전파 단계에서는 입력을 갖는 Tensor를 받아 출력을 갖는 Tensor를 반환합니다.</span>
 <span class="sd">        ctx는 역전파 연산을 위한 정보를 저장하기 위해 사용하는 Context Object입니다.</span>
-<span class="sd">        ctx.save_for_backward method를 이용하여 역전파 단계에서 사용할 어떠한</span>
+<span class="sd">        ctx.save_for_backward method를 사용하여 역전파 단계에서 사용할 어떠한</span>
 <span class="sd">        객체(object)도 저장(cache)해 둘 수 있습니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
@@ -823,8 +819,8 @@ network:</p>
     <span class="c1"># 이를 &#39;relu&#39;라고 이름(alias) 붙였습니다.</span>
     <span class="n">relu</span> <span class="o">=</span> <span class="n">MyReLU</span><span class="o">.</span><span class="n">apply</span>
 
-    <span class="c1"># 순전파 단계: Variable 연산을 이용하여 y 값을 예측합니다;</span>
-    <span class="c1"># 사용자 정의 autograd 연산을 이용하여 ReLU를 계산합니다.</span>
+    <span class="c1"># 순전파 단계: Variable 연산을 사용하여 y 값을 예측합니다;</span>
+    <span class="c1"># 사용자 정의 autograd 연산을 사용하여 ReLU를 계산합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w1</span><span class="p">))</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
 
     <span class="c1"># 손실(loss)을 계산하고 출력합니다.</span>
@@ -834,7 +830,7 @@ network:</p>
     <span class="c1"># autograde를 사용하여 역전파 단계를 계산합니다.</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다.</span>
+    <span class="c1"># 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다.</span>
     <span class="n">w1</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">w1</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
     <span class="n">w2</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">w2</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
 
@@ -844,35 +840,30 @@ network:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="tensorflow-static-graphs">
-<h3><a class="toc-backref" href="#id20">TensorFlow: Static Graphs</a><a class="headerlink" href="#tensorflow-static-graphs" title="Permalink to this headline">¶</a></h3>
-<p>PyTorch autograd looks a lot like TensorFlow: in both frameworks we
-define a computational graph, and use automatic differentiation to
-compute gradients. The biggest difference between the two is that
-TensorFlow’s computational graphs are <strong>static</strong> and PyTorch uses
-<strong>dynamic</strong> computational graphs.</p>
-<p>In TensorFlow, we define the computational graph once and then execute
-the same graph over and over again, possibly feeding different input
-data to the graph. In PyTorch, each forward pass defines a new
-computational graph.</p>
-<p>Static graphs are nice because you can optimize the graph up front; for
-example a framework might decide to fuse some graph operations for
-efficiency, or to come up with a strategy for distributing the graph
-across many GPUs or many machines. If you are reusing the same graph
-over and over, then this potentially costly up-front optimization can be
-amortized as the same graph is rerun over and over.</p>
-<p>One aspect where static and dynamic graphs differ is control flow. For
-some models we may wish to perform different computation for each data
-point; for example a recurrent network might be unrolled for different
-numbers of time steps for each data point; this unrolling can be
-implemented as a loop. With a static graph the loop construct needs to
-be a part of the graph; for this reason TensorFlow provides operators
-such as <code class="docutils literal notranslate"><span class="pre">tf.scan</span></code> for embedding loops into the graph. With dynamic
-graphs the situation is simpler: since we build graphs on-the-fly for
-each example, we can use normal imperative flow control to perform
-computation that differs for each input.</p>
-<p>To contrast with the PyTorch autograd example above, here we use
-TensorFlow to fit a simple two-layer net:</p>
+<div class="section" id="tensorflow-static-graph">
+<h3><a class="toc-backref" href="#id20">TensorFlow: 정적 그래프(Static Graph)</a><a class="headerlink" href="#tensorflow-static-graph" title="Permalink to this headline">¶</a></h3>
+<p>PyTorch autograd는 Tensorflow와 많이 닮아보입니다: 두 프레임워크 모두 연산 그래프를
+정의하며, 자동 미분을 사용하여 변화도를 계산합니다. 두 프레임워크의 가장 큰 차이점은
+Tensorflow의 연산 그래프는 <strong>정적</strong> 이며, PyTorch는 <strong>동적</strong> 연산 그래프를 사용한다는
+것입니다.</p>
+<p>Tensorflow에서는 연산 그래프를 한 번 정의한 후 동일한 그래프를 계속해서 실행하며
+가능한 다른 입력 데이터를 전달합니다. PyTorch에서는 각각의 순전파 단계에서 새로운
+연산 그래프를 정의합니다.</p>
+<p>정적 그래프는 먼저(Up-front) 그래프를 최적화할 수 있기 때문에 좋습니다; 예를 들어
+프레임워크가 효율을 위해 일부 그래프 연산을 합치거나, 여러 GPU나 시스템(machine)에
+그래프를 배포하는 전략을 제시할 수 있습니다. 만약 동일한 그래프를 계속 재사용하면,
+같은 그래프가 반복되면서 비싼(Costly) 최적화 비용을 잠재적으로 상환할 수 있습니다.</p>
+<p>정적 그래프와 동적 그래프는 제어 흐름(Control flow) 측면에서도 다릅니다. 어떤
+모델에서 각 데이터 지점(Point)마다 다른 연산 연산을 수행하고 싶을 수 있습니다;
+예를 들어 순환 신경망에서 각각의 데이터 지점마다 서로 다른 횟수만큼 펼칠(Unroll)
+수 있습니다; 이러한 펼침은 반복문(Loop)으로 구현할 수 있습니다. 정적 그래프에서
+반복문은 그래프의 일부가 돼야 합니다; 이러한 이유에서 Tensorflow는 그래프 내에
+반복문을 포함하기 위해 <code class="docutils literal notranslate"><span class="pre">tf.scan</span></code> 과 같은 연산자를 제공합니다. 동적 그래프에서는
+이러한 상황이 더 단순(Simple)해집니다: 각 예제에 대한 그래프를 즉석(on-the-fly)에서
+작성하기 때문에, 일반적인 명령형(Imperative) 제어 흐름을 사용하여 각각의 입력에 따라
+다른 계산을 수행할 수 있습니다.</p>
+<p>위의 PyTorch autograd 예제와는 대조적으로, TensorFlow를 사용하여 간단한 2-계층
+신경망을 구성하겠습니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -893,20 +884,20 @@ TensorFlow to fit a simple two-layer net:</p>
 <span class="n">w1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">((</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)))</span>
 <span class="n">w2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">((</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)))</span>
 
-<span class="c1"># 순전파 단계: Tensorflow의 Tensor 연산을 이용하여 y 값을 예측합니다.</span>
+<span class="c1"># 순전파 단계: Tensorflow의 Tensor 연산을 사용하여 y 값을 예측합니다.</span>
 <span class="c1"># 이 코드가 어떠한 수치 연산을 실제로 수행하지는 않는다는 것을 유의하세요;</span>
 <span class="c1"># 이 단계에서는 나중에 실행할 연산 그래프를 구성하기만 합니다.</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w1</span><span class="p">)</span>
 <span class="n">h_relu</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_relu</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span>
 
-<span class="c1"># Tensorflow의 Tensor 연산을 이용하여 손실(loss)을 계산합니다.</span>
+<span class="c1"># Tensorflow의 Tensor 연산을 사용하여 손실(loss)을 계산합니다.</span>
 <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span>
 
 <span class="c1"># 손실에 따른 w1, w2의 변화도(Gradient)를 계산합니다.</span>
 <span class="n">grad_w1</span><span class="p">,</span> <span class="n">grad_w2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gradients</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">])</span>
 
-<span class="c1"># 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다. 실제로 가중치를</span>
+<span class="c1"># 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다. 실제로 가중치를</span>
 <span class="c1"># 갱신하기 위해서는 그래프가 실행될 때 new_w1과 new_w2 계산(evaluate)해야 합니다.</span>
 <span class="c1"># Tensorflow에서 가중치의 값을 갱신하는 작업은 연산 그래프의 일부임을 유의하십시오;</span>
 <span class="c1"># PyTorch에서는 이 작업이 연산 그래프의 밖에서 일어납니다.</span>
@@ -964,53 +955,53 @@ network:</p>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables.</span>
+<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
+<span class="c1"># 감쌉니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Use the nn package to define our model as a sequence of layers. nn.Sequential</span>
-<span class="c1"># is a Module which contains other Modules, and applies them in sequence to</span>
-<span class="c1"># produce its output. Each Linear Module computes output from input using a</span>
-<span class="c1"># linear function, and holds internal Variables for its weight and bias.</span>
+<span class="c1"># nn 패키지를 사용하여 모델을 순차적인 계층(Sequence of layers)으로 정의합니다.</span>
+<span class="c1"># nn.Sequential은 다른 모듈들을 포함하는 모듈로, 그 모듈들을 순차적으로 적용하여</span>
+<span class="c1"># 출력을 생성합니다. 각각의 선형(Linear) 모듈은 선형 함수를 사용하여 입력으로부터</span>
+<span class="c1"># 출력을 계산하고, 가중치와 편향(Bias)을 저장하기 위해 내부적인 Variable을 갖습니다.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span>
 <span class="p">)</span>
 
-<span class="c1"># The nn package also contains definitions of popular loss functions; in this</span>
-<span class="c1"># case we will use Mean Squared Error (MSE) as our loss function.</span>
+<span class="c1"># 또한, nn 패키지에는 널리 사용하는 손실 함수들에 대한 정의도 포함하고 있습니다;</span>
+<span class="c1"># 여기에서는 평균 제곱 오차(MSE; Mean Squared Error)를 손실 함수로 사용하겠습니다.</span>
 <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: compute predicted y by passing x to the model. Module objects</span>
-    <span class="c1"># override the __call__ operator so you can call them like functions. When</span>
-    <span class="c1"># doing so you pass a Variable of input data to the Module and it produces</span>
-    <span class="c1"># a Variable of output data.</span>
+    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다. 모듈 객체는</span>
+    <span class="c1"># __call__ 연산자를 덮어써서(Override) 함수처럼 호출할 수 있게 합니다.</span>
+    <span class="c1"># 그렇게 함으로써 입력 데이터의 Variable을 모듈에 전달하고 출력 데이터의</span>
+    <span class="c1"># Variable을 생성합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss. We pass Variables containing the predicted and true</span>
-    <span class="c1"># values of y, and the loss function returns a Variable containing the</span>
-    <span class="c1"># loss.</span>
+    <span class="c1"># 손실을 계산하고 출력합니다. 예측한 y값과 정답 y를 갖는 Variable들을 전달하고,</span>
+    <span class="c1"># 손실 함수는 손실(loss)을 갖는 Variable을 반환합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Zero the gradients before running the backward pass.</span>
+    <span class="c1"># 역전파 단계를 실행하기 전에 변화도를 0으로 만듭니다.</span>
     <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
-    <span class="c1"># Backward pass: compute gradient of the loss with respect to all the learnable</span>
-    <span class="c1"># parameters of the model. Internally, the parameters of each Module are stored</span>
-    <span class="c1"># in Variables with requires_grad=True, so this call will compute gradients for</span>
-    <span class="c1"># all learnable parameters in the model.</span>
+    <span class="c1"># 역전파 단계: 모델의 학습 가능한 모든 매개변수에 대해서 손실의 변화도를</span>
+    <span class="c1"># 계산합니다. 내부적으로 각 모듈의 매개변수는 requires_grad=True 일 때</span>
+    <span class="c1"># Variable 내에 저장되므로, 이 호출은 모든 모델의 모든 학습 가능한 매개변수의</span>
+    <span class="c1"># 변화도를 계산하게 됩니다.</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># Update the weights using gradient descent. Each parameter is a Variable, so</span>
-    <span class="c1"># we can access its data and gradients like we did before.</span>
+    <span class="c1"># 경사하강법(Gradient Descent)를 사용하여 가중치를 갱신합니다. 각 매개변수는</span>
+    <span class="c1"># Variable이므로 이전에 했던 것과 같이 데이터와 변화도에 접근할 수 있습니다.</span>
     <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
         <span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
 </pre></div>
@@ -1034,15 +1025,16 @@ by the <code class="docutils literal notranslate"><span class="pre">optim</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables.</span>
+<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
+<span class="c1"># 감쌉니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Use the nn package to define our model and loss function.</span>
+<span class="c1"># nn 패키지를 사용하여 모델과 손실 함수를 정의합니다.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
@@ -1050,33 +1042,30 @@ by the <code class="docutils literal notranslate"><span class="pre">optim</span>
 <span class="p">)</span>
 <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Use the optim package to define an Optimizer that will update the weights of</span>
-<span class="c1"># the model for us. Here we will use Adam; the optim package contains many other</span>
-<span class="c1"># optimization algoriths. The first argument to the Adam constructor tells the</span>
-<span class="c1"># optimizer which Variables it should update.</span>
+<span class="c1"># optim 패키지를 사용하여 모델의 가중치를 갱신할 Optimizer를 정의합니다.</span>
+<span class="c1"># 여기서는 Adam을 사용하겠습니다; optim 패키지는 다른 다양한 최적화 알고리즘을</span>
+<span class="c1"># 포함하고 있습니다. Adam 생성자의 첫번째 인자는 갱신해야 하는 Variable을</span>
+<span class="c1"># Optimizer에 알려줍니다.</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-4</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: compute predicted y by passing x to the model.</span>
+    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss.</span>
+    <span class="c1"># 손실을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Before the backward pass, use the optimizer object to zero all of the</span>
-    <span class="c1"># gradients for the variables it will update (which are the learnable</span>
-    <span class="c1"># weights of the model). This is because by default, gradients are</span>
-    <span class="c1"># accumulated in buffers( i.e, not overwritten) whenever .backward()</span>
-    <span class="c1"># is called. Checkout docs of torch.autograd.backward for more details.</span>
+    <span class="c1"># 역전파 단계 전에, Optimizer 객체를 사용하여 (모델의 학습 가능한 가중치인)</span>
+    <span class="c1"># 갱신할 Variable들에 대한 모든 변화도를 0으로 만듭니다. 이는 기본적으로,</span>
+    <span class="c1"># .backward()를 호출할 때마다 변화도가 버퍼(Buffer)에 (덮어쓰지 않고) 누적되기</span>
+    <span class="c1"># 때문입니다. 더 자세한 내용은 torch.autograd.backward에 대한 문서를 참조하세요.</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
-    <span class="c1"># Backward pass: compute gradient of the loss with respect to model</span>
-    <span class="c1"># parameters</span>
+    <span class="c1"># 역전파 단계: 모델의 매개변수에 대한 손실의 변화도를 계산합니다.</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># Calling the step function on an Optimizer makes an update to its</span>
-    <span class="c1"># parameters</span>
+    <span class="c1"># Optimizer의 step 함수를 호출하면 매개변수가 갱신됩니다.</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1098,8 +1087,8 @@ subclass:</p>
 <span class="k">class</span> <span class="nc">TwoLayerNet</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        In the constructor we instantiate two nn.Linear modules and assign them as</span>
-<span class="sd">        member variables.</span>
+<span class="sd">        생성자에서 2개의 nn.Linear 모듈을 생성(Instantiate)하고, 멤버 변수로</span>
+<span class="sd">        지정합니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TwoLayerNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
@@ -1107,40 +1096,40 @@ subclass:</p>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        In the forward function we accept a Variable of input data and we must return</span>
-<span class="sd">        a Variable of output data. We can use Modules defined in the constructor as</span>
-<span class="sd">        well as arbitrary operators on Variables.</span>
+<span class="sd">        순전파 함수에서는 입력 데이터의 Variable을 받아서 출력 데이터의 Variable을</span>
+<span class="sd">        반환해야 합니다. Variable 상의 임의의 연산자뿐만 아니라 생성자에서 정의한</span>
+<span class="sd">        모듈을 사용할 수 있습니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">h_relu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">h_relu</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">y_pred</span>
 
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables</span>
+<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
+<span class="c1"># 감쌉니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Construct our model by instantiating the class defined above</span>
+<span class="c1"># 앞에서 정의한 클래스를 생성(Instantiating)해서 모델을 구성합니다.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">TwoLayerNet</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span>
 
-<span class="c1"># Construct our loss function and an Optimizer. The call to model.parameters()</span>
-<span class="c1"># in the SGD constructor will contain the learnable parameters of the two</span>
-<span class="c1"># nn.Linear modules which are members of the model.</span>
+<span class="c1"># 손실함수와 Optimizer를 만듭니다. SGD 생성자에서 model.parameters()를 호출하면</span>
+<span class="c1"># 모델의 멤버인 2개의 nnLinear 모듈의 학습 가능한 매개변수들이 포함됩니다.</span>
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: Compute predicted y by passing x to the model</span>
+    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss</span>
+    <span class="c1"># 손실을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Zero gradients, perform a backward pass, and update the weights.</span>
+    <span class="c1"># 변화도를 0으로 만들고, 역전파 단계를 수행하고, 가중치를 갱신합니다.</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
@@ -1167,8 +1156,7 @@ reusing the same Module multiple times when defining the forward pass.</p>
 <span class="k">class</span> <span class="nc">DynamicNet</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        In the constructor we construct three nn.Linear instances that we will use</span>
-<span class="sd">        in the forward pass.</span>
+<span class="sd">        생성자에서는 순전파 단계에서 사용할 3개의 nn.Linear 개체(Instance)를 생성합니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DynamicNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
@@ -1177,17 +1165,17 @@ reusing the same Module multiple times when defining the forward pass.</p>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        For the forward pass of the model, we randomly choose either 0, 1, 2, or 3</span>
-<span class="sd">        and reuse the middle_linear Module that many times to compute hidden layer</span>
-<span class="sd">        representations.</span>
+<span class="sd">        모델의 순전파 단계에서, 무작위로 0, 1, 2 또는 3 중에 하나를 선택하고</span>
+<span class="sd">        은닉 계층 표현(representation)을 계산하기 위해 여러번 사용한 middle_linear</span>
+<span class="sd">        모듈을 재사용합니다.</span>
 
-<span class="sd">        Since each forward pass builds a dynamic computation graph, we can use normal</span>
-<span class="sd">        Python control-flow operators like loops or conditional statements when</span>
-<span class="sd">        defining the forward pass of the model.</span>
+<span class="sd">        각 순전파 단계에서 동적 연산 그래프를 구성하기 때문에, 모델의 순전파 단계를</span>
+<span class="sd">        정의할 때 반복문이나 조건문과 같이 일반적인 Python 제어 흐름 연산자를 사용할</span>
+<span class="sd">        수 있습니다.</span>
 
-<span class="sd">        Here we also see that it is perfectly safe to reuse the same Module many</span>
-<span class="sd">        times when defining a computational graph. This is a big improvement from Lua</span>
-<span class="sd">        Torch, where each Module could be used only once.</span>
+<span class="sd">        여기에서 연산 그래프를 정의할 때 동일한 모듈을 여러번 재사용하는 것이</span>
+<span class="sd">        완벽하게 안전하다는 것을 알 수 있습니다. 이것이 각 모듈을 한 번만 사용하는</span>
+<span class="sd">        Lua Torch보다 크게 개선된 부분입니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">h_relu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_linear</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
@@ -1196,30 +1184,31 @@ reusing the same Module multiple times when defining the forward pass.</p>
         <span class="k">return</span> <span class="n">y_pred</span>
 
 
-<span class="c1"># N is batch size; D_in is input dimension;</span>
-<span class="c1"># H is hidden dimension; D_out is output dimension.</span>
+<span class="c1"># N은 배치 크기이며, D_in은 입력의 차원입니다;</span>
+<span class="c1"># H는 은닉 계층의 차원이며, D_out은 출력 차원입니다:</span>
 <span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
 
-<span class="c1"># Create random Tensors to hold inputs and outputs, and wrap them in Variables</span>
+<span class="c1"># 입력과 출력을 저장하기 위해 무작위 값을 갖는 Tensor를 생성하고, Variable로</span>
+<span class="c1"># 감쌉니다.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_in</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D_out</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Construct our model by instantiating the class defined above</span>
+<span class="c1"># 앞에서 정의한 클래스를 생성(Instantiating)해서 모델을 구성합니다.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">DynamicNet</span><span class="p">(</span><span class="n">D_in</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">D_out</span><span class="p">)</span>
 
-<span class="c1"># Construct our loss function and an Optimizer. Training this strange model with</span>
-<span class="c1"># vanilla stochastic gradient descent is tough, so we use momentum</span>
+<span class="c1"># 손실함수와 Optimizer를 만듭니다. 이 이상한 모델을 순수한 확률적 경사 하강법</span>
+<span class="c1"># (Stochastic Gradient Decent)으로 학습하는 것은 어려우므로, momentum을 사용합니다.</span>
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">size_average</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
-    <span class="c1"># Forward pass: Compute predicted y by passing x to the model</span>
+    <span class="c1"># 순전파 단계: 모델에 x를 전달하여 예상하는 y 값을 계산합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Compute and print loss</span>
+    <span class="c1"># 손실을 계산하고 출력합니다.</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Zero gradients, perform a backward pass, and update the weights.</span>
+    <span class="c1"># 변화도를 0으로 만들고, 역전파 단계를 수행하고, 가중치를 갱신합니다.</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
@@ -1234,7 +1223,7 @@ reusing the same Module multiple times when defining the forward pass.</p>
 <h3><a class="toc-backref" href="#id27">Tensors</a><a class="headerlink" href="#tensors" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 </div>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 오차(Euclidean Error)를 이용하여 x로부터 y를 예측하도록 학습하겠습니다."><div class="figure" id="id5">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 오차(Euclidean Error)를 사용하여 x로부터 y를 예측하도록 학습하겠습니다."><div class="figure" id="id5">
 <img alt="../_images/sphx_glr_two_layer_net_numpy_thumb.png" src="../_images/sphx_glr_two_layer_net_numpy_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_numpy.html#sphx-glr-beginner-examples-tensor-two-layer-net-numpy-py"><span class="std std-ref">준비 운동: NumPy</span></a></span></p>
 </div>
@@ -1269,24 +1258,24 @@ reusing the same Module multiple times when defining the forward pass.</p>
 <h3><a class="toc-backref" href="#id29"><cite>nn</cite> module</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 </div>
-<p><div class="sphx-glr-thumbcontainer" tooltip="A fully-connected ReLU network with one hidden layer, trained to predict y from x by minimizing..."><div class="figure" id="id10">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id10">
 <img alt="../_images/sphx_glr_two_layer_net_nn_thumb.png" src="../_images/sphx_glr_two_layer_net_nn_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_nn.html#sphx-glr-beginner-examples-nn-two-layer-net-nn-py"><span class="std std-ref">PyTorch: nn</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="A fully-connected ReLU network with one hidden layer, trained to predict y from x by minimizing..."><div class="figure" id="id11">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id11">
 <img alt="../_images/sphx_glr_two_layer_net_optim_thumb.png" src="../_images/sphx_glr_two_layer_net_optim_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_optim.html#sphx-glr-beginner-examples-nn-two-layer-net-optim-py"><span class="std std-ref">PyTorch: optim</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="A fully-connected ReLU network with one hidden layer, trained to predict y from x by minimizing..."><div class="figure" id="id12">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id12">
 <img alt="../_images/sphx_glr_two_layer_net_module_thumb.png" src="../_images/sphx_glr_two_layer_net_module_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_module.html#sphx-glr-beginner-examples-nn-two-layer-net-module-py"><span class="std std-ref">PyTorch: Custom nn Modules</span></a></span></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_module.html#sphx-glr-beginner-examples-nn-two-layer-net-module-py"><span class="std std-ref">PyTorch: 사용자 정의 nn 모듈</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="To showcase the power of PyTorch dynamic graphs, we will implement a very strange model: a full..."><div class="figure" id="id13">
+<p><div class="sphx-glr-thumbcontainer" tooltip="PyTorch 동적 그래프의 성능을 보여주기 위해, 매우 이상한 모델을 구현해보겠습니다: 각각의 순전파 단계에서 많은 은닉 계층을 갖는 완전히 연결(Fully-connec..."><div class="figure" id="id13">
 <img alt="../_images/sphx_glr_dynamic_net_thumb.png" src="../_images/sphx_glr_dynamic_net_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/dynamic_net.html#sphx-glr-beginner-examples-nn-dynamic-net-py"><span class="std std-ref">PyTorch: Control Flow + Weight Sharing</span></a></span></p>
+<p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/dynamic_net.html#sphx-glr-beginner-examples-nn-dynamic-net-py"><span class="std std-ref">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</span></a></span></p>
 </div>
 </div></p>
 <div style='clear:both'></div></div>

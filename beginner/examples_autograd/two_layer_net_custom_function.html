@@ -200,8 +200,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#autograd">Autograd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-variables-autograd">PyTorch: Variables과 autograd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-defining-new-autograd-functions">PyTorch: Defining new autograd functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graphs">TensorFlow: Static Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#pytorch-autograd">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pytorch_with_examples.html#nn-module"><cite>nn</cite> module</a><ul>
@@ -226,8 +226,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../pytorch_with_examples.html#id4"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: Custom nn Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: Control Flow + Weight Sharing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples_nn/dynamic_net.html">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</a></li>
 </ul>
 </li>
 </ul>
@@ -518,7 +518,7 @@
 <p>하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에
 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록
 학습하겠습니다.</p>
-<p>PyTorch Variable 연산을 이용하여 순전파를 계산하고, PyTorch autograd를 이용하여
+<p>PyTorch Variable 연산을 사용하여 순전파를 계산하고, PyTorch autograd를 사용하여
 변화도(Gradient)를 계산하는 것을 구현하겠습니다.</p>
 <p>여기서는 사용자 정의 autograd 함수를 구현하여 ReLU 기능(function)을 수행하도록
 하겠습니다.</p>
@@ -537,7 +537,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        순전파 단계에서는 입력을 갖는 Tensor를 받아 출력을 갖는 Tensor를 반환합니다.</span>
 <span class="sd">        ctx는 역전파 연산을 위한 정보를 저장하기 위해 사용하는 Context Object입니다.</span>
-<span class="sd">        ctx.save_for_backward method를 이용하여 역전파 단계에서 사용할 어떠한</span>
+<span class="sd">        ctx.save_for_backward method를 사용하여 역전파 단계에서 사용할 어떠한</span>
 <span class="sd">        객체(object)도 저장(cache)해 둘 수 있습니다.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
@@ -578,8 +578,8 @@
     <span class="c1"># 이를 &#39;relu&#39;라고 이름(alias) 붙였습니다.</span>
     <span class="n">relu</span> <span class="o">=</span> <span class="n">MyReLU</span><span class="o">.</span><span class="n">apply</span>
 
-    <span class="c1"># 순전파 단계: Variable 연산을 이용하여 y 값을 예측합니다;</span>
-    <span class="c1"># 사용자 정의 autograd 연산을 이용하여 ReLU를 계산합니다.</span>
+    <span class="c1"># 순전파 단계: Variable 연산을 사용하여 y 값을 예측합니다;</span>
+    <span class="c1"># 사용자 정의 autograd 연산을 사용하여 ReLU를 계산합니다.</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w1</span><span class="p">))</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>
 
     <span class="c1"># 손실(loss)을 계산하고 출력합니다.</span>
@@ -589,7 +589,7 @@
     <span class="c1"># autograde를 사용하여 역전파 단계를 계산합니다.</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-    <span class="c1"># 경사하강법(Gradient Descent)을 이용하여 가중치를 갱신합니다.</span>
+    <span class="c1"># 경사하강법(Gradient Descent)을 사용하여 가중치를 갱신합니다.</span>
     <span class="n">w1</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">w1</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
     <span class="n">w2</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">w2</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
 
