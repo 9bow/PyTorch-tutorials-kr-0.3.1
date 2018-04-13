@@ -1,5 +1,5 @@
 """
-Tensors
+Tensor
 =======
 
 PyTorch에서의 Tensor는 Torch에서와 거의 동일하게 동작합니다.
