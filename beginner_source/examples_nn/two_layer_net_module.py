@@ -43,7 +43,7 @@ N, D_in, H, D_out = 64, 1000, 100, 10
 x = Variable(torch.randn(N, D_in))
 y = Variable(torch.randn(N, D_out), requires_grad=False)
 
-# 위에서 정의한 클래스의 인스턴스를 생성(Instantiating)합니다.
+# 앞에서 정의한 클래스를 생성(Instantiating)해서 모델을 구성합니다.
 model = TwoLayerNet(D_in, H, D_out)
 
 # 손실함수와 Optimizer를 만듭니다. SGD 생성자에서 model.parameters()를 호출하면
