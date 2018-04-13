@@ -162,7 +162,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../former_torchies_tutorial.html">Torch 사용자를 위한 PyTorch</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tensor_tutorial.html">Tensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tensor_tutorial.html">Tensor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tensor_tutorial.html#in-place-out-of-place">In-place / Out-of-place</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tensor_tutorial.html#id1">0-인덱스</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tensor_tutorial.html#camel-case">카멜표기법(Camel Case) 없음</a></li>
@@ -639,7 +639,7 @@
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">2.3447</span>
+ <span class="mf">2.3676</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -660,8 +660,8 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.8163849989592462</span>
-<span class="mf">0.4218516582402914</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.8352857159431593</span>
+<span class="mf">0.12994333883024256</span>
 </pre></div>
 </div>
 </div>
@@ -703,7 +703,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 11.084464191981205
+output norm: 14.961264661123973
 </pre></div>
 </div>
 <p>conv2에 역방향 훅을 등록하고 몇 가지 정보를 출력해보겠습니다.</p>
@@ -737,7 +737,7 @@ output:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 input size: torch.Size([1, 10, 12, 12])
 output size: torch.Size([1, 20, 8, 8])
-output norm: 11.084464191981205
+output norm: 14.961264661123973
 Inside Conv2d backward
 Inside class:Conv2d
 
@@ -748,7 +748,7 @@ grad_output[0]:  &lt;class &#39;torch.autograd.variable.Variable&#39;&gt;
 
 grad_input size: torch.Size([1, 10, 12, 12])
 grad_output size: torch.Size([1, 20, 8, 8])
-grad_input norm: 0.07937332188077903
+grad_input norm: 0.02624443033101649
 </pre></div>
 </div>
 <p>동작하는 전체 MNIST 예제는 여기에서 확인할 수 있습니다.
@@ -804,7 +804,7 @@ grad_input norm: 0.07937332188077903
 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.008 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.007 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/nn_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nn_tutorial.py</span></code></a></div>

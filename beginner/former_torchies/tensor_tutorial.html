@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tensors &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>Tensor &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -162,7 +162,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../former_torchies_tutorial.html">Torch 사용자를 위한 PyTorch</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Tensors</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tensor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#in-place-out-of-place">In-place / Out-of-place</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">0-인덱스</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#camel-case">카멜표기법(Camel Case) 없음</a></li>
@@ -494,7 +494,7 @@
         
           <li><a href="../former_torchies_tutorial.html">Torch 사용자를 위한 PyTorch</a> &raquo;</li>
         
-      <li>Tensors</li>
+      <li>Tensor</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -513,8 +513,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tensors">
-<span id="sphx-glr-beginner-former-torchies-tensor-tutorial-py"></span><h1>Tensors<a class="headerlink" href="#tensors" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="tensor">
+<span id="sphx-glr-beginner-former-torchies-tensor-tutorial-py"></span><h1>Tensor<a class="headerlink" href="#tensor" title="Permalink to this headline">¶</a></h1>
 <p>PyTorch에서의 Tensor는 Torch에서와 거의 동일하게 동작합니다.</p>
 <p>초기화되지 않은 (5 x 7) 크기의 tensor를 생성합니다:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -528,11 +528,11 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.4217</span> <span class="o">-</span><span class="mf">0.1885</span>  <span class="mf">1.8851</span>  <span class="mf">1.5659</span>  <span class="mf">1.1707</span> <span class="o">-</span><span class="mf">0.1222</span>  <span class="mf">0.3359</span>
-<span class="o">-</span><span class="mf">0.6753</span> <span class="o">-</span><span class="mf">0.6957</span>  <span class="mf">0.9063</span> <span class="o">-</span><span class="mf">1.2042</span>  <span class="mf">0.3273</span> <span class="o">-</span><span class="mf">0.1462</span>  <span class="mf">0.0698</span>
-<span class="o">-</span><span class="mf">0.2106</span> <span class="o">-</span><span class="mf">0.9539</span> <span class="o">-</span><span class="mf">0.3645</span> <span class="o">-</span><span class="mf">0.4417</span> <span class="o">-</span><span class="mf">0.3254</span> <span class="o">-</span><span class="mf">0.0911</span> <span class="o">-</span><span class="mf">0.0264</span>
-<span class="o">-</span><span class="mf">0.0639</span> <span class="o">-</span><span class="mf">0.4409</span>  <span class="mf">1.1992</span>  <span class="mf">0.6039</span> <span class="o">-</span><span class="mf">1.3394</span>  <span class="mf">0.8690</span> <span class="o">-</span><span class="mf">0.6705</span>
-<span class="o">-</span><span class="mf">0.3020</span>  <span class="mf">0.0602</span>  <span class="mf">0.8537</span>  <span class="mf">0.4979</span> <span class="o">-</span><span class="mf">0.8422</span>  <span class="mf">0.3873</span>  <span class="mf">1.5556</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.0957</span>  <span class="mf">0.1598</span>  <span class="mf">0.0073</span> <span class="o">-</span><span class="mf">0.7027</span> <span class="o">-</span><span class="mf">0.8190</span>  <span class="mf">0.0906</span> <span class="o">-</span><span class="mf">0.4299</span>
+ <span class="mf">0.2014</span>  <span class="mf">1.4795</span>  <span class="mf">0.8053</span> <span class="o">-</span><span class="mf">0.1915</span>  <span class="mf">1.3387</span>  <span class="mf">0.5560</span>  <span class="mf">0.0303</span>
+<span class="o">-</span><span class="mf">0.9666</span>  <span class="mf">0.1588</span>  <span class="mf">0.0056</span>  <span class="mf">0.0725</span> <span class="o">-</span><span class="mf">0.1031</span>  <span class="mf">0.2506</span> <span class="o">-</span><span class="mf">1.0731</span>
+<span class="o">-</span><span class="mf">1.7569</span>  <span class="mf">0.0459</span> <span class="o">-</span><span class="mf">0.7994</span> <span class="o">-</span><span class="mf">0.1090</span>  <span class="mf">0.3812</span> <span class="o">-</span><span class="mf">0.3899</span> <span class="o">-</span><span class="mf">1.6215</span>
+<span class="o">-</span><span class="mf">0.9204</span> <span class="o">-</span><span class="mf">0.0259</span>  <span class="mf">0.2466</span> <span class="o">-</span><span class="mf">1.0885</span>  <span class="mf">0.3417</span>  <span class="mf">0.1478</span> <span class="o">-</span><span class="mf">1.6786</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">5</span><span class="n">x7</span><span class="p">]</span>
 
 <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>

@@ -162,7 +162,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../former_torchies_tutorial.html">Torch 사용자를 위한 PyTorch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../former_torchies/tensor_tutorial.html">Tensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../former_torchies/tensor_tutorial.html">Tensor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../former_torchies/tensor_tutorial.html#in-place-out-of-place">In-place / Out-of-place</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../former_torchies/tensor_tutorial.html#id1">0-인덱스</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../former_torchies/tensor_tutorial.html#camel-case">카멜표기법(Camel Case) 없음</a></li>
@@ -616,7 +616,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">0.1043</span> <span class="o">-</span><span class="mf">0.0731</span>  <span class="mf">0.0112</span> <span class="o">-</span><span class="mf">0.0595</span> <span class="o">-</span><span class="mf">0.0362</span>  <span class="mf">0.0519</span>  <span class="mf">0.0777</span>  <span class="mf">0.0437</span> <span class="o">-</span><span class="mf">0.1346</span>  <span class="mf">0.0735</span>
+<span class="o">-</span><span class="mf">0.0435</span>  <span class="mf">0.0229</span> <span class="o">-</span><span class="mf">0.0507</span> <span class="o">-</span><span class="mf">0.1383</span>  <span class="mf">0.0303</span>  <span class="mf">0.0703</span> <span class="o">-</span><span class="mf">0.0926</span> <span class="o">-</span><span class="mf">0.1084</span> <span class="o">-</span><span class="mf">0.0028</span> <span class="o">-</span><span class="mf">0.0057</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="n">x10</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -686,7 +686,7 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">38.4452</span>
+ <span class="mf">38.8504</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -707,9 +707,9 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f40b5ce8518</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f40b5ce8ac8</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">ExpandBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f40b5ce8ac8</span><span class="o">&gt;</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc251415940</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc251415320</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ExpandBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc251415320</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -744,12 +744,13 @@ Note: 이 신경망(LeNet)의 입력은 32x32입니다. 이 신경망에 MNIST �
 
 <span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span> <span class="n">after</span> <span class="n">backward</span>
 <span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
- <span class="mf">0.0266</span>
- <span class="mf">0.0012</span>
-<span class="o">-</span><span class="mf">0.1253</span>
- <span class="mf">0.0863</span>
-<span class="o">-</span><span class="mf">0.0601</span>
- <span class="mf">0.0987</span>
+<span class="mf">1.00000e-02</span> <span class="o">*</span>
+  <span class="mf">1.8847</span>
+  <span class="mf">1.2224</span>
+ <span class="o">-</span><span class="mf">7.1832</span>
+  <span class="mf">0.7210</span>
+ <span class="o">-</span><span class="mf">1.2379</span>
+ <span class="o">-</span><span class="mf">1.7347</span>
 <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -800,7 +801,7 @@ Gradient Descent)입니다:</p>
 것에 유의하세요. 이는 <a class="reference internal" href="#backprop">역전파(Backprop)</a> 섹션에서 설명한 것처럼 변화도가
 누적되기 때문입니다.</p>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.012 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.008 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/neural_networks_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neural_networks_tutorial.py</span></code></a></div>

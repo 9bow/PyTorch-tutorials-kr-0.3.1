@@ -153,7 +153,7 @@ y 는 연산의 결과로 생성된 것이므로, grad_fn 을 갖습니다.
 
  Out::
 
-    <AddBackward0 object at 0x7f40b5ca1ef0>
+    <AddBackward0 object at 0x7fc227d9f550>
 
 
 y에 다른 연산을 수행합니다:
@@ -284,8 +284,8 @@ y에 다른 연산을 수행합니다:
  Out::
 
     Variable containing:
-     0.1661  1.2996
-     1.5294  0.8388
+     0.1651  0.9929
+    -0.6825  2.6321
     [torch.FloatTensor of size 2x2]
 
 

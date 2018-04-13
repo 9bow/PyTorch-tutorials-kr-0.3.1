@@ -122,7 +122,7 @@ Autograd 구현에서 매우 중요한 클래스가 하나 더 있는데요, 바
 
  Out::
 
-    <AddBackward0 object at 0x7f40df37e3c8>
+    <AddBackward0 object at 0x7fc227cd5cf8>
 
 
 y에 다른 연산을 수행합니다:
@@ -229,9 +229,9 @@ autograd로 많은 정신나간 일들(crazy things)도 할 수 있습니다!
  Out::
 
     Variable containing:
-     708.8919
-     762.2629
-     -12.6756
+    -1135.8146
+      785.2049
+    -1091.7501
     [torch.FloatTensor of size 3]
 
 

@@ -421,26 +421,26 @@ in ``all_losses`` for plotting later.
 
  Out::
 
-    0m 12s (5000 5%) 2.7322
-    0m 24s (10000 10%) 3.0613
-    0m 36s (15000 15%) 2.7502
-    0m 48s (20000 20%) 2.2227
-    1m 0s (25000 25%) 2.6672
-    1m 12s (30000 30%) 2.9377
-    1m 24s (35000 35%) 2.9278
-    1m 36s (40000 40%) 1.6920
-    1m 48s (45000 45%) 2.7412
-    1m 59s (50000 50%) 1.8774
-    2m 11s (55000 55%) 1.9201
-    2m 23s (60000 60%) 2.0293
-    2m 35s (65000 65%) 1.5333
-    2m 47s (70000 70%) 1.5659
-    2m 59s (75000 75%) 2.9720
-    3m 11s (80000 80%) 2.4223
-    3m 23s (85000 85%) 1.6669
-    3m 35s (90000 90%) 2.0225
-    3m 47s (95000 95%) 3.1092
-    3m 59s (100000 100%) 2.2062
+    0m 12s (5000 5%) 3.2648
+    0m 24s (10000 10%) 3.4649
+    0m 36s (15000 15%) 2.9009
+    0m 48s (20000 20%) 2.6194
+    1m 0s (25000 25%) 2.4681
+    1m 11s (30000 30%) 2.3634
+    1m 23s (35000 35%) 2.6180
+    1m 35s (40000 40%) 2.8540
+    1m 47s (45000 45%) 2.5978
+    1m 59s (50000 50%) 2.9165
+    2m 11s (55000 55%) 2.4557
+    2m 23s (60000 60%) 2.4043
+    2m 35s (65000 65%) 3.6616
+    2m 47s (70000 70%) 2.9776
+    2m 59s (75000 75%) 1.6160
+    3m 11s (80000 80%) 2.1464
+    3m 23s (85000 85%) 2.6609
+    3m 35s (90000 90%) 2.1253
+    3m 47s (95000 95%) 1.9846
+    3m 59s (100000 100%) 2.2130
 
 
 Plotting the Losses
@@ -545,18 +545,18 @@ feed that in as the next letter, and repeat until the EOS token.
 
  Out::
 
-    Roverton
-    Uater
-    Shavevev
-    Gerter
-    Erester
-    Roune
-    Santara
-    Pares
+    Rovani
+    Uanton
+    Shavan
+    Ganger
+    Eren
+    Ranger
+    Salla
+    Para
     Allan
-    Cha
+    Chan
     Han
-    Iun
+    Iung
 
 
 Exercises
@@ -577,7 +577,7 @@ Exercises
 
 
 
-**Total running time of the script:** ( 3 minutes  59.361 seconds)
+**Total running time of the script:** ( 3 minutes  59.422 seconds)
 
 
 
