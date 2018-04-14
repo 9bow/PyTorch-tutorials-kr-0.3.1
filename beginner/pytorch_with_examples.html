@@ -203,7 +203,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#tensorflow-static-graph">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#nn-module"><cite>nn</cite> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nn"><cite>nn</cite> 모듈</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pytorch-nn">PyTorch: nn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pytorch-optim">PyTorch: optim</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pytorch-custom-nn-modules">PyTorch: Custom nn Modules</a></li>
@@ -222,7 +222,7 @@
 <li class="toctree-l4"><a class="reference internal" href="examples_autograd/tf_two_layer_net.html">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4"><cite>nn</cite> module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nn-module"><cite>nn</cite> module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_nn.html">PyTorch: nn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_optim.html">PyTorch: optim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="examples_nn/two_layer_net_module.html">PyTorch: 사용자 정의 nn 모듈</a></li>
@@ -535,36 +535,36 @@
 <div class="contents local topic" id="id2">
 <p class="topic-title first">목차</p>
 <ul class="simple">
-<li><a class="reference internal" href="#tensor" id="id14">Tensor</a><ul>
-<li><a class="reference internal" href="#numpy" id="id15">준비 운동: NumPy</a></li>
-<li><a class="reference internal" href="#pytorch-tensor" id="id16">PyTorch: Tensor</a></li>
+<li><a class="reference internal" href="#tensor" id="id13">Tensor</a><ul>
+<li><a class="reference internal" href="#numpy" id="id14">준비 운동: NumPy</a></li>
+<li><a class="reference internal" href="#pytorch-tensor" id="id15">PyTorch: Tensor</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#autograd" id="id17">Autograd</a><ul>
-<li><a class="reference internal" href="#pytorch-variables-autograd" id="id18">PyTorch: Variables과 autograd</a></li>
-<li><a class="reference internal" href="#pytorch-autograd" id="id19">PyTorch: 새 autograd 함수 정의하기</a></li>
-<li><a class="reference internal" href="#tensorflow-static-graph" id="id20">TensorFlow: 정적 그래프(Static Graph)</a></li>
+<li><a class="reference internal" href="#autograd" id="id16">Autograd</a><ul>
+<li><a class="reference internal" href="#pytorch-variables-autograd" id="id17">PyTorch: Variables과 autograd</a></li>
+<li><a class="reference internal" href="#pytorch-autograd" id="id18">PyTorch: 새 autograd 함수 정의하기</a></li>
+<li><a class="reference internal" href="#tensorflow-static-graph" id="id19">TensorFlow: 정적 그래프(Static Graph)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nn-module" id="id21"><cite>nn</cite> module</a><ul>
-<li><a class="reference internal" href="#pytorch-nn" id="id22">PyTorch: nn</a></li>
-<li><a class="reference internal" href="#pytorch-optim" id="id23">PyTorch: optim</a></li>
-<li><a class="reference internal" href="#pytorch-custom-nn-modules" id="id24">PyTorch: Custom nn Modules</a></li>
-<li><a class="reference internal" href="#pytorch-control-flow-weight-sharing" id="id25">PyTorch: Control Flow + Weight Sharing</a></li>
+<li><a class="reference internal" href="#nn" id="id20"><cite>nn</cite> 모듈</a><ul>
+<li><a class="reference internal" href="#pytorch-nn" id="id21">PyTorch: nn</a></li>
+<li><a class="reference internal" href="#pytorch-optim" id="id22">PyTorch: optim</a></li>
+<li><a class="reference internal" href="#pytorch-custom-nn-modules" id="id23">PyTorch: Custom nn Modules</a></li>
+<li><a class="reference internal" href="#pytorch-control-flow-weight-sharing" id="id24">PyTorch: Control Flow + Weight Sharing</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#examples" id="id26">Examples</a><ul>
-<li><a class="reference internal" href="#tensors" id="id27">Tensors</a></li>
-<li><a class="reference internal" href="#id3" id="id28">Autograd</a></li>
-<li><a class="reference internal" href="#id4" id="id29"><cite>nn</cite> module</a></li>
+<li><a class="reference internal" href="#examples" id="id25">Examples</a><ul>
+<li><a class="reference internal" href="#tensors" id="id26">Tensors</a></li>
+<li><a class="reference internal" href="#id3" id="id27">Autograd</a></li>
+<li><a class="reference internal" href="#nn-module" id="id28"><cite>nn</cite> module</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="tensor">
-<h2><a class="toc-backref" href="#id14">Tensor</a><a class="headerlink" href="#tensor" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Tensor</a><a class="headerlink" href="#tensor" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="numpy">
-<h3><a class="toc-backref" href="#id15">준비 운동: NumPy</a><a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">준비 운동: NumPy</a><a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h3>
 <p>PyTorch를 소개하기 전에, 먼저 NumPy를 사용하여 신경망을 구성해보겠습니다.</p>
 <p>NumPy는 N차원 배열 객체(Object)를 제공하며, 이러한 배열을 조작하기 위한 다양한
 함수(function)들을 제공합니다. NumPy는 과학적 분야의 연산을 위한 포괄적인 프레임워크
@@ -613,7 +613,7 @@
 </div>
 </div>
 <div class="section" id="pytorch-tensor">
-<h3><a class="toc-backref" href="#id16">PyTorch: Tensor</a><a class="headerlink" href="#pytorch-tensor" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">PyTorch: Tensor</a><a class="headerlink" href="#pytorch-tensor" title="Permalink to this headline">¶</a></h3>
 <p>NumPy는 훌륭한 프레임워크지만, GPU를 사용하여 수치 연산을 가속화할 수는 없습니다.
 현대의 심층 신경망에서 GPU는 종종 <a class="reference external" href="https://github.com/jcjohnson/cnn-benchmarks">50배 또는 그 이상</a>
 의 속도 향상을 제공하기 때문에, 안타깝게도 NumPy는 현대의 딥러닝에는 충분치 않습니다.</p>
@@ -675,9 +675,9 @@ PyTorch Tensor는 딥러닝이나 연산 그래프, 변화도는 알지 못하�
 </div>
 </div>
 <div class="section" id="autograd">
-<h2><a class="toc-backref" href="#id17">Autograd</a><a class="headerlink" href="#autograd" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Autograd</a><a class="headerlink" href="#autograd" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="pytorch-variables-autograd">
-<h3><a class="toc-backref" href="#id18">PyTorch: Variables과 autograd</a><a class="headerlink" href="#pytorch-variables-autograd" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">PyTorch: Variables과 autograd</a><a class="headerlink" href="#pytorch-variables-autograd" title="Permalink to this headline">¶</a></h3>
 <p>위의 예제에서 우리는 신경망의 순전파 단계와 역전파 단계를 수동으로 구현하였습니다.
 작은 2-계층 신경망에서 역전파 단계를 직접 구현하는 것은 큰 일이 아니지만,
 대규모의 복잡한 신경망에서는 매우 아슬아슬한 일일 것입니다.</p>
@@ -751,7 +751,7 @@ Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것�
 </div>
 </div>
 <div class="section" id="pytorch-autograd">
-<h3><a class="toc-backref" href="#id19">PyTorch: 새 autograd 함수 정의하기</a><a class="headerlink" href="#pytorch-autograd" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">PyTorch: 새 autograd 함수 정의하기</a><a class="headerlink" href="#pytorch-autograd" title="Permalink to this headline">¶</a></h3>
 <p>Under the hood, autograd의 기본(primitive) 연산자는 실제로 Tensor를 조작하는 2개의
 함수입니다. <strong>forward</strong> 함수는 입력 Tensor로부터 출력 Tensor를 계산합니다.
 <strong>backward</strong> 함수는 출력 Tensor의 변화도를 받고 입력 Tensor의 변화도를 계산합니다.</p>
@@ -841,7 +841,7 @@ Variable을 사용하면, 자동으로 변화도를 계산할 수 있다는 것�
 </div>
 </div>
 <div class="section" id="tensorflow-static-graph">
-<h3><a class="toc-backref" href="#id20">TensorFlow: 정적 그래프(Static Graph)</a><a class="headerlink" href="#tensorflow-static-graph" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">TensorFlow: 정적 그래프(Static Graph)</a><a class="headerlink" href="#tensorflow-static-graph" title="Permalink to this headline">¶</a></h3>
 <p>PyTorch autograd는 Tensorflow와 많이 닮아보입니다: 두 프레임워크 모두 연산 그래프를
 정의하며, 자동 미분을 사용하여 변화도를 계산합니다. 두 프레임워크의 가장 큰 차이점은
 Tensorflow의 연산 그래프는 <strong>정적</strong> 이며, PyTorch는 <strong>동적</strong> 연산 그래프를 사용한다는
@@ -926,31 +926,27 @@ Tensorflow의 연산 그래프는 <strong>정적</strong> 이며, PyTorch는 <st
 </div>
 </div>
 </div>
-<div class="section" id="nn-module">
-<h2><a class="toc-backref" href="#id21"><cite>nn</cite> module</a><a class="headerlink" href="#nn-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nn">
+<h2><a class="toc-backref" href="#id20"><cite>nn</cite> 모듈</a><a class="headerlink" href="#nn" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="pytorch-nn">
-<h3><a class="toc-backref" href="#id22">PyTorch: nn</a><a class="headerlink" href="#pytorch-nn" title="Permalink to this headline">¶</a></h3>
-<p>Computational graphs and autograd are a very powerful paradigm for
-defining complex operators and automatically taking derivatives; however
-for large neural networks raw autograd can be a bit too low-level.</p>
-<p>When building neural networks we frequently think of arranging the
-computation into <strong>layers</strong>, some of which have <strong>learnable parameters</strong>
-which will be optimized during learning.</p>
-<p>In TensorFlow, packages like
-<a class="reference external" href="https://github.com/fchollet/keras">Keras</a>,
+<h3><a class="toc-backref" href="#id21">PyTorch: nn</a><a class="headerlink" href="#pytorch-nn" title="Permalink to this headline">¶</a></h3>
+<p>연산 그래프와 autograd는 복잡한 연산자를 정의하고 도함수(derivative)를 자동으로
+계산하는데 매우 강력한 패러다임(paradigm)입니다; 하지만 규모가 큰 신경망에서는
+autograd 그 자체만으로는 너무 낮은 수준(low-level)일 수 있습니다.</p>
+<p>신경망을 구성할 때 종종 연산을 여러 <strong>계층</strong> 으로 배열하는 것으로 생각하게 되는데,
+이 중 일부는 학습 도중 최적화가 될 <strong>학습 가능한 매개변수</strong> 를 갖고 있습니다.</p>
+<p>Tensorflow에서 <a class="reference external" href="https://github.com/fchollet/keras">Keras</a>,
 <a class="reference external" href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim">TensorFlow-Slim</a>,
-and <a class="reference external" href="http://tflearn.org/">TFLearn</a> provide higher-level abstractions
-over raw computational graphs that are useful for building neural
-networks.</p>
-<p>In PyTorch, the <code class="docutils literal notranslate"><span class="pre">nn</span></code> package serves this same purpose. The <code class="docutils literal notranslate"><span class="pre">nn</span></code>
-package defines a set of <strong>Modules</strong>, which are roughly equivalent to
-neural network layers. A Module receives input Variables and computes
-output Variables, but may also hold internal state such as Variables
-containing learnable parameters. The <code class="docutils literal notranslate"><span class="pre">nn</span></code> package also defines a set
-of useful loss functions that are commonly used when training neural
-networks.</p>
-<p>In this example we use the <code class="docutils literal notranslate"><span class="pre">nn</span></code> package to implement our two-layer
-network:</p>
+나 <a class="reference external" href="http://tflearn.org/">TFLearn</a> 같은 패키지는 원초적(raw)인 연산 그래프보다
+더 높은 수준의 추상화(higher-level abstraction)를 제공하여 신경망을 구축하는데
+있어 유용합니다.</p>
+<p>PyTorch에서는 <code class="docutils literal notranslate"><span class="pre">nn</span></code> 패키지가 동일한 목적으로 제공됩니다. <code class="docutils literal notranslate"><span class="pre">nn</span></code> 패키지는
+대략 신경망 계층들과 동일한 <strong>모듈</strong> 의 집합을 정의합니다.
+모듈은 입력 Variable을 받고 출력 Variable을 계산하는 한편, 학습 가능한
+매개변수를 포함하는 Variable과 같은 내부 상태(internal state)를 갖습니다.
+또한, <code class="docutils literal notranslate"><span class="pre">nn</span></code> 패키지는 신경망을 학습시킬 때 주로 사용하는 유용한 손실 함수들도
+정의합니다.</p>
+<p>이번 예제에서는 <code class="docutils literal notranslate"><span class="pre">nn</span></code> 패키지를 이용하여 2-계층 신경망을 구성해보겠습니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
@@ -1008,7 +1004,7 @@ network:</p>
 </div>
 </div>
 <div class="section" id="pytorch-optim">
-<h3><a class="toc-backref" href="#id23">PyTorch: optim</a><a class="headerlink" href="#pytorch-optim" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">PyTorch: optim</a><a class="headerlink" href="#pytorch-optim" title="Permalink to this headline">¶</a></h3>
 <p>Up to this point we have updated the weights of our models by manually
 mutating the <code class="docutils literal notranslate"><span class="pre">.data</span></code> member for Variables holding learnable
 parameters. This is not a huge burden for simple optimization algorithms
@@ -1071,7 +1067,7 @@ by the <code class="docutils literal notranslate"><span class="pre">optim</span>
 </div>
 </div>
 <div class="section" id="pytorch-custom-nn-modules">
-<h3><a class="toc-backref" href="#id24">PyTorch: Custom nn Modules</a><a class="headerlink" href="#pytorch-custom-nn-modules" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">PyTorch: Custom nn Modules</a><a class="headerlink" href="#pytorch-custom-nn-modules" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes you will want to specify models that are more complex than a
 sequence of existing Modules; for these cases you can define your own
 Modules by subclassing <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> and defining a <code class="docutils literal notranslate"><span class="pre">forward</span></code> which
@@ -1137,7 +1133,7 @@ subclass:</p>
 </div>
 </div>
 <div class="section" id="pytorch-control-flow-weight-sharing">
-<h3><a class="toc-backref" href="#id25">PyTorch: Control Flow + Weight Sharing</a><a class="headerlink" href="#pytorch-control-flow-weight-sharing" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">PyTorch: Control Flow + Weight Sharing</a><a class="headerlink" href="#pytorch-control-flow-weight-sharing" title="Permalink to this headline">¶</a></h3>
 <p>As an example of dynamic graphs and weight sharing, we implement a very
 strange model: a fully-connected ReLU network that on each forward pass
 chooses a random number between 1 and 4 and uses that many hidden
@@ -1217,63 +1213,63 @@ reusing the same Module multiple times when defining the forward pass.</p>
 </div>
 </div>
 <div class="section" id="examples">
-<span id="examples-download"></span><h2><a class="toc-backref" href="#id26">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<span id="examples-download"></span><h2><a class="toc-backref" href="#id25">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>You can browse the above examples here.</p>
 <div class="section" id="tensors">
-<h3><a class="toc-backref" href="#id27">Tensors</a><a class="headerlink" href="#tensors" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">Tensors</a><a class="headerlink" href="#tensors" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 </div>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 오차(Euclidean Error)를 사용하여 x로부터 y를 예측하도록 학습하겠습니다."><div class="figure" id="id5">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 오차(Euclidean Error)를 사용하여 x로부터 y를 예측하도록 학습하겠습니다."><div class="figure" id="id4">
 <img alt="../_images/sphx_glr_two_layer_net_numpy_thumb.png" src="../_images/sphx_glr_two_layer_net_numpy_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_numpy.html#sphx-glr-beginner-examples-tensor-two-layer-net-numpy-py"><span class="std std-ref">준비 운동: NumPy</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 ..."><div class="figure" id="id6">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측하도록 ..."><div class="figure" id="id5">
 <img alt="../_images/sphx_glr_two_layer_net_tensor_thumb.png" src="../_images/sphx_glr_two_layer_net_tensor_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_tensor/two_layer_net_tensor.html#sphx-glr-beginner-examples-tensor-two-layer-net-tensor-py"><span class="std std-ref">PyTorch: Tensor</span></a></span></p>
 </div>
 </div></p>
 <div style='clear:both'></div></div>
 <div class="section" id="id3">
-<h3><a class="toc-backref" href="#id28">Autograd</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">Autograd</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 </div>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 ..."><div class="figure" id="id7">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 ..."><div class="figure" id="id6">
 <img alt="../_images/sphx_glr_two_layer_net_autograd_thumb.png" src="../_images/sphx_glr_two_layer_net_autograd_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_autograd/two_layer_net_autograd.html#sphx-glr-beginner-examples-autograd-two-layer-net-autograd-py"><span class="std std-ref">PyTorch: Variable과 autograd</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 ..."><div class="figure" id="id8">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 ..."><div class="figure" id="id7">
 <img alt="../_images/sphx_glr_two_layer_net_custom_function_thumb.png" src="../_images/sphx_glr_two_layer_net_custom_function_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_autograd/two_layer_net_custom_function.html#sphx-glr-beginner-examples-autograd-two-layer-net-custom-function-py"><span class="std std-ref">PyTorch: 새 autograd 함수 정의하기</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 ..."><div class="figure" id="id9">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)과 편향(Bias)이 없는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 ..."><div class="figure" id="id8">
 <img alt="../_images/sphx_glr_tf_two_layer_net_thumb.png" src="../_images/sphx_glr_tf_two_layer_net_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_autograd/tf_two_layer_net.html#sphx-glr-beginner-examples-autograd-tf-two-layer-net-py"><span class="std std-ref">TensorFlow: 정적 그래프(Static Graph)</span></a></span></p>
 </div>
 </div></p>
 <div style='clear:both'></div></div>
-<div class="section" id="id4">
-<h3><a class="toc-backref" href="#id29"><cite>nn</cite> module</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="nn-module">
+<h3><a class="toc-backref" href="#id28"><cite>nn</cite> module</a><a class="headerlink" href="#nn-module" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 </div>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id10">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id9">
 <img alt="../_images/sphx_glr_two_layer_net_nn_thumb.png" src="../_images/sphx_glr_two_layer_net_nn_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_nn.html#sphx-glr-beginner-examples-nn-two-layer-net-nn-py"><span class="std std-ref">PyTorch: nn</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id11">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id10">
 <img alt="../_images/sphx_glr_two_layer_net_optim_thumb.png" src="../_images/sphx_glr_two_layer_net_optim_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_optim.html#sphx-glr-beginner-examples-nn-two-layer-net-optim-py"><span class="std std-ref">PyTorch: optim</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id12">
+<p><div class="sphx-glr-thumbcontainer" tooltip="하나의 은닉 계층(Hidden Layer)을 갖는 완전히 연결된 ReLU 신경망에 유클리드 거리(Euclidean Distance)의 제곱을 최소화하여 x로부터 y를 예측..."><div class="figure" id="id11">
 <img alt="../_images/sphx_glr_two_layer_net_module_thumb.png" src="../_images/sphx_glr_two_layer_net_module_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/two_layer_net_module.html#sphx-glr-beginner-examples-nn-two-layer-net-module-py"><span class="std std-ref">PyTorch: 사용자 정의 nn 모듈</span></a></span></p>
 </div>
 </div></p>
-<p><div class="sphx-glr-thumbcontainer" tooltip="PyTorch 동적 그래프의 성능을 보여주기 위해, 매우 이상한 모델을 구현해보겠습니다: 각각의 순전파 단계에서 많은 은닉 계층을 갖는 완전히 연결(Fully-connec..."><div class="figure" id="id13">
+<p><div class="sphx-glr-thumbcontainer" tooltip="PyTorch 동적 그래프의 성능을 보여주기 위해, 매우 이상한 모델을 구현해보겠습니다: 각각의 순전파 단계에서 많은 은닉 계층을 갖는 완전히 연결(Fully-connec..."><div class="figure" id="id12">
 <img alt="../_images/sphx_glr_dynamic_net_thumb.png" src="../_images/sphx_glr_dynamic_net_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="examples_nn/dynamic_net.html#sphx-glr-beginner-examples-nn-dynamic-net-py"><span class="std std-ref">PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)</span></a></span></p>
 </div>

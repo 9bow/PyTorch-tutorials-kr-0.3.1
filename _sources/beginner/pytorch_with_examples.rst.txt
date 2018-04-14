@@ -147,37 +147,33 @@ Tensorflow에서는 연산 그래프를 한 번 정의한 후 동일한 그래�
 
 .. includenodoc:: /beginner/examples_autograd/tf_two_layer_net.py
 
-`nn` module
+`nn` 모듈
 ===========
 
 PyTorch: nn
 -----------
 
-Computational graphs and autograd are a very powerful paradigm for
-defining complex operators and automatically taking derivatives; however
-for large neural networks raw autograd can be a bit too low-level.
+연산 그래프와 autograd는 복잡한 연산자를 정의하고 도함수(derivative)를 자동으로
+계산하는데 매우 강력한 패러다임(paradigm)입니다; 하지만 규모가 큰 신경망에서는
+autograd 그 자체만으로는 너무 낮은 수준(low-level)일 수 있습니다.
 
-When building neural networks we frequently think of arranging the
-computation into **layers**, some of which have **learnable parameters**
-which will be optimized during learning.
+신경망을 구성할 때 종종 연산을 여러 **계층** 으로 배열하는 것으로 생각하게 되는데,
+이 중 일부는 학습 도중 최적화가 될 **학습 가능한 매개변수** 를 갖고 있습니다.
 
-In TensorFlow, packages like
-`Keras <https://github.com/fchollet/keras>`__,
+Tensorflow에서 `Keras <https://github.com/fchollet/keras>`__,
 `TensorFlow-Slim <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim>`__,
-and `TFLearn <http://tflearn.org/>`__ provide higher-level abstractions
-over raw computational graphs that are useful for building neural
-networks.
+나 `TFLearn <http://tflearn.org/>`__ 같은 패키지는 원초적(raw)인 연산 그래프보다
+더 높은 수준의 추상화(higher-level abstraction)를 제공하여 신경망을 구축하는데
+있어 유용합니다.
 
-In PyTorch, the ``nn`` package serves this same purpose. The ``nn``
-package defines a set of **Modules**, which are roughly equivalent to
-neural network layers. A Module receives input Variables and computes
-output Variables, but may also hold internal state such as Variables
-containing learnable parameters. The ``nn`` package also defines a set
-of useful loss functions that are commonly used when training neural
-networks.
+PyTorch에서는 ``nn`` 패키지가 동일한 목적으로 제공됩니다. ``nn`` 패키지는
+대략 신경망 계층들과 동일한 **모듈** 의 집합을 정의합니다.
+모듈은 입력 Variable을 받고 출력 Variable을 계산하는 한편, 학습 가능한
+매개변수를 포함하는 Variable과 같은 내부 상태(internal state)를 갖습니다.
+또한, ``nn`` 패키지는 신경망을 학습시킬 때 주로 사용하는 유용한 손실 함수들도
+정의합니다.
 
-In this example we use the ``nn`` package to implement our two-layer
-network:
+이번 예제에서는 ``nn`` 패키지를 이용하여 2-계층 신경망을 구성해보겠습니다:
 
 .. includenodoc:: /beginner/examples_nn/two_layer_net_nn.py
 
