@@ -224,8 +224,8 @@ PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)
 
 .. _examples-download:
 
-예제
-=====
+예제 코드
+=========
 
 이상의 예제들을 여기에서 확인할 수 있습니다.
 
