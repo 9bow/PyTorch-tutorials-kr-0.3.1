@@ -50,7 +50,7 @@ class DataParallelModel(nn.Module):
 # - 분산(scatter): 첫번째 차원(First-dimension)에서 입력을 분산합니다.
 # - 수집(gather): 첫번째 차원의 입력을 수집하고 연결(Concatenate)합니다.
 # - 병렬적용(parallel\_apply): 이미 분산된 입력의 집합을 이미 분산된 모델의
-# 집합에 적용합니다.
+#   집합에 적용합니다.
 #
 # 더 명확히 알아보기 위해, 이러한 요소를 사용하여 구성한 ``data_parallel``
 # 함수가 있습니다.
@@ -109,10 +109,10 @@ class DistributedModel(nn.Module):
 # -  `Train a state-of-the-art ResNet network on imagenet`_
 # -  `Train an face generator using Generative Adversarial Networks`_
 # -  `Train a word-level language model using Recurrent LSTM networks`_
-# -  `More examples`_
-# -  `More tutorials`_
-# -  `Discuss PyTorch on the Forums`_
-# -  `Chat with other users on Slack`_
+# -  `다른 예제들 참고하기`_
+# -  `더 많은 튜토리얼 보기`_
+# -  `포럼에서 PyTorch에 대해 얘기하기`_
+# -  `Slack에서 다른 사용자와 대화하기`_
 #
 # .. _`Deep Learning with PyTorch: a 60-minute blitz`: https://github.com/pytorch/tutorials/blob/master/Deep%20Learning%20with%20PyTorch.ipynb
 # .. _Train a state-of-the-art ResNet network on imagenet: https://github.com/pytorch/examples/tree/master/imagenet
