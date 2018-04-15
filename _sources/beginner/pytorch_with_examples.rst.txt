@@ -104,7 +104,7 @@ Under the hood, autograd의 기본(primitive) 연산자는 실제로 Tensor를 �
 함수입니다. **forward** 함수는 입력 Tensor로부터 출력 Tensor를 계산합니다.
 **backward** 함수는 출력 Tensor의 변화도를 받고 입력 Tensor의 변화도를 계산합니다.
 
-PyTorch에서 ``torch.autograd.Function`` 의 하위 클래스(subclass)를 정의하고
+PyTorch에서 ``torch.autograd.Function`` 의 서브클래스(subclass)를 정의하고
 ``forward`` 와 ``backward`` 함수를 구현함으로써 쉽게 사용자 정의 autograd 연산자를
 정의할 수 있습니다. 그 후, 인스턴스(instance)를 생성하고 함수처럼 호출하여
 입력 데이터를 포함하는 Variable을 전달하는 식으로 새로운 autograd 연산자를 쉽게
@@ -173,70 +173,63 @@ PyTorch에서는 ``nn`` 패키지가 동일한 목적으로 제공됩니다. ``n
 또한, ``nn`` 패키지는 신경망을 학습시킬 때 주로 사용하는 유용한 손실 함수들도
 정의합니다.
 
-이번 예제에서는 ``nn`` 패키지를 이용하여 2-계층 신경망을 구성해보겠습니다:
+이번 예제에서는 ``nn`` 패키지를 사용하여 2-계층 신경망을 구성해보겠습니다:
 
 .. includenodoc:: /beginner/examples_nn/two_layer_net_nn.py
 
 PyTorch: optim
 --------------
 
-Up to this point we have updated the weights of our models by manually
-mutating the ``.data`` member for Variables holding learnable
-parameters. This is not a huge burden for simple optimization algorithms
-like stochastic gradient descent, but in practice we often train neural
-networks using more sophisticated optimizers like AdaGrad, RMSProp,
-Adam, etc.
+지금까지는 학습 가능한 매개변수를 갖는 Variable의 ``.data`` 멤버를 직접 조작하여
+모델의 가중치를 갱신하였습니다. 이는 확률적 경사 하강법과 같은 간단한 최적화
+알고리즘에서는 크게 부담이 되지는 않지만, 실제로 신경망을 학습할 때는 주로
+AdaGrad, RMSProp, Adam 등과 같은 좀 더 정교한 Optimizer를 사용합니다.
 
-The ``optim`` package in PyTorch abstracts the idea of an optimization
-algorithm and provides implementations of commonly used optimization
-algorithms.
+PyTorch의 ``optim`` 패키지는 최적화 알고리즘의 아이디어를 추상화하고 일반적으로
+사용하는 최적화 알고리즘의 구현체(implementation)를 제공합니다.
 
-In this example we will use the ``nn`` package to define our model as
-before, but we will optimize the model using the Adam algorithm provided
-by the ``optim`` package:
+이 에제에서는 앞에서와 같이 ``nn`` 패키지를 사용하여 모델을 정의하지만, ``optim``
+패키지가 제공하는 Adam 알고리즘을 이용하여 모델을 최적화하겠습니다:
 
 .. includenodoc:: /beginner/examples_nn/two_layer_net_optim.py
 
-PyTorch: Custom nn Modules
---------------------------
+PyTorch: 사용자 정의 nn 모듈
+-----------------------------
 
-Sometimes you will want to specify models that are more complex than a
-sequence of existing Modules; for these cases you can define your own
-Modules by subclassing ``nn.Module`` and defining a ``forward`` which
-receives input Variables and produces output Variables using other
-modules or other autograd operations on Variables.
+가끔은 기존 모듈의 순차적 구성보다 더 복잡한 모델을 구성해야 할 때가 있습니다;
+이럴 때는 ``nn.Module`` 의 서브클래스로 새 모듈을 정의하고, 입력 Variable을 받아
+다른 모듈 또는 Variable의 autograd 연산을 사용하여 출력 Variable을 생성하는
+``forward`` 를 정의합니다.
 
-In this example we implement our two-layer network as a custom Module
-subclass:
+이 예제에서는 2-계층 신경망을 사용자 정의 Module의 서브클래스로 구현해보겠습니다:
 
 .. includenodoc:: /beginner/examples_nn/two_layer_net_module.py
 
-PyTorch: Control Flow + Weight Sharing
---------------------------------------
+PyTorch: 제어 흐름(Control Flow) + 가중치 공유(Weight Sharing)
+---------------------------------------------------------------
 
-As an example of dynamic graphs and weight sharing, we implement a very
-strange model: a fully-connected ReLU network that on each forward pass
-chooses a random number between 1 and 4 and uses that many hidden
-layers, reusing the same weights multiple times to compute the innermost
-hidden layers.
+동적 그래프와 가중치 공유의 예로, 매우 이상한 모델을 구현해보겠습니다:
+각각의 순전파 단계에서 많은 은닉 계층을 갖는 완전히 연결(Fully-connected)된 ReLU
+신경망이 무작위로 1 ~ 4 사이의 숫자를 선택하고, 동일한 가중치를 여러 번 재사용하여
+가장 안쪽(Innermost)에 있는 은닉 계층들을 계산합니다.
 
-For this model we can use normal Python flow control to implement the loop,
-and we can implement weight sharing among the innermost layers by simply
-reusing the same Module multiple times when defining the forward pass.
+이 모델에서는 반복문을 구현하기 위해 일반적인 Python 제어 흐름을 사용하고,
+순전파 단계를 정의할 때 단지 동일한 모듈을 여러번 재사용함으로써 내부(innermost)
+계층들 간의 가중치 공유를 구현할 수 있습니다.
 
-We can easily implement this model as a Module subclass:
+이 모델은 간단히 Module을 상속받는 서브클래스로 구현해보겠습니다:
 
 .. includenodoc:: /beginner/examples_nn/dynamic_net.py
 
 
 .. _examples-download:
 
-Examples
-========
+예제 코드
+=========
 
-You can browse the above examples here.
+이상의 예제들을 여기에서 확인할 수 있습니다.
 
-Tensors
+Tensor
 -------
 
 .. toctree::
@@ -276,7 +269,7 @@ Autograd
 
     <div style='clear:both'></div>
 
-`nn` module
+`nn` 모듈
 -----------
 
 .. toctree::
