@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Multi-GPU examples &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>멀티-GPU 예제 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -185,9 +185,9 @@
 <li class="toctree-l3"><a class="reference internal" href="nn_tutorial.html#recurrent-nets">예제2: 순환 신경망(Recurrent Nets)</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Multi-GPU examples</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">멀티-GPU 예제</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dataparallel">DataParallel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#part-of-the-model-on-cpu-and-part-on-the-gpu">Part of the model on CPU and part on the GPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpu-gpu">모델의 일부는 CPU, 일부는 GPU에서</a></li>
 </ul>
 </li>
 </ul>
@@ -494,7 +494,7 @@
         
           <li><a href="../former_torchies_tutorial.html">Torch 사용자를 위한 PyTorch</a> &raquo;</li>
         
-      <li>Multi-GPU examples</li>
+      <li>멀티-GPU 예제</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -513,14 +513,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="multi-gpu-examples">
-<span id="sphx-glr-beginner-former-torchies-parallelism-tutorial-py"></span><h1>Multi-GPU examples<a class="headerlink" href="#multi-gpu-examples" title="Permalink to this headline">¶</a></h1>
-<p>Data Parallelism is when we split the mini-batch of samples into
-multiple smaller mini-batches and run the computation for each of the
-smaller mini-batches in parallel.</p>
-<p>Data Parallelism is implemented using <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code>.
-One can wrap a Module in <code class="docutils literal notranslate"><span class="pre">DataParallel</span></code> and it will be parallelized
-over multiple GPUs in the batch dimension.</p>
+  <div class="section" id="gpu">
+<span id="sphx-glr-beginner-former-torchies-parallelism-tutorial-py"></span><h1>멀티-GPU 예제<a class="headerlink" href="#gpu" title="Permalink to this headline">¶</a></h1>
+<p>데이터 병렬 처리(Data Parallelism)는 미니배치를 여러 개의 더 작은 미니배치로 자르고
+각각의 작은 미니배치를 병렬적으로 연산하는 것입니다.</p>
+<p>데이터 병렬 처리는 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 을 사용하여 구현합니다.
+<code class="docutils literal notranslate"><span class="pre">DataParallel</span></code> 로 감쌀(wrap) 수 있는 모듈은 배치 차원(batch dimension)에서
+여러 GPU에서 병렬 처리될 것입니다.</p>
 <div class="section" id="dataparallel">
 <h2>DataParallel<a class="headerlink" href="#dataparallel" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span>
@@ -545,21 +544,21 @@ over multiple GPUs in the batch dimension.</p>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
-<p>The code does not need to be changed in CPU-mode.</p>
-<p>The documentation for DataParallel can be found
-<a class="reference external" href="http://pytorch.org/docs/nn.html#dataparallel">here</a>.</p>
-<p><strong>Primitives on which DataParallel is implemented upon:</strong></p>
-<p>In general, pytorch’s <cite>nn.parallel</cite> primitives can be used independently.
-We have implemented simple MPI-like primitives:</p>
+<p>코드는 CPU 모드 때와 바뀔 필요가 없습니다.</p>
+<p>DataParallel에 대한 문서는 <a class="reference external" href="http://pytorch.org/docs/nn.html#dataparallel">여기</a>
+에서 확인하실 수 있습니다.</p>
+<p><strong>DataParallel이 구현된 기본형(Primitive):</strong></p>
+<p>일반적으로, PyTorch의 <cite>nn.parallel</cite> 기본형은 독립적으로 사용할 수 있습니다.
+간단한 MPI류의 기본형을 구현했습니다:</p>
 <ul class="simple">
-<li>replicate: replicate a Module on multiple devices</li>
-<li>scatter: distribute the input in the first-dimension</li>
-<li>gather: gather and concatenate the input in the first-dimension</li>
-<li>parallel_apply: apply a set of already-distributed inputs to a set of
-already-distributed models.</li>
+<li>복제(replicate): 여러 기기(Device)에 모듈을 복제합니다.</li>
+<li>분산(scatter): 첫번째 차원(First-dimension)에서 입력을 분산합니다.</li>
+<li>수집(gather): 첫번째 차원의 입력을 수집하고 연결(Concatenate)합니다.</li>
+<li>병렬적용(parallel_apply): 이미 분산된 입력의 집합을 이미 분산된 모델의
+집합에 적용합니다.</li>
 </ul>
-<p>To give a better clarity, here function <code class="docutils literal notranslate"><span class="pre">data_parallel</span></code> composed using
-these collectives</p>
+<p>더 명확히 알아보기 위해, 이러한 요소를 사용하여 구성한 <code class="docutils literal notranslate"><span class="pre">data_parallel</span></code>
+함수가 있습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">data_parallel</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">,</span> <span class="n">output_device</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">device_ids</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
@@ -575,10 +574,9 @@ these collectives</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="part-of-the-model-on-cpu-and-part-on-the-gpu">
-<h2>Part of the model on CPU and part on the GPU<a class="headerlink" href="#part-of-the-model-on-cpu-and-part-on-the-gpu" title="Permalink to this headline">¶</a></h2>
-<p>Let’s look at a small example of implementing a network where part of it
-is on the CPU and part on the GPU</p>
+<div class="section" id="cpu-gpu">
+<h2>모델의 일부는 CPU, 일부는 GPU에서<a class="headerlink" href="#cpu-gpu" title="Permalink to this headline">¶</a></h2>
+<p>일부는 CPU에서, 일부는 GPU에서 구현한 작은 신경망 예제를 살펴보겠습니다:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DistributedModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -599,20 +597,20 @@ is on the CPU and part on the GPU</p>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
-<p>This was a small introduction to PyTorch for former Torch users.
-There’s a lot more to learn.</p>
-<p>Look at our more comprehensive introductory tutorial which introduces
-the <code class="docutils literal notranslate"><span class="pre">optim</span></code> package, data loaders etc.: <a class="reference internal" href="../deep_learning_60min_blitz.html"><span class="doc">PyTorch로 딥러닝하기: 60분만에 끝장내기</span></a>.</p>
-<p>Also look at</p>
+<p>지금까지 기존 Torch 사용자를 위한 간단한 PyTorch 개요였습니다.
+배울 것은 아주 많이 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">optim</span></code> 패키지, 데이터 로더 등을 소개하고 있는 더 포괄적인 입문용 튜토리얼을
+보시기 바랍니다: <a class="reference internal" href="../deep_learning_60min_blitz.html"><span class="doc">PyTorch로 딥러닝하기: 60분만에 끝장내기</span></a>.</p>
+<p>또한, 다음의 내용들도 살펴보세요.</p>
 <ul class="simple">
 <li><a class="reference internal" href="../../intermediate/reinforcement_q_learning.html"><span class="doc">Train neural nets to play video games</span></a></li>
 <li><a class="reference external" href="https://github.com/pytorch/examples/tree/master/imagenet">Train a state-of-the-art ResNet network on imagenet</a></li>
 <li><a class="reference external" href="https://github.com/pytorch/examples/tree/master/dcgan">Train an face generator using Generative Adversarial Networks</a></li>
 <li><a class="reference external" href="https://github.com/pytorch/examples/tree/master/word_language_model">Train a word-level language model using Recurrent LSTM networks</a></li>
-<li><a class="reference external" href="https://github.com/pytorch/examples">More examples</a></li>
-<li><a class="reference external" href="https://github.com/pytorch/tutorials">More tutorials</a></li>
-<li><a class="reference external" href="https://discuss.pytorch.org/">Discuss PyTorch on the Forums</a></li>
-<li><a class="reference external" href="http://pytorch.slack.com/messages/beginner/">Chat with other users on Slack</a></li>
+<li><a class="reference external" href="https://github.com/pytorch/examples">다른 예제들 참고하기</a></li>
+<li><a class="reference external" href="https://github.com/pytorch/tutorials">더 많은 튜토리얼 보기</a></li>
+<li><a class="reference external" href="https://discuss.pytorch.org/">포럼에서 PyTorch에 대해 얘기하기</a></li>
+<li><a class="reference external" href="http://pytorch.slack.com/messages/beginner/">Slack에서 다른 사용자와 대화하기</a></li>
 </ul>
 <p><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div class="sphx-glr-footer docutils container">
@@ -647,7 +645,7 @@ the <code class="docutils literal notranslate"><span class="pre">optim</span></c
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, PyTorch.
+        &copy; Copyright 2018, PyTorch (&amp; Korean translation is for its contributors).
 
     </p>
   </div>
