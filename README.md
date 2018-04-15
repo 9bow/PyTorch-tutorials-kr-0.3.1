@@ -25,12 +25,14 @@ PyTorch에서 제공하는 튜토리얼의 한국어 번역을 위한 저장소�
     * [신경망(Neural Networks)](https://9bow.github.io/PyTorch-tutorials-kr/beginner/blitz/neural_networks_tutorial.html)
     * [분류기(Classifier) 학습하기](https://9bow.github.io/PyTorch-tutorials-kr/beginner/blitz/cifar10_tutorial.html)
 * [Torch 사용자를 위한 PyTorch](https://9bow.github.io/PyTorch-tutorials-kr/beginner/former_torchies_tutorial.html)
-    * [Tensors](https://9bow.github.io/PyTorch-tutorials-kr/beginner/former_torchies/tensor_tutorial.html)
+    * [Tensor](https://9bow.github.io/PyTorch-tutorials-kr/beginner/former_torchies/tensor_tutorial.html)
     * [Autograd](https://9bow.github.io/PyTorch-tutorials-kr/beginner/former_torchies/autograd_tutorial.html)
     * [nn 패키지](https://9bow.github.io/PyTorch-tutorials-kr/beginner/former_torchies/nn_tutorial.html)
 * [예제로 배우는 PyTorch](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html)
     * [Tensor](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#tensor)
     * [Autograd](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#autograd)
+    * [nn 모듈](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#nn)
+    * [예제 코드](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#examples)
 
 ### 중급(Intermediate)
 * *TBD*
