@@ -61,15 +61,9 @@ Pytorch에 포함된 분산 패키지 (i.e.,
 ``init_processes`` 함수는 동일한 IP 주소와 포트를 사용해서 모든 프로세스가 마스터를 통해서 조직 되게 한다. 우리는 TCP 백헨드를 사용했지만 대신
 `MPI <https://en.wikipedia.org/wiki/Message_Passing_Interface>`__ 또는
 `Gloo <http://github.com/facebookincubator/gloo>`__ 를 사용할 수 있다. (c.f.
-`Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법은 건너 띈다. 그러나 기본적으로 프로세스가 자신의 위치를 ​​공유함으로써 서로 통신 할 수 있게 한다.
+`Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법을 살펴봅니다. 그러나 기본적으로 프로세스는 자신의 위치를 공유하여 서로 통신 할 수 있다.
 
-
- We will go over the magic
-happening in ``dist.init_process_group`` at the end of this tutorial,
-but it essentially allows processes to communicate with each other by
-sharing their locations.
-
-Point-to-Point Communication
+지점간 통신(Point-to-Point Communication) 
 ----------------------------
 
 .. figure:: /_static/img/distributed/send_recv.png
@@ -77,13 +71,10 @@ Point-to-Point Communication
    :align: center
    :alt: Send and Recv
 
-   Send and Recv
+   전송과 수신
 
-
-A transfer of data from one process to another is called a
-point-to-point communication. These are achieved through the ``send``
-and ``recv`` functions or their *immediate* counter-parts, ``isend`` and
-``irecv``.
+하나의 프로세스에서 다른 프로세스로 데이터를 전송하는 것을 지점간 통신이라고합니다. 이것은``send``와``recv`` 함수 또는 직접 대응부인 (*immediate* counter-parts) ``isend``와``irecv``를 통해 이루어집니다.
+ 
 
 .. code:: python
 
@@ -100,16 +91,9 @@ and ``recv`` functions or their *immediate* counter-parts, ``isend`` and
             dist.recv(tensor=tensor, src=0)
         print('Rank ', rank, ' has data ', tensor[0])
 
-In the above example, both processes start with a zero tensor, then
-process 0 increments the tensor and sends it to process 1 so that they
-both end up with 1.0. Notice that process 1 needs to allocate memory in
-order to store the data it will receive.
-
-Also notice that ``send``/``recv`` are **blocking**: both processes stop
-until the communication is completed. On the other hand immediates are
-**non-blocking**; the script continues its execution and the methods
-return a ``DistributedRequest`` object upon which we can choose to
-``wait()``.
+위의 예제에서 두 프로세스는 모두 값이 0인 Tensor 로 시작하고, 0번 프로세스는 Tensor 를 증가시키고 프로세스 1로 보내서 양쪽 모두 1.0으로 끝납니다. 프로세스 1은 수신 할 데이터를 저장하기 위해 메모리를 할당해야합니다.
+ 
+또한 ``send`` /``recv``는 ** blocking ** 으로 동작합니다. : 통신이 완료 될 때까지 두 프로세스 모두 멈춥니다. 반면에 Immediates (  ``isend``와``irecv``)는 ** non-blocking **으로 동작 합니다; 스크립트는 실행을 계속하고 메서드는``wait ()``를 선택할 수있는``DistributedRequest`` 객체를 반환합니다.
 
 .. code:: python
 
@@ -130,27 +114,21 @@ return a ``DistributedRequest`` object upon which we can choose to
         req.wait()
         print('Rank ', rank, ' has data ', tensor[0])
 
-When using immediates we have to be careful about with our usage of the sent and received tensors.
-Since we do not know when the data will be communicated to the other process,
-we should not modify the sent tensor nor access the received tensor before ``req.wait()`` has completed.
-In other words, 
 
--  writing to ``tensor`` after ``dist.isend()`` will result in undefined behaviour.
--  reading from ``tensor`` after ``dist.irecv()`` will result in undefined behaviour. 
+Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주의해야 합니다.
+언제 데이터가 다른 프로세스와 통신 될지 알지 못하기 때문에, ``req.wait ()``가 완료되기 전에 전송된 Tensor를 수정하거나 수신된 텐서에 접근해서는 안됩니다.
+다시 말하면, 
+- ``dist.isend ()`` 다음에 ``tensor`` 에 쓰면 정의되지 않은 동작이 발생합니다.
+- ``dist.irecv ()`` 다음에 ``tensor`` 를 읽으면 정의되지 않은 동작이 발생합니다.
+ 
+그러나``req.wait ()``가 실행 된 후에 통신이 이루어진 것과, ``tensor [0] ''에 저장된 값이 1.0이라는 것이 보장됩니다.
 
-However, after ``req.wait()``
-has been executed we are guaranteed that the communication took place,
-and that the value stored in ``tensor[0]`` is 1.0.
+지점 간 통신은 프로세스 통신에 대한 세분화 된 제어를 원할 때 유용합니다. 그것들은`Baidu's DeepSpeech <https://github.com/baidu-research/baidu-allreduce>`__ 또는
+`Facebook's large-scale experiments <https://research.fb.com/publications/imagenet1kin1h/>`__.(c.f.
+`Section 4.1 <#our-own-ring-allreduce>`__) 와 같은 고급 알고리즘을 구현하는데 사용됩니다.
 
-Point-to-point communication is useful when we want a fine-grained
-control over the communication of our processes. They can be used to
-implement fancy algorithms, such as the one used in `Baidu's
-DeepSpeech <https://github.com/baidu-research/baidu-allreduce>`__ or
-`Facebook's large-scale
-experiments <https://research.fb.com/publications/imagenet1kin1h/>`__.(c.f.
-`Section 4.1 <#our-own-ring-allreduce>`__)
 
-Collective Communication
+집단 통신 (Collective Communication)
 ------------------------
 
 +----------------------------------------------------+-----------------------------------------------------+
@@ -159,32 +137,26 @@ Collective Communication
 |   :width: 100%                                     |   :width: 100%                                      |
 |   :align: center                                   |   :align: center                                    |
 |                                                    |                                                     |
-|   Scatter                                          |   Gather                                            |
+|   뿌리기(Scatter)                                  |  모으기(Gather)                                     |
 +----------------------------------------------------+-----------------------------------------------------+
 | .. figure:: /_static/img/distributed/reduce.png    | .. figure:: /_static/img/distributed/all_reduce.png |
 |   :alt: Reduce                                     |   :alt: All-Reduce                                  |
 |   :width: 100%                                     |   :width: 100%                                      |
 |   :align: center                                   |   :align: center                                    |
 |                                                    |                                                     |
-|   Reduce                                           |   All-Reduce                                        |
+|   줄이기(Reduce)                                   |   모두 줄이기 (All-Reduce)                          |
 +----------------------------------------------------+-----------------------------------------------------+
 | .. figure:: /_static/img/distributed/broadcast.png | .. figure:: /_static/img/distributed/all_gather.png |
 |   :alt: Broadcast                                  |   :alt: All-Gather                                  |
 |   :width: 100%                                     |   :width: 100%                                      |
 |   :align: center                                   |   :align: center                                    |
 |                                                    |                                                     |
-|   Broadcast                                        |   All-Gather                                        |
+|   방송하기(Broadcast)                              |   모두 모으기(All-Gather)                           |
 +----------------------------------------------------+-----------------------------------------------------+
 
 
-
-As opposed to point-to-point communcation, collectives allow for
-communication patterns across all processes in a **group**. A group is a
-subset of all our processes. To create a group, we can pass a list of
-ranks to ``dist.new_group(group)``. By default, collectives are executed
-on the all processes, also known as the **world**. For example, in order
-to obtain the sum of all tensors at all processes, we can use the
-``dist.all_reduce(tensor, op, group)`` collective.
+지점간 통신과는 달리 집단 통신은 ** 그룹(Group) **의 모든 프로세스에서 통신 패턴을 허용합니다. 그룹은 모든 프로세스의 하위 집합입니다. 그룹을 만들려면, ``dist.new_group (group)``에 순위 목록을 전달하면 됩니다. 기본적으로 집단 통신은 ** 월드(World) **라고도하는 모든 프로세스에서 실행됩니다. 예를 들어, 모든 프로세스에서 모든 텐서의 합을 얻으려면, "dist.all_reduce (tensor, op, group)" 를 사용할 수 있습니다.
+ 
 
 .. code:: python
 
@@ -196,35 +168,25 @@ to obtain the sum of all tensors at all processes, we can use the
         dist.all_reduce(tensor, op=dist.reduce_op.SUM, group=group)
         print('Rank ', rank, ' has data ', tensor[0])
 
-Since we want the sum of all tensors in the group, we use
-``dist.reduce_op.SUM`` as the reduce operator. Generally speaking, any
-commutative mathematical operation can be used as an operator.
-Out-of-the-box, PyTorch comes with 4 such operators, all working at the
-element-wise level:
+그룹의 모든 텐서의 합이 필요하기 때문에 Reduce 연산자로``dist.reduce_op.SUM``을 사용합니다. 일반적으로 교환 법칙이 성립하는 수학 연산은 연산자로 사용할 수 있습니다.
+
+특별히, PyTorch는 4개의 연산자를 제공하고 모두 요소 별로(element-wise) 작동합니다.:
 
 -  ``dist.reduce_op.SUM``,
 -  ``dist.reduce_op.PRODUCT``,
 -  ``dist.reduce_op.MAX``,
 -  ``dist.reduce_op.MIN``.
 
-In addition to ``dist.all_reduce(tensor, op, group)``, there are a total
-of 6 collectives currently implemented in PyTorch.
+``dist.all_reduce (tensor, op, group)``외에 현재 PyTorch에서 구현된 총 6개의 집단 통신이 있습니다.
 
--  ``dist.broadcast(tensor, src, group)``: Copies ``tensor`` from
-   ``src`` to all other processes.
--  ``dist.reduce(tensor, dst, op, group)``: Applies ``op`` to all
-   ``tensor`` and stores the result in ``dst``.
--  ``dist.all_reduce(tensor, op, group)``: Same as reduce, but the
-   result is stored in all processes.
--  ``dist.scatter(tensor, src, scatter_list, group)``: Copies the
-   :math:`i^{\text{th}}` tensor ``scatter_list[i]`` to the
-   :math:`i^{\text{th}}` process.
--  ``dist.gather(tensor, dst, gather_list, group)``: Copies ``tensor``
-   from all processes in ``dst``.
--  ``dist.all_gather(tensor_list, tensor, group)``: Copies ``tensor``
-   from all processes to ``tensor_list``, on all processes.
+-  ``dist.broadcast(tensor, src, group)``: ``src``에서 다른 모든 프로세스로``tensor``를 복사합니다.
+-  ``dist.reduce(tensor, dst, op, group)``: 모든``tensor``에``op``를 적용하고 그 결과를``dst``에 저장합니다.
+-  ``dist.all_reduce(tensor, op, group)``: reduce와 같지만 결과는 모든 프로세스에 저장됩니다.
+-  ``dist.scatter(tensor, src, scatter_list, group)``: ``i번째`` tensor ``scatter_list[i]`` 를 ``i번째`` 프로세스에 복사합니다.
+-  ``dist.gather(tensor, dst, gather_list, group)``: ``dst``의 모든 프로세스에서``tensor``를 복사합니다
+-  ``dist.all_gather(tensor_list, tensor, group)``:  모든 프로세스에서``tensor``를 모든 프로세스의 `tensor_list``에 복사합니다.
 
-Distributed Training
+분산 학습(Distributed Training)
 --------------------
 
 .. raw:: html
@@ -237,16 +199,15 @@ Distributed Training
    TODO: Custom ring-allreduce
    -->
 
-**Note:** You can find the example script of this section in `this
-GitHub repository <https://github.com/seba-1511/dist_tuto.pth/>`__.
+**알림:** 이 섹션의 예제 스크립트를 `GitHub repository <https://github.com/seba-1511/dist_tuto.pth/>`__에서 찾으실 수 있습니다.
 
-Now that we understand how the distributed module works, let us write
-something useful with it. Our goal will be to replicate the
-functionality of
-`DistributedDataParallel <http://pytorch.org/docs/master/nn.html#torch.nn.parallel.DistributedDataParallel>`__.
-Of course, this will be a didactic example and in a real-world
-situtation you should use the official, well-tested and well-optimized
-version linked above.
+
+이제 분산 모듈이 어떻게 작동하는지 이해 했으므로 유용한 모듈을 작성해 보겠습니다. 우리의 목표는 `DistributedDataParallel <http://pytorch.org/docs/master/nn.html#torch.nn.parallel.DistributedDataParallel>`__의 기능을 복제하는 것입니다 . 물론, 이것은 교훈적인 예가 되지만, 실제 상황에서 위에 링크된 잘 검증되고 최적화 된 공식 버전을 사용해야합니다.
+
+매우 간단하게 확률적 경사 하강법의 분산 버전을 구현하고자 합니다. 스크립트는 모든 프로세스가 데이터 배치에서 모델의 변화도를 계산한 다음 변화도를 평균합니다. 프로세스 수를 변경할 때 유사한 수렴 결과를 보장하기 위해 우선 데이터 세트를 분할해야합니다.
+(아래 부분 대신에 
+`tnt.dataset.SplitDataset <https://github.com/pytorch/tnt/blob/master/torchnet/dataset/splitdataset.py#L4>`__,
+를 이용할 수 있습니다.)
 
 Quite simply we want to implement a distributed version of stochastic
 gradient descent. Our script will let all processes compute the
