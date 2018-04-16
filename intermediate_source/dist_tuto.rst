@@ -1,8 +1,8 @@
-﻿파이토치로 분산 어플리케이션 개발하기
+﻿Pytorch로 분산 어플리케이션 개발하기
 =============================================
 **Author**: `Séb Arnold <http://seba1511.com>`_
 
-이 짧은 튜토리얼에서, 우리는 파이토치의 분산 패키지를 둘러본다. 분산 설정을 어떻게 하지는 살펴보고, 다른 통신 전략들을 사용하며, 몇몇 내부 패키지를 확인할 예정이다.
+이 짧은 튜토리얼에서 Pytorch의 분산 패키지를 둘러봅니다. 분산 설정 방법을 살펴보고, 다른 통신 전략을 사용하고, 몇몇 내부 패키지를 확인해 봅니다.
 
 Setup
 -----
@@ -14,11 +14,11 @@ Setup
    * variables and init_process_group
    -->
 
-파이토치에 포함된 분산 패키지 (i.e.,
+Pytorch에 포함된 분산 패키지 (i.e.,
 ``torch.distributed``)는 연구자와 개발자가 여러개의 프로세서와 머신 클러스터에서 계산을 쉽게 병렬화하게 해준다. 그렇게 하기 위해서, messaging passing semantics 가 각 프로세스가 다른 프로세스들과  데이터를 통신하도록 해준다. 다중 처리(``torch.multiprocessing``) 패키지와 달리 프로세스는 다른 통신 백엔드를 사용할 수 있으며
 동일한 기계에서 실행되는 것으로 제한됩니다. 
 
-시작하려면 여러 프로세스를 동시에 실행할 수 있어야합니다. 컴퓨트 클러스터에 액세스 할 경우 local sysadmin 으로 점검하거나 또는 선호하는 coordination tool을 사용하십시오.
+시작하려면 여러 프로세스를 동시에 실행할 수 있어야합니다. 컴퓨트 클러스터에 접속 할 경우 local sysadmin 으로 점검하거나 또는 선호하는 coordination tool을 사용하십시오.
 (e.g.,
 `pdsh <https://linux.die.net/man/1/pdsh>`__,
 `clustershell <http://cea-hpc.github.io/clustershell/>`__, or
