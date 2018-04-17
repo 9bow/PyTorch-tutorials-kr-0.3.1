@@ -60,11 +60,11 @@ Pytorch에 포함된 분산 패키지 (i.e.,
   
 ``init_processes`` 함수는 동일한 IP 주소와 포트를 사용해서 모든 프로세스가 마스터를 통해서 조직 되게 한다. 우리는 TCP 백헨드를 사용했지만 대신
 `MPI <https://en.wikipedia.org/wiki/Message_Passing_Interface>`__ 또는
-`Gloo <http://github.com/facebookincubator/gloo>`__ 를 사용할 수 있다. (c.f.
-`Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법을 살펴봅니다. 그러나 기본적으로 프로세스는 자신의 위치를 공유하여 서로 통신 할 수 있다.
+`Gloo <http://github.com/facebookincubator/gloo>`__ 를 사용할 수 있습니다. (c.f.
+`Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법을 살펴봅니다. 그러나 기본적으로 프로세스는 자신의 위치를 공유하여 서로 통신 할 수 있습니다.
 
 지점간 통신(Point-to-Point Communication) 
-----------------------------
+-----------------------------------------
 
 .. figure:: /_static/img/distributed/send_recv.png
    :width: 100%
@@ -117,19 +117,21 @@ Pytorch에 포함된 분산 패키지 (i.e.,
 
 Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주의해야 합니다.
 언제 데이터가 다른 프로세스와 통신 될지 알지 못하기 때문에, ``req.wait ()``가 완료되기 전에 전송된 Tensor를 수정하거나 수신된 텐서에 접근해서는 안됩니다.
+
 다시 말하면, 
+
 - ``dist.isend ()`` 다음에 ``tensor`` 에 쓰면 정의되지 않은 동작이 발생합니다.
 - ``dist.irecv ()`` 다음에 ``tensor`` 를 읽으면 정의되지 않은 동작이 발생합니다.
  
 그러나``req.wait ()``가 실행 된 후에 통신이 이루어진 것과, ``tensor [0] ''에 저장된 값이 1.0이라는 것이 보장됩니다.
 
-지점 간 통신은 프로세스 통신에 대한 세분화 된 제어를 원할 때 유용합니다. 그것들은`Baidu's DeepSpeech <https://github.com/baidu-research/baidu-allreduce>`__ 또는
+지점 간 통신은 프로세스 통신에 대한 세분화 된 제어를 원할 때 유용합니다. 그것들은 `Baidu's DeepSpeech <https://github.com/baidu-research/baidu-allreduce>`__ 또는
 `Facebook's large-scale experiments <https://research.fb.com/publications/imagenet1kin1h/>`__.(c.f.
 `Section 4.1 <#our-own-ring-allreduce>`__) 와 같은 고급 알고리즘을 구현하는데 사용됩니다.
 
 
 집단 통신 (Collective Communication)
-------------------------
+-------------------------------------
 
 +----------------------------------------------------+-----------------------------------------------------+
 | .. figure:: /_static/img/distributed/scatter.png   | .. figure:: /_static/img/distributed/gather.png     |
@@ -137,21 +139,21 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
 |   :width: 100%                                     |   :width: 100%                                      |
 |   :align: center                                   |   :align: center                                    |
 |                                                    |                                                     |
-|   뿌리기(Scatter)                                  |  모으기(Gather)                                     |
+|   Scatter                                          |   Gather                                            |
 +----------------------------------------------------+-----------------------------------------------------+
 | .. figure:: /_static/img/distributed/reduce.png    | .. figure:: /_static/img/distributed/all_reduce.png |
 |   :alt: Reduce                                     |   :alt: All-Reduce                                  |
 |   :width: 100%                                     |   :width: 100%                                      |
 |   :align: center                                   |   :align: center                                    |
 |                                                    |                                                     |
-|   줄이기(Reduce)                                   |   모두 줄이기 (All-Reduce)                          |
+|   Reduce                                           |   All-Reduce                                        |
 +----------------------------------------------------+-----------------------------------------------------+
 | .. figure:: /_static/img/distributed/broadcast.png | .. figure:: /_static/img/distributed/all_gather.png |
 |   :alt: Broadcast                                  |   :alt: All-Gather                                  |
 |   :width: 100%                                     |   :width: 100%                                      |
 |   :align: center                                   |   :align: center                                    |
 |                                                    |                                                     |
-|   방송하기(Broadcast)                              |   모두 모으기(All-Gather)                           |
+|   Broadcast                                        |   All-Gather                                        |
 +----------------------------------------------------+-----------------------------------------------------+
 
 
@@ -187,7 +189,7 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
 -  ``dist.all_gather(tensor_list, tensor, group)``:  모든 프로세스에서``tensor``를 모든 프로세스의 `tensor_list``에 복사합니다.
 
 분산 학습(Distributed Training)
---------------------
+--------------------------------
 
 .. raw:: html
 
@@ -205,18 +207,9 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
 이제 분산 모듈이 어떻게 작동하는지 이해 했으므로 유용한 모듈을 작성해 보겠습니다. 우리의 목표는 `DistributedDataParallel <http://pytorch.org/docs/master/nn.html#torch.nn.parallel.DistributedDataParallel>`__의 기능을 복제하는 것입니다 . 물론, 이것은 교훈적인 예가 되지만, 실제 상황에서 위에 링크된 잘 검증되고 최적화 된 공식 버전을 사용해야합니다.
 
 매우 간단하게 확률적 경사 하강법의 분산 버전을 구현하고자 합니다. 스크립트는 모든 프로세스가 데이터 배치에서 모델의 변화도를 계산한 다음 변화도를 평균합니다. 프로세스 수를 변경할 때 유사한 수렴 결과를 보장하기 위해 우선 데이터 세트를 분할해야합니다.
-(아래 부분 대신에 
+(아래 단편 코드 대신에 
 `tnt.dataset.SplitDataset <https://github.com/pytorch/tnt/blob/master/torchnet/dataset/splitdataset.py#L4>`__,
 를 이용할 수 있습니다.)
-
-Quite simply we want to implement a distributed version of stochastic
-gradient descent. Our script will let all processes compute the
-gradients of their model on their batch of data and then average their
-gradients. In order to ensure similar convergence results when changing
-the number of processes, we will first have to partition our dataset.
-(You could also use
-`tnt.dataset.SplitDataset <https://github.com/pytorch/tnt/blob/master/torchnet/dataset/splitdataset.py#L4>`__,
-instead of the snippet below.)
 
 .. code:: python
 
@@ -254,8 +247,7 @@ instead of the snippet below.)
         def use(self, partition):
             return Partition(self.data, self.partitions[partition])
 
-With the above snippet, we can now simply partition any dataset using
-the following few lines:
+위의 단편 코드로 다음 몇 줄을 이용해 모든 데이터 세트를 간단하게 분할 할 수 있습니다.:
 
 .. code:: python
 
@@ -275,6 +267,11 @@ the following few lines:
                                              batch_size=bsz,
                                              shuffle=True)
         return train_set, bsz
+
+2개의 복제본이 있다고 가정하면, 각 프로세스는 60000 / 2 = 30000 샘플의``train_set``을 가질 것입니다. 또한 **전체** 배치 크기 128을 유지하기 위해 배치 크기를 복제본 수로 나눕니다.
+
+이제는 일반적인 forward-backward-optimize 학습 코드를 작성하고, 모델의 변화도를 평균하는 함수 호출을 추가 할 수 있습니다. (다음은 공식 `PyTorch MNIST
+예제 <https://github.com/pytorch/examples/blob/master/mnist/main.py>`__에서 영감을 얻었습니다.
 
 Assuming we have 2 replicas, then each process will have a ``train_set``
 of 60000 / 2 = 30000 samples. We also divide the batch size by the
@@ -310,9 +307,7 @@ example <https://github.com/pytorch/examples/blob/master/mnist/main.py>`__.)
                 print('Rank ', dist.get_rank(), ', epoch ',
                       epoch, ': ', epoch_loss / num_batches) 
 
-It remains to implement the ``average_gradients(model)`` function, which
-simply takes in a model and averages its gradients across the whole
-world.
+단순히 모델을 취하여 world의 변화도를 평균하는 ``average_gradients (model)``함수를 구현하는 것이 남았습니다.
 
 .. code:: python
 
@@ -323,22 +318,16 @@ world.
             dist.all_reduce(param.grad.data, op=dist.reduce_op.SUM)
             param.grad.data /= size 
 
-*Et voilà*! We successfully implemented distributed synchronous SGD and
-could train any model on a large computer cluster.
+*완성*! 우리는 분산 동기식 SGD를 성공적으로 구현했으며 대형 컴퓨터 클러스터에서 모든 모델을 학습 할 수 있었습니다.
 
-**Note:** While the last sentence is *technically* true, there are `a
-lot more tricks <http://seba-1511.github.io/dist_blog>`__ required to
-implement a production-level implementation of synchronous SGD. Again,
-use what `has been tested and
-optimized <http://pytorch.org/docs/master/nn.html#torch.nn.parallel.DistributedDataParallel>`__.
+**주의:** 마지막 문장은 *기술적으로* 사실이지만 동기식 SGD의 상용 수준 구현하는 데 필요한 더 많은 트릭이 있습니다. 다시말하면 `검증되고 최적화 된 함수<http://pytorch.org/docs/master/nn.html#torch.nn.parallel.DistributedDataParallel>`__를 사용하십시오.
+
 
 Our Own Ring-Allreduce
 ~~~~~~~~~~~~~~~~~~~~~~
 
-As an additional challenge, imagine that we wanted to implement
-DeepSpeech's efficient ring allreduce. This is fairly easily implemented
-using point-to-point collectives.
-
+추가 과제로서 DeepSpeech의 효율적인 ring allreduce 를 구현하고 싶다고 상상해보십시오. 이것은 지점간 집단 통신 (point-to-point collectives)을 사용하여 쉽게 구현됩니다.
+ 
 .. code:: python
 
     """ Implementation of a ring-reduce with addition. """
@@ -367,100 +356,52 @@ using point-to-point collectives.
             send_req.wait()
         recv[:] = accum[:]
 
-In the above script, the ``allreduce(send, recv)`` function has a
-slightly different signature than the ones in PyTorch. It takes a
-``recv`` tensor and will store the sum of all ``send`` tensors in it. As
-an exercise left to the reader, there is still one difference between
-our version and the one in DeepSpeech: their implementation divide the
-gradient tensor into *chunks*, so as to optimially utilize the
-communication bandwidth. (Hint:
+위의 스크립트에서,`allreduce (send, recv)`함수는 PyTorch에 있는 것과 약간 다른 특징을 가지고 있습니다.
+그것은 ``recv`` tensor를 취해서 모든 ``send`` tensor의 합을 저장합니다. 독자에게 남겨진 실습으로, 우리의 버전과 DeepSpeech의 차이점은 여전히 한가지가 있습니다: 그들의 구현은 통신 대역폭을 최적으로 활용하기 위해 경사도 tensor를 *chunks* 로 나눕니다. (힌트:
 `toch.chunk <http://pytorch.org/docs/master/torch.html#torch.chunk>`__)
 
 Advanced Topics
 ---------------
 
-We are now ready to discover some of the more advanced functionalities
-of ``torch.distributed``. Since there is a lot to cover, this section is
-divided into two subsections:
+이제 ``torch.distributed`` 보다 진보된 기능들을 발견 할 준비가 되었습니다. 커버 할 부분이 많으므로 이 섹션은 두 개의 하위 섹션으로 구분됩니다:
 
-1. Communication Backends: where we learn how to use MPI and Gloo for
-   GPU-GPU communication.
-2. Initialization Methods: where we understand how to best setup the
-   initial coordination phase in ``dist.init_process_group()``.
+1. 통신 백엔드 : GPU-GPU 통신을 위해 MPI 및 Gloo를 사용하는 방법을 배웁니다.
+2. 초기화 방법 : ``dist.init_process_group ()``에서 초기 구성 단계를 가장 잘 설정하는 방법을 이해합니다.
 
-Communication Backends
+통신 백엔드
 ~~~~~~~~~~~~~~~~~~~~~~
 
-One of the most elegant aspects of ``torch.distributed`` is its ability
-to abstract and build on top of different backends. As mentioned before,
-there are currently three backends implemented in PyTorch: TCP, MPI, and
-Gloo. They each have different specifications and tradeoffs, depending
-on the desired use-case. A comparative table of supported functions can
-be found
-`here <http://pytorch.org/docs/master/distributed.html#module-torch.distributed>`__.
+``torch.distributed`의 가장 우아한면 중 하나는 다른 백엔드 위에서 추상화하고 빌드 할 수 있는 능력입니다. 앞서 언급했듯이 현재 PyTorch에는 TCP, MPI 및 Gloo의 세 가지 백엔드가 구현되어 있습니다. 그것들은 원하는 사용 사례에 따라 서로 다른 특징과 trade-off 를 가지고 있습니다. 지원되는 기능의 비교표는 `여기 <http://pytorch.org/docs/master/distributed.html#module-torch.distributed>`__에서 찾을 수 있습니다.
 
-**TCP Backend**
+**TCP 백엔드**
 
-So far we have made extensive usage of the TCP backend. It is quite
-handy as a development platform, as it is guaranteed to work on most
-machines and operating systems. It also supports all point-to-point and
-collective functions on CPU. However, there is no support for GPUs and
-its communication routines are not as optimized as the MPI one.
+지금까지 우리는 TCP 백엔드를 광범위하게 사용 해왔다. 그것은 대부분의 기계 및 운영 체제에서 작동하도록 보장기 때문에 개발 플랫폼으로 매우 편리합니다. 또한 CPU에서 모든 지점간 및 집단 통신 기능을 지원합니다. 그러나 GPU에 대한 지원은 없으며 통신 루틴이 MPI만큼 최적화되지 않았습니다.
 
-**Gloo Backend**
+**Gloo 백엔드**
 
-The `Gloo backend <https://github.com/facebookincubator/gloo>`__
-provides an optimized implementation of *collective* communication
-procedures, both for CPUs and GPUs. It particularly shines on GPUs as it
-can perform communication without transferring data to the CPU's memory
-using `GPUDirect <https://developer.nvidia.com/gpudirect>`__. It is also
-capable of using `NCCL <https://github.com/NVIDIA/nccl>`__ to perform
-fast intra-node communication and implements its `own
-algorithms <https://github.com/facebookincubator/gloo/blob/master/docs/algorithms.md>`__
-for inter-node routines.
+`Gloo 백엔드 <https://github.com/facebookincubator/gloo>`__는 CPU와 GPU 모두를 위한 *집단 통신* 절차의 최적화된 구현을 제공합니다. `GPUDirect <https://developer.nvidia.com/gpudirect>`__ 를 사용하여 CPU 메모리로 데이터를 전송하지 않고 통신을 수행 할 수 있기 때문에 GPU에서 특히 빛납니다. 또한 `NCCL <https://github.com/NVIDIA/nccl>`__을 사용하여 빠른 인트라-노드 (intra-node) 통신을 수행 할 수 있으며 인터-노드(inter-node) 루틴을 위한 `자체 알고리즘 <https://github.com/facebookincubator/gloo/blob/master/docs/algorithms.md>`__을 구현합니다.
+ 
+버전 0.2.0부터, Gloo 백엔드는 PyTorch의 미리 컴파일 된 바이너리에 자동으로 포함됩니다. GPU에 ``모델`` 을 넣으면 배포 된 SGD 예제가 제대로 작동하지 않습니다. ``init_processes (rank, size, fn, backend = 'tcp')``에서``backend = 'gloo'``를 먼저 바꾸어서 고쳐 보겠습니다. 이 시점에서 스크립트는 여전히 CPU에서 실행되지만 백그라운드에서 Gloo 백엔드를 사용합니다. 여러 GPU를 사용하려면 다음과 같이 수정하십시오.
 
-Since version 0.2.0, the Gloo backend is automatically included with the
-pre-compiled binaries of PyTorch. As you have surely noticed, our
-distributed SGD example does not work if you put ``model`` on the GPU.
-Let's fix it by first replacing ``backend='gloo'`` in
-``init_processes(rank, size, fn, backend='tcp')``. At this point, the
-script will still run on CPU but uses the Gloo backend behind the
-scenes. In order to use multiple GPUs, let us also do the following
-modifications:
-
-0. ``init_processes(rank, size, fn, backend='tcp')`` :math:`\rightarrow`
+0. ``init_processes(rank, size, fn, backend='tcp')`` =>
    ``init_processes(rank, size, fn, backend='gloo')``
-1. ``model = Net()`` :math:`\rightarrow` ``model = Net().cuda(rank)``
-2. ``data, target = Variable(data), Variable(target)``
-   :math:`\rightarrow`
-   ``data, target = Variable(data.cuda(rank)), Variable(target.cuda(rank))``
+1. ``model = Net()`` => ``model = Net().cuda(rank)``
+2. ``data, target = Variable(data), Variable(target)`` =>``data, target = Variable(data.cuda(rank)), Variable(target.cuda(rank))``
 
-With the above modifications, our model is now training on two GPUs and
-you can monitor their utilization with ``watch nvidia-smi``.
+위의 수정으로 우리 모델은 이제 2개의 GPU에서 학습하고, ``watch nvidia-smi``로 사용률을 모니터링 할 수 있습니다.
 
-**MPI Backend**
+**MPI 백엔드**
 
-The Message Passing Interface (MPI) is a standardized tool from the
-field of high-performance computing. It allows to do point-to-point and
-collective communications and was the main inspiration for the API of
-``torch.distributed``. Several implementations of MPI exist (e.g.
-`Open-MPI <https://www.open-mpi.org/>`__,
-`MVAPICH2 <http://mvapich.cse.ohio-state.edu/>`__, `Intel
-MPI <https://software.intel.com/en-us/intel-mpi-library>`__) each
-optimized for different purposes. The advantage of using the MPI backend
-lies in MPI's wide availability - and high-level of optimization - on
-large computer clusters. `Some <https://developer.nvidia.com/mvapich>`__
-`recent <https://developer.nvidia.com/ibm-spectrum-mpi>`__
-`implementations <http://www.open-mpi.org/>`__ are also able to take
-advantage of CUDA IPC and GPU Direct technologies in order to avoid
-memory copies through the CPU.
+MPI (Message Passing Interface)는 고성능 컴퓨팅 분야의 표준 도구입니다. 그것은 지점간과 집단 통신을 가능하게하고 ``torch.distributed``의 API에 대한 주요 영감이었습니다. 다양한 목적으로 최적화된 여러 가지 MPI 구현 (예 : `Open-MPI <https://www.open-mpi.org/>`__, `MVAPICH2 <http://mvapich.cse.ohio-state.edu/>`__ `Intel MPI <https://software.intel.com/en-us/intel-mpi-library>`__)이 있습니다. MPI 백엔드를 사용하면 큰 컴퓨터 클러스터에서 MPI의 광범위한 가용성과 높은 수준의 최적화가 가능하다는 장점이 있습니다. `일부 <https://developer.nvidia.com/mvapich>`__
+`최신 <https://developer.nvidia.com/ibm-spectrum-mpi>`__
+`구현 <http://www.open-mpi.org/>`__ 들은 CPU를 통한 메모리 복사를 피하기 위해서 CUDA IPC와 GPU 다이렉트 기술를 활용하고 있습니다.
 
-Unfortunately, PyTorch's binaries can not include an MPI implementation
-and we'll have to recompile it by hand. Fortunately, this process is
-fairly simple given that upon compilation, PyTorch will look *by itself*
-for an available MPI implementation. The following steps install the MPI
-backend, by installing PyTorch `from
-sources <https://github.com/pytorch/pytorch#from-source>`__.
+불행하게도 PyTorch의 바이너리는 MPI 구현을 포함 할 수 없으므로 수동으로 다시 컴파일해야합니다.
+다행히도, 이 컴파일 과정은 매우 간단합니다. PyTorch는 사용 가능한 MPI 구현을 자동으로 살펴볼 것입니다.
+다음 단계는 PyTorch를 `소스 <https://github.com/pytorch/pytorch#from-source>`__로 설치하여 MPI 백엔드를 설치합니다.
+
+1. 아나콘다 환경을 만들고 활성화하고, `가이드 <https://github.com/pytorch/pytorch#from-source>`__에 따라 모든 필수 조건을 설치하십시오. 그러나 아직 ``python setup.py install``을 실행하지 마십시오.
+2. 
 
 1. Create and activate your Anaconda environment, install all the
    pre-requisites following `the
