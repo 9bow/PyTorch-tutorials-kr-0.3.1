@@ -14,8 +14,7 @@ Setup
    * variables and init_process_group
    -->
 
-Pytorch에 포함된 분산 패키지 (i.e.,
-``torch.distributed``)는 연구자와 개발자가 여러개의 프로세서와 머신 클러스터에서 계산을 쉽게 병렬화하게 해준다. 그렇게 하기 위해서, messaging passing semantics 가 각 프로세스가 다른 프로세스들과  데이터를 통신하도록 해준다. 다중 처리(``torch.multiprocessing``) 패키지와 달리 프로세스는 다른 통신 백엔드를 사용할 수 있으며
+Pytorch에 포함된 분산 패키지 (i.e., ``torch.distributed``)는 연구자와 개발자가 여러개의 프로세서와 머신 클러스터에서 계산을 쉽게 병렬화하게 해준다. 그렇게 하기 위해서, messaging passing semantics 가 각 프로세스가 다른 프로세스들과  데이터를 통신하도록 해준다. 다중 처리(``torch.multiprocessing``) 패키지와 달리 프로세스는 다른 통신 백엔드를 사용할 수 있으며
 동일한 기계에서 실행되는 것으로 제한됩니다. 
 
 시작하려면 여러 프로세스를 동시에 실행할 수 있어야합니다. 컴퓨트 클러스터에 접속 할 경우 local sysadmin 으로 점검하거나 또는 선호하는 coordination tool을 사용하십시오.
@@ -64,7 +63,7 @@ Pytorch에 포함된 분산 패키지 (i.e.,
 `Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법을 살펴봅니다. 그러나 기본적으로 프로세스는 자신의 위치를 공유하여 서로 통신 할 수 있습니다.
 
 지점간 통신(Point-to-Point Communication) 
------------------------------------------
+-------------------------------------------
 
 .. figure:: /_static/img/distributed/send_recv.png
    :width: 100%
@@ -73,7 +72,7 @@ Pytorch에 포함된 분산 패키지 (i.e.,
 
    전송과 수신
 
-하나의 프로세스에서 다른 프로세스로 데이터를 전송하는 것을 지점간 통신이라고합니다. 이것은``send``와``recv`` 함수 또는 직접 대응부인 (*immediate* counter-parts) ``isend``와``irecv``를 통해 이루어집니다.
+하나의 프로세스에서 다른 프로세스로 데이터를 전송하는 것을 지점간 통신이라고합니다. 이것은 ``send`` 와 ``recv`` 함수 또는 직접 대응부인 (*immediate* counter-parts) ``isend`` 와 ``irecv``를 통해 이루어집니다.
  
 
 .. code:: python
@@ -93,7 +92,7 @@ Pytorch에 포함된 분산 패키지 (i.e.,
 
 위의 예제에서 두 프로세스는 모두 값이 0인 Tensor 로 시작하고, 0번 프로세스는 Tensor 를 증가시키고 프로세스 1로 보내서 양쪽 모두 1.0으로 끝납니다. 프로세스 1은 수신 할 데이터를 저장하기 위해 메모리를 할당해야합니다.
  
-또한 ``send`` /``recv``는 ** blocking ** 으로 동작합니다. : 통신이 완료 될 때까지 두 프로세스 모두 멈춥니다. 반면에 Immediates (  ``isend``와``irecv``)는 ** non-blocking **으로 동작 합니다; 스크립트는 실행을 계속하고 메서드는``wait ()``를 선택할 수있는``DistributedRequest`` 객체를 반환합니다.
+또한 ``send`` / ``recv`` 는 **blocking** 으로 동작합니다. : 통신이 완료 될 때까지 두 프로세스 모두 멈춥니다. 반면에 Immediates ( ``isend`` 와 ``irecv`` )는 **non-blocking**으로 동작 합니다; 스크립트는 실행을 계속하고 메서드는 ``wait ()``를 선택할 수 있는 ``DistributedRequest`` 객체를 반환합니다.
 
 .. code:: python
 
@@ -116,14 +115,14 @@ Pytorch에 포함된 분산 패키지 (i.e.,
 
 
 Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주의해야 합니다.
-언제 데이터가 다른 프로세스와 통신 될지 알지 못하기 때문에, ``req.wait ()``가 완료되기 전에 전송된 Tensor를 수정하거나 수신된 텐서에 접근해서는 안됩니다.
+언제 데이터가 다른 프로세스와 통신 될지 알지 못하기 때문에, ``req.wait ()`` 가 완료되기 전에 전송된 Tensor를 수정하거나 수신된 텐서에 접근해서는 안됩니다.
 
 다시 말하면, 
 
 - ``dist.isend ()`` 다음에 ``tensor`` 에 쓰면 정의되지 않은 동작이 발생합니다.
 - ``dist.irecv ()`` 다음에 ``tensor`` 를 읽으면 정의되지 않은 동작이 발생합니다.
  
-그러나``req.wait ()``가 실행 된 후에 통신이 이루어진 것과, ``tensor [0] ''에 저장된 값이 1.0이라는 것이 보장됩니다.
+그러나 ``req.wait ()``가 실행 된 후에 통신이 이루어진 것과, ``tensor[0]``에 저장된 값이 1.0이라는 것이 보장됩니다.
 
 지점 간 통신은 프로세스 통신에 대한 세분화 된 제어를 원할 때 유용합니다. 그것들은 `Baidu's DeepSpeech <https://github.com/baidu-research/baidu-allreduce>`__ 또는
 `Facebook's large-scale experiments <https://research.fb.com/publications/imagenet1kin1h/>`__.(c.f.
@@ -131,7 +130,7 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
 
 
 집단 통신 (Collective Communication)
--------------------------------------
+--------------------------------------
 
 +----------------------------------------------------+-----------------------------------------------------+
 | .. figure:: /_static/img/distributed/scatter.png   | .. figure:: /_static/img/distributed/gather.png     |
@@ -157,7 +156,7 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
 +----------------------------------------------------+-----------------------------------------------------+
 
 
-지점간 통신과는 달리 집단 통신은 ** 그룹(Group) **의 모든 프로세스에서 통신 패턴을 허용합니다. 그룹은 모든 프로세스의 하위 집합입니다. 그룹을 만들려면, ``dist.new_group (group)``에 순위 목록을 전달하면 됩니다. 기본적으로 집단 통신은 ** 월드(World) **라고도하는 모든 프로세스에서 실행됩니다. 예를 들어, 모든 프로세스에서 모든 텐서의 합을 얻으려면, "dist.all_reduce (tensor, op, group)" 를 사용할 수 있습니다.
+지점간 통신과는 달리 집단 통신은 **그룹(Group)**의 모든 프로세스에서 통신 패턴을 허용합니다. 그룹은 모든 프로세스의 하위 집합입니다. 그룹을 만들려면, ``dist.new_group (group)``에 순위 목록을 전달하면 됩니다. 기본적으로 집단 통신은 **월드(World)**라고도하는 모든 프로세스에서 실행됩니다. 예를 들어, 모든 프로세스에서 모든 텐서의 합을 얻으려면, ``dist.all_reduce (tensor, op, group)`` 를 사용할 수 있습니다.
  
 
 .. code:: python
@@ -170,7 +169,7 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
         dist.all_reduce(tensor, op=dist.reduce_op.SUM, group=group)
         print('Rank ', rank, ' has data ', tensor[0])
 
-그룹의 모든 텐서의 합이 필요하기 때문에 Reduce 연산자로``dist.reduce_op.SUM``을 사용합니다. 일반적으로 교환 법칙이 성립하는 수학 연산은 연산자로 사용할 수 있습니다.
+그룹의 모든 텐서의 합이 필요하기 때문에 Reduce 연산자로 ``dist.reduce_op.SUM``을 사용합니다. 일반적으로 교환 법칙이 성립하는 수학 연산은 연산자로 사용할 수 있습니다.
 
 특별히, PyTorch는 4개의 연산자를 제공하고 모두 요소 별로(element-wise) 작동합니다.:
 
@@ -181,15 +180,15 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
 
 ``dist.all_reduce (tensor, op, group)``외에 현재 PyTorch에서 구현된 총 6개의 집단 통신이 있습니다.
 
--  ``dist.broadcast(tensor, src, group)``: ``src``에서 다른 모든 프로세스로``tensor``를 복사합니다.
--  ``dist.reduce(tensor, dst, op, group)``: 모든``tensor``에``op``를 적용하고 그 결과를``dst``에 저장합니다.
+-  ``dist.broadcast(tensor, src, group)``: ``src`` 에서 다른 모든 프로세스로 ``tensor`` 를 복사합니다.
+-  ``dist.reduce(tensor, dst, op, group)``: 모든 ``tensor`` 에 ``op`` 를 적용하고 그 결과를 ``dst`` 에 저장합니다.
 -  ``dist.all_reduce(tensor, op, group)``: reduce와 같지만 결과는 모든 프로세스에 저장됩니다.
--  ``dist.scatter(tensor, src, scatter_list, group)``: ``i번째`` tensor ``scatter_list[i]`` 를 ``i번째`` 프로세스에 복사합니다.
--  ``dist.gather(tensor, dst, gather_list, group)``: ``dst``의 모든 프로세스에서``tensor``를 복사합니다
--  ``dist.all_gather(tensor_list, tensor, group)``:  모든 프로세스에서``tensor``를 모든 프로세스의 `tensor_list``에 복사합니다.
+-  ``dist.scatter(tensor, src, scatter_list, group)``: ``i번째 tensor`` ``scatter_list[i]`` 를 ``i번째`` 프로세스에 복사합니다.
+-  ``dist.gather(tensor, dst, gather_list, group)``: ``dst``의 모든 프로세스에서 ``tensor``를 복사합니다
+-  ``dist.all_gather(tensor_list, tensor, group)``:  모든 프로세스에서 ``tensor``를 모든 프로세스의 ``tensor_list``에 복사합니다.
 
 분산 학습(Distributed Training)
---------------------------------
+---------------------------------
 
 .. raw:: html
 
@@ -268,7 +267,7 @@ Immediates 를 사용할 때 보내고 받는 Tensor에 대한 사용법에 주�
                                              shuffle=True)
         return train_set, bsz
 
-2개의 복제본이 있다고 가정하면, 각 프로세스는 60000 / 2 = 30000 샘플의``train_set``을 가질 것입니다. 또한 **전체** 배치 크기 128을 유지하기 위해 배치 크기를 복제본 수로 나눕니다.
+2개의 복제본이 있다고 가정하면, 각 프로세스는 60000 / 2 = 30000 샘플의 ``train_set``을 가질 것입니다. 또한 **전체** 배치 크기 128을 유지하기 위해 배치 크기를 복제본 수로 나눕니다.
 
 이제는 일반적인 forward-backward-optimize 학습 코드를 작성하고, 모델의 변화도를 평균하는 함수 호출을 추가 할 수 있습니다. (다음은 공식 `PyTorch MNIST
 예제 <https://github.com/pytorch/examples/blob/master/mnist/main.py>`__에서 영감을 얻었습니다.
@@ -356,7 +355,7 @@ Our Own Ring-Allreduce
             send_req.wait()
         recv[:] = accum[:]
 
-위의 스크립트에서,`allreduce (send, recv)`함수는 PyTorch에 있는 것과 약간 다른 특징을 가지고 있습니다.
+위의 스크립트에서, ``allreduce (send, recv)``함수는 PyTorch에 있는 것과 약간 다른 특징을 가지고 있습니다.
 그것은 ``recv`` tensor를 취해서 모든 ``send`` tensor의 합을 저장합니다. 독자에게 남겨진 실습으로, 우리의 버전과 DeepSpeech의 차이점은 여전히 한가지가 있습니다: 그들의 구현은 통신 대역폭을 최적으로 활용하기 위해 경사도 tensor를 *chunks* 로 나눕니다. (힌트:
 `toch.chunk <http://pytorch.org/docs/master/torch.html#torch.chunk>`__)
 
@@ -401,21 +400,10 @@ MPI (Message Passing Interface)는 고성능 컴퓨팅 분야의 표준 도구�
 다음 단계는 PyTorch를 `소스 <https://github.com/pytorch/pytorch#from-source>`__로 설치하여 MPI 백엔드를 설치합니다.
 
 1. 아나콘다 환경을 만들고 활성화하고, `가이드 <https://github.com/pytorch/pytorch#from-source>`__에 따라 모든 필수 조건을 설치하십시오. 그러나 아직 ``python setup.py install``을 실행하지 마십시오.
-2. 
+2. 원하는 MPI 구현을 선택하고 설치하십시오. CUDA 인식하는 MPI를 활성화하려면 몇 가지 추가 단계가 필요할 수 있습니다. GPU *없이* Open-MPI를 사용 할 것입니다 :``conda install -c conda-forge openmpi``
+3. 이제 복제 된 PyTorch repo 로 이동하여``python setup.py install``을 실행하십시오.
 
-1. Create and activate your Anaconda environment, install all the
-   pre-requisites following `the
-   guide <https://github.com/pytorch/pytorch#from-source>`__, but do
-   **not** run ``python setup.py install`` yet.
-2. Choose and install your favorite MPI implementation. Note that
-   enabling CUDA-aware MPI might require some additional steps. In our
-   case, we'll stick to Open-MPI *without* GPU support:
-   ``conda install -c conda-forge openmpi``
-3. Now, go to your cloned PyTorch repo and execute
-   ``python setup.py install``.
-
-In order to test our newly installed backend, a few modifications are
-required.
+새로 설치된 백엔드를 테스트하려면 몇 가지 수정이 필요합니다.
 
 1. Replace the content under ``if __name__ == '__main__':`` with
    ``init_processes(0, 0, run, backend='mpi')``.
