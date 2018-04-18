@@ -57,7 +57,7 @@ Pytorch에 포함된 분산 패키지 (i.e., ``torch.distributed``)는 연구자
 
 위 스크립트는 각각 분산 환경을 설정하는 두개의 프로세스를 생성하고, 프로세스 그룹(``dist.init_process_group``)을 초기화하고, 마지막으로 주어진 ``run`` 함수를 실행합니다.
   
-``init_processes`` 함수는 동일한 IP 주소와 포트를 사용해서 모든 프로세스가 마스터를 통해서 조직 되게 한다. 우리는 TCP 백헨드를 사용했지만 대신
+``init_processes`` 함수는 동일한 IP 주소와 포트를 사용해서 모든 프로세스가 master를 통해서 조직 되게 한다. 우리는 TCP 백헨드를 사용했지만 대신
 `MPI <https://en.wikipedia.org/wiki/Message_Passing_Interface>`__ 또는
 `Gloo <http://github.com/facebookincubator/gloo>`__ 를 사용할 수 있습니다. (c.f.
 `Section 5.1 <#communication-backends>`__) 이 튜토리얼의 마지막에 있는 ``dist.init_process_group`` 에서 일어나는 마법을 살펴봅니다. 그러나 기본적으로 프로세스는 자신의 위치를 공유하여 서로 통신 할 수 있습니다.
@@ -400,7 +400,7 @@ MPI (Message Passing Interface)는 고성능 컴퓨팅 분야의 표준 도구�
 2. ``mpirun -n 4 python myscript.py`` 를 실행하십시오.
 
 이러한 변경의 이유는 MPI가 프로세스를 생성하기 전에 자체 환경을 만들어야하기 때문입니다. MPI는 또한 자신의 프로세스를 생성하고 ``init_process_group`` 의 ``rank`` 와 ``size`` 인자를 불필요하게 만드는 `초기화 방법 <#initialization-methods>`__ 에서 설명한 handshake 를 수행합니다. 각 프로세스의 계산 리소스를 맞추기 위해``mpirun``에 추가 인자를 전달할 수 있기 때문에 이것이 실제로 강력합니다.
-(프로세스 당 코어 수, 특정 순위의 머신에 수동 할당, `기타 추가<https://www.open-mpi.org/faq/?category=running#mpirun-hostfile>`__ 할 것들)
+(프로세스 당 코어 수, 특정 순위의 머신에 수동 할당, `기타 추가 <https://www.open-mpi.org/faq/?category=running#mpirun-hostfile>`__ 할 것들)
 이렇게하면 다른 통신 백엔드와 같고 익숙한 출력을 얻어야합니다.
 
 
@@ -413,83 +413,55 @@ MPI (Message Passing Interface)는 고성능 컴퓨팅 분야의 표준 도구�
 
 1. 먼저, 인자가 구문 분석되고 유효성 검사가 수행됩니다.
 2. 백엔드는 ``name2channel.at ()`` 함수를 통해 해결됩니다. ``Channel`` 클래스가 반환되고, 데이터 전송을 수행하는 데 사용됩니다.
-3. GIL이 삭제되고, ``THDProcessGroupInit ()`` 가 호출됩니다. 이것은 채널을 instantiates 하고 마스터 노드의 주소를 추가합니다.
+3. GIL이 삭제되고, ``THDProcessGroupInit ()`` 가 호출됩니다. 이것은 채널을 instantiates 하고 master 노드의 주소를 추가합니다.
 4. 순위 0의 프로세스는 ``master`` 단계를 실행하지만 다른 모든 순위는 ``workers`` 가 됩니다.
 5. master
 
-   a. 모든 작업자를위한 소켓을 생성합니다.
-   b. 모든 작업자가 연결되기를 기다립니다.
+   a. 모든 worker를 위한 소켓을 생성합니다.
+   b. 모든 worker가 연결되기를 기다립니다.
    c. 다른 프로세스의 위치에 대한 정보를 보냅니다.
 
 6. worker
 
-   a. 마스터에 소켓을 작성합니다.
+   a. master에 소켓을 생성합니다.
    b. 자신의 위치 정보를 보냅니다.
    c. 다른 worker 에 대한 정보를 받습니다.
-   d. 다른 모든 작업자와 소켓을 열고 handshake를 합니다.
+   d. 다른 모든 worker와 소켓을 열고 handshake를 합니다.
 
 7. 초기화가 완료되고 모두가 모두와 연결됩니다.
 
 **환경 변수**
 
-이 튜토리얼에서는 환경 변수 초기화 메소드를 사용했다.
+이 튜토리얼에서는 환경 변수 초기화 메소드를 사용해 왔습니다. 모든 머신에서 다음 네가지 환경 변수를 설정해서 모든 프로세스들이 master와 적합하게 연결될 수 있고 다른 프로세스의 정보를 얻고, 최종적으로 그들과 handshake 할 수 있습니다. 
 
-We have been using the environment variable initialization method
-throughout this tutorial. By setting the following four environment
-variables on all machines, all processes will be able to properly
-connect to the master, obtain information about the other processes, and
-finally handshake with them.
+-  ``MASTER_PORT``: 순위 0의 프로세스를 호스트 할 머신의 자유 포트.
+-  ``MASTER_ADDR``: 순위 0의 프로세스를 호스트 할 머신의 IP 주소.
+-  ``WORLD_SIZE``: 기다려야하는 worker 숫자를 master가 알 수 있게하는 총 프로세스 수
+-  ``RANK``: worker의 master 인지 아닌지를 알 수 있게 하는 각 프로세스의 순위
 
--  ``MASTER_PORT``: A free port on the machine that will host the
-   process with rank 0.
--  ``MASTER_ADDR``: IP address of the machine that will host the process
-   with rank 0.
--  ``WORLD_SIZE``: The total number of processes, so that the master
-   knows how many workers to wait for.
--  ``RANK``: Rank of each process, so they will know whether it is the
-   master of a worker.
+**공유 파일 시스템(Shared File System)**
 
-**Shared File System**
-
-The shared filesystem requires all processes to have access to a shared
-file system, and will coordinate them through a shared file. This means
-that each process will open the file, write its information, and wait
-until everybody did so. After what all required information will be
-readily available to all processes. In order to avoid race conditions,
-the file system must support locking through
-`fcntl <http://man7.org/linux/man-pages/man2/fcntl.2.html>`__. Note that
-you can specify ranks manually or let the processes figure it out by
-themselves. Be defining a unique ``groupname`` per job you can use the
-same file path for multiple jobs and safely avoid collision.
+공유 파일 시스템은 모든 프로세스가 공유 파일 시스템에 접속하는 것을 요구하며 공유 파일을 통해 이를 구성합니다. 이것은 각 프로세스가 파일을 열고, 정보를 쓰고, 모두가 그렇게 할 때까지 기다리는 것을 의미합니다. 필요한 모든 정보는 모든 프로세스에게 쉽게 사용 가능할 것입니다. 경쟁 조건을 피하기 위해 파일 시스템은 `fcntl<http://man7.org/linux/man-pages/man2/fcntl.2.html>`__  을 통한 잠금을 지원해야합니다. 순위를 수동으로 지정하거나 프로세스가 스스로 순위를 매길 수 있습니다. 작업마다 고유한 ``groupname`` 을 정의하면, 여러 작업에 대해 동일한 파일 경로를 사용하고 충돌을 안전하게 피할 수 있습니다.
 
 .. code:: python
 
     dist.init_process_group(init_method='file:///mnt/nfs/sharedfile', world_size=4,
                             group_name='mygroup')
 
-**TCP Init & Multicast**
+**TCP 초기화 & 멀티 캐스트**
 
-Initializing via TCP can be achieved in two different ways:
+TCP를 통한 초기화는 두 가지 방법으로 수행될 수 있습니다.:
 
-1. By providing the IP address of the process with rank 0 and the world
-   size.
-2. By providing *any* valid IP `multicast
-   address <https://en.wikipedia.org/wiki/Multicast_address>`__ and the
-   world size.
+1. 순위 0 프로세스의 IP 주소와 worold의 크기를 제공.
+2. *어떤* 유효한 IP `멀티 캐스트 주소 <https://en.wikipedia.org/wiki/Multicast_address>`__ 와 worold의 크기를 제공.
 
-In the first case, all workers will be able to connect to the process
-with rank 0 and follow the procedure described above.
+첫 번째 경우 모든 worker는 순위 0의 프로세스에 연결할 수 있으며 위에서 설명한 절차를 따릅니다.
 
 .. code:: python
 
     dist.init_process_group(init_method='tcp://10.1.1.20:23456', rank=args.rank, world_size=4)
 
-In the second case, the multicast address specifies the group of nodes
-who might potentially be active and the coordination can be handled by
-allowing each process to have an initial handshake before following the
-above procedure. In addition TCP multicast initialization also supports
-a ``group_name`` argument (as with the shared file method) allowing
-multiple jobs to be scheduled on the same cluster.
+두 번째 경우에, 멀티 캐스트 주소가 잠재적으로 활성화 될 수있는 노드 그룹을 지정하고 위 절차를 수행하기 전에 각 프로세스가 초기 handshake를 허용하여 구성을 처리 할 수 있습니다. 또한 TCP 멀티 캐스트 초기화는 동일한 클러스터에서 여러 작업을 스케줄 할 수 있도록 ``group_name`` 인자 (공유 파일 방법과 동일)를 지원합니다.
 
 .. code:: python
 
@@ -500,32 +472,25 @@ multiple jobs to be scheduled on the same cluster.
 
    <!--
    ## Internals
-   * The magic behind init_process_group:
+   * init_process_group 뒤에 있는 마법 :
 
-   1. validate and parse the arguments
-   2. resolve the backend: name2channel.at()
-   3. Drop GIL & THDProcessGroupInit: instantiate the channel and add address of master from config
-   4. rank 0 inits master, others workers
-   5. master: create sockets for all workers -> wait for all workers to connect -> send them each the info about location of other processes
-   6. worker: create socket to master, send own info, receive info about each worker, and then handshake with each of them
-   7. By this time everyone has handshake with everyone.
+   1. 인자의 유효성을 검사하고 구문을 분석합니다.
+   2. 백엔드 해결 : name2channel.at()
+   3. Drop GIL & THDProcessGroupInit : 채널을 인스턴스화하고 config의 master 주소를 추가합니다.
+   4. 순위 0이 master, 다른 worker 초기화 
+   5. master : 모든 worker를 위한 소켓 생성 -> 모든 worker가 연결될 때까지 대기 -> 다른 프로세스의 위치에 대한 정보를 각자에게 보냄
+   6. worker : master와 소켓을 생성하고, 자신의 정보를 보내고, 각 worker에 대한 정보를 얻고, 각각과 handshake를 한다.
+   7. 이 때 모두가 모두와 handshake를 한다.
    -->
 
 .. raw:: html
 
    <center>
 
-**Acknowledgements**
+**알림**
 
 .. raw:: html
 
    </center>
 
-I'd like to thank the PyTorch developers for doing such a good job on
-their implementation, documentation, and tests. When the code was
-unclear, I could always count on the
-`docs <http://pytorch.org/docs/master/distributed.html>`__ or the
-`tests <https://github.com/pytorch/pytorch/blob/master/test/test_distributed.py>`__
-to find an answer. In particular, I'd like to thank Soumith Chintala,
-Adam Paszke, and Natalia Gimelshein for providing insightful comments
-and answering questions on early drafts.
+PyTorch 개발자들이 구현, 문서화 및 테스트을 잘 수행해 준 것에 대해 감사 드리고 싶습니다. 코드가 불분명 할 때, 나는 언제나 답을 찾기위해 `docs <http://pytorch.org/docs/master/distributed.html>`__ 나 `tests <https://github.com/pytorch/pytorch/blob/master/test/test_distributed.py>`__ 의 도움을 받았습니다. 특히, 초기 초안에 대한 통찰력있는 의견 및 질문에 답변 해 주신 Soumith Chintala, Adam Paszke 및 Natalia Gimelshein에게 감사드립니다.
