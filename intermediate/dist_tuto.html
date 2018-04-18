@@ -393,8 +393,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced Topics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">통신 백엔드</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">초기화 방법</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">통신 백엔드</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">초기화 방법</a></li>
 </ul>
 </li>
 </ul>
@@ -512,7 +512,10 @@
             
   <div class="section" id="pytorch">
 <h1>Pytorch로 분산 어플리케이션 개발하기<a class="headerlink" href="#pytorch" title="Permalink to this headline">¶</a></h1>
-<p><strong>Author</strong>: <a class="reference external" href="http://seba1511.com">Séb Arnold</a></p>
+<dl class="docutils">
+<dt><strong>Author</strong>: <a class="reference external" href="http://seba1511.com">Séb Arnold</a></dt>
+<dd><strong>번역</strong>: <a class="reference external" href="https://github.com/adonisues">황성수</a></dd>
+</dl>
 <p>이 짧은 튜토리얼에서 Pytorch의 분산 패키지를 둘러봅니다. 분산 설정 방법을 살펴보고,
 다른 통신 전략을 사용하고, 몇몇 내부 패키지를 확인해 봅니다.</p>
 <div class="section" id="setup">
@@ -578,7 +581,7 @@
 </div>
 <div class="section" id="point-to-point-communication">
 <h2>지점간 통신(Point-to-Point Communication)<a class="headerlink" href="#point-to-point-communication" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="../_images/send_recv.png"><img alt="Send and Recv" src="../_images/send_recv.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">전송과 수신</span></p>
 </div>
@@ -648,34 +651,34 @@ Tensor를 증가시키고 프로세스 1로 보내서 양쪽 모두 1.0으로 �
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><div class="first last figure align-center" id="id4">
+<tr class="row-odd"><td><div class="first last figure align-center" id="id5">
 <a class="reference internal image-reference" href="../_images/scatter.png"><img alt="Scatter" src="../_images/scatter.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Scatter</span></p>
 </div>
 </td>
-<td><div class="first last figure align-center" id="id5">
+<td><div class="first last figure align-center" id="id6">
 <a class="reference internal image-reference" href="../_images/gather.png"><img alt="Gather" src="../_images/gather.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Gather</span></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><div class="first last figure align-center" id="id6">
+<tr class="row-even"><td><div class="first last figure align-center" id="id7">
 <a class="reference internal image-reference" href="../_images/reduce.png"><img alt="Reduce" src="../_images/reduce.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Reduce</span></p>
 </div>
 </td>
-<td><div class="first last figure align-center" id="id7">
+<td><div class="first last figure align-center" id="id8">
 <a class="reference internal image-reference" href="../_images/all_reduce.png"><img alt="All-Reduce" src="../_images/all_reduce.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">All-Reduce</span></p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><div class="first last figure align-center" id="id8">
+<tr class="row-odd"><td><div class="first last figure align-center" id="id9">
 <a class="reference internal image-reference" href="../_images/broadcast.png"><img alt="Broadcast" src="../_images/broadcast.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Broadcast</span></p>
 </div>
 </td>
-<td><div class="first last figure align-center" id="id9">
+<td><div class="first last figure align-center" id="id10">
 <a class="reference internal image-reference" href="../_images/all_gather.png"><img alt="All-Gather" src="../_images/all_gather.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">All-Gather</span></p>
 </div>
@@ -895,8 +898,8 @@ TODO: Custom ring-allreduce
 <li>초기화 방법 : <code class="docutils literal notranslate"><span class="pre">dist.init_process_group()</span></code> 에서 초기 구성 단계를 가장 잘
 설정하는 방법을 이해합니다.</li>
 </ol>
-<div class="section" id="id1">
-<h3>통신 백엔드<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>통신 백엔드<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code> 의 가장 우아한 면 중 하나는 다른 백엔드 위에서 추상화하고
 빌드 할 수 있는 능력입니다. 앞서 언급했듯이 현재 PyTorch에는 TCP, MPI 및 Gloo의
 세 가지 백엔드가 구현되어 있습니다. 그것들은 원하는 사용 사례에 따라 서로 다른
@@ -974,8 +977,8 @@ MPI는 또한 자신의 프로세스를 생성하고 <code class="docutils liter
 할 것들)
 이렇게하면 다른 통신 백엔드와 같고 익숙한 출력을 얻어야합니다.</p>
 </div>
-<div class="section" id="id2">
-<h3>초기화 방법<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>초기화 방법<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>이 튜토리얼을 끝내기 위해, 호출한 첫 번째 함수인
 <code class="docutils literal notranslate"><span class="pre">dist.init_process_group(backend,</span> <span class="pre">init_method)</span></code> 에 대해 이야기 해봅시다. 특히
 각 프로세스 간의 초기 구성 단계를 담당하는 다양한 초기화 메소드를 살펴보겠습니다.
