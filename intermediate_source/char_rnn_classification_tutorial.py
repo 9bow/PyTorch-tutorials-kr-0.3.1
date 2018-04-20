@@ -46,8 +46,8 @@ RNN과 그 작동 방식을 아는 것 또한 유용합니다.:
 데이터 준비하기
 ==================
 
-.. 알림::
-   `여기 <https://download.pytorch.org/tutorial/data.zip>`_ 에서 데이터를 다운 받고,
+.. NOTE::
+   `여기 <https://download.pytorch.org/tutorial/data.zip>`__ 에서 데이터를 다운 받고,
    현재 디렉토리에 압축을 푸십시오.
 
 
