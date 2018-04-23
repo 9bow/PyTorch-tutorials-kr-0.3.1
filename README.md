@@ -36,6 +36,7 @@ PyTorch에서 제공하는 튜토리얼의 한국어 번역을 위한 저장소�
     * [예제 코드](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#examples)
 
 ### 중급(Intermediate)
+* [문자 단위 RNN으로 이름 분류하기](https://9bow.github.io/PyTorch-tutorials-kr/intermediate/char_rnn_classification_tutorial.html)
 * [Pytorch로 분산 어플리케이션 개발하기](https://9bow.github.io/PyTorch-tutorials-kr/intermediate/dist_tuto.html)
 
 ### 고급(Advanced)
