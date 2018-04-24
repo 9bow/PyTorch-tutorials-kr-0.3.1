@@ -34,14 +34,12 @@
 
 RNN과 그 작동 방식을 아는 것 또한 유용합니다.:
 
--  `The Unreasonable Effectiveness of Recurrent Neural
-   Networks <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
+-  `RNN의 비합리한 효과 <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
    실생활 예들을 보여 줍니다 
--  `Understanding LSTM
-   Networks <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
+-  `LSTM
+   네트워크에 관한 이해 <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
    특히 LSTM에 관한 것이지만 일반적인 RNN에 대한 정보입니다. 
-   is about LSTMs specifically but also informative about RNNs in
-   general
+
 
 데이터 준비하기
 ==================
@@ -54,7 +52,7 @@ RNN과 그 작동 방식을 아는 것 또한 유용합니다.:
 
 ``data/names`` 디렉토리에는 "[Language].txt" 라는 18 개의 텍스트 파일이 포함되어 있습니다. 각 파일에는 한 줄에 하나의 이름이 포함되어 있으며 대부분 로마자로 표시되어 있습니다 (그러나, 유니 코드에서 ASCII로 변환해야 함).
 
-언어 별 이름 목록 사전이 ``{language : [names ...]}`` 로 끝날 것입니다. 일반 변수 "category"와 "line" (이 경우 언어와 이름 용)은 이후의 확장성을 위해 사용됩니다.
+언어 별 이름 목록 사전이 ``{language : [names ...]}`` 로 끝날 것입니다. 일반 변수 "category" 와 "line" (이 경우 언어와 이름 용)은 이후의 확장성을 위해 사용됩니다.
 """
 from __future__ import unicode_literals, print_function, division
 from io import open
@@ -80,7 +78,7 @@ def unicodeToAscii(s):
 
 print(unicodeToAscii('Ślusàrski'))
 
-# 언어별 이름 목록인 category_lines 디렉토리를 만드십시오.
+# 언어별 이름 목록인 category_lines 사전을 만드십시오.
 category_lines = {}
 all_categories = []
 
@@ -114,16 +112,16 @@ print(category_lines['Italian'][:5])
 # 이제는 모든 이름을 체계화 했으므로 이를 활용하기 위해 Tensor로 
 # 전환해야 합니다.
 #
-# 하나의 문자를 표현하기 위해, 크기가 ``<1 x n_letters>`` 크기의 
+# 하나의 문자를 표현하기 위해, 크기가 ``<1 x n_letters>`` 인 
 # "one-hot vector" 를 사용합니다. one-hot 벡터는 현재 문자의 
 # 주소에만 1을 값을 가지고 그외에 나머지는 0으로 채워진다. 
-# 예시 `` "b"= <0 1 0 0 0 ...>``.
+# 예시 `` "b"= <0 1 0 0 0 ...> `` .
 #
 # 단어를 만들기 위해 그 묶음을 2 차원 행렬 
 # ``<line_length x 1 x n_letters>`` 에 결합시킵니다.
 #
 # 이 추가 1 차원은 PyTorch가 모든 것이 뱃치(batch)에 있다고 가정하기 
-# 때문에 발생합니다. - 여기서는 뱃치 크기 1을 사용하고 있습니다.
+# 때문에 발생합니다. 여기서는 뱃치 크기 1을 사용하고 있습니다.
 #
 
 
@@ -157,8 +155,8 @@ print(lineToTensor('Jones').size())
 # ====================
 #
 # Autograd 전에, Torch에서 RNN(recurrent neural network) 생성에는 
-# 여러 타임 스텝에서 Layer의 파라미터를 복제하는 작업을 포함합니니다.
-# Layer는 이제 그래프 자체에서 완전히 다루어지는 Hidden State와 
+# 여러 타임 스텝에서 Layer의 파라미터를 복제하는 작업을 포함합니다.
+# 이제 Layer는 그래프 자체에서 완전히 처리되는 Hidden State와 
 # Gradient를 가지게 됩니다. 즉, feed-forward layer 같은 매우 "순수한" 
 # 방법으로 RNN을 구현할 수 있습니다.
 #
@@ -503,7 +501,7 @@ predict('Satoshi')
 # 연습
 # =========
 #
-# -  다른 데이터 집합으로 시도해보십시오. -> 카테고리, 예를 들어:
+# -  "line -> category" 의 다른 데이터 집합으로 시도해보십시오, 예를 들어:
 #
 #    -  단어 -> 언어
 #    -  이름 -> 성별
@@ -512,7 +510,7 @@ predict('Satoshi')
 #
 # -  더 크고 더 나은 모양의 네트워크로 더 나은 결과를 얻으십시오.
 #
-#    -  더많은 선형 layer 추가
-#    -  ``nn.LSTM`` 과 ``nn.GRU`` layer 추가
-#    -  여러 개의 이런 RNN을 상위 수준 네트워크로 결합
+#    -  더많은 선형 layer 추가해 보십시오
+#    -  ``nn.LSTM`` 과 ``nn.GRU`` layer 추가해 보십시오
+#    -  여러 개의 이런 RNN을 상위 수준 네트워크로 결합해 보십시오
 #

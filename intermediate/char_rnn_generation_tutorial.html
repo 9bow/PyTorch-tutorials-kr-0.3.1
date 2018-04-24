@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generating Names with a Character-Level RNN &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>문자 단위 RNN 으로 이름 생성하기 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -332,16 +332,16 @@
 <li class="toctree-l2"><a class="reference internal" href="char_rnn_classification_tutorial.html#id10">연습</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating Names with a Character-Level RNN</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preparing-the-data">Preparing the Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-the-network">Creating the Network</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#training">Training</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#preparing-for-training">Preparing for Training</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#training-the-network">Training the Network</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#plotting-the-losses">Plotting the Losses</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">문자 단위 RNN 으로 이름 생성하기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">데이터 준비하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">네트워크 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">학습</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">학습 준비</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">네트워크 학습</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">손실 도식화</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sampling-the-network">Sampling the Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">네트워크 샘플링</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
 </ul>
 </li>
@@ -491,7 +491,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Generating Names with a Character-Level RNN</li>
+      <li>문자 단위 RNN 으로 이름 생성하기</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -510,12 +510,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="generating-names-with-a-character-level-rnn">
-<span id="sphx-glr-intermediate-char-rnn-generation-tutorial-py"></span><h1>Generating Names with a Character-Level RNN<a class="headerlink" href="#generating-names-with-a-character-level-rnn" title="Permalink to this headline">¶</a></h1>
-<p><strong>Author</strong>: <a class="reference external" href="https://github.com/spro/practical-pytorch">Sean Robertson</a></p>
-<p>In the <a class="reference internal" href="char_rnn_classification_tutorial.html"><span class="doc">last tutorial</span></a>
-we used a RNN to classify names into their language of origin. This time
-we’ll turn around and generate names from languages.</p>
+  <div class="section" id="rnn">
+<span id="sphx-glr-intermediate-char-rnn-generation-tutorial-py"></span><h1>문자 단위 RNN 으로 이름 생성하기<a class="headerlink" href="#rnn" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><strong>Author</strong>: <a class="reference external" href="https://github.com/spro/practical-pytorch">Sean Robertson</a></dt>
+<dd><strong>번역</strong>: <a class="reference external" href="https://github.com/adonisues">황성수</a></dd>
+</dl>
+<p><a class="reference internal" href="char_rnn_classification_tutorial.html"><span class="doc">이전 튜토리얼</span></a>
+에서 이름을 그들의 원래 언어로 분류하기 위해 RNN을 사용했습니다.
+이번에는 반대로 언어로 이름을 생성할 예정입니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">python</span> <span class="n">sample</span><span class="o">.</span><span class="n">py</span> <span class="n">Russian</span> <span class="n">RUS</span>
 <span class="n">Rovakov</span>
 <span class="n">Uantov</span>
@@ -537,44 +540,37 @@ we’ll turn around and generate names from languages.</p>
 <span class="n">Iun</span>
 </pre></div>
 </div>
-<p>We are still hand-crafting a small RNN with a few linear layers. The big
-difference is instead of predicting a category after reading in all the
-letters of a name, we input a category and output one letter at a time.
-Recurrently predicting characters to form language (this could also be
-done with words or other higher order constructs) is often referred to
-as a “language model”.</p>
-<p><strong>Recommended Reading:</strong></p>
-<p>I assume you have at least installed PyTorch, know Python, and
-understand Tensors:</p>
+<p>우리는 여전히 몇 개의 선형 레이어를 가진 작은 RNN을 직접 제작하고 있습니다.
+이름의 모든 글자를 읽은 후에 카테고리를 예측하는 것과의 큰 차이점은 카테고리를 입력하고 한 번에 한 글자를 출력하는 것입니다.
+언어를 형성하기 위해 문자를 반복적으로 예측하는 것을 종종 “언어 모델”이라고합니다. (단어 또는 다른 고차원 구조로도 수행 될 수 있음)</p>
+<p><strong>추천 자료:</strong></p>
+<p>최소한 Pytorch 를 설치했고, Python을 알고, Tensor 를 이해한다고 가정합니다.:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://pytorch.org/">http://pytorch.org/</a> For installation instructions</li>
-<li><a class="reference internal" href="../beginner/deep_learning_60min_blitz.html"><span class="doc">PyTorch로 딥러닝하기: 60분만에 끝장내기</span></a> to get started with PyTorch in general</li>
-<li><a class="reference internal" href="../beginner/pytorch_with_examples.html"><span class="doc">예제로 배우는 PyTorch</span></a> for a wide and deep overview</li>
-<li><a class="reference internal" href="../beginner/former_torchies_tutorial.html"><span class="doc">Torch 사용자를 위한 PyTorch</span></a> if you are former Lua Torch user</li>
+<li><a class="reference external" href="http://pytorch.org/">http://pytorch.org/</a> 설치 안내를 위한 자료</li>
+<li><a class="reference internal" href="../beginner/deep_learning_60min_blitz.html"><span class="doc">PyTorch로 딥러닝하기: 60분만에 끝장내기</span></a> 일반적인 PyTorch 시작을 위한 자료</li>
+<li><a class="reference internal" href="../beginner/pytorch_with_examples.html"><span class="doc">예제로 배우는 PyTorch</span></a> 넓고 깊은 통찰을 위한 자료</li>
+<li><a class="reference internal" href="../beginner/former_torchies_tutorial.html"><span class="doc">Torch 사용자를 위한 PyTorch</span></a> 만일 이전 Lua Torch 사용자를 위한 자료</li>
 </ul>
-<p>It would also be useful to know about RNNs and how they work:</p>
+<p>RNN과 그 작동 방식을 아는 것 또한 유용합니다.:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">The Unreasonable Effectiveness of Recurrent Neural
-Networks</a>
-shows a bunch of real life examples</li>
-<li><a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM
-Networks</a>
-is about LSTMs specifically but also informative about RNNs in
-general</li>
+<li><a class="reference external" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">RNN의 비합리한 효과</a>
+실생활 예들을 보여 줍니다</li>
+<li><a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">LSTM
+네트워크에 관한 이해</a>
+특히 LSTM에 관한 것이지만 일반적인 RNN에 대한 정보입니다.</li>
 </ul>
-<p>I also suggest the previous tutorial, <a class="reference internal" href="char_rnn_classification_tutorial.html"><span class="doc">문자 단위 RNN 으로 이름 분류하기</span></a></p>
-<div class="section" id="preparing-the-data">
-<h2>Preparing the Data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">¶</a></h2>
+<p>이전 튜토리얼도 추천합니다. <a class="reference internal" href="char_rnn_classification_tutorial.html"><span class="doc">문자 단위 RNN 으로 이름 분류하기</span></a></p>
+<div class="section" id="id2">
+<h2>데이터 준비하기<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Download the data from
-<a class="reference external" href="https://download.pytorch.org/tutorial/data.zip">here</a>
-and extract it to the current directory.</p>
+<p class="last"><a class="reference external" href="https://download.pytorch.org/tutorial/data.zip">여기</a>
+에서 데이터를 다운 받고, 현재 디렉토리에 압축을 푸십시오.</p>
 </div>
-<p>See the last tutorial for more detail of this process. In short, there
-are a bunch of plain text files <code class="docutils literal notranslate"><span class="pre">data/names/[Language].txt</span></code> with a
-name per line. We split lines into an array, convert Unicode to ASCII,
-and end up with a dictionary <code class="docutils literal notranslate"><span class="pre">{language:</span> <span class="pre">[names</span> <span class="pre">...]}</span></code>.</p>
+<p>이 과정의 더 자세항 사항은 지난 튜토리얼을 보십시오. 요약하면,
+줄마다 이름이 적힌 텍스트 파일 <code class="docutils literal notranslate"><span class="pre">data/names/[Language].txt</span></code> 있습니다.
+이것을 어레이로 분리하고, Unicode를 ASCII로 변경하고,
+사전 <code class="docutils literal notranslate"><span class="pre">{language:</span> <span class="pre">[names</span> <span class="pre">...]}</span></code> 으로 마무리합니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="nb">open</span>
 <span class="kn">import</span> <span class="nn">glob</span>
@@ -586,7 +582,7 @@ and end up with a dictionary <code class="docutils literal notranslate"><span cl
 
 <span class="k">def</span> <span class="nf">findFiles</span><span class="p">(</span><span class="n">path</span><span class="p">):</span> <span class="k">return</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<span class="c1"># Turn a Unicode string to plain ASCII, thanks to http://stackoverflow.com/a/518232/2809427</span>
+<span class="c1"># 유니 코드 문자열을 일반 ASCII로 변환하십시오. http://stackoverflow.com/a/518232/2809427 에 감사드립니다.</span>
 <span class="k">def</span> <span class="nf">unicodeToAscii</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
         <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFD&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
@@ -594,12 +590,12 @@ and end up with a dictionary <code class="docutils literal notranslate"><span cl
         <span class="ow">and</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">all_letters</span>
     <span class="p">)</span>
 
-<span class="c1"># Read a file and split into lines</span>
+<span class="c1"># 파일을 읽고 라인으로 분리하십시오</span>
 <span class="k">def</span> <span class="nf">readLines</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">unicodeToAscii</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
 
-<span class="c1"># Build the category_lines dictionary, a list of lines per category</span>
+<span class="c1"># 카테고리별 줄 목록인 category_lines 사전을 만드십시오.</span>
 <span class="n">category_lines</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">all_categories</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">findFiles</span><span class="p">(</span><span class="s1">&#39;data/names/*.txt&#39;</span><span class="p">):</span>
@@ -620,22 +616,20 @@ and end up with a dictionary <code class="docutils literal notranslate"><span cl
 </pre></div>
 </div>
 </div>
-<div class="section" id="creating-the-network">
-<h2>Creating the Network<a class="headerlink" href="#creating-the-network" title="Permalink to this headline">¶</a></h2>
-<p>This network extends <a class="reference external" href="#Creating-the-Network">the last tutorial’s RNN</a>
-with an extra argument for the category tensor, which is concatenated
-along with the others. The category tensor is a one-hot vector just like
-the letter input.</p>
-<p>We will interpret the output as the probability of the next letter. When
-sampling, the most likely output letter is used as the next input
-letter.</p>
-<p>I added a second linear layer <code class="docutils literal notranslate"><span class="pre">o2o</span></code> (after combining hidden and
-output) to give it more muscle to work with. There’s also a dropout
-layer, which <a class="reference external" href="https://arxiv.org/abs/1207.0580">randomly zeros parts of its
-input</a> with a given probability
-(here 0.1) and is usually used to fuzz inputs to prevent overfitting.
-Here we’re using it towards the end of the network to purposely add some
-chaos and increase sampling variety.</p>
+<div class="section" id="id4">
+<h2>네트워크 생성<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>이 네트워크는 <a class="reference external" href="#Creating-the-Network">지난 튜토리얼의 RNN</a> 이
+다른 것들과 연결되는 category tensor 를 추가 인자로 가지게 확장합니다.
+category tensor는 문자 입력과 마찬가지로 one-hot 벡터입니다.</p>
+<p>우리는 출력을 다음 문자의 확률로 해석 할 것입니다. 샘플링 할 때
+가장 확률이 높은 문자가 다음 입력 문자로 사용됩니다.</p>
+<p>더 잘 동작하게 하기 위해 두 번째 선형 레이어
+<code class="docutils literal notranslate"><span class="pre">o2o</span></code> (hiddne과 출력을 결합한 후) 를 추가했습니다 .
+또한 drop-out 레이어가 있습니다. 이 레이어는 주어진 확률(여기서 0.1)로
+<a class="reference external" href="https://arxiv.org/abs/1207.0580">입력을 무작위로 0 #</a> 으로 만들고
+일반적으로 over-fitting 을 방지하기위해 입력을 흐리게 하는 데 사용됩니다.
+여기서 우리는 고의로 일부 혼돈을 추가하고 샘플링 다양성을 높이기
+위해 네트워크의 마지막에 이것을 사용합니다.</p>
 <div class="figure">
 <img alt="" src="https://i.imgur.com/jzVrf7f.png" />
 </div>
@@ -669,50 +663,47 @@ chaos and increase sampling variety.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="training">
-<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="preparing-for-training">
-<h3>Preparing for Training<a class="headerlink" href="#preparing-for-training" title="Permalink to this headline">¶</a></h3>
-<p>First of all, helper functions to get random pairs of (category, line):</p>
+<div class="section" id="id5">
+<h2>학습<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>학습 준비<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>제일 먼저 (category, line)의 무작위 쌍을 얻는 함수:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
-<span class="c1"># Random item from a list</span>
+<span class="c1"># 리스트에서 무작의 아이템 반환</span>
 <span class="k">def</span> <span class="nf">randomChoice</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
 
-<span class="c1"># Get a random category and random line from that category</span>
+<span class="c1"># 임의의 category 및 그 category에서 임의의 줄(이름) 얻기</span>
 <span class="k">def</span> <span class="nf">randomTrainingPair</span><span class="p">():</span>
     <span class="n">category</span> <span class="o">=</span> <span class="n">randomChoice</span><span class="p">(</span><span class="n">all_categories</span><span class="p">)</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">randomChoice</span><span class="p">(</span><span class="n">category_lines</span><span class="p">[</span><span class="n">category</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">category</span><span class="p">,</span> <span class="n">line</span>
 </pre></div>
 </div>
-<p>For each timestep (that is, for each letter in a training word) the
-inputs of the network will be
-<code class="docutils literal notranslate"><span class="pre">(category,</span> <span class="pre">current</span> <span class="pre">letter,</span> <span class="pre">hidden</span> <span class="pre">state)</span></code> and the outputs will be
-<code class="docutils literal notranslate"><span class="pre">(next</span> <span class="pre">letter,</span> <span class="pre">next</span> <span class="pre">hidden</span> <span class="pre">state)</span></code>. So for each training set, we’ll
-need the category, a set of input letters, and a set of output/target
-letters.</p>
-<p>Since we are predicting the next letter from the current letter for each
-timestep, the letter pairs are groups of consecutive letters from the
-line - e.g. for <code class="docutils literal notranslate"><span class="pre">&quot;ABCD&lt;EOS&gt;&quot;</span></code> we would create (“A”, “B”), (“B”, “C”),
-(“C”, “D”), (“D”, “EOS”).</p>
+<p>각 스텝 마다 (즉, 학습 단어의 각 문자 마다) 네트워크의 입력은
+<code class="docutils literal notranslate"><span class="pre">(category,</span> <span class="pre">현재</span> <span class="pre">문자,</span> <span class="pre">hidden</span> <span class="pre">state)</span></code> 이 되고, 출력은
+<code class="docutils literal notranslate"><span class="pre">(다음</span> <span class="pre">문자,</span> <span class="pre">다음</span> <span class="pre">hidden</span> <span class="pre">state)</span></code> 가 된다. 따라서 각 학습 세트 마다
+category, 입력 문자의 세트, 출력/목표 문자의 세트가 필요하다.</p>
+<p>매 타임 스텝마다 현재 문자에서 다음 문자를 예측하기 때문에,
+문자 쌍은 줄에서 연속 된 문자 그룹입니다. - 예를 들어 <code class="docutils literal notranslate"><span class="pre">&quot;ABCD&lt;EOS&gt;&quot;</span></code> 는
+(“A”, “B”), (“B”, “C”), (“C”, “D”), (“D”, “EOS”) 로 생성합니다.</p>
 <div class="figure">
 <img alt="" src="https://i.imgur.com/JH58tXY.png" />
 </div>
-<p>The category tensor is a <a class="reference external" href="https://en.wikipedia.org/wiki/One-hot">one-hot
-tensor</a> of size
-<code class="docutils literal notranslate"><span class="pre">&lt;1</span> <span class="pre">x</span> <span class="pre">n_categories&gt;</span></code>. When training we feed it to the network at every
-timestep - this is a design choice, it could have been included as part
-of initial hidden state or some other strategy.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># One-hot vector for category</span>
+<p>category tensor 는 <code class="docutils literal notranslate"><span class="pre">&lt;1</span> <span class="pre">x</span> <span class="pre">n_categories&gt;</span></code> 크기의 <a class="reference external" href="https://en.wikipedia.org/wiki/One-hot">one-hot
+tensor</a> 입니다.
+학습시에 모든 타임 스텝에서 네트워크에 그것을 전달합니다.
+- 이것은 설계 선택사항으로, 초기 hidden state 부분 또는
+또다른 전략이 포함될 수 있습니다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># category를 위한 One-hot 벡터</span>
 <span class="k">def</span> <span class="nf">categoryTensor</span><span class="p">(</span><span class="n">category</span><span class="p">):</span>
     <span class="n">li</span> <span class="o">=</span> <span class="n">all_categories</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
     <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_categories</span><span class="p">)</span>
     <span class="n">tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">li</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">tensor</span>
 
-<span class="c1"># One-hot matrix of first to last letters (not including EOS) for input</span>
+<span class="c1"># 입력을 위한 처음부터 마지막 문자(EOS 제외)까지의  One-hot 행렬</span>
 <span class="k">def</span> <span class="nf">inputTensor</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
     <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_letters</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
@@ -720,17 +711,17 @@ of initial hidden state or some other strategy.</p>
         <span class="n">tensor</span><span class="p">[</span><span class="n">li</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">all_letters</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">letter</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">tensor</span>
 
-<span class="c1"># LongTensor of second letter to end (EOS) for target</span>
+<span class="c1"># 목표를 위한 두번째 문자 부터 마지막 (EOS) 까지의 LongTensor</span>
 <span class="k">def</span> <span class="nf">targetTensor</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
     <span class="n">letter_indexes</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_letters</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">li</span><span class="p">])</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))]</span>
     <span class="n">letter_indexes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_letters</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># EOS</span>
     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">letter_indexes</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>For convenience during training we’ll make a <code class="docutils literal notranslate"><span class="pre">randomTrainingExample</span></code>
-function that fetches a random (category, line) pair and turns them into
-the required (category, input, target) tensors.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make category, input, and target tensors from a random category, line pair</span>
+<p>학습 동안 편의를 위해 임의의 (category, line)을 가져오고
+그것을 필요한 형태 (category, input, target) tensor로 바꾸는
+<code class="docutils literal notranslate"><span class="pre">randomTrainingExample</span></code> 함수를 만들 예정입니다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 임의의 category에서 category, input, target Tensor를 만듭니다.</span>
 <span class="k">def</span> <span class="nf">randomTrainingExample</span><span class="p">():</span>
     <span class="n">category</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="n">randomTrainingPair</span><span class="p">()</span>
     <span class="n">category_tensor</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">categoryTensor</span><span class="p">(</span><span class="n">category</span><span class="p">))</span>
@@ -740,13 +731,12 @@ the required (category, input, target) tensors.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="training-the-network">
-<h3>Training the Network<a class="headerlink" href="#training-the-network" title="Permalink to this headline">¶</a></h3>
-<p>In contrast to classification, where only the last output is used, we
-are making a prediction at every step, so we are calculating loss at
-every step.</p>
-<p>The magic of autograd allows you to simply sum these losses at each step
-and call backward at the end.</p>
+<div class="section" id="id7">
+<h3>네트워크 학습<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>마지막 출력만 사용하는 분류와 달리, 모든 단계에서 예측을 수행하므로
+모든 단계에서 손실을 계산합니다.</p>
+<p>autograd 의 마법이 각 스템의 이 손실들을 간단하게 합하고 마지막에
+역전파를 호출하게 해줍니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">NLLLoss</span><span class="p">()</span>
 
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0005</span>
@@ -770,8 +760,8 @@ and call backward at the end.</p>
     <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">input_line_tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To keep track of how long training takes I am adding a
-<code class="docutils literal notranslate"><span class="pre">timeSince(timestamp)</span></code> function which returns a human readable string:</p>
+<p>학습에 걸리는 시간을 추적하기 위해 사람이 읽을 수있는 문자열을
+반환하는``timeSince (timestamp)`` 함수를 추가합니다. :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -783,17 +773,17 @@ and call backward at the end.</p>
     <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">m </span><span class="si">%d</span><span class="s1">s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Training is business as usual - call train a bunch of times and wait a
-few minutes, printing the current time and loss every <code class="docutils literal notranslate"><span class="pre">print_every</span></code>
-examples, and keeping store of an average loss per <code class="docutils literal notranslate"><span class="pre">plot_every</span></code> examples
-in <code class="docutils literal notranslate"><span class="pre">all_losses</span></code> for plotting later.</p>
+<p>학습은 일상적인 일입니다. - 몇번 train() 을 호출하고 몇 분 정도
+기다렸다가 <code class="docutils literal notranslate"><span class="pre">print_every</span></code> 예제마다 현재 시간과 손실을 출력하고,
+도식화를 위해 <code class="docutils literal notranslate"><span class="pre">all_losses</span></code> 에 <code class="docutils literal notranslate"><span class="pre">plot_every</span></code> 예제에 마다
+평균 손실을 저장하십시오.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rnn</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">n_letters</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">n_letters</span><span class="p">)</span>
 
 <span class="n">n_iters</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">print_every</span> <span class="o">=</span> <span class="mi">5000</span>
 <span class="n">plot_every</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="n">all_losses</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">total_loss</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Reset every plot_every iters</span>
+<span class="n">total_loss</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 매 plot_every 마다 초기화</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
@@ -810,33 +800,33 @@ in <code class="docutils literal notranslate"><span class="pre">all_losses</span
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">5000</span> <span class="mi">5</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.2648</span>
-<span class="mi">0</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">10000</span> <span class="mi">10</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.4649</span>
-<span class="mi">0</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">15000</span> <span class="mi">15</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.9009</span>
-<span class="mi">0</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">20000</span> <span class="mi">20</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6194</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span> <span class="p">(</span><span class="mi">25000</span> <span class="mi">25</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4681</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">11</span><span class="n">s</span> <span class="p">(</span><span class="mi">30000</span> <span class="mi">30</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.3634</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span> <span class="p">(</span><span class="mi">35000</span> <span class="mi">35</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6180</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">35</span><span class="n">s</span> <span class="p">(</span><span class="mi">40000</span> <span class="mi">40</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.8540</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">47</span><span class="n">s</span> <span class="p">(</span><span class="mi">45000</span> <span class="mi">45</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.5978</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="mi">50000</span> <span class="mi">50</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.9165</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">11</span><span class="n">s</span> <span class="p">(</span><span class="mi">55000</span> <span class="mi">55</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4557</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span> <span class="p">(</span><span class="mi">60000</span> <span class="mi">60</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4043</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">35</span><span class="n">s</span> <span class="p">(</span><span class="mi">65000</span> <span class="mi">65</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.6616</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">47</span><span class="n">s</span> <span class="p">(</span><span class="mi">70000</span> <span class="mi">70</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.9776</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="mi">75000</span> <span class="mi">75</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.6160</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">11</span><span class="n">s</span> <span class="p">(</span><span class="mi">80000</span> <span class="mi">80</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1464</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span> <span class="p">(</span><span class="mi">85000</span> <span class="mi">85</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6609</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">35</span><span class="n">s</span> <span class="p">(</span><span class="mi">90000</span> <span class="mi">90</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1253</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">47</span><span class="n">s</span> <span class="p">(</span><span class="mi">95000</span> <span class="mi">95</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.9846</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="mi">100000</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.2130</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">5000</span> <span class="mi">5</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.3896</span>
+<span class="mi">0</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">10000</span> <span class="mi">10</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.8760</span>
+<span class="mi">0</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">15000</span> <span class="mi">15</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1707</span>
+<span class="mi">0</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">20000</span> <span class="mi">20</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4185</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span> <span class="p">(</span><span class="mi">25000</span> <span class="mi">25</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6252</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">30000</span> <span class="mi">30</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.0544</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">35000</span> <span class="mi">35</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4381</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">40000</span> <span class="mi">40</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1223</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">45000</span> <span class="mi">45</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.2162</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="mi">50000</span> <span class="mi">50</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.7984</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">11</span><span class="n">s</span> <span class="p">(</span><span class="mi">55000</span> <span class="mi">55</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.0739</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span> <span class="p">(</span><span class="mi">60000</span> <span class="mi">60</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.1528</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">34</span><span class="n">s</span> <span class="p">(</span><span class="mi">65000</span> <span class="mi">65</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.7202</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">46</span><span class="n">s</span> <span class="p">(</span><span class="mi">70000</span> <span class="mi">70</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4180</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">58</span><span class="n">s</span> <span class="p">(</span><span class="mi">75000</span> <span class="mi">75</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.5458</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">9</span><span class="n">s</span> <span class="p">(</span><span class="mi">80000</span> <span class="mi">80</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6781</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">21</span><span class="n">s</span> <span class="p">(</span><span class="mi">85000</span> <span class="mi">85</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.2021</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">33</span><span class="n">s</span> <span class="p">(</span><span class="mi">90000</span> <span class="mi">90</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.0037</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">45</span><span class="n">s</span> <span class="p">(</span><span class="mi">95000</span> <span class="mi">95</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.1024</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">57</span><span class="n">s</span> <span class="p">(</span><span class="mi">100000</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.9082</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="plotting-the-losses">
-<h3>Plotting the Losses<a class="headerlink" href="#plotting-the-losses" title="Permalink to this headline">¶</a></h3>
-<p>Plotting the historical loss from all_losses shows the network
-learning:</p>
+<div class="section" id="id8">
+<h3>손실 도식화<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>all_losses 를 이용한 역사적인 손실의
+도식화는 네트워크의 학습을 보여준다:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="kn">as</span> <span class="nn">ticker</span>
 
@@ -847,32 +837,31 @@ learning:</p>
 <img alt="../_images/sphx_glr_char_rnn_generation_tutorial_001.png" class="align-center" src="../_images/sphx_glr_char_rnn_generation_tutorial_001.png" />
 </div>
 </div>
-<div class="section" id="sampling-the-network">
-<h2>Sampling the Network<a class="headerlink" href="#sampling-the-network" title="Permalink to this headline">¶</a></h2>
-<p>To sample we give the network a letter and ask what the next one is,
-feed that in as the next letter, and repeat until the EOS token.</p>
+<div class="section" id="id9">
+<h2>네트워크 샘플링<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>샘플을 선택하기 위해 네트워크에 문자를 주고 다음 문자를 물어보고,
+다음 문자로 그것을 입력하고, 이를 EOS 토큰까지 반복하십시오.</p>
 <ul class="simple">
-<li>Create tensors for input category, starting letter, and empty hidden
-state</li>
-<li>Create a string <code class="docutils literal notranslate"><span class="pre">output_name</span></code> with the starting letter</li>
-<li>Up to a maximum output length,<ul>
-<li>Feed the current letter to the network</li>
-<li>Get the next letter from highest output, and next hidden state</li>
-<li>If the letter is EOS, stop here</li>
-<li>If a regular letter, add to <code class="docutils literal notranslate"><span class="pre">output_name</span></code> and continue</li>
+<li>입력 카테고리, 시작 문자, 빈 hidden state 로 Tensor를 생성하십시오</li>
+<li>시작 문자로 <code class="docutils literal notranslate"><span class="pre">output_name</span></code> 문자열을 생성하십시오</li>
+<li>최대 출력 길이까지,<ul>
+<li>현재 문자를 네트워크에 전달하십시오.</li>
+<li>가장 높은 출력에서 다음 문자과 다음 hidden state 를 얻으십시오</li>
+<li>만일 문자가 EOS면 여기서 멈추십시오</li>
+<li>만일 일반적인 문자라면 <code class="docutils literal notranslate"><span class="pre">output_name</span></code> 에 추가하고 계속하십시오</li>
 </ul>
 </li>
-<li>Return the final name</li>
+<li>마지막 이름 반환</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Rather than having to give it a starting letter, another
-strategy would have been to include a “start of string” token in
-training and have the network choose its own starting letter.</p>
+<p class="last">시작 문자를 주는 것 외에 “문자열 시작” 토큰을 학습에
+포함하게 하고 네트워크가 자체적으로 시작 문자를 선택하게 하는
+다른 전략도 있습니다.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_length</span> <span class="o">=</span> <span class="mi">20</span>
 
-<span class="c1"># Sample from a category and starting letter</span>
+<span class="c1"># 카테고리와 시작 문자에서 샘플 선택</span>
 <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">start_letter</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">):</span>
     <span class="n">category_tensor</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">categoryTensor</span><span class="p">(</span><span class="n">category</span><span class="p">))</span>
     <span class="nb">input</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">inputTensor</span><span class="p">(</span><span class="n">start_letter</span><span class="p">))</span>
@@ -893,7 +882,7 @@ training and have the network choose its own starting letter.</p>
 
     <span class="k">return</span> <span class="n">output_name</span>
 
-<span class="c1"># Get multiple samples from one category and multiple starting letters</span>
+<span class="c1"># 하나의 카테고리와 여러 시작 문자들에서 여러 샘플 얻기</span>
 <span class="k">def</span> <span class="nf">samples</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">start_letters</span><span class="o">=</span><span class="s1">&#39;ABC&#39;</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">start_letter</span> <span class="ow">in</span> <span class="n">start_letters</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="n">sample</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">start_letter</span><span class="p">))</span>
@@ -908,39 +897,39 @@ training and have the network choose its own starting letter.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rovani</span>
-<span class="n">Uanton</span>
-<span class="n">Shavan</span>
-<span class="n">Ganger</span>
-<span class="n">Eren</span>
-<span class="n">Ranger</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rovantov</span>
+<span class="n">Uarikov</span>
+<span class="n">Shithin</span>
+<span class="n">Gerter</span>
+<span class="n">Eringer</span>
+<span class="n">Ronger</span>
 <span class="n">Salla</span>
-<span class="n">Para</span>
+<span class="n">Parez</span>
 <span class="n">Allan</span>
-<span class="n">Chan</span>
-<span class="n">Han</span>
-<span class="n">Iung</span>
+<span class="n">Cou</span>
+<span class="n">Hou</span>
+<span class="n">Iin</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Try with a different dataset of category -&gt; line, for example:<ul>
-<li>Fictional series -&gt; Character name</li>
-<li>Part of speech -&gt; Word</li>
-<li>Country -&gt; City</li>
+<li>“category -&gt; line” 의 다른 데이터 집합으로 시도해보십시오, 예를 들어:<ul>
+<li>Fictional 시리즈 -&gt; 캐릭터 이름</li>
+<li>연설의 일부 -&gt; 단어</li>
+<li>나라 -&gt; 도시</li>
 </ul>
 </li>
-<li>Use a “start of sentence” token so that sampling can be done without
-choosing a start letter</li>
-<li>Get better results with a bigger and/or better shaped network<ul>
-<li>Try the nn.LSTM and nn.GRU layers</li>
-<li>Combine multiple of these RNNs as a higher level network</li>
+<li>“start of sentence” 토큰을 사용하여 시작 문자를 선택하지 않고
+샘플링을 수행 할 수 있습니다.</li>
+<li>더 크거나 더 나은 구조의 네트워크로 더 나은 결과를 얻으십시오<ul>
+<li>nn.LSTM 과 nn.GRU 레이어를 사용해 보십시오</li>
+<li>여러 개의 이런 RNN을 상위 수준 네트워크로 결합해 보십시오</li>
 </ul>
 </li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 3 minutes  59.422 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 3 minutes  57.206 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../_downloads/char_rnn_generation_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">char_rnn_generation_tutorial.py</span></code></a></div>
