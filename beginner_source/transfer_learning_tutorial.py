@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
 """
-Transfer Learning tutorial
-==========================
+전이학습(Transfer Learning) 튜토리얼
+====================================
 **Author**: `Sasank Chilamkurthy <https://chsasank.github.io>`_
+  **번역**: `박정환 <http://github.com/9bow>`_
 
-In this tutorial, you will learn how to train your network using
-transfer learning. You can read more about the transfer learning at `cs231n
-notes <http://cs231n.github.io/transfer-learning/>`__
+이 튜토리얼에서는 전이학습(Transfer Learning)을 이용하여 신경망을 어떻게 학습시키는지
+배워보겠습니다. 전이학습에 대해서 더 알아보시려면
+`CS231n 노트 <http://cs231n.github.io/transfer-learning/>`__ 을 읽어보시면 좋습니다.
 
-Quoting these notes,
+위 노트를 인용해보면,
 
-    In practice, very few people train an entire Convolutional Network
-    from scratch (with random initialization), because it is relatively
-    rare to have a dataset of sufficient size. Instead, it is common to
-    pretrain a ConvNet on a very large dataset (e.g. ImageNet, which
-    contains 1.2 million images with 1000 categories), and then use the
-    ConvNet either as an initialization or a fixed feature extractor for
-    the task of interest.
+    실제로 충분한 크기의 데이터셋을 갖추기는 상대적으로 드물기 때문에,
+    (무작위 초기화를 통해) 바닥부터(from scratch) 전체 합성곱 신경망(Convolutional
+    Network)를 학습하는 사람은 거의 없습니다. 대신, 매우 큰 데이터셋(예.
+    100가지 분류(Category)에 대해 120만개의 이미지가 포함된 ImageNet)에서 합성곱
+    신경망(ConvNet)을 미리 학습(Pretrain)한 후, 이 합성곱 신경망을 관심있는 작업
+    (task of interest)을 위한 초기화(initialization) 또는 고정 특징 추출기(fixed
+    feature extractor)로 사용합니다.
 
-These two major transfer learning scenarios look as follows:
+이러한 2가지의 주요한 전이학습 시나리오는 다음과 같습니다:
 
--  **Finetuning the convnet**: Instead of random initializaion, we
-   initialize the network with a pretrained network, like the one that is
-   trained on imagenet 1000 dataset. Rest of the training looks as
-   usual.
--  **ConvNet as fixed feature extractor**: Here, we will freeze the weights
-   for all of the network except that of the final fully connected
-   layer. This last fully connected layer is replaced with a new one
-   with random weights and only this layer is trained.
+-  **합성곱 신경망의 미세조정(Finetuning)**: 무작위 초기화 대신, 신경망을
+   ImageNet 1000 데이터셋 등으로 미리 학습한 신경망으로 초기화합니다. 학습의 나머지
+   과정들은 평상시와 같습니다.
+-  **고정 특정 추출기로써의 합성곱 신경망**: 여기서는 마지막의 완전히 연결
+   (Fully-connected)된 계층을 제외한 모든 신경망의 가중치를 고정합니다. 이
+   마지막의 완전히 연결된 계층은 새로운 무작위의 가중치를 갖는 계층으로 대체되어
+   이 계층만 학습합니다.
+
 
 """
 # License: BSD
