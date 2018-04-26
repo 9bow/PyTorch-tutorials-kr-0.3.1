@@ -269,7 +269,7 @@ optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 
 ######################################################################
-# 학습과 평가하기
+# 학습 및 평가하기
 # ^^^^^^^^^^^^^^^^^^
 #
 # CPU에서 15-25분 가량 소요될 것입니다. 그래도 GPU에서는 1분도 걸리지 않습니다.
@@ -285,16 +285,16 @@ visualize_model(model_ft)
 
 
 ######################################################################
-# ConvNet as fixed feature extractor
-# ----------------------------------
+# 고정 특정 추출기로써의 합성곱 신경망
+# -------------------------------------
 #
-# Here, we need to freeze all the network except the final layer. We need
-# to set ``requires_grad == False`` to freeze the parameters so that the
-# gradients are not computed in ``backward()``.
+# 이제, 마지막 계층을 제외한 모든 신경망을 고정(freeze)할 필요가 있습니다.
+# ``requires_grad == False`` 를 설정하여 매개변수를 고정하여 ``backward()`` 에서
+# 경사도(gradient)가 계산되지 않도록 해야합니다.
 #
-# You can read more about this in the documentation
-# `here <http://pytorch.org/docs/notes/autograd.html#excluding-subgraphs-from-backward>`__.
-#
+# 이 부분에 대한 문서는
+# `여기 <http://pytorch.org/docs/notes/autograd.html#excluding-subgraphs-from-backward>`__
+# 에서 확인할 수 있습니다.
 
 model_conv = torchvision.models.resnet18(pretrained=True)
 for param in model_conv.parameters():
@@ -318,12 +318,12 @@ exp_lr_scheduler = lr_scheduler.StepLR(optimizer_conv, step_size=7, gamma=0.1)
 
 
 ######################################################################
-# Train and evaluate
-# ^^^^^^^^^^^^^^^^^^
+# 학습 및 평가하기
+# ^^^^^^^^^^^^^^^^^
 #
-# On CPU this will take about half the time compared to previous scenario.
-# This is expected as gradients don't need to be computed for most of the
-# network. However, forward does need to be computed.
+# CPU에서 실행하는 경우 이전 시나리오와 비교했을 때 약 절반 가량의 시간이 소요됩니다.
+# 이는 대부분의 신경망에서 경사도를 계산할 필요가 없을 것으로 기대합니다. 하지만,
+# 순전파(forward)는 계산해야 할 필요가 있습니다.
 #
 
 model_conv = train_model(model_conv, criterion, optimizer_conv,
