@@ -334,7 +334,7 @@
 
 
 
-학습과 평가하기
+학습 및 평가하기
 ^^^^^^^^^^^^^^^^^^
 
 CPU에서 15-25분 가량 소요될 것입니다. 그래도 GPU에서는 1분도 걸리지 않습니다.
@@ -358,131 +358,131 @@ CPU에서 15-25분 가량 소요될 것입니다. 그래도 GPU에서는 1분도
 
     Epoch 0/24
     ----------
-    train Loss: 0.5536 Acc: 0.7090
-    val Loss: 0.3108 Acc: 0.8889
+    train Loss: 0.6272 Acc: 0.6885
+    val Loss: 0.1921 Acc: 0.9542
 
     Epoch 1/24
     ----------
-    train Loss: 0.3982 Acc: 0.8238
-    val Loss: 0.3000 Acc: 0.8889
+    train Loss: 0.3979 Acc: 0.8156
+    val Loss: 0.6890 Acc: 0.7386
 
     Epoch 2/24
     ----------
-    train Loss: 0.5767 Acc: 0.7705
-    val Loss: 0.8002 Acc: 0.6863
+    train Loss: 0.5850 Acc: 0.7500
+    val Loss: 0.3951 Acc: 0.8562
 
     Epoch 3/24
     ----------
-    train Loss: 0.4600 Acc: 0.7869
-    val Loss: 0.2950 Acc: 0.8824
+    train Loss: 0.5357 Acc: 0.7828
+    val Loss: 0.2871 Acc: 0.8693
 
     Epoch 4/24
     ----------
-    train Loss: 0.6578 Acc: 0.7787
-    val Loss: 0.2741 Acc: 0.8954
+    train Loss: 0.4436 Acc: 0.8320
+    val Loss: 0.2611 Acc: 0.8954
 
     Epoch 5/24
     ----------
-    train Loss: 0.5902 Acc: 0.7992
-    val Loss: 0.2234 Acc: 0.9150
+    train Loss: 0.5635 Acc: 0.7992
+    val Loss: 0.2516 Acc: 0.9150
 
     Epoch 6/24
     ----------
-    train Loss: 0.5734 Acc: 0.8033
-    val Loss: 0.5192 Acc: 0.8366
+    train Loss: 0.5773 Acc: 0.8238
+    val Loss: 0.2452 Acc: 0.9020
 
     Epoch 7/24
     ----------
-    train Loss: 0.3746 Acc: 0.8484
-    val Loss: 0.3102 Acc: 0.8693
+    train Loss: 0.3433 Acc: 0.8484
+    val Loss: 0.2052 Acc: 0.9216
 
     Epoch 8/24
     ----------
-    train Loss: 0.3282 Acc: 0.8484
-    val Loss: 0.2815 Acc: 0.9150
+    train Loss: 0.3603 Acc: 0.8648
+    val Loss: 0.2373 Acc: 0.8954
 
     Epoch 9/24
     ----------
-    train Loss: 0.3426 Acc: 0.8525
-    val Loss: 0.2715 Acc: 0.9020
+    train Loss: 0.3401 Acc: 0.8484
+    val Loss: 0.1933 Acc: 0.9412
 
     Epoch 10/24
     ----------
-    train Loss: 0.2749 Acc: 0.8811
-    val Loss: 0.2700 Acc: 0.9020
+    train Loss: 0.3299 Acc: 0.8361
+    val Loss: 0.2026 Acc: 0.9150
 
     Epoch 11/24
     ----------
-    train Loss: 0.2856 Acc: 0.8811
-    val Loss: 0.2655 Acc: 0.9150
+    train Loss: 0.2834 Acc: 0.8607
+    val Loss: 0.1894 Acc: 0.9477
 
     Epoch 12/24
     ----------
-    train Loss: 0.3724 Acc: 0.8115
-    val Loss: 0.2640 Acc: 0.9085
+    train Loss: 0.3472 Acc: 0.8566
+    val Loss: 0.1884 Acc: 0.9412
 
     Epoch 13/24
     ----------
-    train Loss: 0.2575 Acc: 0.8770
-    val Loss: 0.2631 Acc: 0.9150
+    train Loss: 0.3326 Acc: 0.8402
+    val Loss: 0.1926 Acc: 0.9281
 
     Epoch 14/24
     ----------
-    train Loss: 0.1867 Acc: 0.9221
-    val Loss: 0.2726 Acc: 0.8889
+    train Loss: 0.2453 Acc: 0.8893
+    val Loss: 0.2030 Acc: 0.9150
 
     Epoch 15/24
     ----------
-    train Loss: 0.2888 Acc: 0.8852
-    val Loss: 0.2633 Acc: 0.9085
+    train Loss: 0.3791 Acc: 0.8566
+    val Loss: 0.2020 Acc: 0.9412
 
     Epoch 16/24
     ----------
-    train Loss: 0.2805 Acc: 0.8648
-    val Loss: 0.2774 Acc: 0.9150
+    train Loss: 0.2361 Acc: 0.9016
+    val Loss: 0.1844 Acc: 0.9412
 
     Epoch 17/24
     ----------
-    train Loss: 0.3161 Acc: 0.8770
-    val Loss: 0.2677 Acc: 0.9020
+    train Loss: 0.2922 Acc: 0.8730
+    val Loss: 0.1884 Acc: 0.9477
 
     Epoch 18/24
     ----------
-    train Loss: 0.2415 Acc: 0.8730
-    val Loss: 0.2619 Acc: 0.9150
+    train Loss: 0.2757 Acc: 0.8934
+    val Loss: 0.1952 Acc: 0.9346
 
     Epoch 19/24
     ----------
-    train Loss: 0.3380 Acc: 0.8689
-    val Loss: 0.2541 Acc: 0.9085
+    train Loss: 0.2257 Acc: 0.9139
+    val Loss: 0.2104 Acc: 0.9346
 
     Epoch 20/24
     ----------
-    train Loss: 0.2461 Acc: 0.8934
-    val Loss: 0.2784 Acc: 0.9085
+    train Loss: 0.2753 Acc: 0.8852
+    val Loss: 0.1887 Acc: 0.9412
 
     Epoch 21/24
     ----------
-    train Loss: 0.2769 Acc: 0.8730
-    val Loss: 0.2517 Acc: 0.9085
+    train Loss: 0.2264 Acc: 0.9139
+    val Loss: 0.1926 Acc: 0.9346
 
     Epoch 22/24
     ----------
-    train Loss: 0.2502 Acc: 0.8770
-    val Loss: 0.2693 Acc: 0.9085
+    train Loss: 0.2769 Acc: 0.8648
+    val Loss: 0.1947 Acc: 0.9216
 
     Epoch 23/24
     ----------
-    train Loss: 0.2849 Acc: 0.8811
-    val Loss: 0.2491 Acc: 0.9020
+    train Loss: 0.2455 Acc: 0.8811
+    val Loss: 0.1906 Acc: 0.9346
 
     Epoch 24/24
     ----------
-    train Loss: 0.2441 Acc: 0.8893
-    val Loss: 0.2742 Acc: 0.8954
+    train Loss: 0.2257 Acc: 0.9139
+    val Loss: 0.2009 Acc: 0.9150
 
     Training complete in 0m 57s
-    Best val Acc: 0.915033
+    Best val Acc: 0.954248
 
 
 
@@ -501,16 +501,16 @@ CPU에서 15-25분 가량 소요될 것입니다. 그래도 GPU에서는 1분도
 
 
 
-ConvNet as fixed feature extractor
-----------------------------------
+고정 특정 추출기로써의 합성곱 신경망
+-------------------------------------
 
-Here, we need to freeze all the network except the final layer. We need
-to set ``requires_grad == False`` to freeze the parameters so that the
-gradients are not computed in ``backward()``.
+이제, 마지막 계층을 제외한 모든 신경망을 고정(freeze)할 필요가 있습니다.
+``requires_grad == False`` 를 설정하여 매개변수를 고정하여 ``backward()`` 에서
+경사도(gradient)가 계산되지 않도록 해야합니다.
 
-You can read more about this in the documentation
-`here <http://pytorch.org/docs/notes/autograd.html#excluding-subgraphs-from-backward>`__.
-
+이 부분에 대한 문서는
+`여기 <http://pytorch.org/docs/notes/autograd.html#excluding-subgraphs-from-backward>`__
+에서 확인할 수 있습니다.
 
 
 
@@ -544,12 +544,12 @@ You can read more about this in the documentation
 
 
 
-Train and evaluate
-^^^^^^^^^^^^^^^^^^
+학습 및 평가하기
+^^^^^^^^^^^^^^^^^
 
-On CPU this will take about half the time compared to previous scenario.
-This is expected as gradients don't need to be computed for most of the
-network. However, forward does need to be computed.
+CPU에서 실행하는 경우 이전 시나리오와 비교했을 때 약 절반 가량의 시간이 소요됩니다.
+이는 대부분의 신경망에서 경사도를 계산할 필요가 없을 것으로 기대합니다. 하지만,
+순전파(forward)는 계산해야 할 필요가 있습니다.
 
 
 
@@ -570,131 +570,131 @@ network. However, forward does need to be computed.
 
     Epoch 0/24
     ----------
-    train Loss: 0.5891 Acc: 0.6885
-    val Loss: 0.3037 Acc: 0.8693
+    train Loss: 0.5384 Acc: 0.6844
+    val Loss: 0.2635 Acc: 0.8824
 
     Epoch 1/24
     ----------
-    train Loss: 0.4437 Acc: 0.7746
-    val Loss: 0.1777 Acc: 0.9477
+    train Loss: 0.5950 Acc: 0.6803
+    val Loss: 0.5317 Acc: 0.7647
 
     Epoch 2/24
     ----------
-    train Loss: 0.5213 Acc: 0.7623
-    val Loss: 0.2036 Acc: 0.9346
+    train Loss: 0.5630 Acc: 0.7746
+    val Loss: 0.2115 Acc: 0.9216
 
     Epoch 3/24
     ----------
-    train Loss: 0.4531 Acc: 0.7664
-    val Loss: 0.1799 Acc: 0.9346
+    train Loss: 0.5791 Acc: 0.8115
+    val Loss: 0.7466 Acc: 0.7712
 
     Epoch 4/24
     ----------
-    train Loss: 0.3327 Acc: 0.8730
-    val Loss: 0.1787 Acc: 0.9412
+    train Loss: 0.6692 Acc: 0.7500
+    val Loss: 0.1704 Acc: 0.9542
 
     Epoch 5/24
     ----------
-    train Loss: 0.4530 Acc: 0.8033
-    val Loss: 0.2856 Acc: 0.9150
+    train Loss: 0.3669 Acc: 0.8320
+    val Loss: 0.2060 Acc: 0.9412
 
     Epoch 6/24
     ----------
-    train Loss: 0.3934 Acc: 0.8115
-    val Loss: 0.2648 Acc: 0.9020
+    train Loss: 0.4078 Acc: 0.8361
+    val Loss: 0.2486 Acc: 0.9216
 
     Epoch 7/24
     ----------
-    train Loss: 0.4031 Acc: 0.8115
-    val Loss: 0.1798 Acc: 0.9412
+    train Loss: 0.3547 Acc: 0.8197
+    val Loss: 0.1778 Acc: 0.9542
 
     Epoch 8/24
     ----------
-    train Loss: 0.2988 Acc: 0.8484
-    val Loss: 0.1738 Acc: 0.9477
+    train Loss: 0.3528 Acc: 0.8320
+    val Loss: 0.1694 Acc: 0.9608
 
     Epoch 9/24
     ----------
-    train Loss: 0.2607 Acc: 0.8811
-    val Loss: 0.1969 Acc: 0.9542
+    train Loss: 0.3493 Acc: 0.8279
+    val Loss: 0.1691 Acc: 0.9542
 
     Epoch 10/24
     ----------
-    train Loss: 0.4044 Acc: 0.8320
-    val Loss: 0.1699 Acc: 0.9477
+    train Loss: 0.3419 Acc: 0.8770
+    val Loss: 0.1732 Acc: 0.9542
 
     Epoch 11/24
     ----------
-    train Loss: 0.3852 Acc: 0.8238
-    val Loss: 0.1927 Acc: 0.9412
+    train Loss: 0.3287 Acc: 0.8689
+    val Loss: 0.1595 Acc: 0.9608
 
     Epoch 12/24
     ----------
-    train Loss: 0.3700 Acc: 0.8525
-    val Loss: 0.1811 Acc: 0.9477
+    train Loss: 0.2734 Acc: 0.8893
+    val Loss: 0.1632 Acc: 0.9477
 
     Epoch 13/24
     ----------
-    train Loss: 0.3770 Acc: 0.8238
-    val Loss: 0.1654 Acc: 0.9477
+    train Loss: 0.3128 Acc: 0.8730
+    val Loss: 0.1801 Acc: 0.9477
 
     Epoch 14/24
     ----------
-    train Loss: 0.3392 Acc: 0.8443
-    val Loss: 0.1787 Acc: 0.9477
+    train Loss: 0.3725 Acc: 0.8279
+    val Loss: 0.1827 Acc: 0.9542
 
     Epoch 15/24
     ----------
-    train Loss: 0.2654 Acc: 0.8648
-    val Loss: 0.1986 Acc: 0.9412
+    train Loss: 0.4678 Acc: 0.7787
+    val Loss: 0.1695 Acc: 0.9542
 
     Epoch 16/24
     ----------
-    train Loss: 0.3414 Acc: 0.8566
-    val Loss: 0.1732 Acc: 0.9477
+    train Loss: 0.2850 Acc: 0.8893
+    val Loss: 0.1892 Acc: 0.9412
 
     Epoch 17/24
     ----------
-    train Loss: 0.2898 Acc: 0.8893
-    val Loss: 0.1733 Acc: 0.9477
+    train Loss: 0.3192 Acc: 0.8607
+    val Loss: 0.1832 Acc: 0.9477
 
     Epoch 18/24
     ----------
-    train Loss: 0.4100 Acc: 0.8361
-    val Loss: 0.1851 Acc: 0.9542
+    train Loss: 0.3384 Acc: 0.8566
+    val Loss: 0.1773 Acc: 0.9608
 
     Epoch 19/24
     ----------
-    train Loss: 0.3515 Acc: 0.8443
-    val Loss: 0.1778 Acc: 0.9542
+    train Loss: 0.3195 Acc: 0.8648
+    val Loss: 0.1676 Acc: 0.9477
 
     Epoch 20/24
     ----------
-    train Loss: 0.3389 Acc: 0.8402
-    val Loss: 0.1824 Acc: 0.9477
+    train Loss: 0.2904 Acc: 0.8689
+    val Loss: 0.1629 Acc: 0.9608
 
     Epoch 21/24
     ----------
-    train Loss: 0.3315 Acc: 0.8320
-    val Loss: 0.1591 Acc: 0.9477
+    train Loss: 0.3411 Acc: 0.8320
+    val Loss: 0.1977 Acc: 0.9477
 
     Epoch 22/24
     ----------
-    train Loss: 0.3588 Acc: 0.8648
-    val Loss: 0.1736 Acc: 0.9477
+    train Loss: 0.3421 Acc: 0.8648
+    val Loss: 0.1667 Acc: 0.9608
 
     Epoch 23/24
     ----------
-    train Loss: 0.3215 Acc: 0.8648
-    val Loss: 0.1825 Acc: 0.9412
+    train Loss: 0.3008 Acc: 0.8689
+    val Loss: 0.1881 Acc: 0.9608
 
     Epoch 24/24
     ----------
-    train Loss: 0.2766 Acc: 0.8607
-    val Loss: 0.1678 Acc: 0.9477
+    train Loss: 0.3302 Acc: 0.8811
+    val Loss: 0.1742 Acc: 0.9477
 
     Training complete in 0m 37s
-    Best val Acc: 0.954248
+    Best val Acc: 0.960784
 
 
 
@@ -714,7 +714,7 @@ network. However, forward does need to be computed.
 
 
 
-**Total running time of the script:** ( 1 minutes  41.881 seconds)
+**Total running time of the script:** ( 1 minutes  40.835 seconds)
 
 
 
