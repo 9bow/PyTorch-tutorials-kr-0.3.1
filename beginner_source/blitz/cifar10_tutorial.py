@@ -194,7 +194,7 @@ print('Finished Training')
 # 없을지도 모르니 확인해보겠습니다.
 #
 # 신경망이 예측한 정답과 진짜 정답(Ground-truth)을 비교하는 방식으로 확인할텐데요,
-# 예측이 맞다면 샘플을 '맞은 정답(Correct predictions)'에 넣겠습니다.
+# 예측이 맞다면 샘플을 '맞은 예측값(Correct predictions)'에 넣겠습니다.
 #
 # 먼저 시험용 데이터를 좀 보겠습니다.
 
