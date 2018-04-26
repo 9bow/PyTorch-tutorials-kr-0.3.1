@@ -234,21 +234,21 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../transfer_learning_tutorial.html">Transfer Learning tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#load-data">Load Data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#visualize-a-few-images">Visualize a few images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transfer_learning_tutorial.html">전이학습(Transfer Learning) 튜토리얼</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#id2">데이터 불러오기</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#id4">일부 이미지 시각화하기</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#training-the-model">Training the model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#visualizing-the-model-predictions">Visualizing the model predictions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#id5">모델 학습하기</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#id6">모델 예측값 시각화하기</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#finetuning-the-convnet">Finetuning the convnet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#train-and-evaluate">Train and evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#finetuning">합성곱 신경망 미세조정(Finetuning)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#id7">학습과 평가하기</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor">ConvNet as fixed feature extractor</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#id1">Train and evaluate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transfer_learning_tutorial.html#train-and-evaluate">Train and evaluate</a></li>
 </ul>
 </li>
 </ul>
@@ -585,7 +585,7 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Downloading</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">toronto</span><span class="o">.</span><span class="n">edu</span><span class="o">/~</span><span class="n">kriz</span><span class="o">/</span><span class="n">cifar</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="n">python</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="n">to</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">cifar</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="n">python</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Files</span> <span class="n">already</span> <span class="n">downloaded</span> <span class="ow">and</span> <span class="n">verified</span>
 <span class="n">Files</span> <span class="n">already</span> <span class="n">downloaded</span> <span class="ow">and</span> <span class="n">verified</span>
 </pre></div>
 </div>
@@ -614,7 +614,7 @@
 </div>
 <img alt="../../_images/sphx_glr_cifar10_tutorial_001.png" class="align-center" src="../../_images/sphx_glr_cifar10_tutorial_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bird</span>  <span class="n">ship</span>  <span class="n">deer</span> <span class="n">horse</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">horse</span>   <span class="n">car</span>  <span class="n">frog</span> <span class="n">truck</span>
 </pre></div>
 </div>
 </div>
@@ -696,18 +696,18 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.225</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.898</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.685</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.578</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.526</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.501</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.411</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.374</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.355</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.342</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.327</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.309</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">2.176</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.838</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.663</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.575</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.509</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.447</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">2000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.384</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">4000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.331</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">6000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.340</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">8000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.314</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.255</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">1.262</span>
 <span class="n">Finished</span> <span class="n">Training</span>
 </pre></div>
 </div>
@@ -717,7 +717,7 @@ SGD를 사용합니다.</p>
 <p>학습용 데이터셋을 2회 반복하여 신경망을 학습시켰는데요, 신경망이 전혀 배운게
 없을지도 모르니 확인해보겠습니다.</p>
 <p>신경망이 예측한 정답과 진짜 정답(Ground-truth)을 비교하는 방식으로 확인할텐데요,
-예측이 맞다면 샘플을 ‘맞은 정답(Correct predictions)’에 넣겠습니다.</p>
+예측이 맞다면 샘플을 ‘맞은 예측값(Correct predictions)’에 넣겠습니다.</p>
 <p>먼저 시험용 데이터를 좀 보겠습니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">testloader</span><span class="p">)</span>
 <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">dataiter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
@@ -746,7 +746,7 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Predicted</span><span class="p">:</span>    <span class="n">cat</span> <span class="n">plane</span>  <span class="n">ship</span> <span class="n">plane</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Predicted</span><span class="p">:</span>    <span class="n">cat</span>  <span class="n">ship</span>  <span class="n">ship</span>  <span class="n">ship</span>
 </pre></div>
 </div>
 <p>결과가 괜찮아보이네요.</p>
@@ -765,7 +765,7 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">network</span> <span class="n">on</span> <span class="n">the</span> <span class="mi">10000</span> <span class="n">test</span> <span class="n">images</span><span class="p">:</span> <span class="mi">53</span> <span class="o">%</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">network</span> <span class="n">on</span> <span class="n">the</span> <span class="mi">10000</span> <span class="n">test</span> <span class="n">images</span><span class="p">:</span> <span class="mi">55</span> <span class="o">%</span>
 </pre></div>
 </div>
 <p>(10가지 분류에서 무작위로) 찍었을 때의 정확도인 10% 보다는 나아보입니다.
@@ -790,16 +790,16 @@ SGD를 사용합니다.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span> <span class="n">of</span> <span class="n">plane</span> <span class="p">:</span> <span class="mi">66</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">car</span> <span class="p">:</span> <span class="mi">55</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">bird</span> <span class="p">:</span> <span class="mi">44</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">cat</span> <span class="p">:</span> <span class="mi">32</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">deer</span> <span class="p">:</span> <span class="mi">31</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">dog</span> <span class="p">:</span> <span class="mi">71</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">frog</span> <span class="p">:</span> <span class="mi">66</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">horse</span> <span class="p">:</span> <span class="mi">46</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">ship</span> <span class="p">:</span> <span class="mi">66</span> <span class="o">%</span>
-<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">truck</span> <span class="p">:</span> <span class="mi">52</span> <span class="o">%</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span> <span class="n">of</span> <span class="n">plane</span> <span class="p">:</span> <span class="mi">52</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">car</span> <span class="p">:</span> <span class="mi">63</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">bird</span> <span class="p">:</span> <span class="mi">35</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">cat</span> <span class="p">:</span> <span class="mi">57</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">deer</span> <span class="p">:</span> <span class="mi">39</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>   <span class="n">dog</span> <span class="p">:</span> <span class="mi">30</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">frog</span> <span class="p">:</span> <span class="mi">61</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">horse</span> <span class="p">:</span> <span class="mi">64</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span>  <span class="n">ship</span> <span class="p">:</span> <span class="mi">77</span> <span class="o">%</span>
+<span class="n">Accuracy</span> <span class="n">of</span> <span class="n">truck</span> <span class="p">:</span> <span class="mi">76</span> <span class="o">%</span>
 </pre></div>
 </div>
 <p>자, 이제 다음은 뭘까요?</p>
@@ -846,7 +846,7 @@ tensor로 변환하게 됩니다:</p>
 <li><a class="reference external" href="https://discuss.pytorch.org/">포럼에서 PyTorch에 대해 얘기하기</a></li>
 <li><a class="reference external" href="http://pytorch.slack.com/messages/beginner/">Slack에서 다른 사용자와 대화하기</a></li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 2 minutes  10.004 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 1 minutes  1.551 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/cifar10_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">cifar10_tutorial.py</span></code></a></div>

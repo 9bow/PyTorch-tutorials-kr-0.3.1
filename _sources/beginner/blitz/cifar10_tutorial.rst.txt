@@ -107,7 +107,7 @@ torchvision 데이터셋의 출력(output)은 [0, 1] 범위를 갖는 PILImage �
 
  Out::
 
-    Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar-10-python.tar.gz
+    Files already downloaded and verified
     Files already downloaded and verified
 
 
@@ -151,7 +151,7 @@ torchvision 데이터셋의 출력(output)은 [0, 1] 범위를 갖는 PILImage �
 
  Out::
 
-    bird  ship  deer horse
+    horse   car  frog truck
 
 
 2. 합성곱 신경망(Convolution Neural Network) 정의하기
@@ -265,18 +265,18 @@ SGD를 사용합니다.
 
  Out::
 
-    [1,  2000] loss: 2.225
-    [1,  4000] loss: 1.898
-    [1,  6000] loss: 1.685
-    [1,  8000] loss: 1.578
-    [1, 10000] loss: 1.526
-    [1, 12000] loss: 1.501
-    [2,  2000] loss: 1.411
-    [2,  4000] loss: 1.374
-    [2,  6000] loss: 1.355
-    [2,  8000] loss: 1.342
-    [2, 10000] loss: 1.327
-    [2, 12000] loss: 1.309
+    [1,  2000] loss: 2.176
+    [1,  4000] loss: 1.838
+    [1,  6000] loss: 1.663
+    [1,  8000] loss: 1.575
+    [1, 10000] loss: 1.509
+    [1, 12000] loss: 1.447
+    [2,  2000] loss: 1.384
+    [2,  4000] loss: 1.331
+    [2,  6000] loss: 1.340
+    [2,  8000] loss: 1.314
+    [2, 10000] loss: 1.255
+    [2, 12000] loss: 1.262
     Finished Training
 
 
@@ -287,7 +287,7 @@ SGD를 사용합니다.
 없을지도 모르니 확인해보겠습니다.
 
 신경망이 예측한 정답과 진짜 정답(Ground-truth)을 비교하는 방식으로 확인할텐데요,
-예측이 맞다면 샘플을 '맞은 정답(Correct predictions)'에 넣겠습니다.
+예측이 맞다면 샘플을 '맞은 예측값(Correct predictions)'에 넣겠습니다.
 
 먼저 시험용 데이터를 좀 보겠습니다.
 
@@ -353,7 +353,7 @@ SGD를 사용합니다.
 
  Out::
 
-    Predicted:    cat plane  ship plane
+    Predicted:    cat  ship  ship  ship
 
 
 결과가 괜찮아보이네요.
@@ -385,7 +385,7 @@ SGD를 사용합니다.
 
  Out::
 
-    Accuracy of the network on the 10000 test images: 53 %
+    Accuracy of the network on the 10000 test images: 55 %
 
 
 (10가지 분류에서 무작위로) 찍었을 때의 정확도인 10% 보다는 나아보입니다.
@@ -423,16 +423,16 @@ SGD를 사용합니다.
 
  Out::
 
-    Accuracy of plane : 66 %
-    Accuracy of   car : 55 %
-    Accuracy of  bird : 44 %
-    Accuracy of   cat : 32 %
-    Accuracy of  deer : 31 %
-    Accuracy of   dog : 71 %
-    Accuracy of  frog : 66 %
-    Accuracy of horse : 46 %
-    Accuracy of  ship : 66 %
-    Accuracy of truck : 52 %
+    Accuracy of plane : 52 %
+    Accuracy of   car : 63 %
+    Accuracy of  bird : 35 %
+    Accuracy of   cat : 57 %
+    Accuracy of  deer : 39 %
+    Accuracy of   dog : 30 %
+    Accuracy of  frog : 61 %
+    Accuracy of horse : 64 %
+    Accuracy of  ship : 77 %
+    Accuracy of truck : 76 %
 
 
 자, 이제 다음은 뭘까요?
@@ -494,7 +494,7 @@ CPU와 비교했을 때 어마어마한 속도 차이가 나지 않는 것은 �
 .. _Slack에서 다른 사용자와 대화하기: http://pytorch.slack.com/messages/beginner/
 
 
-**Total running time of the script:** ( 2 minutes  10.004 seconds)
+**Total running time of the script:** ( 1 minutes  1.551 seconds)
 
 
 
