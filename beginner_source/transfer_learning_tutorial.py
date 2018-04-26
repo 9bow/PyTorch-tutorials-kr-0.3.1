@@ -7,7 +7,7 @@
 
 이 튜토리얼에서는 전이학습(Transfer Learning)을 이용하여 신경망을 어떻게 학습시키는지
 배워보겠습니다. 전이학습에 대해서 더 알아보시려면
-`CS231n 노트 <http://cs231n.github.io/transfer-learning/>`__ 을 읽어보시면 좋습니다.
+`CS231n 노트 <http://cs231n.github.io/transfer-learning/>`__ 를 읽어보시면 좋습니다.
 
 위 노트를 인용해보면,
 
@@ -52,28 +52,24 @@ import copy
 plt.ion()   # interactive mode
 
 ######################################################################
-# Load Data
-# ---------
+# 데이터 불러오기
+# ---------------
 #
-# We will use torchvision and torch.utils.data packages for loading the
-# data.
+# 데이터를 불러오기 위해 torchvision과 torch.utils.data 패키지를 사용하겠습니다.
 #
-# The problem we're going to solve today is to train a model to classify
-# **ants** and **bees**. We have about 120 training images each for ants and bees.
-# There are 75 validation images for each class. Usually, this is a very
-# small dataset to generalize upon, if trained from scratch. Since we
-# are using transfer learning, we should be able to generalize reasonably
-# well.
+# 오늘 풀고자 하는 문제는 **개미** 와 **벌** 을 분류하는 모델을 학습하는 것입니다.
+# 각각의 분류에는 75개의 검증용 이미지(validation image)가 있습니다. 일반적으로,
+# 만약 바닥부터 학습을 한다면, 이는 일반화하기에는 아주 작은 데이터셋입니다.
+# 하지만 전이학습을 사용할 것이므로, 합리적으로 잘 일반화해 할 수 있습니다.
 #
-# This dataset is a very small subset of imagenet.
+# 이 데이터셋은 ImageNet의 아주 작은 부분(Subset)입니다.
 #
 # .. Note ::
-#    Download the data from
-#    `here <https://download.pytorch.org/tutorial/hymenoptera_data.zip>`_
-#    and extract it to the current directory.
+#    데이터를 `여기 <https://download.pytorch.org/tutorial/hymenoptera_data.zip>`_
+#    에서 다운로드 받아 현재 디렉토리에 압축을 푸십시오.
 
-# Data augmentation and normalization for training
-# Just normalization for validation
+# 학습을 위한 데이터 증가(Augmentation)와 일반화하기
+# 단지 검증을 위한 일반화하기
 data_transforms = {
     'train': transforms.Compose([
         transforms.RandomResizedCrop(224),
@@ -102,10 +98,9 @@ class_names = image_datasets['train'].classes
 use_gpu = torch.cuda.is_available()
 
 ######################################################################
-# Visualize a few images
-# ^^^^^^^^^^^^^^^^^^^^^^
-# Let's visualize a few training images so as to understand the data
-# augmentations.
+# 일부 이미지 시각화하기
+# ^^^^^^^^^^^^^^^^^^^^^^^^^
+# 데이터 증가를 이해하기 위해 일부 학습용 이미지를 시각화해보겠습니다.
 
 def imshow(inp, title=None):
     """Imshow for Tensor."""
@@ -130,17 +125,17 @@ imshow(out, title=[class_names[x] for x in classes])
 
 
 ######################################################################
-# Training the model
-# ------------------
+# 모델 학습하기
+# --------------
 #
-# Now, let's write a general function to train a model. Here, we will
-# illustrate:
+# 이제 모델을 학습하기 위한 일반 함수를 작성해보겠습니다. 여기서는 다음 내용들을
+# 설명합니다:
 #
-# -  Scheduling the learning rate
-# -  Saving the best model
+# -  Learning Rate 관리(Scheduling)
+# -  최적의 모델 구하기
 #
-# In the following, parameter ``scheduler`` is an LR scheduler object from
-# ``torch.optim.lr_scheduler``.
+# 아래에서 ``scheduler`` 매개변수는 ``torch.optim.lr_scheduler`` 의 LR Scheduler
+# 객체(Object)입니다.
 
 
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
@@ -217,10 +212,10 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
 
 ######################################################################
-# Visualizing the model predictions
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# 모델 예측값 시각화하기
+# ^^^^^^^^^^^^^^^^^^^^^^^
 #
-# Generic function to display predictions for a few images
+# 일부 이미지에 대한 예측값을 보여주는 일반화된(Generic) 함수입니다.
 #
 
 def visualize_model(model, num_images=6):
@@ -252,10 +247,10 @@ def visualize_model(model, num_images=6):
     model.train(mode=was_training)
 
 ######################################################################
-# Finetuning the convnet
-# ----------------------
+# 합성곱 신경망 미세조정(Finetuning)
+# ----------------------------------
 #
-# Load a pretrained model and reset final fully connected layer.
+# 미리 학습한 모델을 불러온 후 마지막의 완전히 연결된 계층을 재설정(reset)합니다.
 #
 
 model_ft = models.resnet18(pretrained=True)
@@ -274,11 +269,10 @@ optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 
 ######################################################################
-# Train and evaluate
+# 학습과 평가하기
 # ^^^^^^^^^^^^^^^^^^
 #
-# It should take around 15-25 min on CPU. On GPU though, it takes less than a
-# minute.
+# CPU에서 15-25분 가량 소요될 것입니다. 그래도 GPU에서는 1분도 걸리지 않습니다.
 #
 
 model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
