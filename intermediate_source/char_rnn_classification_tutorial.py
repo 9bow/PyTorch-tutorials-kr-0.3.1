@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-문자 단위 RNN 으로 이름 분류하기  
+문자 단위 RNN으로 이름 분류하기  
 *********************************************
 **Author**: `Sean Robertson <https://github.com/spro/practical-pytorch>`_
   **번역**: `황성수 <https://github.com/adonisues>`_
 
 
-단어를 분류하기 위해 기본적인 문자 단위 RNN을 만들고 훈련 할 것입니다. 문자 단위 RNN은 문자의 연속을 읽어 들여서 각 단계의 예측과 "hidden state" 출력하고 다음 단계에 이전 hidden state 를 전달합니다. 즉 단어가 속한 클래스 같은 출력을 최종 예측으로 선택합니다.
+단어를 분류하기 위해 기본적인 문자 단위 RNN을 만들고 훈련 할 것입니다. 문자 단위 RNN은 문자의 연속을 읽어 들여서 각 단계의 예측과 "hidden state" 출력하고 다음 단계에 이전 hidden state를 전달합니다. 즉 단어가 속한 클래스 같은 출력을 최종 예측으로 선택합니다.
 
 특히, 18개 언어로 된 수천 개의 성(姓)을 훈련시키고, 철자에 따라 이름이 어떤 언어인지 예측합니다:
 
@@ -25,19 +25,20 @@
 
 **추천 자료:**
 
-최소한 Pytorch 를 설치했고, Python을 알고, Tensor 를 이해한다고 가정합니다.:
+최소한 Pytorch를 설치했고, Python을 알고, Tensor를 이해한다고 가정합니다.:
 
 -  http://pytorch.org/ 설치 안내를 위한 자료 
 -  :doc:`/beginner/deep_learning_60min_blitz` 일반적인 PyTorch 시작을 위한 자료
 -  :doc:`/beginner/pytorch_with_examples` 넓고 깊은 통찰을 위한 자료
--  :doc:`/beginner/former_torchies_tutorial` 만일 이전 Lua Torch 사용자를 위한 자료
+-  :doc:`/beginner/former_torchies_tutorial` 이전 Lua Torch 사용자를 위한 자료
 
 RNN과 그 작동 방식을 아는 것 또한 유용합니다.:
 
--  `RNN의 비합리한 효과 <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
+-  `The Unreasonable Effectiveness of Recurrent Neural
+   Networks <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
    실생활 예들을 보여 줍니다 
--  `LSTM
-   네트워크에 관한 이해 <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
+-  `Understanding LSTM
+   Networks <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
    특히 LSTM에 관한 것이지만 일반적인 RNN에 대한 정보입니다. 
 
 
@@ -163,7 +164,7 @@ print(lineToTensor('Jones').size())
 # 이 RNN 모듈 (대부분 `Torch 사용자를 위한 PyTorch 튜토리얼
 # <http://pytorch.org/tutorials/beginner/former_torchies/
 # nn_tutorial.html#example-2-recurrent-net>`__ 에서 복사). 
-# 은 input 및 hidden state 에서 작동하는 2개의 선형 레이어이며, 
+# 은 input 및 hidden state에서 작동하는 2개의 선형 레이어이며, 
 # 출력 후에 LogSoftmax 레이어가 있습니다.
 #
 # .. figure:: https://i.imgur.com/Z2xbySO.png
@@ -201,7 +202,7 @@ rnn = RNN(n_letters, n_hidden, n_categories)
 ######################################################################
 # 이 네트워크의 한 단계를 실행하려면 입력(현재 문자의 Tensor)과 
 # 이전의 hidden state (처음에는 0으로 초기화)를 전달해야 합니다.
-# 출력(각 언어의 확률)과 다음 hidden state (다음 단계에 대해 유지)를 
+# 출력(각 언어의 확률)과 다음 hidden state (다음 단계를 위해 유지)를 
 # 돌려 받습니다.
 #
 # PyTorch 모듈은 Tensors에서 바로 작동하는 대신에 Variables에서 
@@ -316,7 +317,7 @@ def train(category_tensor, line_tensor):
     loss = criterion(output, category_tensor)
     loss.backward()
 
-    # learning rate 를 곱한 파리미터의 경사도를 파리미터 값에 더합니다.
+    # learning rate를 곱한 파리미터의 경사도를 파리미터 값에 더합니다.
     for p in rnn.parameters():
         p.data.add_(-learning_rate, p.grad.data)
 

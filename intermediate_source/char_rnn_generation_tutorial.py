@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-문자 단위 RNN 으로 이름 생성하기
+문자 단위 RNN으로 이름 생성하기
 *******************************************
 **Author**: `Sean Robertson <https://github.com/spro/practical-pytorch>`_
   **번역**: `황성수 <https://github.com/adonisues>`_
@@ -37,19 +37,20 @@
 
 **추천 자료:**
 
-최소한 Pytorch 를 설치했고, Python을 알고, Tensor 를 이해한다고 가정합니다.:
+최소한 Pytorch를 설치했고, Python을 알고, Tensor를 이해한다고 가정합니다.:
 
 -  http://pytorch.org/ 설치 안내를 위한 자료 
 -  :doc:`/beginner/deep_learning_60min_blitz` 일반적인 PyTorch 시작을 위한 자료
 -  :doc:`/beginner/pytorch_with_examples` 넓고 깊은 통찰을 위한 자료
--  :doc:`/beginner/former_torchies_tutorial` 만일 이전 Lua Torch 사용자를 위한 자료
+-  :doc:`/beginner/former_torchies_tutorial` 이전 Lua Torch 사용자를 위한 자료
 
 RNN과 그 작동 방식을 아는 것 또한 유용합니다.:
 
--  `RNN의 비합리한 효과 <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
+-  `The Unreasonable Effectiveness of Recurrent Neural
+   Networks <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
    실생활 예들을 보여 줍니다 
--  `LSTM
-   네트워크에 관한 이해 <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
+-  `Understanding LSTM
+   Networks <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
    특히 LSTM에 관한 것이지만 일반적인 RNN에 대한 정보입니다. 
 
 이전 튜토리얼도 추천합니다. :doc:`/intermediate/char_rnn_classification_tutorial`
@@ -112,7 +113,7 @@ print(unicodeToAscii("O'Néàl"))
 # ====================
 #
 # 이 네트워크는 `지난 튜토리얼의 RNN <#Creating-the-Network>`__ 이 
-# 다른 것들과 연결되는 category tensor 를 추가 인자로 가지게 확장합니다.
+# 다른 것들과 연결되는 category tensor를 추가 인자로 가지게 확장합니다.
 # category tensor는 문자 입력과 마찬가지로 one-hot 벡터입니다.
 #
 # 우리는 출력을 다음 문자의 확률로 해석 할 것입니다. 샘플링 할 때 
@@ -122,7 +123,7 @@ print(unicodeToAscii("O'Néàl"))
 # ``o2o`` (hiddne과 출력을 결합한 후) 를 추가했습니다 .
 # 또한 drop-out 레이어가 있습니다. 이 레이어는 주어진 확률(여기서 0.1)로 
 # `입력을 무작위로 0 # <https://arxiv.org/abs/1207.0580>`__ 으로 만들고
-# 일반적으로 over-fitting 을 방지하기위해 입력을 흐리게 하는 데 사용됩니다.
+# 일반적으로 over-fitting을 방지하기위해 입력을 흐리게 하는 데 사용됩니다.
 # 여기서 우리는 고의로 일부 혼돈을 추가하고 샘플링 다양성을 높이기 
 # 위해 네트워크의 마지막에 이것을 사용합니다.
 #
@@ -195,7 +196,7 @@ def randomTrainingPair():
 # .. figure:: https://i.imgur.com/JH58tXY.png
 #    :alt:
 #
-# category tensor 는 ``<1 x n_categories>`` 크기의 `one-hot
+# category tensor는 ``<1 x n_categories>`` 크기의 `one-hot
 # tensor <https://en.wikipedia.org/wiki/One-hot>`__ 입니다.
 # 학습시에 모든 타임 스텝에서 네트워크에 그것을 전달합니다.
 # - 이것은 설계 선택사항으로, 초기 hidden state 부분 또는
@@ -217,7 +218,7 @@ def inputTensor(line):
         tensor[li][0][all_letters.find(letter)] = 1
     return tensor
 
-# 목표를 위한 두번째 문자 부터 마지막 (EOS) 까지의 LongTensor
+# 목표를 위한 두번째 문자 부터 마지막(EOS) 까지의 LongTensor
 def targetTensor(line):
     letter_indexes = [all_letters.find(line[li]) for li in range(1, len(line))]
     letter_indexes.append(n_letters - 1) # EOS
@@ -323,8 +324,8 @@ for iter in range(1, n_iters + 1):
 # 손실 도식화
 # -------------------
 #
-# all\_losses 를 이용한 역사적인 손실의 
-# 도식화는 네트워크의 학습을 보여준다:
+# all\_losses를 이용한 역사적인 손실의 
+# 도식화는 네트워크의 학습을 보여줍니다:
 #
 
 import matplotlib.pyplot as plt
@@ -346,7 +347,7 @@ plt.plot(all_losses)
 # -  최대 출력 길이까지, 
 #
 #    -  현재 문자를 네트워크에 전달하십시오.
-#    -  가장 높은 출력에서 다음 문자과 다음 hidden state 를 얻으십시오 
+#    -  가장 높은 출력에서 다음 문자과 다음 hidden state를 얻으십시오 
 #    -  만일 문자가 EOS면 여기서 멈추십시오
 #    -  만일 일반적인 문자라면 ``output_name`` 에 추가하고 계속하십시오
 #
