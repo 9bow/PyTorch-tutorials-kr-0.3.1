@@ -34,6 +34,7 @@ PyTorch에서 제공하는 튜토리얼의 한국어 번역을 위한 저장소�
     * [Autograd](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#autograd)
     * [nn 모듈](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#nn)
     * [예제 코드](https://9bow.github.io/PyTorch-tutorials-kr/beginner/pytorch_with_examples.html#examples)
+* [전이학습](https://9bow.github.io/PyTorch-tutorials-kr/beginner/transfer_learning_tutorial.html)
 
 ### 중급(Intermediate)
 * [문자 단위 RNN으로 이름 분류하기](https://9bow.github.io/PyTorch-tutorials-kr/intermediate/char_rnn_classification_tutorial.html)
