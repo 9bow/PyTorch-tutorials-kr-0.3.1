@@ -472,9 +472,9 @@ class AttnDecoderRNN(nn.Module):
 
 ######################################################################
 # .. Note:: 상대 위치 접근을 이용한 길이 제한을 하는 다른 형태의 어텐션
-# 이 있습니다. "local attention"에 관한 자료
-# `Effective Approaches to Attention-based Neural Machine Translation <https://arxiv.org/abs/1508.04025>`__
-# 를 읽으십시오
+#   이 있습니다. "local attention"에 관한 자료
+#   `Effective Approaches to Attention-based Neural Machine Translation <https://arxiv.org/abs/1508.04025>`__
+#   를 읽으십시오
 #
 # 학습
 # ========
