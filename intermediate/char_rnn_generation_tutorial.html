@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>문자 단위 RNN 으로 이름 생성하기 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
+  <title>문자 단위 RNN으로 이름 생성하기 &mdash; PyTorch Tutorials 0.3.1 documentation</title>
   
 
   
@@ -42,8 +42,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PyTorch Tutorials 0.3.1 documentation" href="../index.html"/>
-        <link rel="next" title="Translation with a Sequence to Sequence Network and Attention" href="seq2seq_translation_tutorial.html"/>
-        <link rel="prev" title="문자 단위 RNN 으로 이름 분류하기" href="char_rnn_classification_tutorial.html"/> 
+        <link rel="next" title="Sequence to Sequence 네트워크와 Attention을 이용한 번역" href="seq2seq_translation_tutorial.html"/>
+        <link rel="prev" title="문자 단위 RNN으로 이름 분류하기" href="char_rnn_classification_tutorial.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -313,7 +313,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Intermediate Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="char_rnn_classification_tutorial.html">문자 단위 RNN 으로 이름 분류하기</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="char_rnn_classification_tutorial.html">문자 단위 RNN으로 이름 분류하기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="char_rnn_classification_tutorial.html#id2">데이터 준비하기</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="char_rnn_classification_tutorial.html#tensor">이름을 Tensor 로 변경</a></li>
 </ul>
@@ -332,7 +332,7 @@
 <li class="toctree-l2"><a class="reference internal" href="char_rnn_classification_tutorial.html#id10">연습</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">문자 단위 RNN 으로 이름 생성하기</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">문자 단위 RNN으로 이름 생성하기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">데이터 준비하기</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">네트워크 생성</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id5">학습</a><ul>
@@ -345,26 +345,26 @@
 <li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="seq2seq_translation_tutorial.html">Translation with a Sequence to Sequence Network and Attention</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#loading-data-files">Loading data files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#the-seq2seq-model">The Seq2Seq Model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#the-encoder">The Encoder</a></li>
-<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#the-decoder">The Decoder</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="seq2seq_translation_tutorial.html#simple-decoder">Simple Decoder</a></li>
-<li class="toctree-l4"><a class="reference internal" href="seq2seq_translation_tutorial.html#attention-decoder">Attention Decoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="seq2seq_translation_tutorial.html">Sequence to Sequence 네트워크와 Attention을 이용한 번역</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#id2">데이터 파일 로딩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#seq2seq">Seq2Seq 모델</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#id4">인코더</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#id5">디코더</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="seq2seq_translation_tutorial.html#id6">간단한 디코더</a></li>
+<li class="toctree-l4"><a class="reference internal" href="seq2seq_translation_tutorial.html#id7">어텐션 디코더</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#training">Training</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#preparing-training-data">Preparing Training Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#training-the-model">Training the Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#plotting-results">Plotting results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#id8">학습</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#id9">학습 데이터 준비</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#id10">모델 학습</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#id11">결과 도식화</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#evaluation">Evaluation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#training-and-evaluating">Training and Evaluating</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#visualizing-attention">Visualizing Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#id12">평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#id13">학습과 평가</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="seq2seq_translation_tutorial.html#id14">어텐션 시각화</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="seq2seq_translation_tutorial.html#exercises">Exercises</a></li>
@@ -491,7 +491,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>문자 단위 RNN 으로 이름 생성하기</li>
+      <li>문자 단위 RNN으로 이름 생성하기</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -511,7 +511,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="rnn">
-<span id="sphx-glr-intermediate-char-rnn-generation-tutorial-py"></span><h1>문자 단위 RNN 으로 이름 생성하기<a class="headerlink" href="#rnn" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-intermediate-char-rnn-generation-tutorial-py"></span><h1>문자 단위 RNN으로 이름 생성하기<a class="headerlink" href="#rnn" title="Permalink to this headline">¶</a></h1>
 <dl class="docutils">
 <dt><strong>Author</strong>: <a class="reference external" href="https://github.com/spro/practical-pytorch">Sean Robertson</a></dt>
 <dd><strong>번역</strong>: <a class="reference external" href="https://github.com/adonisues">황성수</a></dd>
@@ -544,22 +544,23 @@
 이름의 모든 글자를 읽은 후에 카테고리를 예측하는 것과의 큰 차이점은 카테고리를 입력하고 한 번에 한 글자를 출력하는 것입니다.
 언어를 형성하기 위해 문자를 반복적으로 예측하는 것을 종종 “언어 모델”이라고합니다. (단어 또는 다른 고차원 구조로도 수행 될 수 있음)</p>
 <p><strong>추천 자료:</strong></p>
-<p>최소한 Pytorch 를 설치했고, Python을 알고, Tensor 를 이해한다고 가정합니다.:</p>
+<p>최소한 Pytorch를 설치했고, Python을 알고, Tensor를 이해한다고 가정합니다.:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://pytorch.org/">http://pytorch.org/</a> 설치 안내를 위한 자료</li>
 <li><a class="reference internal" href="../beginner/deep_learning_60min_blitz.html"><span class="doc">PyTorch로 딥러닝하기: 60분만에 끝장내기</span></a> 일반적인 PyTorch 시작을 위한 자료</li>
 <li><a class="reference internal" href="../beginner/pytorch_with_examples.html"><span class="doc">예제로 배우는 PyTorch</span></a> 넓고 깊은 통찰을 위한 자료</li>
-<li><a class="reference internal" href="../beginner/former_torchies_tutorial.html"><span class="doc">Torch 사용자를 위한 PyTorch</span></a> 만일 이전 Lua Torch 사용자를 위한 자료</li>
+<li><a class="reference internal" href="../beginner/former_torchies_tutorial.html"><span class="doc">Torch 사용자를 위한 PyTorch</span></a> 이전 Lua Torch 사용자를 위한 자료</li>
 </ul>
 <p>RNN과 그 작동 방식을 아는 것 또한 유용합니다.:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">RNN의 비합리한 효과</a>
+<li><a class="reference external" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">The Unreasonable Effectiveness of Recurrent Neural
+Networks</a>
 실생활 예들을 보여 줍니다</li>
-<li><a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">LSTM
-네트워크에 관한 이해</a>
+<li><a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM
+Networks</a>
 특히 LSTM에 관한 것이지만 일반적인 RNN에 대한 정보입니다.</li>
 </ul>
-<p>이전 튜토리얼도 추천합니다. <a class="reference internal" href="char_rnn_classification_tutorial.html"><span class="doc">문자 단위 RNN 으로 이름 분류하기</span></a></p>
+<p>이전 튜토리얼도 추천합니다. <a class="reference internal" href="char_rnn_classification_tutorial.html"><span class="doc">문자 단위 RNN으로 이름 분류하기</span></a></p>
 <div class="section" id="id2">
 <h2>데이터 준비하기<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
@@ -619,7 +620,7 @@
 <div class="section" id="id4">
 <h2>네트워크 생성<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>이 네트워크는 <a class="reference external" href="#Creating-the-Network">지난 튜토리얼의 RNN</a> 이
-다른 것들과 연결되는 category tensor 를 추가 인자로 가지게 확장합니다.
+다른 것들과 연결되는 category tensor를 추가 인자로 가지게 확장합니다.
 category tensor는 문자 입력과 마찬가지로 one-hot 벡터입니다.</p>
 <p>우리는 출력을 다음 문자의 확률로 해석 할 것입니다. 샘플링 할 때
 가장 확률이 높은 문자가 다음 입력 문자로 사용됩니다.</p>
@@ -627,7 +628,7 @@ category tensor는 문자 입력과 마찬가지로 one-hot 벡터입니다.</p>
 <code class="docutils literal notranslate"><span class="pre">o2o</span></code> (hiddne과 출력을 결합한 후) 를 추가했습니다 .
 또한 drop-out 레이어가 있습니다. 이 레이어는 주어진 확률(여기서 0.1)로
 <a class="reference external" href="https://arxiv.org/abs/1207.0580">입력을 무작위로 0 #</a> 으로 만들고
-일반적으로 over-fitting 을 방지하기위해 입력을 흐리게 하는 데 사용됩니다.
+일반적으로 over-fitting을 방지하기위해 입력을 흐리게 하는 데 사용됩니다.
 여기서 우리는 고의로 일부 혼돈을 추가하고 샘플링 다양성을 높이기
 위해 네트워크의 마지막에 이것을 사용합니다.</p>
 <div class="figure">
@@ -691,7 +692,7 @@ category, 입력 문자의 세트, 출력/목표 문자의 세트가 필요하�
 <div class="figure">
 <img alt="" src="https://i.imgur.com/JH58tXY.png" />
 </div>
-<p>category tensor 는 <code class="docutils literal notranslate"><span class="pre">&lt;1</span> <span class="pre">x</span> <span class="pre">n_categories&gt;</span></code> 크기의 <a class="reference external" href="https://en.wikipedia.org/wiki/One-hot">one-hot
+<p>category tensor는 <code class="docutils literal notranslate"><span class="pre">&lt;1</span> <span class="pre">x</span> <span class="pre">n_categories&gt;</span></code> 크기의 <a class="reference external" href="https://en.wikipedia.org/wiki/One-hot">one-hot
 tensor</a> 입니다.
 학습시에 모든 타임 스텝에서 네트워크에 그것을 전달합니다.
 - 이것은 설계 선택사항으로, 초기 hidden state 부분 또는
@@ -711,7 +712,7 @@ tensor</a> 입니다.
         <span class="n">tensor</span><span class="p">[</span><span class="n">li</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">all_letters</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">letter</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">tensor</span>
 
-<span class="c1"># 목표를 위한 두번째 문자 부터 마지막 (EOS) 까지의 LongTensor</span>
+<span class="c1"># 목표를 위한 두번째 문자 부터 마지막(EOS) 까지의 LongTensor</span>
 <span class="k">def</span> <span class="nf">targetTensor</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
     <span class="n">letter_indexes</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_letters</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">li</span><span class="p">])</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))]</span>
     <span class="n">letter_indexes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_letters</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># EOS</span>
@@ -800,33 +801,33 @@ tensor</a> 입니다.
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">5000</span> <span class="mi">5</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.3896</span>
-<span class="mi">0</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">10000</span> <span class="mi">10</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.8760</span>
-<span class="mi">0</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">15000</span> <span class="mi">15</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1707</span>
-<span class="mi">0</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">20000</span> <span class="mi">20</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4185</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span> <span class="p">(</span><span class="mi">25000</span> <span class="mi">25</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6252</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">30000</span> <span class="mi">30</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.0544</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">35000</span> <span class="mi">35</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4381</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">40000</span> <span class="mi">40</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1223</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">45000</span> <span class="mi">45</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.2162</span>
-<span class="mi">1</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="mi">50000</span> <span class="mi">50</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.7984</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">11</span><span class="n">s</span> <span class="p">(</span><span class="mi">55000</span> <span class="mi">55</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.0739</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">23</span><span class="n">s</span> <span class="p">(</span><span class="mi">60000</span> <span class="mi">60</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.1528</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">34</span><span class="n">s</span> <span class="p">(</span><span class="mi">65000</span> <span class="mi">65</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.7202</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">46</span><span class="n">s</span> <span class="p">(</span><span class="mi">70000</span> <span class="mi">70</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4180</span>
-<span class="mi">2</span><span class="n">m</span> <span class="mi">58</span><span class="n">s</span> <span class="p">(</span><span class="mi">75000</span> <span class="mi">75</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.5458</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">9</span><span class="n">s</span> <span class="p">(</span><span class="mi">80000</span> <span class="mi">80</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6781</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">21</span><span class="n">s</span> <span class="p">(</span><span class="mi">85000</span> <span class="mi">85</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.2021</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">33</span><span class="n">s</span> <span class="p">(</span><span class="mi">90000</span> <span class="mi">90</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.0037</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">45</span><span class="n">s</span> <span class="p">(</span><span class="mi">95000</span> <span class="mi">95</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.1024</span>
-<span class="mi">3</span><span class="n">m</span> <span class="mi">57</span><span class="n">s</span> <span class="p">(</span><span class="mi">100000</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.9082</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">5000</span> <span class="mi">5</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.3360</span>
+<span class="mi">0</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">10000</span> <span class="mi">10</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6521</span>
+<span class="mi">0</span><span class="n">m</span> <span class="mi">37</span><span class="n">s</span> <span class="p">(</span><span class="mi">15000</span> <span class="mi">15</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.6742</span>
+<span class="mi">0</span><span class="n">m</span> <span class="mi">49</span><span class="n">s</span> <span class="p">(</span><span class="mi">20000</span> <span class="mi">20</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.5234</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">1</span><span class="n">s</span> <span class="p">(</span><span class="mi">25000</span> <span class="mi">25</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.4862</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">13</span><span class="n">s</span> <span class="p">(</span><span class="mi">30000</span> <span class="mi">30</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.5183</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">25</span><span class="n">s</span> <span class="p">(</span><span class="mi">35000</span> <span class="mi">35</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.1099</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">40000</span> <span class="mi">40</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1527</span>
+<span class="mi">1</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">45000</span> <span class="mi">45</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.7475</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span> <span class="p">(</span><span class="mi">50000</span> <span class="mi">50</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.5989</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">55000</span> <span class="mi">55</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.1606</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">60000</span> <span class="mi">60</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.4526</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">36</span><span class="n">s</span> <span class="p">(</span><span class="mi">65000</span> <span class="mi">65</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.5539</span>
+<span class="mi">2</span><span class="n">m</span> <span class="mi">48</span><span class="n">s</span> <span class="p">(</span><span class="mi">70000</span> <span class="mi">70</span><span class="o">%</span><span class="p">)</span> <span class="mf">3.1605</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">0</span><span class="n">s</span> <span class="p">(</span><span class="mi">75000</span> <span class="mi">75</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.3336</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">12</span><span class="n">s</span> <span class="p">(</span><span class="mi">80000</span> <span class="mi">80</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.7602</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">24</span><span class="n">s</span> <span class="p">(</span><span class="mi">85000</span> <span class="mi">85</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.5357</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">35</span><span class="n">s</span> <span class="p">(</span><span class="mi">90000</span> <span class="mi">90</span><span class="o">%</span><span class="p">)</span> <span class="mf">2.3921</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">47</span><span class="n">s</span> <span class="p">(</span><span class="mi">95000</span> <span class="mi">95</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.8281</span>
+<span class="mi">3</span><span class="n">m</span> <span class="mi">59</span><span class="n">s</span> <span class="p">(</span><span class="mi">100000</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span> <span class="mf">1.6324</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id8">
 <h3>손실 도식화<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<p>all_losses 를 이용한 역사적인 손실의
-도식화는 네트워크의 학습을 보여준다:</p>
+<p>all_losses를 이용한 역사적인 손실의
+도식화는 네트워크의 학습을 보여줍니다:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="kn">as</span> <span class="nn">ticker</span>
 
@@ -846,7 +847,7 @@ tensor</a> 입니다.
 <li>시작 문자로 <code class="docutils literal notranslate"><span class="pre">output_name</span></code> 문자열을 생성하십시오</li>
 <li>최대 출력 길이까지,<ul>
 <li>현재 문자를 네트워크에 전달하십시오.</li>
-<li>가장 높은 출력에서 다음 문자과 다음 hidden state 를 얻으십시오</li>
+<li>가장 높은 출력에서 다음 문자과 다음 hidden state를 얻으십시오</li>
 <li>만일 문자가 EOS면 여기서 멈추십시오</li>
 <li>만일 일반적인 문자라면 <code class="docutils literal notranslate"><span class="pre">output_name</span></code> 에 추가하고 계속하십시오</li>
 </ul>
@@ -897,18 +898,18 @@ tensor</a> 입니다.
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rovantov</span>
-<span class="n">Uarikov</span>
-<span class="n">Shithin</span>
-<span class="n">Gerter</span>
-<span class="n">Eringer</span>
-<span class="n">Ronger</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rovan</span>
+<span class="n">Uanton</span>
+<span class="n">Shilov</span>
+<span class="n">Gerren</span>
+<span class="n">Eriner</span>
+<span class="n">Roner</span>
 <span class="n">Salla</span>
-<span class="n">Parez</span>
-<span class="n">Allan</span>
-<span class="n">Cou</span>
-<span class="n">Hou</span>
-<span class="n">Iin</span>
+<span class="n">Pares</span>
+<span class="n">Alana</span>
+<span class="n">Chang</span>
+<span class="n">Han</span>
+<span class="n">Iuo</span>
 </pre></div>
 </div>
 </div>
@@ -929,7 +930,7 @@ tensor</a> 입니다.
 </ul>
 </li>
 </ul>
-<p><strong>Total running time of the script:</strong> ( 3 minutes  57.206 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 3 minutes  59.873 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../_downloads/char_rnn_generation_tutorial.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">char_rnn_generation_tutorial.py</span></code></a></div>
@@ -950,10 +951,10 @@ tensor</a> 입니다.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="seq2seq_translation_tutorial.html" class="btn btn-neutral float-right" title="Translation with a Sequence to Sequence Network and Attention" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="seq2seq_translation_tutorial.html" class="btn btn-neutral float-right" title="Sequence to Sequence 네트워크와 Attention을 이용한 번역" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="char_rnn_classification_tutorial.html" class="btn btn-neutral" title="문자 단위 RNN 으로 이름 분류하기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="char_rnn_classification_tutorial.html" class="btn btn-neutral" title="문자 단위 RNN으로 이름 분류하기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -3,13 +3,13 @@
 .. _sphx_glr_intermediate_char_rnn_classification_tutorial.py:
 
 
-문자 단위 RNN 으로 이름 분류하기  
+문자 단위 RNN으로 이름 분류하기  
 *********************************************
 **Author**: `Sean Robertson <https://github.com/spro/practical-pytorch>`_
   **번역**: `황성수 <https://github.com/adonisues>`_
 
 
-단어를 분류하기 위해 기본적인 문자 단위 RNN을 만들고 훈련 할 것입니다. 문자 단위 RNN은 문자의 연속을 읽어 들여서 각 단계의 예측과 "hidden state" 출력하고 다음 단계에 이전 hidden state 를 전달합니다. 즉 단어가 속한 클래스 같은 출력을 최종 예측으로 선택합니다.
+단어를 분류하기 위해 기본적인 문자 단위 RNN을 만들고 훈련 할 것입니다. 문자 단위 RNN은 문자의 연속을 읽어 들여서 각 단계의 예측과 "hidden state" 출력하고 다음 단계에 이전 hidden state를 전달합니다. 즉 단어가 속한 클래스 같은 출력을 최종 예측으로 선택합니다.
 
 특히, 18개 언어로 된 수천 개의 성(姓)을 훈련시키고, 철자에 따라 이름이 어떤 언어인지 예측합니다:
 
@@ -28,19 +28,20 @@
 
 **추천 자료:**
 
-최소한 Pytorch 를 설치했고, Python을 알고, Tensor 를 이해한다고 가정합니다.:
+최소한 Pytorch를 설치했고, Python을 알고, Tensor를 이해한다고 가정합니다.:
 
 -  http://pytorch.org/ 설치 안내를 위한 자료 
 -  :doc:`/beginner/deep_learning_60min_blitz` 일반적인 PyTorch 시작을 위한 자료
 -  :doc:`/beginner/pytorch_with_examples` 넓고 깊은 통찰을 위한 자료
--  :doc:`/beginner/former_torchies_tutorial` 만일 이전 Lua Torch 사용자를 위한 자료
+-  :doc:`/beginner/former_torchies_tutorial` 이전 Lua Torch 사용자를 위한 자료
 
 RNN과 그 작동 방식을 아는 것 또한 유용합니다.:
 
--  `RNN의 비합리한 효과 <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
+-  `The Unreasonable Effectiveness of Recurrent Neural
+   Networks <http://karpathy.github.io/2015/05/21/rnn-effectiveness/>`__
    실생활 예들을 보여 줍니다 
--  `LSTM
-   네트워크에 관한 이해 <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
+-  `Understanding LSTM
+   Networks <http://colah.github.io/posts/2015-08-Understanding-LSTMs/>`__
    특히 LSTM에 관한 것이지만 일반적인 RNN에 대한 정보입니다. 
 
 
@@ -227,7 +228,7 @@ Gradient를 가지게 됩니다. 즉, feed-forward layer 같은 매우 "순수�
 이 RNN 모듈 (대부분 `Torch 사용자를 위한 PyTorch 튜토리얼
 <http://pytorch.org/tutorials/beginner/former_torchies/
 nn_tutorial.html#example-2-recurrent-net>`__ 에서 복사). 
-은 input 및 hidden state 에서 작동하는 2개의 선형 레이어이며, 
+은 input 및 hidden state에서 작동하는 2개의 선형 레이어이며, 
 출력 후에 LogSoftmax 레이어가 있습니다.
 
 .. figure:: https://i.imgur.com/Z2xbySO.png
@@ -275,7 +276,7 @@ nn_tutorial.html#example-2-recurrent-net>`__ 에서 복사).
 
 이 네트워크의 한 단계를 실행하려면 입력(현재 문자의 Tensor)과 
 이전의 hidden state (처음에는 0으로 초기화)를 전달해야 합니다.
-출력(각 언어의 확률)과 다음 hidden state (다음 단계에 대해 유지)를 
+출력(각 언어의 확률)과 다음 hidden state (다음 단계를 위해 유지)를 
 돌려 받습니다.
 
 PyTorch 모듈은 Tensors에서 바로 작동하는 대신에 Variables에서 
@@ -328,10 +329,10 @@ PyTorch 모듈은 Tensors에서 바로 작동하는 대신에 Variables에서
     Variable containing:
 
     Columns 0 to 9 
-    -2.8880 -2.9785 -2.8019 -2.8690 -2.9542 -2.8035 -2.8567 -2.9231 -2.9386 -2.9026
+    -2.8237 -2.9743 -2.8575 -2.8608 -2.9018 -2.9214 -2.9986 -2.9225 -2.9372 -2.7739
 
     Columns 10 to 17 
-    -2.8849 -2.8432 -2.8275 -2.8728 -2.9074 -2.9682 -2.8695 -2.9625
+    -2.8522 -2.8561 -2.9583 -2.8495 -2.8098 -2.8977 -2.9220 -2.9404
     [torch.FloatTensor of size 1x18]
 
 
@@ -371,7 +372,7 @@ PyTorch 모듈은 Tensors에서 바로 작동하는 대신에 Variables에서
 
  Out::
 
-    ('German', 2)
+    ('Italian', 9)
 
 
 또한 학습 예시(이름과 언어)를 얻는 빠른 방법을 원할 것입니다.
@@ -407,16 +408,16 @@ PyTorch 모듈은 Tensors에서 바로 작동하는 대신에 Variables에서
 
  Out::
 
-    category = Scottish / line = Mccallum
-    category = Dutch / line = Bueren
-    category = Polish / line = Miazga
-    category = Japanese / line = Sekine
-    category = English / line = Driffield
-    category = French / line = Coupe
-    category = Portuguese / line = Palmeiro
-    category = Portuguese / line = Fonseca
-    category = Czech / line = Pavlu
-    category = Arabic / line = Wasem
+    category = Dutch / line = Canne
+    category = Japanese / line = Kawayama
+    category = Korean / line = Park 
+    category = German / line = Brun
+    category = Russian / line = Awanesyan
+    category = Arabic / line = Almasi
+    category = Scottish / line = Wood
+    category = Polish / line = Filipek
+    category = German / line = Behrends
+    category = Greek / line = Vamvakidis
 
 
 네트워크 학습
@@ -474,7 +475,7 @@ RNN의 마지막 레이어가 ``nn.LogSoftmax`` 이므로 손실 함수로
         loss = criterion(output, category_tensor)
         loss.backward()
 
-        # learning rate 를 곱한 파리미터의 경사도를 파리미터 값에 더합니다.
+        # learning rate를 곱한 파리미터의 경사도를 파리미터 값에 더합니다.
         for p in rnn.parameters():
             p.data.add_(-learning_rate, p.grad.data)
 
@@ -545,26 +546,26 @@ RNN의 마지막 레이어가 ``nn.LogSoftmax`` 이므로 손실 함수로
 
  Out::
 
-    5000 5% (0m 4s) 2.8644 Bachyanskas / Greek ✗ (Russian)
-    10000 10% (0m 9s) 2.4075 Voclain / Irish ✗ (French)
-    15000 15% (0m 14s) 2.5750 Fish / Vietnamese ✗ (English)
-    20000 20% (0m 19s) 1.8484 Pak / Chinese ✗ (Korean)
-    25000 25% (0m 22s) 1.6772 Peisar / Arabic ✗ (Czech)
-    30000 30% (0m 26s) 1.6526 Souza / Arabic ✗ (Portuguese)
-    35000 35% (0m 30s) 2.3264 Niemec / German ✗ (Polish)
-    40000 40% (0m 34s) 1.0655 Carver / German ✓
-    45000 45% (0m 38s) 1.1970 Salib / Arabic ✓
-    50000 50% (0m 42s) 0.8235 Messer / German ✓
-    55000 55% (0m 46s) 1.0366 Lolos / Greek ✓
-    60000 60% (0m 50s) 2.1081 Delgado / Italian ✗ (Portuguese)
-    65000 65% (0m 54s) 3.2480 Michel / Vietnamese ✗ (Polish)
-    70000 70% (0m 58s) 1.5491 Mancuso / Portuguese ✗ (Italian)
-    75000 75% (1m 2s) 0.7987 Lecuyer / French ✓
-    80000 80% (1m 6s) 1.7981 Offermans / English ✗ (Dutch)
-    85000 85% (1m 10s) 0.5476 Mckenzie / Scottish ✓
-    90000 90% (1m 15s) 1.8878 Hughes / Scottish ✗ (English)
-    95000 95% (1m 20s) 0.0687 Rudawski / Polish ✓
-    100000 100% (1m 25s) 0.8436 Mineev / Russian ✓
+    5000 5% (0m 4s) 2.9665 Simen / Chinese ✗ (German)
+    10000 10% (0m 9s) 1.4317 Vuong / Vietnamese ✓
+    15000 15% (0m 14s) 2.4301 Mustafa / Japanese ✗ (Arabic)
+    20000 20% (0m 19s) 1.9579 Hanzlik / Czech ✓
+    25000 25% (0m 23s) 0.5831 Byon / Korean ✓
+    30000 30% (0m 27s) 1.1269 Baidalin / Russian ✓
+    35000 35% (0m 31s) 0.1957 Mihailov / Russian ✓
+    40000 40% (0m 36s) 3.0062 Fraser / German ✗ (Scottish)
+    45000 45% (0m 41s) 1.5809 Awad / Arabic ✓
+    50000 50% (0m 46s) 0.8290 Song / Chinese ✗ (Korean)
+    55000 55% (0m 51s) 2.1509 Espinosa / Japanese ✗ (Spanish)
+    60000 60% (0m 55s) 1.8733 Gray / Scottish ✓
+    65000 65% (0m 59s) 0.0840 Antimisiaris / Greek ✓
+    70000 70% (1m 3s) 0.5359 Shang / Chinese ✓
+    75000 75% (1m 7s) 0.6648 Abreu / Portuguese ✓
+    80000 80% (1m 12s) 3.8641 Klein / Scottish ✗ (Czech)
+    85000 85% (1m 17s) 2.5640 Groshopf / Arabic ✗ (Russian)
+    90000 90% (1m 22s) 0.3939 Wechsler / German ✓
+    95000 95% (1m 27s) 0.7078 Murphy / Scottish ✓
+    100000 100% (1m 32s) 1.0464 Savchak / Polish ✗ (Czech)
 
 
 결과 도식화
@@ -706,19 +707,19 @@ RNN의 마지막 레이어가 ``nn.LogSoftmax`` 이므로 손실 함수로
  Out::
 
     > Dovesky
-    (-0.20) Russian
-    (-2.21) Czech
-    (-3.08) English
+    (-0.70) Russian
+    (-0.85) Czech
+    (-3.97) Polish
 
     > Jackson
-    (-0.86) Scottish
-    (-1.48) Russian
-    (-1.61) English
+    (-0.36) Scottish
+    (-2.46) English
+    (-2.60) Russian
 
     > Satoshi
-    (-1.10) Japanese
-    (-1.33) Italian
-    (-1.68) Arabic
+    (-0.77) Japanese
+    (-1.34) Arabic
+    (-2.67) Italian
 
 
 `실용 PyTorch 저장소
@@ -765,7 +766,7 @@ http://localhost:5533/Yourname 방문.
 
 
 
-**Total running time of the script:** ( 1 minutes  29.625 seconds)
+**Total running time of the script:** ( 1 minutes  36.106 seconds)
 
 
 
