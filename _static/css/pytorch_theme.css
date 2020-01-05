@@ -1,3 +1,12 @@
+.latest-version-tease {
+    display: block;
+    padding: 15px 20px;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    text-align: center;
+    background-color: #F05732;
+}
+
 body {
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 }
