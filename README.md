@@ -1,7 +1,6 @@
 # PyTorch 한국어 튜토리얼
 
-### PyTorch 0.4.0이 Release되어 [이 곳](http://github.com/9bow/PyTorch-tutorials-kr/)에서 새롭게 번역을 진행하며, **이 저장소는 더 이상 사용하지 않습니다.**
-### Because of PyTorch 0.4.0 has been released, new translations are being made [here](http://github.com/9bow/PyTorch-tutorials-kr/) and **this repository is no longer used**.
+## **현재 이 저장소는 업데이트되지 않고 있습니다. 최신 버전은 [여기](https://9bow.github.io/PyTorch-tutorials-kr)에서 확인해주세요!**
 
 ## 소개
 
